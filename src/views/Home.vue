@@ -1,18 +1,46 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
-  </div>
+  <v-container
+    class="home"
+    :fluid="!getDataViewState"
+    :class="{ 'pa-0': !getDataViewState }"
+  >
+    <SplitOptions />
+
+    <v-row no-gutters>
+      <v-col
+        class="pa-3"
+        :cols="getDataViewState ? 12 : 6"
+        v-show="getSplitViewState || getDataViewState"
+      >
+        <router-view />
+      </v-col>
+
+      <v-col
+        :cols="getMapViewState ? 12 : 6"
+        v-show="getSplitViewState || getMapViewState"
+      >
+        <Map />
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+import Map from "../components/partial/map/Map";
+import SplitOptions from "../components/partial/SplitOptions";
+import { mapGetters } from "vuex";
 
 export default {
   name: "Home",
-  components: {
-    HelloWorld
+  components: { SplitOptions, Map },
+  computed: {
+    ...mapGetters("settings", [
+      "getSplitViewState",
+      "getMapViewState",
+      "getDataViewState"
+    ])
   }
 };
 </script>
+
+<style scoped></style>
