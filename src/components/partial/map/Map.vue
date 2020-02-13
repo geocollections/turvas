@@ -13,30 +13,8 @@ export default {
   data: () => ({
     map: null,
     center: L.latLng(58.5, 25.5),
-    zoom: 11,
+    zoom: 7,
     tileProviders: [
-      {
-        name: "OpenStreetMap",
-        leafletObject: L.tileLayer(
-          "https://api.tiles.mapbox.com/v4/mapbox.light/{z}/{x}/{y}.png?access_token=pk.eyJ1Ijoia3V1dG9iaW5lIiwiYSI6ImNpZWlxdXAzcjAwM2Nzd204enJvN2NieXYifQ.tp6-mmPsr95hfIWu3ASz2w",
-          {
-            attribution:
-              '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-            minZoom: 1
-          }
-        )
-      },
-      {
-        name: "OpenTopoMap",
-        leafletObject: L.tileLayer(
-          "https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png",
-          {
-            attribution:
-              'Map data: &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)',
-            minZoom: 1
-          }
-        )
-      },
       {
         name: "Maaameti fotokaart",
         leafletObject: L.tileLayer(
@@ -54,12 +32,12 @@ export default {
         )
       },
       {
-        name: "Maaameti kaart",
+        name: "Maaameti põhikaart",
         leafletObject: L.tileLayer(
           "https://tiles.maaamet.ee/tm/tms/1.0.0/kaart@GMC/{z}/{x}/{-y}.png&ASUTUS=TALTECH&KESKKOND=LIVE&IS=SARV",
           {
             attribution:
-              "Eesti kaardid: <a  href='http://www.maaamet.ee/'>Maa-amet</a>",
+              "Eesti kaardid: <a href='http://www.maaamet.ee/' target='MaaAmetWindow'>Maa-amet</a>",
             tms: true,
             worldCopyJump: true,
             detectRetina: true,
@@ -77,7 +55,7 @@ export default {
           "https://tiles.maaamet.ee/tm/tms/1.0.0/hybriid@GMC/{z}/{x}/{-y}.png&ASUTUS=TALTECH&KESKKOND=LIVE&IS=SARV",
           {
             attribution:
-              "Eesti kaardid: <a  href='http://www.maaamet.ee/'>Maa-amet</a>",
+              "Eesti kaardid: <a href='http://www.maaamet.ee/' target='MaaAmetWindow'>Maa-amet</a>",
             tms: true,
             worldCopyJump: true,
             detectRetina: true,
@@ -135,14 +113,15 @@ export default {
       );
 
       L.control.layers(baseLayers, overlayMaps).addTo(this.map);
+      L.control.scale({ imperial: false }).addTo(this.map);
     }
   }
 };
 </script>
 
 <style scoped>
-  #map {
-    position: fixed;
-    height: 93.3vh;
-  }
+#map {
+  position: fixed;
+  height: 93.3vh;
+}
 </style>
