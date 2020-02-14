@@ -6,13 +6,27 @@
 
     <v-toolbar-title>
       <router-link
-        class="toolbar-title"
+        class="toolbar-title font-weight-bold secondary--text"
         :to="{ path: '/' }"
         title="Mine pealehele"
       >
         Eesti turbauuringute andmebaas
       </router-link>
     </v-toolbar-title>
+
+    <v-toolbar-items>
+      <v-text-field
+        :value="getFastSearch"
+        hide-details
+        solo
+        label="Otsi..."
+        class="align-center mx-4"
+        autocomplete="off"
+        append-icon="fas fa-search"
+        @click:append="doFastSearch"
+        @input="updateFastSearch"
+      />
+    </v-toolbar-items>
 
     <v-spacer />
 
@@ -29,19 +43,31 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from "vuex";
+
 export default {
-  name: "AppHeader"
+  name: "AppHeader",
+
+  computed: {
+    ...mapGetters("search", ["getFastSearch"])
+  },
+
+  methods: {
+    ...mapActions("search", ["doFastSearch", "updateFastSearch"])
+  }
 };
 </script>
 
 <style scoped>
 .toolbar-title {
   text-decoration: none;
-  color: #000;
+  transition: color 100ms ease-out;
 }
 
 .toolbar-title:hover {
   opacity: 0.7;
+  color: #4caf50 !important;
+  transition: color 100ms ease-in;
 }
 
 .app-bar-image {

@@ -54,8 +54,8 @@ export default {
         leafletObject: L.tileLayer(
           "https://tiles.maaamet.ee/tm/tms/1.0.0/hybriid@GMC/{z}/{x}/{-y}.png&ASUTUS=TALTECH&KESKKOND=LIVE&IS=SARV",
           {
-            attribution:
-              "Eesti kaardid: <a href='http://www.maaamet.ee/' target='MaaAmetWindow'>Maa-amet</a>",
+            // attribution:
+            //   "Eesti kaardid: <a href='http://www.maaamet.ee/' target='MaaAmetWindow'>Maa-amet</a>",
             tms: true,
             worldCopyJump: true,
             detectRetina: true,
@@ -100,8 +100,11 @@ export default {
     initMap() {
       this.map = L.map("map", {
         layers: [this.tileProviders[0].leafletObject],
-        scrollWheelZoom: true
-      }).setView(this.center, this.zoom);
+        scrollWheelZoom: true,
+        cursor: true,
+        center: this.center,
+        zoom: this.zoom
+      });
 
       let baseLayers = {};
       this.tileProviders.forEach(provider => {

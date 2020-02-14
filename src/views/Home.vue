@@ -8,7 +8,7 @@
 
     <v-row no-gutters>
       <v-col
-        class="pa-3"
+        :class="{ 'pa-3': getSplitViewState }"
         :cols="getDataViewState ? 12 : 6"
         v-show="getSplitViewState || getDataViewState"
       >
