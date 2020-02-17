@@ -1,14 +1,10 @@
 const getters = {
-  getSplitViewState: state => {
-    return state.isSplitView;
+  getMapState: state => {
+    return state.showMap;
   },
 
-  getMapViewState: state => {
-    return state.isMapView;
-  },
-
-  getDataViewState: state => {
-    return state.isDataView;
+  getCarouselSlides: state => {
+    return state.carouselSlides;
   }
 };
 

@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import RouteLinkTabs from "../partial/RouteLinkTabs";
+import RouteLinkTabs from "../partial/ScrollToTabs";
 export default {
   name: "FrontPage",
   components: { RouteLinkTabs }

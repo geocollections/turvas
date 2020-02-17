@@ -1,5 +1,9 @@
 <template>
-  <div class="site"></div>
+  <div class="site">
+    <!-- Main data -->
+
+    <!-- Related samples -->
+  </div>
 </template>
 
 <script>

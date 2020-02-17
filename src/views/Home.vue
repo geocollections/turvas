@@ -1,24 +1,15 @@
 <template>
   <v-container
     class="home"
-    :fluid="!getDataViewState"
-    :class="{ 'pa-0': !getDataViewState }"
+    :fluid="getMapState"
+    :class="{ 'pa-0': getMapState }"
   >
-    <SplitOptions />
-
     <v-row no-gutters>
-      <v-col
-        :class="{ 'pa-3': getSplitViewState }"
-        :cols="getDataViewState ? 12 : 6"
-        v-show="getSplitViewState || getDataViewState"
-      >
+      <v-col :class="{ 'pa-3': getMapState }" :cols="!getMapState ? 12 : 6">
         <router-view />
       </v-col>
 
-      <v-col
-        :cols="getMapViewState ? 12 : 6"
-        v-show="getSplitViewState || getMapViewState"
-      >
+      <v-col cols="6" v-show="getMapState">
         <Map />
       </v-col>
     </v-row>
@@ -27,18 +18,13 @@
 
 <script>
 import Map from "../components/partial/map/Map";
-import SplitOptions from "../components/partial/SplitOptions";
 import { mapGetters } from "vuex";
 
 export default {
   name: "Home",
-  components: { SplitOptions, Map },
+  components: { Map },
   computed: {
-    ...mapGetters("settings", [
-      "getSplitViewState",
-      "getMapViewState",
-      "getDataViewState"
-    ])
+    ...mapGetters("settings", ["getMapState"])
   }
 };
 </script>

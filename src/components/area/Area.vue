@@ -1,7 +1,7 @@
 <template>
   <div class="area">
     <!-- Main data -->
-    <v-card flat v-if="getArea">
+    <v-card flat v-if="getArea" id="general">
       <v-card-title class="display-1">
         {{ getArea.name }} {{ getArea.area_type__name }}
       </v-card-title>
@@ -50,10 +50,34 @@
     </v-card>
 
     <!-- Related site -->
-    <v-card flat>
-      <v-card-title class="display-1" v-if="getAreaSites"
-        >Proovipunktid</v-card-title
+    <v-card flat v-if="getAreaSites" id="sites">
+      <v-card-title class="display-1">Proovipunktid</v-card-title>
+
+      <v-data-table
+        disable-sort
+        :headers="getAreaSiteHeaders"
+        :items="getAreaSites"
       >
+        <template v-slot:item.id="{ item }">
+          <router-link
+            class="table-link"
+            :title="`Proovipunkti vaade ID: ${item.id}`"
+            :to="`/site/${item.id}`"
+          >
+            {{ item.id }}
+          </router-link>
+        </template>
+
+        <template v-slot:item.site="{ item }">
+          <router-link
+            class="table-link"
+            :title="`Proovipunkti vaade ID: ${item.id}`"
+            :to="`/site/${item.id}`"
+          >
+            {{ item.area__name }}
+          </router-link>
+        </template>
+      </v-data-table>
     </v-card>
   </div>
 </template>
@@ -65,7 +89,12 @@ export default {
   name: "Area",
 
   computed: {
-    ...mapGetters("detail", ["getArea", "getAreaSites", "filteredAreaHeaders"]),
+    ...mapGetters("detail", [
+      "getArea",
+      "getAreaSites",
+      "filteredAreaHeaders",
+      "getAreaSiteHeaders"
+    ]),
 
     eelisArray() {
       if (this.getArea.eelis) {

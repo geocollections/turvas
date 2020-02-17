@@ -12,6 +12,14 @@ const state = {
     { text: "Looduskaitse (viide registrisse)", value: "eelis" },
     { text: "Iseloomustus", value: "description" }
   ],
+  areaSiteHeaders: [
+    { text: "ID", value: "id" },
+    { text: "Proovipunkt", value: "site" },
+    { text: "X (L-EST, m)", value: "coordx" },
+    { text: "Y (L-EST, m)", value: "coordy" },
+    { text: "Z (m)", value: "elevation" },
+    { text: "Sügavus / turba paksus (m)", value: "depth" }
+  ],
   sample: null,
   site: null,
   error: false,

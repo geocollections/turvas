@@ -1,10 +1,12 @@
 <template>
-  <div id="map" :style="getMapViewState ? 'width: 100%' : 'width: 50%'"></div>
+  <div id="map"></div>
 </template>
 
 <script>
 import "leaflet/dist/leaflet.css";
 import * as L from "leaflet";
+import "leaflet-fullscreen/dist/leaflet.fullscreen.css";
+import "leaflet-fullscreen/dist/Leaflet.fullscreen";
 import { mapGetters } from "vuex";
 
 export default {
@@ -71,19 +73,11 @@ export default {
   }),
 
   computed: {
-    ...mapGetters("settings", ["getSplitViewState", "getMapViewState"])
+    ...mapGetters("settings", ["getMapState"])
   },
 
   watch: {
-    getSplitViewState(newVal) {
-      if (newVal) {
-        this.$nextTick(() => {
-          this.map.invalidateSize();
-        });
-      }
-    },
-
-    getMapViewState(newVal) {
+    getMapState(newVal) {
       if (newVal) {
         this.$nextTick(() => {
           this.map.invalidateSize();
@@ -99,7 +93,7 @@ export default {
   methods: {
     initMap() {
       this.map = L.map("map", {
-        layers: [this.tileProviders[0].leafletObject],
+        layers: [this.tileProviders[1].leafletObject],
         scrollWheelZoom: true,
         cursor: true,
         center: this.center,
@@ -117,6 +111,8 @@ export default {
 
       L.control.layers(baseLayers, overlayMaps).addTo(this.map);
       L.control.scale({ imperial: false }).addTo(this.map);
+      // Fullscreen
+      this.map.addControl(new window.L.Control.Fullscreen());
     }
   }
 };
@@ -126,5 +122,6 @@ export default {
 #map {
   position: fixed;
   height: 93.3vh;
+  width: 50%;
 }
 </style>

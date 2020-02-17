@@ -10,6 +10,11 @@ const routes = [
     redirect: "/"
   },
   {
+    path: "/about",
+    name: "About",
+    component: () => import("../views/About.vue")
+  },
+  {
     path: "/",
     component: Home,
     children: [
@@ -99,6 +104,7 @@ const routes = [
 ];
 
 const router = new VueRouter({
+  // Todo: Enable history if app is ready
   mode: "history",
   base: process.env.BASE_URL,
   routes

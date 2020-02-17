@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import RouteLinkTabs from "../components/partial/RouteLinkTabs";
+import RouteLinkTabs from "../components/partial/ScrollToTabs";
 import { mapActions, mapGetters } from "vuex";
 import ErrorSnackbar from "../components/partial/ErrorSnackbar";
 export default {

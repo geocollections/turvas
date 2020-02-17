@@ -16,13 +16,33 @@ class SearchService {
   };
 
   static doRegularSearch = async (table, params) => {
-    console.log(table);
-    console.log(params);
+    try {
+      let queryParams = encodeQueryData(params);
+      let url = `${API_URL}${table}/?${queryParams}`;
+
+      const res = await axios.get(url);
+      if (res.status === 200) return res.data.results;
+      else return buildDetailViewErrorMessage(table);
+    } catch (err) {
+      return buildDetailViewErrorMessage(table);
+    }
   };
 }
 
 function buildDetailViewErrorMessage(table, id) {
-  return `Päring tabelist <b>${table}</b>, mille ID on <b>${id}</b> ebaõnnestus`;
+  if (table && id) {
+    return `Päring tabelist <b>${table}</b>, mille ID on <b>${id}</b> ebaõnnestus`;
+  } else return `Päring tabelist <b>${table}</b> ebaõnnestus`;
+}
+
+function encodeQueryData(data) {
+  const encodedData = [];
+  for (let item in data) {
+    encodedData.push(
+      encodeURIComponent(item) + "=" + encodeURIComponent(data[item])
+    );
+  }
+  return encodedData.join("&");
 }
 
 export default SearchService;

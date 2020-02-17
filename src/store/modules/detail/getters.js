@@ -33,6 +33,10 @@ const getters = {
         return header;
       }
     });
+  },
+
+  getAreaSiteHeaders: state => {
+    return state.areaSiteHeaders;
   }
 };
 
