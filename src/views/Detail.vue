@@ -7,7 +7,7 @@
       v-on:update:error="updateErrorState"
     />
 
-    <RouteLinkTabs />
+    <RouteLinkTabs v-if="false" />
 
     <!--    <v-card-title>-->
     <!--      <b>{{ $route.name }}</b>-->
@@ -27,14 +27,8 @@ export default {
   components: { ErrorSnackbar, RouteLinkTabs },
 
   computed: {
-    ...mapGetters("detail", [
-      "getErrorState",
-      "getErrorMessage",
-      "getAnalysis",
-      "getArea",
-      "getSample",
-      "getSite"
-    ])
+    ...mapGetters("detail", ["getAnalysis", "getArea", "getSample", "getSite"]),
+    ...mapGetters("error", ["getErrorState", "getErrorMessage"])
   },
 
   watch: {
@@ -57,8 +51,17 @@ export default {
                 this.getSite &&
                 newVal === this.getSite.id.toString())
             )
-          )
-            this.fetchData({ table: this.$route.meta.object, id: newVal });
+          ) {
+            if (this.$route.meta.object === "area") {
+              this.fetchData({
+                table: this.$route.meta.object,
+                id: newVal,
+                params: { area_type: 2 }
+              });
+            } else {
+              this.fetchData({ table: this.$route.meta.object, id: newVal });
+            }
+          }
         }
       },
       immediate: true
@@ -66,7 +69,8 @@ export default {
   },
 
   methods: {
-    ...mapActions("detail", ["fetchData", "updateErrorState"])
+    ...mapActions("detail", ["fetchData"]),
+    ...mapActions("error", ["updateErrorState"])
   }
 };
 </script>

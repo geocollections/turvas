@@ -7,7 +7,8 @@ const state = {
   carouselSlides: [
     {
       id: 1,
-      src: "https://kik.ee/sites/default/files/43_9787e1e4-aa3b-45b3-9510-73c4dd61501a.jpg",
+      src:
+        "https://kik.ee/sites/default/files/43_9787e1e4-aa3b-45b3-9510-73c4dd61501a.jpg",
       text:
         'Keskkonnainvesteeringute Keskuse projekt nr 12623 "Turbaalaste uurimistulemuste digitaliseerimine ja andmebaasi koostamine I etapp (Harju, Rapla, Pärnu maakond)" eesmärgiks oli turba uurimisel kogutud andmestiku alusel koostada üldsusele kättesaadav andmebaas nii, et see oleks ühildatav geoloogilise kaardistamise käigus kogutavate andmete ja keskkonnaregistri maardlate nimistu infoga.'
     },

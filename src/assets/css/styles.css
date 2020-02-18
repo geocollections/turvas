@@ -1,0 +1,11 @@
+.table-link {
+    text-decoration: none;
+}
+
+.table-link:hover {
+    opacity: 0.7;
+}
+
+.ws-nowrap-table td, .ws-nowrap-table th {
+    white-space: nowrap;
+}

@@ -6,6 +6,7 @@ import vuetify from "./plugins/vuetify";
 import "@babel/polyfill";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import VueScrollTo from "vue-scrollto";
+import "./assets/css/styles.css";
 
 Vue.config.productionTip = false;
 

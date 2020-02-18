@@ -1,5 +1,11 @@
 <template>
-  <div id="map"></div>
+  <div
+    id="map"
+    :class="$route.name === 'FrontPage' ? 'top-controls' : ''"
+    :style="
+      $route.name === 'FrontPage' ? 'width: 100%; height: 100vh' : 'width: 50%'
+    "
+  ></div>
 </template>
 
 <script>
@@ -14,7 +20,7 @@ export default {
 
   data: () => ({
     map: null,
-    center: L.latLng(58.5, 25.5),
+    center: L.latLng(58.7, 25.0),
     zoom: 7,
     tileProviders: [
       {
@@ -97,7 +103,7 @@ export default {
         scrollWheelZoom: true,
         cursor: true,
         center: this.center,
-        zoom: this.zoom
+        zoom: this.$route.name === "FrontPage" ? 8 : this.zoom
       });
 
       let baseLayers = {};
@@ -122,6 +128,9 @@ export default {
 #map {
   position: fixed;
   height: 93.3vh;
-  width: 50%;
+}
+
+.top-controls >>> .leaflet-top {
+  top: 64px;
 }
 </style>

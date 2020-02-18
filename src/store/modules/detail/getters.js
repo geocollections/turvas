@@ -19,14 +19,6 @@ const getters = {
     return state.site;
   },
 
-  getErrorState: state => {
-    return state.error;
-  },
-
-  getErrorMessage: state => {
-    return state.errorMessage;
-  },
-
   filteredAreaHeaders: (state, getters) => {
     return state.areaHeaders.filter(header => {
       if (getters.getArea[header.value]) {

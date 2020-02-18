@@ -1,5 +1,10 @@
 <template>
+  <v-container class="pa-0" fluid v-if="$route.name === 'FrontPage'">
+    <router-view />
+  </v-container>
+
   <v-container
+    v-else
     class="home"
     :fluid="getMapState"
     :class="{ 'pa-0': getMapState }"

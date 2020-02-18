@@ -21,9 +21,7 @@ const state = {
     { text: "Sügavus / turba paksus (m)", value: "depth" }
   ],
   sample: null,
-  site: null,
-  error: false,
-  errorMessage: ""
+  site: null
 };
 
 export default {

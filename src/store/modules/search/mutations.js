@@ -9,6 +9,14 @@ const mutations = {
 
   SET_FAST_SEARCH_RESULTS(state, arrOfResults) {
     state.fastSearchResults = arrOfResults;
+  },
+
+  SET_AREA_RESULTS(state, results) {
+    state.areaResults = results;
+  },
+
+  SET_AREA_RESULTS_COUNT(state, count) {
+    state.areaResultsCount = count;
   }
 };
 

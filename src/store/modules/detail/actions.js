@@ -2,9 +2,9 @@ import SearchService from "../../../middleware/SearchService";
 
 const actions = {
   async fetchData({ commit, dispatch }, payload) {
-    let response = await SearchService.getDetailView(payload.table, payload.id);
+    let response = await SearchService.getDetailView(payload.table, payload.id, payload.params);
     if (typeof response === "object") {
-      dispatch("updateErrorState", false);
+      dispatch("error/updateErrorState", false, { root: true });
       commit("SET_DATA", {
         table: payload.table,
         data: response
@@ -14,24 +14,20 @@ const actions = {
         dispatch("fetchAreaSites", payload.id);
       }
     } else if (typeof response === "string") {
-      dispatch("updateErrorState", true);
-      commit("SET_ERROR_MESSAGE", response);
+      dispatch("error/updateErrorState", true, { root: true });
+      dispatch("error/updateErrorMessage", response, { root: true });
     }
   },
 
   async fetchAreaSites({ commit, dispatch }, id) {
     let response = await SearchService.doRegularSearch("site", { area: id });
     if (typeof response === "object") {
-      dispatch("updateErrorState", false);
-      commit("SET_AREA_SITES", response);
+      dispatch("error/updateErrorState", false, { root: true });
+      commit("SET_AREA_SITES", response.results);
     } else if (typeof response === "string") {
-      dispatch("updateErrorState", true);
-      commit("SET_ERROR_MESSAGE", response);
+      dispatch("error/updateErrorState", true, { root: true });
+      dispatch("error/updateErrorMessage", response, { root: true });
     }
-  },
-
-  updateErrorState({ commit }, bool) {
-    commit("SET_ERROR_STATE", bool);
   }
 };
 

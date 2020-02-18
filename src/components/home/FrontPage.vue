@@ -1,16 +1,14 @@
 <template>
-  <v-card class="front-page">
-    <RouteLinkTabs />
-
-    <v-card-title>{{ $route.name }}</v-card-title>
+  <v-card flat tile class="front-page">
+    <Map />
   </v-card>
 </template>
 
 <script>
-import RouteLinkTabs from "../partial/ScrollToTabs";
+import Map from "../partial/map/Map";
 export default {
   name: "FrontPage",
-  components: { RouteLinkTabs }
+  components: {Map}
 };
 </script>
 

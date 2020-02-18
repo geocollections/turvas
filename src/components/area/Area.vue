@@ -2,9 +2,11 @@
   <div class="area">
     <!-- Main data -->
     <v-card flat v-if="getArea" id="general">
-      <v-card-title class="display-1">
-        {{ getArea.name }} {{ getArea.area_type__name }}
-      </v-card-title>
+      <h1>
+        <v-card-title class="display-1">
+          {{ getArea.name }} {{ getArea.area_type__name }}
+        </v-card-title>
+      </h1>
 
       <v-data-table
         :mobile-breakpoint="9000"
@@ -24,7 +26,7 @@
             target="MaardlaWindow"
             rel="noreferrer noopener"
           >
-            {{ item.maardla }}
+            Maardla info Maa-ameti geoportaalis ({{ item.maardla }})
           </a>
         </template>
 
@@ -51,10 +53,13 @@
 
     <!-- Related site -->
     <v-card flat v-if="getAreaSites" id="sites">
-      <v-card-title class="display-1">Proovipunktid</v-card-title>
+      <h2>
+        <v-card-title class="headline">Proovipunktid</v-card-title>
+      </h2>
 
       <v-data-table
-        disable-sort
+        class="ws-nowrap-table"
+        multi-sort
         :headers="getAreaSiteHeaders"
         :items="getAreaSites"
       >
@@ -74,7 +79,7 @@
             :title="`Proovipunkti vaade ID: ${item.id}`"
             :to="`/site/${item.id}`"
           >
-            {{ item.area__name }}
+            {{ item.name }}
           </router-link>
         </template>
       </v-data-table>
@@ -111,7 +116,7 @@ export default {
     },
 
     getEelisUrl(eelis) {
-      return `https://register.keskkonnainfo.ee/envreg/main?reg_kood=${eelis}&amp;mount=view`;
+      return `http://register.keskkonnainfo.ee/envreg/main?reg_kood=${eelis.trim()}&amp;mount=view`;
     }
   }
 };
@@ -147,13 +152,5 @@ export default {
   text-align: left;
   width: 100%;
   padding-left: 10px;
-}
-
-.table-link {
-  text-decoration: none;
-}
-
-.table-link:hover {
-  opacity: 0.7;
 }
 </style>
