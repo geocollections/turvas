@@ -1,7 +1,11 @@
 <template>
   <div
     id="map"
-    :class="$route.name === 'FrontPage' ? 'top-controls' : ''"
+    :class="{
+      'top-controls': $route.name === 'FrontPage',
+      'top-controls-sm':
+        $route.name === 'FrontPage' && $vuetify.breakpoint.smAndDown
+    }"
     :style="
       $route.name === 'FrontPage' ? 'width: 100%; height: 100vh' : 'width: 50%'
     "
@@ -20,7 +24,7 @@ export default {
 
   data: () => ({
     map: null,
-    center: L.latLng(58.7, 25.0),
+    center: L.latLng(58.65, 25.0),
     zoom: 7,
     tileProviders: [
       {
@@ -101,9 +105,12 @@ export default {
       this.map = L.map("map", {
         layers: [this.tileProviders[1].leafletObject],
         scrollWheelZoom: true,
+        wheelPxPerZoomLevel: 120,
         cursor: true,
         center: this.center,
-        zoom: this.$route.name === "FrontPage" ? 8 : this.zoom
+        zoom: this.$route.name === "FrontPage" ? 8 : this.zoom,
+        zoomDelta: 0.25,
+        zoomSnap: 0
       });
 
       let baseLayers = {};
@@ -132,5 +139,9 @@ export default {
 
 .top-controls >>> .leaflet-top {
   top: 64px;
+}
+
+.top-controls-sm >>> .leaflet-top {
+  top: 56px;
 }
 </style>

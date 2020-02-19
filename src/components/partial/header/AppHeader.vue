@@ -25,7 +25,9 @@
         </v-toolbar-title>
 
         <v-toolbar-items class="hidden-xs-only">
-          <v-btn text title="Turbaalad" to="/area" exact active-class="test">Turbaalad</v-btn>
+          <v-btn text title="Turbaalad" to="/area" exact active-class="test"
+            >Turbaalad</v-btn
+          >
           <v-btn text title="Proovipunktid" to="/site" exact
             >Proovipunktid</v-btn
           >
@@ -41,10 +43,10 @@
             :value="getFastSearch"
             hide-details
             dense
-            solo
+            solo-inverted
+            dark
             label="Otsi..."
-            color="orange darken-2"
-            class="align-center app-header-text-field"
+            class="align-center"
             :class="!isAboutPage && !isFrontPage ? 'mx-4' : 'ml-4'"
             autocomplete="off"
             append-icon="fas fa-search"
@@ -173,12 +175,8 @@ export default {
 }
 
 .toolbar-title:hover {
-  color: #000 !important;
+  color: rgba(0, 0, 0, 0.87) !important;
   transition: color 100ms ease-in;
-}
-
-.test {
-  background-color: rgba(230, 81, 0, 0.12);
 }
 
 .app-bar {
@@ -200,9 +198,5 @@ export default {
 .corner-icon {
   font-size: 20px;
   padding-left: 12px;
-}
-
-.app-header-text-field >>> .v-input__slot {
-  background: rgba(196, 208, 150, 0.5) !important;
 }
 </style>
