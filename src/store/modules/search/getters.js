@@ -9,6 +9,10 @@ const getters = {
 
   getFastSearchResults: state => {
     return state.fastSearchResults;
+  },
+
+  getAreaHeaderNames: state => {
+    return state.areaHeaders.map(header => header.value);
   }
 };
 

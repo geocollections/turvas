@@ -3,14 +3,12 @@
     <v-hover v-slot:default="{ hover }">
       <v-app-bar
         app
-        :color="isFrontPage ? '' : 'green lighten-1'"
         :elevation="isFrontPage && hover ? 12 : 4"
         class="app-bar"
-        dark
-        :class="isFrontPage ? 'app-bar-front' : ''"
+        :class="{ 'app-bar-front': isFrontPage }"
       >
         <v-app-bar-nav-icon
-          class="text--primary hidden-md-and-up"
+          class="hidden-md-and-up white--text"
           @click="drawer = true"
         />
 
@@ -25,13 +23,26 @@
         </v-toolbar-title>
 
         <v-toolbar-items class="hidden-xs-only">
-          <v-btn text title="Turbaalad" to="/area" exact active-class="test"
+          <v-btn
+            text
+            title="Turbaalad"
+            :to="{
+              path: '/area',
+              query: {
+                page: 1,
+                paginateBy: 25,
+                sortBy: 'name',
+                sortDesc: 'false'
+              }
+            }"
+            exact
+            color="white"
             >Turbaalad</v-btn
           >
-          <v-btn text title="Proovipunktid" to="/site" exact
+          <v-btn text title="Proovipunktid" to="/site" exact color="white"
             >Proovipunktid</v-btn
           >
-          <v-btn text title="Projekti info" to="/about" exact
+          <v-btn text title="Projekti info" to="/about" exact color="white"
             >Projekti info</v-btn
           >
         </v-toolbar-items>
@@ -62,7 +73,7 @@
           :title="getMapState ? 'Peida kaart' : 'Näita kaarti'"
           fab
           icon
-          class="hidden-xs-only"
+          class="hidden-xs-only white--text"
         >
           <span v-if="getMapState" class="fa-stack">
             <i class="fa-stack-2x fas fa-globe-americas"></i>
@@ -84,7 +95,7 @@
       style="z-index: 5001;"
     >
       <v-list nav>
-        <v-list-item-group active-class="green--text text--accent-4">
+        <v-list-item-group active-class="secondary--text">
           <v-list-item to="/">
             <v-list-item-icon>
               <v-icon>fas fa-home</v-icon>
@@ -181,14 +192,27 @@ export default {
 
 .app-bar {
   z-index: 5000;
+  background: linear-gradient(
+    320deg,
+    rgba(0, 163, 122, 1) 0%,
+    rgba(0, 149, 144, 1) 100%
+  );
 }
 
 .app-bar-front {
-  background-color: rgba(102, 187, 106, 0.46) !important;
+  background: linear-gradient(
+    320deg,
+    rgba(0, 163, 122, 0.46) 0%,
+    rgba(0, 149, 144, 0.46) 100%
+  ) !important;
 }
 
 .app-bar-front:hover {
-  background-color: rgba(102, 187, 106, 1) !important;
+  background: linear-gradient(
+    320deg,
+    rgba(0, 163, 122, 1) 0%,
+    rgba(0, 149, 144, 1) 100%
+  ) !important;
 }
 
 .app-bar >>> .v-toolbar__image {

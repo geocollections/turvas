@@ -5,6 +5,10 @@ const mutations = {
 
   SET_AREA_SITES(state, sites) {
     state.areaSites = sites;
+  },
+
+  SET_LIST_COUNTIES(state, counties) {
+    state.listCounties = counties;
   }
 };
 

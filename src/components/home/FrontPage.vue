@@ -8,7 +8,7 @@
 import Map from "../partial/map/Map";
 export default {
   name: "FrontPage",
-  components: {Map}
+  components: { Map }
 };
 </script>
 

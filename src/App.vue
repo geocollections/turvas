@@ -5,13 +5,9 @@
       :is-about-page="$route.name === 'About'"
     />
 
-    <v-content v-if="$route.name !== 'FrontPage'">
+    <v-content :style="$route.name === 'FrontPage' ? 'padding: unset;' : ''">
       <router-view />
     </v-content>
-
-    <div v-else>
-      <router-view />
-    </div>
   </v-app>
 </template>
 

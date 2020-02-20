@@ -7,28 +7,36 @@
       v-on:update:error="updateErrorState"
     />
 
-    <RouteLinkTabs v-if="false" />
+    <Counties v-if="getListCounties" :counties="getListCounties" />
 
-    <!--    <v-card-title>-->
-    <!--      <b>{{ $route.name }}</b>-->
-    <!--    </v-card-title>-->
+    <v-divider />
 
     <router-view />
   </v-card>
 </template>
 
 <script>
-import RouteLinkTabs from "../components/partial/ScrollToTabs";
 import { mapActions, mapGetters } from "vuex";
 import ErrorSnackbar from "../components/partial/ErrorSnackbar";
+import Counties from "../components/partial/Counties";
 export default {
   name: "Detail",
 
-  components: { ErrorSnackbar, RouteLinkTabs },
+  components: { Counties, ErrorSnackbar },
 
   computed: {
-    ...mapGetters("detail", ["getAnalysis", "getArea", "getSample", "getSite"]),
+    ...mapGetters("detail", [
+      "getAnalysis",
+      "getArea",
+      "getSample",
+      "getSite",
+      "getListCounties"
+    ]),
     ...mapGetters("error", ["getErrorState", "getErrorMessage"])
+  },
+
+  created() {
+    this.fetchListCounties();
   },
 
   watch: {
@@ -69,7 +77,7 @@ export default {
   },
 
   methods: {
-    ...mapActions("detail", ["fetchData"]),
+    ...mapActions("detail", ["fetchData", "fetchListCounties"]),
     ...mapActions("error", ["updateErrorState"])
   }
 };

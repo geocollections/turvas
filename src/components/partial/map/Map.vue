@@ -180,22 +180,6 @@ export default {
         )
       },
       {
-        name: "Turba-alade plaanid",
-        leafletObject: L.tileLayer.wms(
-          "https://gis.geocollections.info/geoserver/wms",
-          {
-            attribution:
-              "Turba-alade plaanid &copy; <a href='https://ttu.ee/geoloogia-instituut' target='MapReferenceWindow'>Geoloogia instituut</a>",
-            layers: "turvas:turbaalad",
-            format: "image/png",
-            transparent: true,
-            tiled: true,
-            detectRetina: true,
-            updateWhenIdle: true
-          }
-        )
-      },
-      {
         name: "Maakonnad",
         leafletObject: L.tileLayer.wms(
           "https://gis.geocollections.info/geoserver/wms",
@@ -243,6 +227,35 @@ export default {
             updateWhenIdle: true
           }
         )
+      },
+      {
+        name: "Soosetted pinnakatte geoloogilisel kaardil",
+        leafletObject: L.tileLayer.wms(
+          "https://gis.geocollections.info/geoserver/wms",
+          {
+            attribution:
+              "Soosetted pinnakatte geoloogilisel kaardil &copy; <a href='https://ttu.ee/geoloogia-instituut' target='MapReferenceWindow'>Geoloogia instituut</a>",
+            layers: "turvas:soosetted",
+            format: "image/png",
+            transparent: true,
+            tiled: true,
+            detectRetina: true,
+            updateWhenIdle: true
+          }
+        )
+      },
+      {
+        name: "Mullakaart",
+        leafletObject: L.tileLayer.wms("https://kaart.maaamet.ee/wms/alus?", {
+          attribution:
+            "Mullakaart &copy; <a href='https://www.egt.ee/et' target='MapReferenceWindow'>Eesti Geoloogiateenistus</a>",
+          layers: "mullaraster",
+          format: "image/png",
+          transparent: true,
+          tiled: true,
+          detectRetina: true,
+          updateWhenIdle: true
+        })
       },
       {
         name: "Aluspõhja reljeef",
@@ -297,6 +310,12 @@ export default {
     this.initMap();
   },
 
+  beforeDestroy() {
+    this.map.off("baselayerchange", this.handleBaselayerChange);
+    this.map.off("overlayadd", this.handleOverlayAdded);
+    this.map.off("overlayremove", this.handleOverlayRemoved);
+  },
+
   methods: {
     initMap() {
       this.map = L.map("map", {
@@ -307,6 +326,7 @@ export default {
         zoomDelta: 0.25,
         zoomSnap: 0,
         minZoom: 2,
+        maxZoom: 13.25,
         crs: new L.Proj.CRS(
           "EPSG:3301",
           "+proj=lcc +lat_1=59.33333333333334 +lat_2=58 +lat_0=57.51755393055556 +lon_0=24 +x_0=500000 +y_0=6375000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs",
@@ -339,7 +359,7 @@ export default {
       });
 
       this.map.fitBounds([
-        [59.6937871096, 21.5136411202],
+        [59.8937871096, 21.5136411202],
         [57.3959015512, 28.3681954033]
       ]);
 
@@ -348,10 +368,9 @@ export default {
         baseLayers[provider.name] = provider.leafletObject;
       });
       let overlayMaps = {};
-      this.overlayMaps.forEach(provider => {
-        console.log(provider);
-        overlayMaps[provider.name] = provider.leafletObject;
-      });
+      this.overlayMaps.forEach(
+        provider => (overlayMaps[provider.name] = provider.leafletObject)
+      );
 
       L.control
         .layers(baseLayers, overlayMaps, {
@@ -360,6 +379,22 @@ export default {
         .addTo(this.map);
       L.control.scale({ imperial: false }).addTo(this.map);
       this.map.addControl(new window.L.Control.Fullscreen());
+
+      this.map.on("baselayerchange", this.handleBaselayerChange);
+      this.map.on("overlayadd", this.handleOverlayAdded);
+      this.map.on("overlayremove", this.handleOverlayRemoved);
+    },
+
+    handleBaselayerChange(event) {
+      console.log(event);
+    },
+
+    handleOverlayAdded(event) {
+      console.log(event);
+    },
+
+    handleOverlayRemoved(event) {
+      console.log(event);
     }
   }
 };

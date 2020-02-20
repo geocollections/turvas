@@ -17,6 +17,10 @@ const mutations = {
 
   SET_AREA_RESULTS_COUNT(state, count) {
     state.areaResultsCount = count;
+  },
+
+  SET_AREA_SEARCH_PARAMS(state, params) {
+    state.areaSearchParams = { ...params };
   }
 };
 

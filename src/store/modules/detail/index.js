@@ -6,6 +6,7 @@ const state = {
   analysis: null,
   area: null,
   areaSites: null,
+  listCounties: null,
   areaHeaders: [
     { text: "ID", value: "id" },
     { text: "Maardla (viide registrisse)", value: "maardla" },

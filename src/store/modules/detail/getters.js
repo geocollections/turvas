@@ -11,6 +11,10 @@ const getters = {
     return state.areaSites;
   },
 
+  getListCounties: state => {
+    return state.listCounties;
+  },
+
   getSample: state => {
     return state.sample;
   },
