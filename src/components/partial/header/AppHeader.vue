@@ -26,15 +26,7 @@
           <v-btn
             text
             title="Turbaalad"
-            :to="{
-              path: '/area',
-              query: {
-                page: 1,
-                paginateBy: 25,
-                sortBy: 'name',
-                sortDesc: 'false'
-              }
-            }"
+            to="/area"
             exact
             color="white"
             >Turbaalad</v-btn

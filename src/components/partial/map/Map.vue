@@ -1,15 +1,19 @@
 <template>
-  <div
-    id="map"
-    :class="{
-      'top-controls': $route.name === 'FrontPage',
-      'top-controls-sm':
-        $route.name === 'FrontPage' && $vuetify.breakpoint.smAndDown
-    }"
-    :style="
-      $route.name === 'FrontPage' ? 'width: 100%; height: 100vh' : 'width: 50%'
-    "
-  ></div>
+  <div>
+    <div
+      id="map"
+      :class="{
+        'top-controls': $route.name === 'FrontPage',
+        'top-controls-sm':
+          $route.name === 'FrontPage' && $vuetify.breakpoint.smAndDown
+      }"
+      :style="
+        $route.name === 'FrontPage'
+          ? 'width: 100%; height: 100vh'
+          : 'width: 50%'
+      "
+    ></div>
+  </div>
 </template>
 
 <script>
@@ -33,7 +37,7 @@ export default {
           "https://tiles.maaamet.ee/tm/tms/1.0.0/foto/{z}/{x}/{y}.png&ASUTUS=TALTECH&KESKKOND=LIVE&IS=SARV",
           {
             attribution:
-              "Fotokaart &copy; <a  href='http://www.maaamet.ee/' target='MapReferenceWindow'>Maa-amet</a>",
+              "Maa-amet &copy; <a  href='http://www.maaamet.ee/' target='MapReferenceWindow'>Maa-amet</a>",
             tms: true,
             detectRetina: true,
             updateWhenIdle: true,
@@ -47,7 +51,7 @@ export default {
           "https://tiles.maaamet.ee/tm/tms/1.0.0/kaart/{z}/{x}/{y}.png&ASUTUS=TALTECH&KESKKOND=LIVE&IS=SARV",
           {
             attribution:
-              "Põhikaart &copy; <a href='http://www.maaamet.ee/' target='MapReferenceWindow'>Maa-amet</a>",
+              "Maa-amet &copy; <a href='http://www.maaamet.ee/' target='MapReferenceWindow'>Maa-amet</a>",
             tms: true,
             detectRetina: true,
             updateWhenIdle: true,
@@ -63,7 +67,7 @@ export default {
           "https://tiles.maaamet.ee/tm/tms/1.0.0/hybriid/{z}/{x}/{y}.png&ASUTUS=TALTECH&KESKKOND=LIVE&IS=SARV",
           {
             attribution:
-              "Hübriidkaart &copy; <a href='http://www.maaamet.ee/' target='MapReferenceWindow'>Maa-amet</a>",
+              "Maa-amet &copy; <a href='http://www.maaamet.ee/' target='MapReferenceWindow'>Maa-amet</a>",
             tms: true,
             detectRetina: true,
             updateWhenIdle: true
@@ -76,7 +80,7 @@ export default {
           "https://tiles.maaamet.ee/tm/tms/1.0.0/reljeef/{z}/{x}/{y}.png&ASUTUS=TALTECH&KESKKOND=LIVE&IS=SARV",
           {
             attribution:
-              "Reljeefikaart &copy; <a href='http://www.maaamet.ee/' target='MapReferenceWindow'>Maa-amet</a>",
+              "Maa-amet &copy; <a href='http://www.maaamet.ee/' target='MapReferenceWindow'>Maa-amet</a>",
             tms: true,
             detectRetina: true,
             updateWhenIdle: true
@@ -89,7 +93,7 @@ export default {
           "https://gis.geocollections.info/geoserver/wms",
           {
             attribution:
-              "Turbaalad &copy; <a href='https://ttu.ee/geoloogia-instituut' target='MapReferenceWindow'>Geoloogia instituut</a>",
+              "Geoloogia instituut &copy; <a href='https://ttu.ee/geoloogia-instituut' target='MapReferenceWindow'>Geoloogia instituut</a>",
             layers: "turvas:Turbaalad",
             format: "image/png",
             transparent: true,
@@ -105,7 +109,7 @@ export default {
           "https://gis.geocollections.info/geoserver/wms",
           {
             attribution:
-              "Raplamaa turba-alade plaanid &copy; <a href='https://ttu.ee/geoloogia-instituut' target='MapReferenceWindow'>Geoloogia instituut</a>",
+              "Geoloogia instituut &copy; <a href='https://ttu.ee/geoloogia-instituut' target='MapReferenceWindow'>Geoloogia instituut</a>",
             layers: "turvas:Raplamaa",
             format: "image/png",
             transparent: true,
@@ -121,7 +125,7 @@ export default {
           "https://gis.geocollections.info/geoserver/wms",
           {
             attribution:
-              "Pärnumaa turba-alade plaanid &copy; <a href='https://ttu.ee/geoloogia-instituut' target='MapReferenceWindow'>Geoloogia instituut</a>",
+              "Geoloogia instituut &copy; <a href='https://ttu.ee/geoloogia-instituut' target='MapReferenceWindow'>Geoloogia instituut</a>",
             layers: "turvas:Pärnumaa",
             format: "image/png",
             transparent: true,
@@ -137,7 +141,7 @@ export default {
           "https://gis.geocollections.info/geoserver/wms",
           {
             attribution:
-              "Läänemaa turba-alade plaanid &copy; <a href='https://ttu.ee/geoloogia-instituut' target='MapReferenceWindow'>Geoloogia instituut</a>",
+              "Geoloogia instituut &copy; <a href='https://ttu.ee/geoloogia-instituut' target='MapReferenceWindow'>Geoloogia instituut</a>",
             layers: "turvas:Läänemaa",
             format: "image/png",
             transparent: true,
@@ -153,7 +157,7 @@ export default {
           "https://gis.geocollections.info/geoserver/wms",
           {
             attribution:
-              "Saaremaa turba-alade plaanid &copy; <a href='https://ttu.ee/geoloogia-instituut' target='MapReferenceWindow'>Geoloogia instituut</a>",
+              "Geoloogia instituut &copy; <a href='https://ttu.ee/geoloogia-instituut' target='MapReferenceWindow'>Geoloogia instituut</a>",
             layers: "turvas:Saaremaa",
             format: "image/png",
             transparent: true,
@@ -169,7 +173,7 @@ export default {
           "https://gis.geocollections.info/geoserver/wms",
           {
             attribution:
-              "Hiiumaa turba-alade plaanid &copy; <a href='https://ttu.ee/geoloogia-instituut' target='MapReferenceWindow'>Geoloogia instituut</a>",
+              "Geoloogia instituut &copy; <a href='https://ttu.ee/geoloogia-instituut' target='MapReferenceWindow'>Geoloogia instituut</a>",
             layers: "turvas:Hiiumaa",
             format: "image/png",
             transparent: true,
@@ -185,7 +189,7 @@ export default {
           "https://gis.geocollections.info/geoserver/wms",
           {
             attribution:
-              "Maakonnad &copy; <a href='https://ttu.ee/geoloogia-instituut' target='MapReferenceWindow'>Geoloogia instituut</a>",
+              "Geoloogia instituut &copy; <a href='https://ttu.ee/geoloogia-instituut' target='MapReferenceWindow'>Geoloogia instituut</a>",
             layers: "turvas:maakonnad",
             format: "image/png",
             transparent: true,
@@ -201,7 +205,7 @@ export default {
           "https://gis.geocollections.info/geoserver/wms",
           {
             attribution:
-              "Turbamaardlad 2018 &copy; <a href='https://ttu.ee/geoloogia-instituut' target='MapReferenceWindow'>Geoloogia instituut</a>",
+              "Geoloogia instituut &copy; <a href='https://ttu.ee/geoloogia-instituut' target='MapReferenceWindow'>Geoloogia instituut</a>",
             layers: "maardla:Maardlad_2018",
             styles: "maardla:turvas2018",
             format: "image/png",
@@ -218,7 +222,7 @@ export default {
           "https://gis.geocollections.info/geoserver/wms",
           {
             attribution:
-              "Aluspõhja geoloogia 400k &copy; <a href='https://ttu.ee/geoloogia-instituut' target='MapReferenceWindow'>Geoloogia instituut</a>",
+              "Geoloogia instituut &copy; <a href='https://ttu.ee/geoloogia-instituut' target='MapReferenceWindow'>Geoloogia instituut</a>",
             layers: "geocollections:bedrock400k",
             format: "image/png",
             transparent: true,
@@ -234,7 +238,7 @@ export default {
           "https://gis.geocollections.info/geoserver/wms",
           {
             attribution:
-              "Soosetted pinnakatte geoloogilisel kaardil &copy; <a href='https://ttu.ee/geoloogia-instituut' target='MapReferenceWindow'>Geoloogia instituut</a>",
+              "Geoloogia instituut &copy; <a href='https://ttu.ee/geoloogia-instituut' target='MapReferenceWindow'>Geoloogia instituut</a>",
             layers: "turvas:soosetted",
             format: "image/png",
             transparent: true,
@@ -248,7 +252,7 @@ export default {
         name: "Mullakaart",
         leafletObject: L.tileLayer.wms("https://kaart.maaamet.ee/wms/alus?", {
           attribution:
-            "Mullakaart &copy; <a href='https://www.egt.ee/et' target='MapReferenceWindow'>Eesti Geoloogiateenistus</a>",
+            "Eesti Geoloogiateenistus &copy; <a href='https://www.egt.ee/et' target='MapReferenceWindow'>Eesti Geoloogiateenistus</a>",
           layers: "mullaraster",
           format: "image/png",
           transparent: true,
@@ -263,7 +267,7 @@ export default {
           "https://kaart.maaamet.ee/wms/geoloogia?",
           {
             attribution:
-              "Aluspõhja reljeef &copy; <a href='https://www.egt.ee/et' target='MapReferenceWindow'>Eesti Geoloogiateenistus</a>",
+              "Eesti Geoloogiateenistus &copy; <a href='https://www.egt.ee/et' target='MapReferenceWindow'>Eesti Geoloogiateenistus</a>",
             layers: "GEOL_APR_ISOJOON_2,GEOL_APR_ISOJOON_1",
             format: "image/png",
             transparent: true,
@@ -279,7 +283,7 @@ export default {
           "https://kaart.maaamet.ee/wms/geoloogia?",
           {
             attribution:
-              "Pinnakatte paksus &copy; <a href='https://www.egt.ee/et' target='MapReferenceWindow'>Eesti Geoloogiateenistus</a>",
+              "Eesti Geoloogiateenistus &copy; <a href='https://www.egt.ee/et' target='MapReferenceWindow'>Eesti Geoloogiateenistus</a>",
             layers: "GEOL_QP_ISOJOONED_1,GEOL_QP_ISOJOONED_2",
             format: "image/png",
             transparent: true,
@@ -302,6 +306,21 @@ export default {
         this.$nextTick(() => {
           this.map.invalidateSize();
         });
+      }
+    },
+
+    "$vuetify.breakpoint.smAndDown"(newVal) {
+      if (this.$route.name === "FrontPage") {
+        if (newVal) {
+          document
+            .getElementsByClassName("leaflet-control-layers")
+            .item(0).className = "leaflet-control-layers leaflet-control";
+        } else {
+          document
+            .getElementsByClassName("leaflet-control-layers")
+            .item(0).className =
+            "leaflet-control-layers leaflet-control leaflet-control-layers-expanded";
+        }
       }
     }
   },
@@ -374,7 +393,9 @@ export default {
 
       L.control
         .layers(baseLayers, overlayMaps, {
-          collapsed: this.$route.name !== "FrontPage"
+          collapsed: !(
+            this.$route.name === "FrontPage" && this.$vuetify.breakpoint.mdAndUp
+          )
         })
         .addTo(this.map);
       L.control.scale({ imperial: false }).addTo(this.map);

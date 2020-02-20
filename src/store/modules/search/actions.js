@@ -1,5 +1,6 @@
 import SearchService from "../../../middleware/SearchService";
 import cloneDeep from "lodash/cloneDeep";
+import { parse } from "vuetify/lib/services/theme/utils";
 
 const actions = {
   async doFastSearch({ state }) {
@@ -32,24 +33,34 @@ const actions = {
 
     if (params.page) {
       if (typeof params.page === "number") {
-        searchParams.page = params.page <= 1000000 ? params.page : 1;
+        searchParams.page =
+          params.page <= 10000 && params.page > 0 ? params.page : 1;
       } else if (
         typeof params.page === "string" &&
         parseInt(params.page) !== isNaN(params.page)
       ) {
-        searchParams.page = parseInt(params.page);
+        searchParams.page =
+          parseInt(params.page) <= 10000 && parseInt(params.page) > 0
+            ? parseInt(params.page)
+            : 1;
       } else searchParams.page = 1;
     } else searchParams.page = 1;
 
     if (params.paginateBy) {
       if (typeof params.paginateBy === "number") {
         searchParams.paginateBy =
-          params.paginateBy <= 10000 ? params.paginateBy : 25;
+          params.paginateBy <= 1000 && params.paginateBy >= 10
+            ? params.paginateBy
+            : 25;
       } else if (
         typeof params.paginateBy === "string" &&
         parseInt(params.paginateBy) !== isNaN(params.paginateBy)
       ) {
-        searchParams.paginateBy = parseInt(params.paginateBy);
+        searchParams.paginateBy =
+          parseInt(params.paginateBy) <= 1000 &&
+          parseInt(params.paginateBy) >= 10
+            ? parseInt(params.paginateBy)
+            : 25;
       } else searchParams.paginateBy = 25;
     } else searchParams.paginateBy = 25;
 
