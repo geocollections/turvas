@@ -1,6 +1,6 @@
 import SearchService from "../../../middleware/SearchService";
 import cloneDeep from "lodash/cloneDeep";
-import { parse } from "vuetify/lib/services/theme/utils";
+import router from "../../../router";
 
 const actions = {
   async doFastSearch({ state }) {
@@ -10,10 +10,7 @@ const actions = {
   },
 
   async doAreaSearch({ state, commit, dispatch }, params = {}) {
-    console.log(params);
-    dispatch("updateAreaSearchParams", params);
-
-    console.log(state.areaSearchParams);
+    dispatch("updateSearchParams", params);
 
     let response = await SearchService.doSolrSearch(
       "area",
@@ -28,7 +25,23 @@ const actions = {
     }
   },
 
-  updateAreaSearchParams({ commit, getters }, params) {
+  async doSiteSearch({ state, commit, dispatch }, params = {}) {
+    dispatch("updateSearchParams", params);
+
+    let response = await SearchService.doSolrSearch(
+      "site",
+      state.siteSearchParams
+    );
+    if (typeof response === "object") {
+      commit("SET_SITE_RESULTS", response.results);
+      commit("SET_SITE_RESULTS_COUNT", response.count);
+    } else if (typeof response === "string") {
+      dispatch("error/updateErrorState", true, { root: true });
+      dispatch("error/updateErrorMessage", response, { root: true });
+    }
+  },
+
+  updateSearchParams({ commit, getters }, params) {
     let searchParams = cloneDeep(params);
 
     if (params.page) {
@@ -68,9 +81,15 @@ const actions = {
       let sortBy = params.sortBy.includes(",")
         ? params.sortBy.split(",")
         : [params.sortBy];
-      searchParams.sortBy = sortBy.filter(field =>
-        getters.getAreaHeaderNames.includes(field)
-      );
+      if (router.currentRoute.name === "AreaTable") {
+        searchParams.sortBy = sortBy.filter(field =>
+          getters.getAreaHeaderNames.includes(field)
+        );
+      } else if (router.currentRoute.name === "SiteTable") {
+        searchParams.sortBy = sortBy.filter(field =>
+          getters.getSiteHeaderNames.includes(field)
+        );
+      }
     } else searchParams.sortBy = [];
 
     if (params.sortDesc) {
@@ -82,7 +101,12 @@ const actions = {
         if (field === "true") sortDescList.push(true);
         else if (field === "false") sortDescList.push(false);
       });
-      searchParams.sortDesc = sortDescList;
+      if (searchParams.sortBy.length === sortDescList.length) {
+        searchParams.sortDesc = sortDescList;
+      } else {
+        searchParams.sortBy = [];
+        searchParams.sortDesc = [];
+      }
     } else searchParams.sortDesc = [];
 
     if (params.filter && params.filter.length > 0) {
@@ -93,7 +117,15 @@ const actions = {
       searchParams.maakond = params.maakond;
     } else delete searchParams.maakond;
 
-    commit("SET_AREA_SEARCH_PARAMS", searchParams);
+    if (router.currentRoute.name === "AreaTable") {
+      searchParams.area_type = "turbaala";
+
+      commit("SET_AREA_SEARCH_PARAMS", searchParams);
+    } else if (router.currentRoute.name === "SiteTable") {
+      searchParams.project_id = 20;
+
+      commit("SET_SITE_SEARCH_PARAMS", searchParams);
+    }
   },
 
   updateFastSearch({ commit }, searchVal) {

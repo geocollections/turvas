@@ -1,11 +1,14 @@
 <template>
   <div class="area-table">
-    {{ areaSearchParams }}
+<!--    {{ areaSearchParams }}-->
 
     <!-- SEARCH -->
-    <v-row no-gutters class="pa-1">
-      <v-col class="px-1">
-        <v-btn @click="resetSearch" color="secondary">Puhasta otsing</v-btn>
+    <v-row no-gutters class="pt-1 px-1">
+      <v-col class="pt-1 px-1">
+        <v-btn @click="resetSearch" color="primary">
+          Puhasta otsing
+          <v-icon right small>fas fa-eraser</v-icon>
+        </v-btn>
       </v-col>
     </v-row>
 
@@ -103,17 +106,19 @@
 <script>
 import { mapActions, mapGetters, mapState } from "vuex";
 import debounce from "lodash/debounce";
+import searchMixin from "../../mixins/searchMixin";
 
 export default {
   name: "AreaTable",
+
+  mixins: [searchMixin],
 
   computed: {
     ...mapState("search", [
       "areaHeaders",
       "areaResults",
       "areaResultsCount",
-      "paginateByItems",
-      "areaSearchParams"
+      "paginateByItems"
     ]),
 
     ...mapGetters("settings", ["getMapState"]),
@@ -126,7 +131,6 @@ export default {
   watch: {
     "$route.query": {
       handler(newVal) {
-        console.log(newVal)
         this.updateSearch(newVal);
       },
       immediate: true
@@ -141,71 +145,6 @@ export default {
 
     getMaardlaUrl(maardla) {
       return `https://xgis.maaamet.ee/xGIS/bronx/maardlad/showdata.aspx?registrikaart=${maardla}`;
-    },
-
-    handleUpdateFilter(newVal) {
-      if (this.areaSearchParams.page === 1) {
-        this.$router
-          .push({ query: { ...this.$route.query, filter: newVal } })
-          .catch(err => {});
-      } else {
-        this.$router
-          .push({
-            query: { ...this.$route.query, filter: newVal, page: 1 }
-          })
-          .catch(err => {});
-      }
-    },
-
-    handleUpdatePage(newVal) {
-      if (this.areaSearchParams.page !== newVal) {
-        this.$router
-          .push({ query: { ...this.$route.query, page: newVal } })
-          .catch(err => {});
-      }
-    },
-
-    handleUpdatePaginateBy(newVal) {
-      this.$router
-        .push({
-          query: { ...this.$route.query, paginateBy: newVal, page: 1 }
-        })
-        .catch(err => {});
-    },
-
-    handleUpdateSortBy(newVal) {
-      if (newVal.length > 0) {
-        this.$router
-          .push({
-            query: { ...this.$route.query, sortBy: newVal.toString() }
-          })
-          .catch(err => {});
-      } else {
-        let { sortBy, ...noSortBy } = this.$route.query;
-        this.$router.push({ query: noSortBy }).catch(err => {});
-      }
-    },
-
-    handleUpdateSortDesc(newVal) {
-      if (newVal.length > 0) {
-        this.$router
-          .push({
-            query: { ...this.$route.query, sortDesc: newVal.toString() }
-          })
-          .catch(err => {});
-      } else {
-        let { sortDesc, ...noSortDesc } = this.$route.query;
-        this.$router.push({ query: noSortDesc }).catch(err => {});
-      }
-    },
-
-    resetSearch() {
-      this.$router
-        .push({
-          path: "/area",
-          query: { page: 1, paginateBy: 25, sortBy: "name", sortDesc: "false" }
-        })
-        .catch(err => {});
     }
   }
 };

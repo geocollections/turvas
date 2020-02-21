@@ -39,7 +39,6 @@ class SearchService {
 
   static doSolrSearch = async (table, params = {}) => {
     try {
-      console.log(params);
       let searchParams = cloneDeep(params);
 
       let start = (searchParams.page - 1) * searchParams.paginateBy;
@@ -54,7 +53,7 @@ class SearchService {
       let queryParams = encodeQueryData(searchParams, true);
       if (queryParams.length > 0) queryParams = "&fq=" + queryParams;
       if (sort.length > 0) queryParams += "&sort=" + sort;
-      if (filter.length > 0) filter = "&q=" + filter;
+      if (filter.length > 0) filter = "&q=" + encodeURIComponent(filter);
       let url = `${SOLR_URL}${table}/?start=${start}&rows=${paginateBy}${filter}${queryParams}&defType=edismax`;
 
       const res = await axios.get(url);

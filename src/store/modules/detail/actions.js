@@ -8,7 +8,6 @@ const actions = {
       payload.params
     );
     if (typeof response === "object") {
-      // dispatch("error/updateErrorState", false, { root: true });
       commit("SET_DATA", {
         table: payload.table,
         data: response
@@ -16,6 +15,8 @@ const actions = {
 
       if (payload.table === "area") {
         dispatch("fetchAreaSites", payload.id);
+      } else if (payload.table === "site") {
+        dispatch("fetchSiteSamples", payload.id);
       }
     } else if (typeof response === "string") {
       dispatch("error/updateErrorState", true, { root: true });
@@ -26,8 +27,17 @@ const actions = {
   async fetchAreaSites({ commit, dispatch }, id) {
     let response = await SearchService.doRegularSearch("site", { area: id });
     if (typeof response === "object") {
-      // dispatch("error/updateErrorState", false, { root: true });
       commit("SET_AREA_SITES", response.results);
+    } else if (typeof response === "string") {
+      dispatch("error/updateErrorState", true, { root: true });
+      dispatch("error/updateErrorMessage", response, { root: true });
+    }
+  },
+
+  async fetchSiteSamples({ commit, dispatch }, id) {
+    let response = await SearchService.doRegularSearch("sample", { site: id });
+    if (typeof response === "object") {
+      commit("SET_SITE_SAMPLES", response.results);
     } else if (typeof response === "string") {
       dispatch("error/updateErrorState", true, { root: true });
       dispatch("error/updateErrorMessage", response, { root: true });

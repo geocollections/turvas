@@ -23,4 +23,9 @@ export default {
 html {
   overflow-y: auto !important;
 }
+
+.v-application {
+  font-family: "Raleway", "Fira Sans", sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+}
 </style>

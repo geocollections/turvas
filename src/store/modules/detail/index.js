@@ -3,10 +3,8 @@ import mutations from "./mutations";
 import getters from "./getters";
 
 const state = {
-  analysis: null,
   area: null,
   areaSites: null,
-  listCounties: null,
   areaHeaders: [
     { text: "ID", value: "id" },
     { text: "Maardla (viide registrisse)", value: "maardla" },
@@ -21,8 +19,29 @@ const state = {
     { text: "Z (m)", value: "elevation" },
     { text: "Sügavus / turba paksus (m)", value: "depth" }
   ],
+  site: null,
+  siteSamples: null,
+  siteHeaders: [
+    { text: "ID", value: "id" },
+    { text: "Proovipunkt", value: "name" },
+    { text: "Turbaala", value: "area" },
+    { text: "X (L-EST, m)", value: "coordx" },
+    { text: "Y (L-EST, m)", value: "coordy" },
+    { text: "Z (m)", value: "elevation" },
+    { text: "Sügavus / turba paksus (m)", value: "depth" },
+    { text: "Arvamus", value: "description" }
+  ],
+  siteSampleHeaders: [
+    { text: "ID", value: "id" },
+    { text: "Nr.", value: "number_additional" },
+    { text: "Algus, m", value: "depth" },
+    { text: "Lõpp, m", value: "depth_interval" },
+    { text: "Aeg", value: "date_collected_free" },
+    { text: "Turbaliik", value: "classification_rock__name", align: "center" }
+  ],
+  listCounties: null,
   sample: null,
-  site: null
+  analysis: null
 };
 
 export default {

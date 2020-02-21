@@ -22,6 +22,24 @@ const state = {
     sortDesc: [false],
     area_type: "turbaala"
   },
+  siteHeaders: [
+    { text: "Proovipunkt", value: "name" },
+    { text: "Maakond", value: "maakond" },
+    { text: "Turbaala", value: "area_name" },
+    { text: "X (L-EST, m)", value: "x" },
+    { text: "Y (L-EST, m)", value: "y" },
+    { text: "Z (m)", value: "z" },
+    { text: "Sügavus / turba paksus (m)", value: "depth" }
+  ],
+  siteResults: [],
+  siteResultsCount: 0,
+  siteSearchParams: {
+    page: 1,
+    paginateBy: 25,
+    sortBy: ["name"],
+    sortDesc: [false],
+    project_id: 20
+  },
   paginateByItems: [
     { text: "Näita 10 kaupa", value: 10 },
     { text: "Näita 25 kaupa", value: 25 },

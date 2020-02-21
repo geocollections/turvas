@@ -2,7 +2,9 @@
   <div class="app-header">
     <v-hover v-slot:default="{ hover }">
       <v-app-bar
+        height="64"
         app
+        style="z-index: 5000;"
         :elevation="isFrontPage && hover ? 12 : 4"
         class="app-bar"
         :class="{ 'app-bar-front': isFrontPage }"
@@ -23,12 +25,7 @@
         </v-toolbar-title>
 
         <v-toolbar-items class="hidden-xs-only">
-          <v-btn
-            text
-            title="Turbaalad"
-            to="/area"
-            exact
-            color="white"
+          <v-btn text title="Turbaalad" to="/area" exact color="white"
             >Turbaalad</v-btn
           >
           <v-btn text title="Proovipunktid" to="/site" exact color="white"
@@ -41,7 +38,7 @@
 
         <v-spacer />
 
-        <v-toolbar-items class="hidden-sm-and-down">
+        <v-toolbar-items>
           <v-text-field
             :value="getFastSearch"
             hide-details
@@ -49,7 +46,7 @@
             solo-inverted
             dark
             label="Otsi..."
-            class="align-center"
+            class="align-center hidden-sm-and-down"
             :class="!isAboutPage && !isFrontPage ? 'mx-4' : 'ml-4'"
             autocomplete="off"
             append-icon="fas fa-search"
@@ -65,7 +62,7 @@
           :title="getMapState ? 'Peida kaart' : 'Näita kaarti'"
           fab
           icon
-          class="hidden-xs-only white--text"
+          class="white--text"
         >
           <span v-if="getMapState" class="fa-stack">
             <i class="fa-stack-2x fas fa-globe-americas"></i>
@@ -87,7 +84,7 @@
       style="z-index: 5001;"
     >
       <v-list nav>
-        <v-list-item-group active-class="secondary--text">
+        <v-list-item-group active-class="primary--text">
           <v-list-item to="/">
             <v-list-item-icon>
               <v-icon>fas fa-home</v-icon>
@@ -156,12 +153,6 @@ export default {
     ...mapGetters("settings", ["getMapState"])
   },
 
-  watch: {
-    "$vuetify.breakpoint.xsOnly"(newVal) {
-      this.updateMapState(!newVal);
-    }
-  },
-
   methods: {
     ...mapActions("search", ["doFastSearch", "updateFastSearch"]),
     ...mapActions("settings", ["updateMapState"])
@@ -183,27 +174,26 @@ export default {
 }
 
 .app-bar {
-  z-index: 5000;
   background: linear-gradient(
     320deg,
-    rgba(0, 163, 122, 1) 0%,
-    rgba(0, 149, 144, 1) 100%
+    rgb(129, 199, 132) 0%,
+    rgb(76, 175, 80) 100%
   );
 }
 
 .app-bar-front {
   background: linear-gradient(
     320deg,
-    rgba(0, 163, 122, 0.46) 0%,
-    rgba(0, 149, 144, 0.46) 100%
+    rgba(129, 199, 132, 0.46) 0%,
+    rgba(76, 175, 80, 0.46) 100%
   ) !important;
 }
 
 .app-bar-front:hover {
   background: linear-gradient(
     320deg,
-    rgba(0, 163, 122, 1) 0%,
-    rgba(0, 149, 144, 1) 100%
+    rgba(129, 199, 132, 1) 0%,
+    rgba(76, 175, 80, 1) 100%
   ) !important;
 }
 

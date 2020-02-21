@@ -66,6 +66,12 @@ export default {
                 id: newVal,
                 params: { area_type: 2 }
               });
+            } else if (this.$route.meta.object === "site") {
+              this.fetchData({
+                table: this.$route.meta.object,
+                id: newVal,
+                params: { project_id: 20 }
+              });
             } else {
               this.fetchData({ table: this.$route.meta.object, id: newVal });
             }

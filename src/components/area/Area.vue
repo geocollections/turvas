@@ -145,7 +145,7 @@ export default {
 
 .area >>> .v-data-table td {
   height: unset;
-  min-height: 48px;
+  min-height: 40px;
 }
 
 .area >>> .v-data-table__mobile-row__cell {

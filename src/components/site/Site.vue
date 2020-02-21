@@ -1,15 +1,135 @@
 <template>
   <div class="site">
     <!-- Main data -->
+    <v-card flat v-if="getSite" id="general">
+      <h1>
+        <v-card-title class="display-1">
+          Proovipunkt: {{ getSite.name }}
+        </v-card-title>
+      </h1>
+
+      <v-data-table
+        :mobile-breakpoint="9000"
+        disable-sort
+        disable-filtering
+        disable-pagination
+        hide-default-header
+        hide-default-footer
+        :headers="filteredSiteHeaders"
+        :items="[getSite]"
+      >
+        <template v-slot:item.area="{ item }">
+          <router-link
+            :to="`/area/${item.area}`"
+            title="Ala detailvaade"
+            class="table-link"
+          >
+            {{ item.area__name }}
+          </router-link>
+        </template>
+      </v-data-table>
+    </v-card>
 
     <!-- Related samples -->
+    <v-card flat v-if="getSiteSamples" id="samples">
+      <h2>
+        <v-card-title class="headline">Proovid</v-card-title>
+      </h2>
+
+      <v-data-table
+        class="ws-nowrap-table"
+        multi-sort
+        :headers="getSiteSampleHeaders"
+        :items="getSiteSamples"
+      >
+        <template v-slot:item.id="{ item }">
+          <router-link
+            class="table-link"
+            :title="`Proovi vaade ID: ${item.id}`"
+            :to="`/sample/${item.id}`"
+          >
+            {{ item.id }}
+          </router-link>
+        </template>
+
+        <template v-slot:item.classification_rock__name="{ item }">
+          <v-card
+            flat
+            style="margin: 2px 0;"
+            :class="getColor(item.classification_rock__name)"
+          >
+            {{ item.classification_rock__name }}
+          </v-card>
+        </template>
+      </v-data-table>
+    </v-card>
   </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
-  name: "Site"
+  name: "Site",
+
+  computed: {
+    ...mapGetters("detail", [
+      "getSite",
+      "getSiteSamples",
+      "filteredSiteHeaders",
+      "getSiteSampleHeaders"
+    ])
+  },
+
+  methods: {
+    getColor(name) {
+      let lighten = " lighten-4";
+      switch (name) {
+        case "järvemuda":
+          return "blue-grey" + lighten;
+        case "siirdesooturvas":
+          return "green" + lighten;
+        case "madalsooturvas":
+          return "blue" + lighten;
+        case "rabaturvas":
+          return "yellow" + lighten;
+        default:
+          return "green" + lighten;
+      }
+    }
+  }
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.site >>> tr:hover {
+  /*background-color: unset !important;*/
+}
+
+.site >>> .v-data-table__mobile-row:hover {
+  background: #e8f5e9;
+}
+
+.site >>> .v-data-table__mobile-row {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.site >>> .v-data-table__mobile-row:last-child {
+  border-bottom: unset;
+}
+
+.site >>> .v-data-table__mobile-row__header {
+  width: 100px;
+}
+
+.site >>> .v-data-table td {
+  height: unset;
+  min-height: 40px;
+}
+
+.site >>> .v-data-table__mobile-row__cell {
+  text-align: left;
+  width: 100%;
+  padding-left: 10px;
+}
+</style>

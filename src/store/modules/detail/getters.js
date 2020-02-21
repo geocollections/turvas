@@ -1,26 +1,10 @@
 const getters = {
-  getAnalysis: state => {
-    return state.analysis;
-  },
-
   getArea: state => {
     return state.area;
   },
 
   getAreaSites: state => {
     return state.areaSites;
-  },
-
-  getListCounties: state => {
-    return state.listCounties;
-  },
-
-  getSample: state => {
-    return state.sample;
-  },
-
-  getSite: state => {
-    return state.site;
   },
 
   filteredAreaHeaders: (state, getters) => {
@@ -33,6 +17,38 @@ const getters = {
 
   getAreaSiteHeaders: state => {
     return state.areaSiteHeaders;
+  },
+
+  getSite: state => {
+    return state.site;
+  },
+
+  getSiteSamples: state => {
+    return state.siteSamples;
+  },
+
+  filteredSiteHeaders: (state, getters) => {
+    return state.siteHeaders.filter(header => {
+      if (getters.getSite[header.value]) {
+        return header;
+      }
+    });
+  },
+
+  getSiteSampleHeaders: state => {
+    return state.siteSampleHeaders;
+  },
+
+  getListCounties: state => {
+    return state.listCounties;
+  },
+
+  getAnalysis: state => {
+    return state.analysis;
+  },
+
+  getSample: state => {
+    return state.sample;
   }
 };
 

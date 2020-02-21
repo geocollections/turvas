@@ -13,6 +13,10 @@ const getters = {
 
   getAreaHeaderNames: state => {
     return state.areaHeaders.map(header => header.value);
+  },
+
+  getSiteHeaderNames: state => {
+    return state.siteHeaders.map(header => header.value);
   }
 };
 

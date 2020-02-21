@@ -30,7 +30,10 @@ const routes = [
           {
             path: "",
             name: "AreaTable",
-            component: () => import("../components/area/AreaTable.vue")
+            component: () => import("../components/area/AreaTable.vue"),
+            meta: {
+              object: "area"
+            }
           },
           {
             path: ":id(\\d+)",
@@ -49,7 +52,10 @@ const routes = [
           {
             path: "",
             name: "SiteTable",
-            component: () => import("../components/site/SiteTable.vue")
+            component: () => import("../components/site/SiteTable.vue"),
+            meta: {
+              object: "site"
+            }
           },
           {
             path: ":id(\\d+)",
@@ -68,7 +74,10 @@ const routes = [
           {
             path: "",
             name: "SampleTable",
-            component: () => import("../components/sample/SampleTable.vue")
+            component: () => import("../components/sample/SampleTable.vue"),
+            meta: {
+              object: "sample"
+            }
           },
           {
             path: ":id(\\d+)",
@@ -87,7 +96,10 @@ const routes = [
           {
             path: "",
             name: "AnalysisTable",
-            component: () => import("../components/analysis/AnalysisTable.vue")
+            component: () => import("../components/analysis/AnalysisTable.vue"),
+            meta: {
+              object: "analysis"
+            }
           },
           {
             path: ":id(\\d+)",

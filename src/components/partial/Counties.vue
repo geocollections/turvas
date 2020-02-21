@@ -5,7 +5,10 @@
         <span class="font-weight-bold">Maakonnad: </span>
         <span v-for="(item, index) in counties" :key="item.id">
           <router-link
-            :to="{ query: { ...$route.query, maakond: item.maakond } }"
+            :to="{
+              path: `/${$route.meta.object}`,
+              query: { ...$route.query, maakond: item.maakond }
+            }"
             class="table-link"
             exact-active-class="font-weight-bold primary--text text--darken-1"
           >

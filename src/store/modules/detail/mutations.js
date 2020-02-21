@@ -7,6 +7,10 @@ const mutations = {
     state.areaSites = sites;
   },
 
+  SET_SITE_SAMPLES(state, sites) {
+    state.siteSamples = sites;
+  },
+
   SET_LIST_COUNTIES(state, counties) {
     state.listCounties = counties;
   }
