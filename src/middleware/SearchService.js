@@ -79,7 +79,7 @@ function encodeQueryData(data, isSolr = false) {
     }${encodeURIComponent(data[item])}`;
     encodedData.push(encodedObject);
   }
-  return encodedData.join("&fq=");
+  return encodedData.join(isSolr ? "&fq=" : "&");
 }
 
 function buildOrderBy(sortBy, sortDesc) {

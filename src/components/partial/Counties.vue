@@ -7,7 +7,12 @@
           <router-link
             :to="{
               path: `/${$route.meta.object}`,
-              query: { ...$route.query, maakond: item.maakond }
+              query: {
+                ...$route.query,
+                maakond: item.maakond,
+                page: 1,
+                paginateBy: 500
+              }
             }"
             class="table-link"
             exact-active-class="font-weight-bold primary--text text--darken-1"

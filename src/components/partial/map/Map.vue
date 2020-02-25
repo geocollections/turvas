@@ -25,6 +25,14 @@ export default {
 
   data: () => ({
     map: null,
+    activeSites: null,
+    activeSitesLayer: null,
+    activeSitesBounds: null,
+    sitesIcon: new L.DivIcon({
+      html:
+        "<i class='far fa-circle' style='color: #D32F2F; background-color: #EF9A9A; border-radius: 100%;' />",
+      className: "map-marker"
+    }),
     center: L.latLng(58.65, 25.0),
     tileProviders: [
       {
@@ -480,8 +488,13 @@ export default {
 
   computed: {
     ...mapGetters("settings", ["getMapState"]),
-    ...mapState("search", ["siteResults", "siteResultsCount"]),
-    ...mapState("map", ["defaultBaseLayer", "defaultOverlayLayers"])
+    ...mapState("search", [
+      "siteResults",
+      "siteResultsCount",
+      "allSiteResults"
+    ]),
+    ...mapState("map", ["defaultBaseLayer", "defaultOverlayLayers"]),
+    ...mapGetters("detail", ["getAreaSites", "getSite"])
   },
 
   watch: {
@@ -511,6 +524,34 @@ export default {
             .item(0).className =
             "leaflet-control-layers leaflet-control leaflet-control-layers-expanded";
         }
+      }
+    },
+
+    getAreaSites(newVal) {
+      if (this.$route.name === "AreaDetail") {
+        this.updateActiveSites(newVal);
+      }
+    },
+
+    getSite(newVal) {
+      if (this.$route.name === "SiteDetail") {
+        this.updateActiveSites([newVal]);
+      }
+    },
+
+    siteResults(newVal) {
+      if (this.$route.name === "SiteTable") {
+        this.updateActiveSites(newVal);
+      }
+    },
+
+    "$route.name"(newVal) {
+      if (newVal === "AreaTable") {
+        if (this.activeSitesLayer) this.map.removeLayer(this.activeSitesLayer);
+        this.map.fitBounds([
+          [59.8937871096, 21.5136411202],
+          [57.3959015512, 28.3681954033]
+        ]);
       }
     }
   },
@@ -601,9 +642,11 @@ export default {
 
       // Adding default overlay layers
       if (this.defaultOverlayLayers && this.defaultOverlayLayers.length > 0) {
-        this.defaultOverlayLayers.forEach(layer =>
-          this.map.addLayer(overlayMaps[layer])
-        );
+        this.defaultOverlayLayers.forEach(layer => {
+          if (!this.map.hasLayer(overlayMaps[layer])) {
+            this.map.addLayer(overlayMaps[layer]);
+          }
+        });
       }
 
       this.map.on("baselayerchange", this.handleBaseLayerChange);
@@ -621,6 +664,70 @@ export default {
 
     handleOverlayRemoved(event) {
       this.removeFromDefaultOverlayLayer(event.name);
+    },
+
+    updateWmsOverlayParams(obj) {
+      if (obj) {
+        if (obj.area) {
+          this.overlayMaps[0].leafletObject.setParams({
+            CQL_FILTER: `area_id=${obj.area}`
+          });
+          this.overlayMaps[1].leafletObject.setParams({
+            CQL_FILTER: `area_id=${obj.area}`
+          });
+        } else if (obj.site) {
+          this.overlayMaps[0].leafletObject.setParams({
+            CQL_FILTER: `id=${obj.site}`
+          });
+        }
+      } else {
+        this.overlayMaps[0].leafletObject.setParams({ CQL_FILTER: "INCLUDE" });
+        this.overlayMaps[1].leafletObject.setParams({ CQL_FILTER: "INCLUDE" });
+      }
+    },
+
+    updateActiveSites(listOfSites) {
+      if (listOfSites && listOfSites.length > 0) {
+        if (this.activeSitesLayer) this.map.removeLayer(this.activeSitesLayer);
+        this.activeSites = [];
+        this.activeSitesBounds = null;
+
+        listOfSites.forEach(site => {
+          if (site.latitude && site.longitude) {
+            let marker = L.marker(
+              {
+                lat: parseFloat(site.latitude),
+                lng: parseFloat(site.longitude)
+              },
+              { icon: this.sitesIcon }
+            );
+
+            marker.on("click", () => {
+              this.$router.push({ path: "/site/" + site.id });
+            });
+
+            marker.bindTooltip(site.name, {
+              permanent: false,
+              direction: "right",
+              offset: [8, 0]
+            });
+
+            this.activeSites.push(marker);
+          }
+        });
+
+        this.activeSitesLayer = L.layerGroup(this.activeSites);
+        this.map.addLayer(this.activeSitesLayer);
+
+        this.activeSitesBounds = new L.featureGroup(
+          this.activeSites
+        ).getBounds();
+        this.map.fitBounds(this.activeSitesBounds, { padding: [50, 50] });
+      } else {
+        if (this.activeSitesLayer) this.map.removeLayer(this.activeSitesLayer);
+        this.activeSites = [];
+        this.activeSitesBounds = null;
+      }
     }
   }
 };
