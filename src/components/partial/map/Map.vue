@@ -54,30 +54,33 @@ export default {
             zIndex: 1
           }
         )
-      }
-    ],
-    overlayMaps: [
-      {
-        name: "Hübriidkaart",
-        leafletObject: L.tileLayer(
-          "https://tiles.maaamet.ee/tm/tms/1.0.0/hybriid/{z}/{x}/{y}.png&ASUTUS=TALTECH&KESKKOND=LIVE&IS=SARV",
-          {
-            // attribution:
-            //   "<a href='http://www.maaamet.ee/' target='MapReferenceWindow'>&copy; Maa-amet</a>",
-            tms: true,
-            detectRetina: true,
-            updateWhenIdle: true
-          }
-        )
       },
       {
         name: "Reljeefikaart",
         leafletObject: L.tileLayer(
           "https://tiles.maaamet.ee/tm/tms/1.0.0/reljeef/{z}/{x}/{y}.png&ASUTUS=TALTECH&KESKKOND=LIVE&IS=SARV",
           {
-            // attribution:
-            //   "<a href='http://www.maaamet.ee/' target='MapReferenceWindow'>&copy; Maa-amet</a>",
+            attribution:
+              "<a  href='http://www.maaamet.ee/' target='MapReferenceWindow'>&copy; Maa-amet</a>",
             tms: true,
+            detectRetina: true,
+            updateWhenIdle: true
+          }
+        )
+      }
+    ],
+    overlayMaps: [
+      {
+        name: "Uuringupunktid",
+        leafletObject: L.tileLayer.wms(
+          "https://gis.geocollections.info/geoserver/wms",
+          {
+            attribution:
+              "<a href='https://ttu.ee/geoloogia-instituut' target='MapReferenceWindow'>&copy; Geoloogia instituut</a>",
+            layers: "turvas:Turbapunktid",
+            format: "image/png",
+            transparent: true,
+            tiled: true,
             detectRetina: true,
             updateWhenIdle: true
           }
@@ -91,6 +94,39 @@ export default {
             attribution:
               "<a href='https://ttu.ee/geoloogia-instituut' target='MapReferenceWindow'>&copy; Geoloogia instituut</a>",
             layers: "turvas:Turbaalad",
+            format: "image/png",
+            transparent: true,
+            tiled: true,
+            detectRetina: true,
+            updateWhenIdle: true
+          }
+        )
+      },
+      {
+        name: "Turbamaardlad 2020",
+        leafletObject: L.tileLayer.wms(
+          "https://gis.geocollections.info/geoserver/wms",
+          {
+            attribution:
+              "<a href='https://ttu.ee/geoloogia-instituut' target='MapReferenceWindow'>&copy; Geoloogia instituut</a>",
+            layers: "maardla:turbamaardlad_2020",
+            styles: "maardla:turvas2018",
+            format: "image/png",
+            transparent: true,
+            tiled: true,
+            detectRetina: true,
+            updateWhenIdle: true
+          }
+        )
+      },
+      {
+        name: "Soosetted pinnakatte geoloogilisel kaardil",
+        leafletObject: L.tileLayer.wms(
+          "https://gis.geocollections.info/geoserver/wms",
+          {
+            attribution:
+              "<a href='https://ttu.ee/geoloogia-instituut' target='MapReferenceWindow'>&copy; Geoloogia instituut</a>",
+            layers: "turvas:soosetted",
             format: "image/png",
             transparent: true,
             tiled: true,
@@ -356,23 +392,6 @@ export default {
         )
       },
       {
-        name: "Turbamaardlad 2020",
-        leafletObject: L.tileLayer.wms(
-          "https://gis.geocollections.info/geoserver/wms",
-          {
-            attribution:
-              "<a href='https://ttu.ee/geoloogia-instituut' target='MapReferenceWindow'>&copy; Geoloogia instituut</a>",
-            layers: "maardla:turbamaardlad_2020",
-            styles: "maardla:turvas2018",
-            format: "image/png",
-            transparent: true,
-            tiled: true,
-            detectRetina: true,
-            updateWhenIdle: true
-          }
-        )
-      },
-      {
         name: "Aluspõhja geoloogia 400k",
         leafletObject: L.tileLayer.wms(
           "https://gis.geocollections.info/geoserver/wms",
@@ -380,22 +399,6 @@ export default {
             attribution:
               "<a href='https://ttu.ee/geoloogia-instituut' target='MapReferenceWindow'>&copy; Geoloogia instituut</a>",
             layers: "geocollections:bedrock400k",
-            format: "image/png",
-            transparent: true,
-            tiled: true,
-            detectRetina: true,
-            updateWhenIdle: true
-          }
-        )
-      },
-      {
-        name: "Soosetted pinnakatte geoloogilisel kaardil",
-        leafletObject: L.tileLayer.wms(
-          "https://gis.geocollections.info/geoserver/wms",
-          {
-            attribution:
-              "<a href='https://ttu.ee/geoloogia-instituut' target='MapReferenceWindow'>&copy; Geoloogia instituut</a>",
-            layers: "turvas:soosetted",
             format: "image/png",
             transparent: true,
             tiled: true,
@@ -448,11 +451,22 @@ export default {
             updateWhenIdle: true
           }
         )
+      },
+      {
+        name: "Hübriidkaart",
+        leafletObject: L.tileLayer(
+          "https://tiles.maaamet.ee/tm/tms/1.0.0/hybriid/{z}/{x}/{y}.png&ASUTUS=TALTECH&KESKKOND=LIVE&IS=SARV",
+          {
+            // attribution:
+            //   "<a href='http://www.maaamet.ee/' target='MapReferenceWindow'>&copy; Maa-amet</a>",
+            tms: true,
+            detectRetina: true,
+            updateWhenIdle: true
+          }
+        )
       }
     ]
   }),
-
-  created() {},
 
   mounted() {
     this.initMap();
@@ -466,7 +480,8 @@ export default {
 
   computed: {
     ...mapGetters("settings", ["getMapState"]),
-    ...mapState("search", ["siteResults", "siteResultsCount"])
+    ...mapState("search", ["siteResults", "siteResultsCount"]),
+    ...mapState("map", ["defaultBaseLayer", "defaultOverlayLayers"])
   },
 
   watch: {
@@ -502,10 +517,20 @@ export default {
 
   methods: {
     ...mapActions("search", ["doSiteSearch"]),
+    ...mapActions("map", [
+      "updateDefaultBaseLayer",
+      "appendToDefaultOverlayLayer",
+      "removeFromDefaultOverlayLayer"
+    ]),
 
     initMap() {
       this.map = L.map("map", {
-        layers: [this.tileProviders[0].leafletObject],
+        layers: [
+          this.tileProviders[1].leafletObject,
+          this.overlayMaps[0].leafletObject,
+          this.overlayMaps[1].leafletObject,
+          this.overlayMaps[19].leafletObject
+        ],
         scrollWheelZoom: true,
         // wheelPxPerZoomLevel: 120,
         cursor: true,
@@ -568,21 +593,34 @@ export default {
       L.control.scale({ imperial: false }).addTo(this.map);
       this.map.addControl(new window.L.Control.Fullscreen());
 
-      this.map.on("baselayerchange", this.handleBaselayerChange);
+      // Adding default base layer
+      if (this.defaultBaseLayer && this.defaultBaseLayer !== "Fotokaart") {
+        this.map.removeLayer(baseLayers["Fotokaart"]);
+        this.map.addLayer(baseLayers[this.defaultBaseLayer]);
+      }
+
+      // Adding default overlay layers
+      if (this.defaultOverlayLayers && this.defaultOverlayLayers.length > 0) {
+        this.defaultOverlayLayers.forEach(layer =>
+          this.map.addLayer(overlayMaps[layer])
+        );
+      }
+
+      this.map.on("baselayerchange", this.handleBaseLayerChange);
       this.map.on("overlayadd", this.handleOverlayAdded);
       this.map.on("overlayremove", this.handleOverlayRemoved);
     },
 
-    handleBaselayerChange(event) {
-      console.log(event);
+    handleBaseLayerChange(event) {
+      this.updateDefaultBaseLayer(event.name);
     },
 
     handleOverlayAdded(event) {
-      console.log(event);
+      this.appendToDefaultOverlayLayer(event.name);
     },
 
     handleOverlayRemoved(event) {
-      console.log(event);
+      this.removeFromDefaultOverlayLayer(event.name);
     }
   }
 };
