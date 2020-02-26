@@ -111,40 +111,7 @@ export default {
         )
       },
       {
-        name: "Turbamaardlad 2020",
-        leafletObject: L.tileLayer.wms(
-          "https://gis.geocollections.info/geoserver/wms",
-          {
-            attribution:
-              "<a href='https://ttu.ee/geoloogia-instituut' target='MapReferenceWindow'>&copy; Geoloogia instituut</a>",
-            layers: "maardla:turbamaardlad_2020",
-            styles: "maardla:turvas2018",
-            format: "image/png",
-            transparent: true,
-            tiled: true,
-            detectRetina: true,
-            updateWhenIdle: true
-          }
-        )
-      },
-      {
-        name: "Soosetted pinnakatte geoloogilisel kaardil",
-        leafletObject: L.tileLayer.wms(
-          "https://gis.geocollections.info/geoserver/wms",
-          {
-            attribution:
-              "<a href='https://ttu.ee/geoloogia-instituut' target='MapReferenceWindow'>&copy; Geoloogia instituut</a>",
-            layers: "turvas:soosetted",
-            format: "image/png",
-            transparent: true,
-            tiled: true,
-            detectRetina: true,
-            updateWhenIdle: true
-          }
-        )
-      },
-      {
-        name: "Harjumaa turba-alade plaanid",
+        name: "Harjumaa",
         leafletObject: L.tileLayer.wms(
           "https://gis.geocollections.info/geoserver/wms",
           {
@@ -160,7 +127,7 @@ export default {
         )
       },
       {
-        name: "Hiiumaa turba-alade plaanid",
+        name: "Hiiumaa",
         leafletObject: L.tileLayer.wms(
           "https://gis.geocollections.info/geoserver/wms",
           {
@@ -176,7 +143,7 @@ export default {
         )
       },
       {
-        name: "Ida-Virumaa turba-alade plaanid",
+        name: "Ida-Virumaa",
         leafletObject: L.tileLayer.wms(
           "https://gis.geocollections.info/geoserver/wms",
           {
@@ -192,7 +159,7 @@ export default {
         )
       },
       {
-        name: "Jõgevamaa turba-alade plaanid",
+        name: "Jõgevamaa",
         leafletObject: L.tileLayer.wms(
           "https://gis.geocollections.info/geoserver/wms",
           {
@@ -208,7 +175,7 @@ export default {
         )
       },
       {
-        name: "Järvamaa turba-alade plaanid",
+        name: "Järvamaa",
         leafletObject: L.tileLayer.wms(
           "https://gis.geocollections.info/geoserver/wms",
           {
@@ -224,7 +191,7 @@ export default {
         )
       },
       {
-        name: "Läänemaa turba-alade plaanid",
+        name: "Läänemaa",
         leafletObject: L.tileLayer.wms(
           "https://gis.geocollections.info/geoserver/wms",
           {
@@ -240,7 +207,7 @@ export default {
         )
       },
       {
-        name: "Lääne-Virumaa turba-alade plaanid",
+        name: "Lääne-Virumaa",
         leafletObject: L.tileLayer.wms(
           "https://gis.geocollections.info/geoserver/wms",
           {
@@ -256,7 +223,7 @@ export default {
         )
       },
       {
-        name: "Pärnumaa turba-alade plaanid",
+        name: "Pärnumaa",
         leafletObject: L.tileLayer.wms(
           "https://gis.geocollections.info/geoserver/wms",
           {
@@ -272,7 +239,7 @@ export default {
         )
       },
       {
-        name: "Põlvamaa turba-alade plaanid",
+        name: "Põlvamaa",
         leafletObject: L.tileLayer.wms(
           "https://gis.geocollections.info/geoserver/wms",
           {
@@ -288,7 +255,7 @@ export default {
         )
       },
       {
-        name: "Raplamaa turba-alade plaanid",
+        name: "Raplamaa",
         leafletObject: L.tileLayer.wms(
           "https://gis.geocollections.info/geoserver/wms",
           {
@@ -304,7 +271,7 @@ export default {
         )
       },
       {
-        name: "Saaremaa turba-alade plaanid",
+        name: "Saaremaa",
         leafletObject: L.tileLayer.wms(
           "https://gis.geocollections.info/geoserver/wms",
           {
@@ -320,7 +287,7 @@ export default {
         )
       },
       {
-        name: "Tartumaa turba-alade plaanid",
+        name: "Tartumaa",
         leafletObject: L.tileLayer.wms(
           "https://gis.geocollections.info/geoserver/wms",
           {
@@ -336,7 +303,7 @@ export default {
         )
       },
       {
-        name: "Valgamaa turba-alade plaanid",
+        name: "Valgamaa",
         leafletObject: L.tileLayer.wms(
           "https://gis.geocollections.info/geoserver/wms",
           {
@@ -352,7 +319,7 @@ export default {
         )
       },
       {
-        name: "Viljandimaa turba-alade plaanid",
+        name: "Viljandimaa",
         leafletObject: L.tileLayer.wms(
           "https://gis.geocollections.info/geoserver/wms",
           {
@@ -368,7 +335,7 @@ export default {
         )
       },
       {
-        name: "Võrumaa turba-alade plaanid",
+        name: "Võrumaa",
         leafletObject: L.tileLayer.wms(
           "https://gis.geocollections.info/geoserver/wms",
           {
@@ -400,6 +367,23 @@ export default {
         )
       },
       {
+        name: "Turbamaardlad 2020",
+        leafletObject: L.tileLayer.wms(
+          "https://gis.geocollections.info/geoserver/wms",
+          {
+            attribution:
+              "<a href='https://ttu.ee/geoloogia-instituut' target='MapReferenceWindow'>&copy; Geoloogia instituut</a>",
+            layers: "maardla:turbamaardlad_2020",
+            styles: "maardla:turvas2018",
+            format: "image/png",
+            transparent: true,
+            tiled: true,
+            detectRetina: true,
+            updateWhenIdle: true
+          }
+        )
+      },
+      {
         name: "Aluspõhja geoloogia 400k",
         leafletObject: L.tileLayer.wms(
           "https://gis.geocollections.info/geoserver/wms",
@@ -407,6 +391,22 @@ export default {
             attribution:
               "<a href='https://ttu.ee/geoloogia-instituut' target='MapReferenceWindow'>&copy; Geoloogia instituut</a>",
             layers: "geocollections:bedrock400k",
+            format: "image/png",
+            transparent: true,
+            tiled: true,
+            detectRetina: true,
+            updateWhenIdle: true
+          }
+        )
+      },
+      {
+        name: "Soosetted",
+        leafletObject: L.tileLayer.wms(
+          "https://gis.geocollections.info/geoserver/wms",
+          {
+            attribution:
+              "<a href='https://ttu.ee/geoloogia-instituut' target='MapReferenceWindow'>&copy; Geoloogia instituut</a>",
+            layers: "turvas:soosetted",
             format: "image/png",
             transparent: true,
             tiled: true,
@@ -481,7 +481,7 @@ export default {
   },
 
   beforeDestroy() {
-    this.map.off("baselayerchange", this.handleBaselayerChange);
+    this.map.off("baselayerchange", this.handleBaseLayerChange);
     this.map.off("overlayadd", this.handleOverlayAdded);
     this.map.off("overlayremove", this.handleOverlayRemoved);
   },
@@ -566,12 +566,7 @@ export default {
 
     initMap() {
       this.map = L.map("map", {
-        layers: [
-          this.tileProviders[1].leafletObject,
-          this.overlayMaps[0].leafletObject,
-          this.overlayMaps[1].leafletObject,
-          this.overlayMaps[19].leafletObject
-        ],
+        layers: [this.tileProviders[1].leafletObject],
         scrollWheelZoom: true,
         // wheelPxPerZoomLevel: 120,
         cursor: true,
@@ -629,8 +624,8 @@ export default {
           collapsed: !(
             this.$route.name === "FrontPage" && this.$vuetify.breakpoint.mdAndUp
           )
-        })
-        .addTo(this.map);
+        }).addTo(this.map);
+
       L.control.scale({ imperial: false }).addTo(this.map);
       this.map.addControl(new window.L.Control.Fullscreen());
 
@@ -648,6 +643,8 @@ export default {
           }
         });
       }
+
+      this.updateLeafletLayerControlStyles();
 
       this.map.on("baselayerchange", this.handleBaseLayerChange);
       this.map.on("overlayadd", this.handleOverlayAdded);
@@ -728,6 +725,39 @@ export default {
         this.activeSites = [];
         this.activeSitesBounds = null;
       }
+    },
+
+    updateLeafletLayerControlStyles() {
+      const layerListEl = document.getElementsByClassName(
+        "leaflet-control-layers-list"
+      );
+
+      let baseLabel = this.createLayerControlLabel("Aluskaardid");
+
+      // Switching base layers and overlay layers
+      layerListEl[0].removeChild(layerListEl[0].children[1]);
+      layerListEl[0].appendChild(baseLabel);
+      layerListEl[0].appendChild(layerListEl[0].children[0]);
+
+      const overlayLayersEl = document.getElementsByClassName(
+        "leaflet-control-layers-overlays"
+      );
+      let planLabel = this.createLayerControlLabel("Turbaalade plaanid");
+      let geoLabel = this.createLayerControlLabel("Geoloogiline taust");
+
+      overlayLayersEl[0].insertBefore(planLabel, overlayLayersEl[0].firstChild);
+      overlayLayersEl[0].insertBefore(
+        geoLabel,
+        overlayLayersEl[0].children[18]
+      );
+    },
+
+    createLayerControlLabel(labelName) {
+      let node = document.createElement("DIV");
+      node.classList.add("leaflet-layer-group-label");
+      let textNode = document.createTextNode(labelName);
+      node.appendChild(textNode);
+      return node;
     }
   }
 };
@@ -741,5 +771,19 @@ export default {
 
 .top-controls >>> .leaflet-top {
   top: 64px;
+}
+
+#map >>> .leaflet-layer-group-label {
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+#map >>> .leaflet-control-layers-overlays > label,
+#map >>> .leaflet-control-layers-base {
+  margin-left: 1rem;
+}
+
+#map >>> .leaflet-control-attribution > a {
+  color: #000;
 }
 </style>
