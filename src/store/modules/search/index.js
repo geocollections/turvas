@@ -40,6 +40,22 @@ const state = {
     sortDesc: [false],
     project_id: 20
   },
+  sampleHeaders: [
+    { text: "ID", value: "sample_id" },
+    { text: "Number", value: "number_additional" },
+    { text: "Proovipunkt", value: "site" },
+    { text: "Sügavus", value: "depth" },
+    { text: "Sügavus kuni", value: "depth_interval" },
+    { text: "Turbaliik", value: "rock", align: "center" }
+  ],
+  sampleResults: [],
+  sampleResultsCount: 0,
+  sampleSearchParams: {
+    page: 1,
+    paginateBy: 25,
+    sortBy: ["id"],
+    sortDesc: [false]
+  },
   paginateByItems: [
     { text: "Näita 10 kaupa", value: 10 },
     { text: "Näita 25 kaupa", value: 25 },

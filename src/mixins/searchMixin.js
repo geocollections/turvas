@@ -2,7 +2,11 @@ import { mapState } from "vuex";
 
 const searchMixin = {
   computed: {
-    ...mapState("search", ["areaSearchParams", "siteSearchParams"])
+    ...mapState("search", [
+      "areaSearchParams",
+      "siteSearchParams",
+      "sampleSearchParams"
+    ])
   },
 
   methods: {
@@ -10,7 +14,10 @@ const searchMixin = {
       if (
         (this.$route.name === "AreaTable" &&
           this.areaSearchParams.page === 1) ||
-        (this.$route.name === "SiteTable" && this.siteSearchParams.page === 1)
+        (this.$route.name === "SiteTable" &&
+          this.siteSearchParams.page === 1) ||
+        (this.$route.name === "SampleTable" &&
+          this.sampleSearchParams.page === 1)
       ) {
         this.$router
           .push({ query: { ...this.$route.query, filter: newVal } })
@@ -29,7 +36,9 @@ const searchMixin = {
         (this.$route.name === "AreaTable" &&
           this.areaSearchParams.page !== newVal) ||
         (this.$route.name === "SiteTable" &&
-          this.siteSearchParams.page !== newVal)
+          this.siteSearchParams.page !== newVal) ||
+        (this.$route.name === "SampleTable" &&
+          this.sampleSearchParams.page !== newVal)
       ) {
         this.$router
           .push({ query: { ...this.$route.query, page: newVal } })
@@ -74,6 +83,7 @@ const searchMixin = {
     resetSearch() {
       let path = "/area";
       if (this.$route.name === "SiteTable") path = "/site";
+      else if (this.$route.name === "SampleTable") path = "/sample";
       this.$router.push({ path: path }).catch(err => {});
     }
   }

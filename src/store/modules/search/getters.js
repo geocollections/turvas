@@ -17,6 +17,10 @@ const getters = {
 
   getSiteHeaderNames: state => {
     return state.siteHeaders.map(header => header.value);
+  },
+
+  getSampleHeaderNames: state => {
+    return state.sampleHeaders.map(header => header.value);
   }
 };
 

@@ -31,6 +31,9 @@
           <v-btn text title="Proovipunktid" to="/site" exact color="white"
             >Proovipunktid</v-btn
           >
+          <v-btn text title="Proovid" to="/sample" exact color="white"
+            >Proovid</v-btn
+          >
           <v-btn text title="Projekti info" to="/about" exact color="white"
             >Projekti info</v-btn
           >

@@ -56,6 +56,7 @@
           <v-card
             flat
             style="margin: 2px 0;"
+            class="px-1"
             :class="getColor(item.classification_rock__name)"
           >
             {{ item.classification_rock__name }}

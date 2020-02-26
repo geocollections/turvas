@@ -41,6 +41,22 @@ const actions = {
     }
   },
 
+  async doSampleSearch({ state, commit, dispatch }, params = {}) {
+    dispatch("updateSearchParams", params);
+
+    let response = await SearchService.doSolrSearch(
+      "peat_samples",
+      state.sampleSearchParams
+    );
+    if (typeof response === "object") {
+      commit("SET_SAMPLE_RESULTS", response.results);
+      commit("SET_SAMPLE_RESULTS_COUNT", response.count);
+    } else if (typeof response === "string") {
+      dispatch("error/updateErrorState", true, { root: true });
+      dispatch("error/updateErrorMessage", response, { root: true });
+    }
+  },
+
   updateSearchParams({ commit, getters }, params) {
     let searchParams = cloneDeep(params);
 
@@ -89,6 +105,10 @@ const actions = {
         searchParams.sortBy = sortBy.filter(field =>
           getters.getSiteHeaderNames.includes(field)
         );
+      } else if (router.currentRoute.name === "SampleTable") {
+        searchParams.sortBy = sortBy.filter(field =>
+          getters.getSampleHeaderNames.includes(field)
+        );
       }
     } else searchParams.sortBy = [];
 
@@ -125,6 +145,8 @@ const actions = {
       searchParams.project_id = 20;
 
       commit("SET_SITE_SEARCH_PARAMS", searchParams);
+    } else {
+      commit("SET_SAMPLE_SEARCH_PARAMS", searchParams);
     }
   },
 

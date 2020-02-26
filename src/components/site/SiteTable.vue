@@ -1,19 +1,14 @@
 <template>
   <div class="site-table">
-<!--    {{ siteSearchParams }}-->
-
     <!-- SEARCH -->
-    <v-row no-gutters class="pt-1 px-1">
-      <v-col class="pt-1 px-1">
-        <v-btn @click="resetSearch" color="primary">
-          Puhasta otsing
-          <v-icon right small>fas fa-eraser</v-icon>
-        </v-btn>
-      </v-col>
-    </v-row>
+    <Search
+      v-on:reset:search="resetSearch"
+      :results="siteResults"
+      :count="siteResultsCount"
+    />
 
     <!-- PAGINATION -->
-    <v-row no-gutters class="pa-1" justify="center">
+    <v-row no-gutters class="pa-1 pt-0" justify="center">
       <v-col
         cols="9"
         :sm="getMapState ? 9 : 4"
@@ -56,7 +51,7 @@
           :value="filter"
           hide-details
           single-line
-          label="Filtreeri"
+          label="Otsi tabelist..."
           @input="handleUpdateFilter"
         ></v-text-field>
       </v-card-title>
@@ -105,10 +100,11 @@
 import { mapActions, mapGetters, mapState } from "vuex";
 import debounce from "lodash/debounce";
 import searchMixin from "../../mixins/searchMixin";
+import Search from "../partial/Search";
 
 export default {
   name: "SiteTable",
-
+  components: { Search },
   mixins: [searchMixin],
 
   computed: {

@@ -89,7 +89,7 @@ export default {
             format: "image/png",
             transparent: true,
             tiled: true,
-            detectRetina: true,
+            detectRetina: false,
             updateWhenIdle: true
           }
         )

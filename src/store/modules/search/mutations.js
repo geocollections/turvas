@@ -33,6 +33,18 @@ const mutations = {
 
   SET_SITE_SEARCH_PARAMS(state, params) {
     state.siteSearchParams = { ...params };
+  },
+
+  SET_SAMPLE_RESULTS(state, results) {
+    state.sampleResults = results;
+  },
+
+  SET_SAMPLE_RESULTS_COUNT(state, count) {
+    state.sampleResultsCount = count;
+  },
+
+  SET_SAMPLE_SEARCH_PARAMS(state, params) {
+    state.sampleSearchParams = { ...params };
   }
 };
 
