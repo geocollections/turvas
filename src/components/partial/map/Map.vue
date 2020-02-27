@@ -528,16 +528,19 @@ export default {
     },
 
     getAreaSites(newVal) {
-      if (this.$route.name === "AreaDetail") {
+      if (
+        this.$route.name === "AreaDetail" ||
+        this.$route.name === "SiteDetail"
+      ) {
         this.updateActiveSites(newVal);
       }
     },
 
-    getSite(newVal) {
-      if (this.$route.name === "SiteDetail") {
-        this.updateActiveSites([newVal]);
-      }
-    },
+    // getSite(newVal) {
+    //   if (this.$route.name === "SiteDetail") {
+    //     this.updateActiveSites([newVal]);
+    //   }
+    // },
 
     siteResults(newVal) {
       if (this.$route.name === "SiteTable") {
@@ -624,7 +627,8 @@ export default {
           collapsed: !(
             this.$route.name === "FrontPage" && this.$vuetify.breakpoint.mdAndUp
           )
-        }).addTo(this.map);
+        })
+        .addTo(this.map);
 
       L.control.scale({ imperial: false }).addTo(this.map);
       this.map.addControl(new window.L.Control.Fullscreen());

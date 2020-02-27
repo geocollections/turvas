@@ -45,10 +45,20 @@
         <template v-slot:item.id="{ item }">
           <router-link
             class="table-link"
-            :title="`Proovi vaade ID: ${item.id}`"
+            title="Proovi detailvaade"
             :to="`/sample/${item.id}`"
           >
             {{ item.id }}
+          </router-link>
+        </template>
+
+        <template v-slot:item.number_additional="{ item }">
+          <router-link
+            :to="`/sample/${item.id}`"
+            title="Proovi detailvaade"
+            class="table-link"
+          >
+            {{ item.number_additional }}
           </router-link>
         </template>
 

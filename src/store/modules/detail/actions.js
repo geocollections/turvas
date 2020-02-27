@@ -17,6 +17,7 @@ const actions = {
         dispatch("fetchAreaSites", payload.id);
       } else if (payload.table === "site") {
         dispatch("fetchSiteSamples", payload.id);
+        dispatch("fetchAreaSites", response.area);
       }
     } else if (typeof response === "string") {
       dispatch("error/updateErrorState", true, { root: true });
