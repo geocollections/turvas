@@ -4,8 +4,6 @@ import getters from "./getters";
 
 const state = {
   fastSearch: "",
-  fastSearchCount: 0,
-  fastSearchResults: [],
   areaHeaders: [
     { text: "Nimi", value: "name" },
     { text: "Maakond", value: "maakond" },

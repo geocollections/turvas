@@ -3,14 +3,6 @@ const mutations = {
     state.fastSearch = stringVal;
   },
 
-  SET_FAST_SEARCH_COUNT(state, count) {
-    state.fastSearchCount = count;
-  },
-
-  SET_FAST_SEARCH_RESULTS(state, arrOfResults) {
-    state.fastSearchResults = arrOfResults;
-  },
-
   SET_AREA_RESULTS(state, results) {
     state.areaResults = results;
   },

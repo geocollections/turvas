@@ -3,14 +3,6 @@ const getters = {
     return state.fastSearch;
   },
 
-  getFastSearchCount: state => {
-    return state.fastSearchCount;
-  },
-
-  getFastSearchResults: state => {
-    return state.fastSearchResults;
-  },
-
   getAreaHeaderNames: state => {
     return state.areaHeaders.map(header => header.value);
   },

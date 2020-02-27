@@ -57,6 +57,26 @@ const actions = {
     }
   },
 
+  async fetchParamsFromAnalysis({ commit, dispatch }) {
+    let response = await SearchService.doSolrSearch("peat_analysis");
+    if (typeof response === "object") {
+      commit("SET_LIST_PARAMS_ANALYSIS", response.results);
+    } else if (typeof response === "string") {
+      dispatch("error/updateErrorState", true, { root: true });
+      dispatch("error/updateErrorMessage", response, { root: true });
+    }
+  },
+
+  async fetchParamsFromSample({ commit, dispatch }) {
+    let response = await SearchService.doSolrSearch("peat_samples");
+    if (typeof response === "object") {
+      commit("SET_LIST_PARAMS_SAMPLE", response.results);
+    } else if (typeof response === "string") {
+      dispatch("error/updateErrorState", true, { root: true });
+      dispatch("error/updateErrorMessage", response, { root: true });
+    }
+  },
+
   updateSearchParams({ commit, getters }, params) {
     let searchParams = cloneDeep(params);
 

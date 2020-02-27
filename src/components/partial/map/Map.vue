@@ -494,7 +494,7 @@ export default {
       "allSiteResults"
     ]),
     ...mapState("map", ["defaultBaseLayer", "defaultOverlayLayers"]),
-    ...mapGetters("detail", ["getAreaSites", "getSite"])
+    ...mapGetters("detail", ["getAreaSites", "getSample"])
   },
 
   watch: {
@@ -536,11 +536,19 @@ export default {
       }
     },
 
-    // getSite(newVal) {
-    //   if (this.$route.name === "SiteDetail") {
-    //     this.updateActiveSites([newVal]);
-    //   }
-    // },
+    getSample(newVal) {
+      if (this.$route.name === "SampleDetail") {
+        let siteFromSample = [
+          {
+            id: newVal.site,
+            name: newVal.site__name,
+            longitude: newVal.site__longitude,
+            latitude: newVal.site__latitude
+          }
+        ];
+        this.updateActiveSites(siteFromSample);
+      }
+    },
 
     siteResults(newVal) {
       if (this.$route.name === "SiteTable") {
@@ -549,7 +557,7 @@ export default {
     },
 
     "$route.name"(newVal) {
-      if (newVal === "AreaTable") {
+      if (newVal === "AreaTable" || newVal === "SampleTable") {
         if (this.activeSitesLayer) this.map.removeLayer(this.activeSitesLayer);
         this.map.fitBounds([
           [59.8937871096, 21.5136411202],
@@ -648,6 +656,7 @@ export default {
         });
       }
 
+      this.updateAreaAndSiteLayerOrdering();
       this.updateLeafletLayerControlStyles();
 
       this.map.on("baselayerchange", this.handleBaseLayerChange);
@@ -665,6 +674,27 @@ export default {
 
     handleOverlayRemoved(event) {
       this.removeFromDefaultOverlayLayer(event.name);
+    },
+
+    updateAreaAndSiteLayerOrdering() {
+      this.map.eachLayer(layer => {
+        if (
+          layer &&
+          layer.wmsParams &&
+          layer.wmsParams.layers &&
+          layer.wmsParams.layers === "turvas:Turbapunktid"
+        ) {
+          layer.setZIndex(30);
+        }
+        if (
+          layer &&
+          layer.wmsParams &&
+          layer.wmsParams.layers &&
+          layer.wmsParams.layers === "turvas:Turbaalad"
+        ) {
+          layer.setZIndex(29);
+        }
+      });
     },
 
     updateWmsOverlayParams(obj) {
@@ -695,12 +725,17 @@ export default {
 
         listOfSites.forEach(site => {
           if (site.latitude && site.longitude) {
-            let marker = L.marker(
+            // Todo: Marker color, size etc. should be dynamic according to
+            let markerRadius = 6.5;
+            let marker = L.circleMarker(
               {
                 lat: parseFloat(site.latitude),
                 lng: parseFloat(site.longitude)
               },
-              { icon: this.sitesIcon }
+              {
+                radius: markerRadius,
+                color: "#fff"
+              }
             );
 
             marker.on("click", () => {
@@ -723,7 +758,7 @@ export default {
         this.activeSitesBounds = new L.featureGroup(
           this.activeSites
         ).getBounds();
-        this.map.fitBounds(this.activeSitesBounds, { padding: [50, 50] });
+        this.map.fitBounds(this.activeSitesBounds, { padding: [100, 100] });
       } else {
         if (this.activeSitesLayer) this.map.removeLayer(this.activeSitesLayer);
         this.activeSites = [];

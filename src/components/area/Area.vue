@@ -66,7 +66,7 @@
         <template v-slot:item.id="{ item }">
           <router-link
             class="table-link"
-            :title="`Proovipunkti vaade ID: ${item.id}`"
+            title="Proovipunkti detailvaade"
             :to="`/site/${item.id}`"
           >
             {{ item.id }}
@@ -76,7 +76,7 @@
         <template v-slot:item.site="{ item }">
           <router-link
             class="table-link"
-            :title="`Proovipunkti vaade ID: ${item.id}`"
+            title="Proovipunkti detailvaade"
             :to="`/site/${item.id}`"
           >
             {{ item.name }}

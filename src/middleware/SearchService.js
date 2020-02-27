@@ -41,9 +41,13 @@ class SearchService {
     try {
       let searchParams = cloneDeep(params);
 
-      let start = (searchParams.page - 1) * searchParams.paginateBy;
+      let start = 0;
+      let paginateBy = 100;
+      if (searchParams.page && searchParams.paginateBy) {
+        start = (searchParams.page - 1) * searchParams.paginateBy;
+        paginateBy = searchParams.paginateBy;
+      }
       let sort = buildSort(searchParams.sortBy, searchParams.sortDesc);
-      let paginateBy = searchParams.paginateBy;
       let filter = searchParams.filter || "";
       delete searchParams.page;
       delete searchParams.paginateBy;
@@ -107,6 +111,11 @@ function buildSort(sortBy, sortDesc) {
     if (sort.length > 0) sort = sort.substring(0, sort.length - 1);
   }
   return sort;
+}
+
+function buildFacetQuery(facet) {
+  console.log(facet);
+  return "";
 }
 
 export default SearchService;

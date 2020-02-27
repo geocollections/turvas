@@ -33,7 +33,6 @@ export default {
 
   computed: {
     ...mapGetters("detail", [
-      "getAnalysis",
       "getArea",
       "getSample",
       "getSite",
@@ -45,6 +44,8 @@ export default {
 
   created() {
     this.fetchListCounties();
+    // this.fetchParamsFromAnalysis();
+    // this.fetchParamsFromSample();
   },
 
   watch: {
@@ -75,7 +76,8 @@ export default {
   methods: {
     ...mapActions("detail", ["fetchData", "fetchListCounties"]),
     ...mapActions("error", ["updateErrorState"]),
-    ...mapActions("success", ["updateSuccessState"])
+    ...mapActions("success", ["updateSuccessState"]),
+    ...mapActions("search", ["fetchParamsFromAnalysis", "fetchParamsFromSample"])
   }
 };
 </script>

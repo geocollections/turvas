@@ -24,7 +24,7 @@
           </router-link>
         </v-toolbar-title>
 
-        <v-toolbar-items class="hidden-xs-only">
+        <v-toolbar-items class="hidden-sm-and-down">
           <v-btn text title="Turbaalad" to="/area" exact color="white"
             >Turbaalad</v-btn
           >
@@ -53,8 +53,8 @@
             :class="!isAboutPage && !isFrontPage ? 'mx-4' : 'ml-4'"
             autocomplete="off"
             append-icon="fas fa-search"
-            @click:append="doFastSearch"
-            v-on:keyup.enter="doFastSearch"
+            @click:append="goToAreaSearch"
+            v-on:keyup.enter="goToAreaSearch"
             @input="updateFastSearch"
           />
         </v-toolbar-items>
@@ -109,6 +109,13 @@
             <v-list-item-title>Proovipunktid</v-list-item-title>
           </v-list-item>
 
+          <v-list-item to="/sample">
+            <v-list-item-icon>
+              <v-icon>fas fa-vials</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>Proovid</v-list-item-title>
+          </v-list-item>
+
           <v-list-item to="/about">
             <v-list-item-icon>
               <v-icon>fas fa-info</v-icon>
@@ -126,8 +133,8 @@
             class="align-center"
             autocomplete="off"
             append-icon="fas fa-search"
-            @click:append="doFastSearch"
-            v-on:keyup.enter="doFastSearch"
+            @click:append="goToAreaSearch"
+            v-on:keyup.enter="goToAreaSearch"
             @input="updateFastSearch"
           />
         </v-list-item>
@@ -157,8 +164,19 @@ export default {
   },
 
   methods: {
-    ...mapActions("search", ["doFastSearch", "updateFastSearch"]),
-    ...mapActions("settings", ["updateMapState"])
+    ...mapActions("search", ["updateFastSearch"]),
+    ...mapActions("settings", ["updateMapState"]),
+
+    goToAreaSearch() {
+      if (this.getFastSearch && this.getFastSearch.trim().length > 0) {
+        this.$router
+          .push({
+            path: "/area",
+            query: { filter: this.getFastSearch.trim() }
+          })
+          .catch(err => {});
+      }
+    }
   }
 };
 </script>

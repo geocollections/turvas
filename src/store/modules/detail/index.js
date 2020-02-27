@@ -14,9 +14,9 @@ const state = {
   areaSiteHeaders: [
     { text: "ID", value: "id" },
     { text: "Proovipunkt", value: "site" },
-    { text: "X (L-EST, m)", value: "coordx" },
-    { text: "Y (L-EST, m)", value: "coordy" },
-    { text: "Z (m)", value: "elevation" },
+    { text: "X (L-EST, m)", value: "x" },
+    { text: "Y (L-EST, m)", value: "y" },
+    { text: "Z (m)", value: "z" },
     { text: "Sügavus / turba paksus (m)", value: "depth" }
   ],
   site: null,
@@ -29,7 +29,7 @@ const state = {
     { text: "Y (L-EST, m)", value: "coordy" },
     { text: "Z (m)", value: "elevation" },
     { text: "Sügavus / turba paksus (m)", value: "depth" },
-    { text: "Arvamus", value: "description" }
+    { text: "Avamus", value: "description" }
   ],
   siteSampleHeaders: [
     { text: "ID", value: "id" },
@@ -39,9 +39,19 @@ const state = {
     { text: "Aeg", value: "date_collected_free" },
     { text: "Turbaliik", value: "classification_rock__name", align: "center" }
   ],
-  listCounties: null,
   sample: null,
-  analysis: null
+  sampleHeaders: [
+    { text: "Proovi ID", value: "id" },
+    { text: "Proovipunkt", value: "site" },
+    { text: "Turbaala", value: "site__area" },
+    { text: "Turba paksus (m)", value: "site__depth" },
+    { text: "Avamus", value: "rock" },
+    { text: "Proovi koguja(d)", value: "agent_collected_free" },
+    { text: "Kogumise aeg", value: "date_collected_free" },
+    { text: "EGF", value: "site__area__egf" },
+    { text: "Turbaliik", value: "classification_rock__name" }
+  ],
+  listCounties: null
 };
 
 export default {

@@ -39,16 +39,20 @@ const getters = {
     return state.siteSampleHeaders;
   },
 
-  getListCounties: state => {
-    return state.listCounties;
-  },
-
-  getAnalysis: state => {
-    return state.analysis;
-  },
-
   getSample: state => {
     return state.sample;
+  },
+
+  filteredSampleHeaders: (state, getters) => {
+    return state.sampleHeaders.filter(header => {
+      if (getters.getSample[header.value]) {
+        return header;
+      }
+    });
+  },
+
+  getListCounties: state => {
+    return state.listCounties;
   }
 };
 

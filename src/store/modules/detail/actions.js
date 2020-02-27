@@ -26,7 +26,7 @@ const actions = {
   },
 
   async fetchAreaSites({ commit, dispatch }, id) {
-    let response = await SearchService.doRegularSearch("site", { area: id });
+    let response = await SearchService.doSolrSearch("site", { area_id: id });
     if (typeof response === "object") {
       commit("SET_AREA_SITES", response.results);
     } else if (typeof response === "string") {
