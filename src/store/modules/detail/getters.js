@@ -23,6 +23,10 @@ const getters = {
     return state.site;
   },
 
+  getSiteDescription: state => {
+    return state.siteDescription;
+  },
+
   getSiteSamples: state => {
     return state.siteSamples;
   },
@@ -33,6 +37,10 @@ const getters = {
         return header;
       }
     });
+  },
+
+  getSiteDescriptionHeaders: state => {
+    return state.siteDescriptionHeaders;
   },
 
   getSiteSampleHeaders: state => {

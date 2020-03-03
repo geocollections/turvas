@@ -7,6 +7,10 @@ const mutations = {
     state.areaSites = sites;
   },
 
+  SET_SITE_DESCRIPTION(state, sites) {
+    state.siteDescription = sites;
+  },
+
   SET_SITE_SAMPLES(state, sites) {
     state.siteSamples = sites;
   },

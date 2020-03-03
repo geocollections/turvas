@@ -30,6 +30,22 @@
       </v-data-table>
     </v-card>
 
+    <!-- Description -->
+    <v-card flat v-if="getSiteDescription" id="description">
+      <h2>
+        <v-card-title class="headline">Kirjeldus</v-card-title>
+      </h2>
+
+      <v-data-table
+        class="ws-nowrap-table"
+        multi-sort
+        hide-default-footer
+        disable-sort
+        :headers="getSiteDescriptionHeaders"
+        :items="getSiteDescription"
+      />
+    </v-card>
+
     <!-- Related samples -->
     <v-card flat v-if="getSiteSamples" id="samples">
       <h2>
@@ -86,8 +102,10 @@ export default {
   computed: {
     ...mapGetters("detail", [
       "getSite",
+      "getSiteDescription",
       "getSiteSamples",
       "filteredSiteHeaders",
+      "getSiteDescriptionHeaders",
       "getSiteSampleHeaders"
     ])
   },

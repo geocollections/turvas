@@ -20,6 +20,7 @@ const state = {
     { text: "Sügavus / turba paksus (m)", value: "depth" }
   ],
   site: null,
+  siteDescription: null,
   siteSamples: null,
   siteHeaders: [
     { text: "ID", value: "id" },
@@ -30,6 +31,14 @@ const state = {
     { text: "Z (m)", value: "elevation" },
     { text: "Sügavus / turba paksus (m)", value: "depth" },
     { text: "Avamus", value: "description" }
+  ],
+  siteDescriptionHeaders: [
+    { text: "Ülem. piir (m)", value: "depth_top" },
+    { text: "Alum. piir (m)", value: "depth_base" },
+    { text: "Nimi", value: "rock__name" },
+    { text: "Strat.", value: "stratigraphy__stratigraphy" },
+    { text: "Strat. txt", value: "stratigraphy_free" },
+    { text: "Kirjeldus", value: "description" }
   ],
   siteSampleHeaders: [
     { text: "ID", value: "id" },
