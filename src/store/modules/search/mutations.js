@@ -37,6 +37,39 @@ const mutations = {
 
   SET_SAMPLE_SEARCH_PARAMS(state, params) {
     state.sampleSearchParams = { ...params };
+  },
+
+  SET_LIST_PARAMETERS(state) {
+    let testing = [
+      {
+        name: "looduslik niiskus",
+        unit: "%",
+        value: "looduslik_niiskus",
+        isText: false
+      },
+      {
+        name: "turba kasutusala hinnang",
+        unit: "",
+        value: "turba_kasutusala_hinnang",
+        isText: true
+      }
+    ];
+    state.listParameters = testing;
+  },
+
+  UPDATE_SAMPLE_HEADERS(state, listOfParams) {
+    const SAMPLE_HEADERS_LENGTH = 6;
+    if (state.sampleHeaders.length > SAMPLE_HEADERS_LENGTH)
+      state.sampleHeaders.length = SAMPLE_HEADERS_LENGTH;
+
+    let newHeaders = [];
+    if (listOfParams && listOfParams.length > 0) {
+      listOfParams.forEach(param => {
+        newHeaders.push({ text: param.name, value: param.value });
+      });
+    }
+
+    state.sampleHeaders = [...state.sampleHeaders, ...newHeaders];
   }
 };
 

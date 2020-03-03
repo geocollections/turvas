@@ -2,6 +2,9 @@
   <div class="sample-table">
     {{ sampleSearchParams }}
 
+    <!-- SAMPLE SEARCH -->
+    <SampleSearch />
+
     <!-- SEARCH -->
     <Search
       v-on:reset:search="resetSearch"
@@ -50,14 +53,6 @@
         <span
           >Leitud <b>{{ sampleResultsCount }}</b> proovi</span
         >
-        <v-spacer />
-        <v-text-field
-          :value="filter"
-          hide-details
-          single-line
-          label="Otsi tabelist..."
-          @input="handleUpdateFilter"
-        ></v-text-field>
       </v-card-title>
 
       <v-data-table
@@ -126,10 +121,11 @@ import Search from "../partial/Search";
 import searchMixin from "../../mixins/searchMixin";
 import { mapActions, mapGetters, mapState } from "vuex";
 import debounce from "lodash/debounce";
+import SampleSearch from "./SampleSearch";
 export default {
   name: "SampleTable",
 
-  components: { Search },
+  components: { SampleSearch, Search },
 
   mixins: [searchMixin],
 
@@ -141,11 +137,7 @@ export default {
       "paginateByItems"
     ]),
 
-    ...mapGetters("settings", ["getMapState"]),
-
-    filter() {
-      return this.$route.query.filter || "";
-    }
+    ...mapGetters("settings", ["getMapState"])
   },
 
   watch: {

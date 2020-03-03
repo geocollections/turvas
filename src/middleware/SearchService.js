@@ -67,6 +67,22 @@ class SearchService {
       return buildErrorMessage(table);
     }
   };
+
+  static doSolrFacetSearch = async (table, facetFields) => {
+    try {
+      let url = `${SOLR_URL}${table}/?facet=on`;
+
+      let fields = buildFacetFields(facetFields);
+
+      if (fields.length > 0) url += "&" + fields;
+
+      const res = await axios.get(url);
+      if (res.status === 200) return res.data;
+      else return buildErrorMessage(table);
+    } catch (err) {
+      return buildErrorMessage(table);
+    }
+  };
 }
 
 function buildErrorMessage(table, id) {
@@ -113,9 +129,14 @@ function buildSort(sortBy, sortDesc) {
   return sort;
 }
 
-function buildFacetQuery(facet) {
-  console.log(facet);
-  return "";
+function buildFacetFields(fields) {
+  let fieldsQuery = "";
+  if (fields && fields.length > 0) {
+    fields.forEach(field => (fieldsQuery += "facet.field=" + field + "&"));
+
+    if (fieldsQuery.length > 0)
+      fieldsQuery = fieldsQuery.substring(0, fieldsQuery.length - 1);
+  } else return fieldsQuery;
 }
 
 export default SearchService;

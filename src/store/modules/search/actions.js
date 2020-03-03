@@ -3,12 +3,6 @@ import cloneDeep from "lodash/cloneDeep";
 import router from "../../../router";
 
 const actions = {
-  async doFastSearch({ state }) {
-    console.log(state.fastSearch);
-    let detailViewResponse = await SearchService.getDetailView("doi", "1");
-    console.log(detailViewResponse);
-  },
-
   async doAreaSearch({ state, commit, dispatch }, params = {}) {
     dispatch("updateSearchParams", params);
 
@@ -57,66 +51,64 @@ const actions = {
     }
   },
 
-  async fetchParamsFromAnalysis({ commit, dispatch }) {
-    let response = await SearchService.doSolrSearch("peat_analysis");
-    if (typeof response === "object") {
-      commit("SET_LIST_PARAMS_ANALYSIS", response.results);
-    } else if (typeof response === "string") {
-      dispatch("error/updateErrorState", true, { root: true });
-      dispatch("error/updateErrorMessage", response, { root: true });
-    }
-  },
+  async fetchListParameters({ commit }) {
+    commit("SET_LIST_PARAMETERS", "TESTING");
 
-  async fetchParamsFromSample({ commit, dispatch }) {
-    let response = await SearchService.doSolrSearch("peat_samples");
-    if (typeof response === "object") {
-      commit("SET_LIST_PARAMS_SAMPLE", response.results);
-    } else if (typeof response === "string") {
-      dispatch("error/updateErrorState", true, { root: true });
-      dispatch("error/updateErrorMessage", response, { root: true });
-    }
+    // let response = await SearchService.doSolrFacetSearch("peat_analysis", [
+    //   "parameter",
+    //   "parameter_name"
+    // ]);
+    // if (typeof response === "object") {
+    //   commit("SET_LIST_PARAMETERS", response.results);
+    // } else if (typeof response === "string") {
+    //   dispatch("error/updateErrorState", true, { root: true });
+    //   dispatch("error/updateErrorMessage", response, { root: true });
+    // }
   },
 
   updateSearchParams({ commit, getters }, params) {
     let searchParams = cloneDeep(params);
 
-    if (params.page) {
-      if (typeof params.page === "number") {
+    if (searchParams.page) {
+      if (typeof searchParams.page === "number") {
         searchParams.page =
-          params.page <= 10000 && params.page > 0 ? params.page : 1;
+          searchParams.page <= 10000 && searchParams.page > 0
+            ? searchParams.page
+            : 1;
       } else if (
-        typeof params.page === "string" &&
-        parseInt(params.page) !== isNaN(params.page)
+        typeof searchParams.page === "string" &&
+        parseInt(searchParams.page) !== isNaN(searchParams.page)
       ) {
         searchParams.page =
-          parseInt(params.page) <= 10000 && parseInt(params.page) > 0
-            ? parseInt(params.page)
+          parseInt(searchParams.page) <= 10000 &&
+          parseInt(searchParams.page) > 0
+            ? parseInt(searchParams.page)
             : 1;
       } else searchParams.page = 1;
     } else searchParams.page = 1;
 
-    if (params.paginateBy) {
-      if (typeof params.paginateBy === "number") {
+    if (searchParams.paginateBy) {
+      if (typeof searchParams.paginateBy === "number") {
         searchParams.paginateBy =
-          params.paginateBy <= 1000 && params.paginateBy >= 10
-            ? params.paginateBy
+          searchParams.paginateBy <= 1000 && searchParams.paginateBy >= 10
+            ? searchParams.paginateBy
             : 25;
       } else if (
-        typeof params.paginateBy === "string" &&
-        parseInt(params.paginateBy) !== isNaN(params.paginateBy)
+        typeof searchParams.paginateBy === "string" &&
+        parseInt(searchParams.paginateBy) !== isNaN(searchParams.paginateBy)
       ) {
         searchParams.paginateBy =
-          parseInt(params.paginateBy) <= 1000 &&
-          parseInt(params.paginateBy) >= 10
-            ? parseInt(params.paginateBy)
+          parseInt(searchParams.paginateBy) <= 1000 &&
+          parseInt(searchParams.paginateBy) >= 10
+            ? parseInt(searchParams.paginateBy)
             : 25;
       } else searchParams.paginateBy = 25;
     } else searchParams.paginateBy = 25;
 
-    if (params.sortBy) {
-      let sortBy = params.sortBy.includes(",")
-        ? params.sortBy.split(",")
-        : [params.sortBy];
+    if (searchParams.sortBy) {
+      let sortBy = searchParams.sortBy.includes(",")
+        ? searchParams.sortBy.split(",")
+        : [searchParams.sortBy];
       if (router.currentRoute.name === "AreaTable") {
         searchParams.sortBy = sortBy.filter(field =>
           getters.getAreaHeaderNames.includes(field)
@@ -132,10 +124,10 @@ const actions = {
       }
     } else searchParams.sortBy = [];
 
-    if (params.sortDesc) {
-      let sortDesc = params.sortDesc.includes(",")
-        ? params.sortDesc.split(",")
-        : [params.sortDesc];
+    if (searchParams.sortDesc) {
+      let sortDesc = searchParams.sortDesc.includes(",")
+        ? searchParams.sortDesc.split(",")
+        : [searchParams.sortDesc];
       let sortDescList = [];
       sortDesc.forEach(field => {
         if (field === "true") sortDescList.push(true);
@@ -148,14 +140,6 @@ const actions = {
         searchParams.sortDesc = [];
       }
     } else searchParams.sortDesc = [];
-
-    if (params.filter && params.filter.length > 0) {
-      searchParams.filter = params.filter;
-    } else delete searchParams.filter;
-
-    if (params.maakond && params.maakond.length > 0) {
-      searchParams.maakond = params.maakond;
-    } else delete searchParams.maakond;
 
     if (router.currentRoute.name === "AreaTable") {
       searchParams.area_type = "turbaala";
@@ -172,6 +156,10 @@ const actions = {
 
   updateFastSearch({ commit }, searchVal) {
     commit("SET_FAST_SEARCH", searchVal);
+  },
+
+  updateSampleHeaders({ commit }, value) {
+    commit("UPDATE_SAMPLE_HEADERS", value);
   }
 };
 

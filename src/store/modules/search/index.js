@@ -52,7 +52,12 @@ const state = {
     page: 1,
     paginateBy: 25,
     sortBy: ["id"],
-    sortDesc: [false]
+    sortDesc: [false],
+    area: "",
+    site: "",
+    depth: "",
+    rock: "",
+    egf: ""
   },
   paginateByItems: [
     { text: "Näita 10 kaupa", value: 10 },
@@ -62,7 +67,8 @@ const state = {
     { text: "Näita 250 kaupa", value: 250 },
     { text: "Näita 500 kaupa", value: 500 },
     { text: "Näita 1000 kaupa", value: 1000 }
-  ]
+  ],
+  listParameters: null
 };
 
 export default {

@@ -13,9 +13,12 @@
       v-on:update:success="updateSuccessState"
     />
 
-    <Counties v-if="getListCounties" :counties="getListCounties" />
+    <Counties
+      v-if="getListCounties && $route.meta.object !== 'sample'"
+      :counties="getListCounties"
+    />
 
-    <v-divider />
+    <v-divider v-if="getListCounties && $route.meta.object !== 'sample'" />
 
     <router-view />
   </v-card>
@@ -44,8 +47,6 @@ export default {
 
   created() {
     this.fetchListCounties();
-    // this.fetchParamsFromAnalysis();
-    // this.fetchParamsFromSample();
   },
 
   watch: {
@@ -76,8 +77,7 @@ export default {
   methods: {
     ...mapActions("detail", ["fetchData", "fetchListCounties"]),
     ...mapActions("error", ["updateErrorState"]),
-    ...mapActions("success", ["updateSuccessState"]),
-    ...mapActions("search", ["fetchParamsFromAnalysis", "fetchParamsFromSample"])
+    ...mapActions("success", ["updateSuccessState"])
   }
 };
 </script>
