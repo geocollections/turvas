@@ -167,6 +167,10 @@ const actions = {
       commit("SET_LIST_PARAMETERS", listOfParameters);
       if (listOfParameters && listOfParameters.length > 1) {
         commit("INIT_ACTIVE_LIST_PARAMETERS", listOfParameters);
+        dispatch("updateSampleHeaders", [
+          listOfParameters[0],
+          listOfParameters[1]
+        ]);
       }
     }
   },
@@ -268,6 +272,7 @@ const actions = {
   },
 
   updateActiveListParameters({ commit }, payload) {
+    console.log(payload);
     commit("UPDATE_ACTIVE_LIST_PARAMETERS", payload);
   },
 

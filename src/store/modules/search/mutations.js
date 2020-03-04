@@ -46,8 +46,7 @@ const mutations = {
   },
 
   INIT_ACTIVE_LIST_PARAMETERS(state, parameters) {
-    let sortedParams = parameters.sort();
-    state.activeListParameters = [sortedParams[0], sortedParams[1]];
+    state.activeListParameters = [parameters[0], parameters[1]];
   },
 
   UPDATE_SAMPLE_HEADERS(state, listOfParams) {

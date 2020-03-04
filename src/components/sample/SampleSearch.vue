@@ -127,8 +127,8 @@
           </v-col>
 
           <v-col cols="1" align-self="center" class="text-center">
-            <v-btn icon @click="addActiveListParameter">
-              <v-icon color="success">fas fa-plus</v-icon>
+            <v-btn icon @click="addActiveListParameter" color="success">
+              <v-icon>fas fa-plus</v-icon>
             </v-btn>
           </v-col>
 
@@ -138,8 +138,8 @@
             class="text-center"
             v-if="activeListParameters.length > 1"
           >
-            <v-btn icon @click="removeActiveListParameter(index)">
-              <v-icon color="error">fas fa-minus</v-icon>
+            <v-btn icon @click="removeActiveListParameter(index)" color="error">
+              <v-icon>fas fa-minus</v-icon>
             </v-btn>
           </v-col>
         </v-row>
@@ -156,6 +156,7 @@
           :items="listParameters"
           return-object
           item-text="name"
+          :value="distinctActiveListParameters"
           @input="updateSampleHeaders"
           deletable-chips
           small-chips
@@ -167,7 +168,7 @@
 
 <script>
 import TextFieldWrapper from "../partial/inputs/TextFieldWrapper";
-import { mapActions, mapState } from "vuex";
+import {mapActions, mapGetters, mapState} from "vuex";
 import { cloneDeep } from "lodash";
 import SelectWrapper from "../partial/inputs/SelectWrapper";
 export default {
@@ -179,7 +180,9 @@ export default {
       "listParameters",
       "activeListParameters",
       "lookUpTypes"
-    ])
+    ]),
+
+    ...mapGetters("search", ["distinctActiveListParameters"])
   },
   created() {
     // Params from peat_taxa and peat_analysis tables

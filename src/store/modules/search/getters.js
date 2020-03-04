@@ -13,6 +13,14 @@ const getters = {
 
   getSampleHeaderNames: state => {
     return state.sampleHeaders.map(header => header.value);
+  },
+
+  distinctActiveListParameters: state => {
+    if (state.activeListParameters && state.activeListParameters.length > 0) {
+      return state.activeListParameters.filter(
+        (element, index, array) => array.indexOf(element) === index
+      );
+    } else return [];
   }
 };
 
