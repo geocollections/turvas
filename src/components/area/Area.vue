@@ -37,11 +37,24 @@
               :href="getEelisUrl(entity)"
               :title="getEelisUrl(entity)"
               target="EelisWindow"
-              rel="noreferrer noopener"
             >
               {{ entity }}
             </a>
             <span v-if="index !== eelisArray.length - 1">|</span>
+          </span>
+        </template>
+
+        <template v-slot:item.egf>
+          <span v-for="(entity, index) in egfArray" :key="index">
+            <a
+              class="table-link"
+              :href="getEgfUrl(entity)"
+              :title="getEgfUrl(entity)"
+              target="EgfWindow"
+            >
+              {{ entity }}
+            </a>
+            <span v-if="index !== egfArray.length - 1">|</span>
           </span>
         </template>
 
@@ -107,6 +120,14 @@ export default {
           return this.getArea.eelis.split(";");
         } else return [this.getArea.eelis];
       } else return [];
+    },
+
+    egfArray() {
+      if (this.getArea.egf) {
+        if (this.getArea.egf.includes(";")) {
+          return this.getArea.egf.split(";");
+        } else return [this.getArea.egf];
+      } else return [];
     }
   },
 
@@ -117,6 +138,10 @@ export default {
 
     getEelisUrl(eelis) {
       return `http://register.keskkonnainfo.ee/envreg/main?reg_kood=${eelis.trim()}&amp;mount=view`;
+    },
+
+    getEgfUrl(egf) {
+      return `https://www.egt.ee/et/fond-search?INV_EGF%5Bmin%5D=${egf.trim()}`;
     }
   }
 };

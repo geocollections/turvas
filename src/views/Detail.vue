@@ -14,11 +14,21 @@
     />
 
     <Counties
-      v-if="getListCounties && $route.meta.object !== 'sample'"
+      v-if="
+        getListCounties &&
+          $route.meta.object !== 'sample' &&
+          !$route.name.includes('Detail')
+      "
       :counties="getListCounties"
     />
 
-    <v-divider v-if="getListCounties && $route.meta.object !== 'sample'" />
+    <v-divider
+      v-if="
+        getListCounties &&
+          $route.meta.object !== 'sample' &&
+          !$route.name.includes('Detail')
+      "
+    />
 
     <router-view />
   </v-card>

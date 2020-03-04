@@ -7,8 +7,12 @@ const state = {
   areaSites: null,
   areaHeaders: [
     { text: "ID", value: "id" },
+    { text: "Maakond", value: "maakond__maakond" },
+    { text: "Ala (ha)", value: "area_ha" },
     { text: "Maardla (viide registrisse)", value: "maardla" },
+    { text: "Maardla (ha)", value: "deposit_area_ha" },
     { text: "Looduskaitse (viide registrisse)", value: "eelis" },
+    { text: "EGF", value: "egf" },
     { text: "Iseloomustus", value: "description" }
   ],
   areaSiteHeaders: [
