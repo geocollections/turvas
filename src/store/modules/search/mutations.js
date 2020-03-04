@@ -1,3 +1,5 @@
+import {sortItems} from "vuetify/lib/util/helpers";
+
 const mutations = {
   SET_FAST_SEARCH(state, stringVal) {
     state.fastSearch = stringVal;
@@ -39,22 +41,9 @@ const mutations = {
     state.sampleSearchParams = { ...params };
   },
 
-  SET_LIST_PARAMETERS(state) {
-    let testing = [
-      {
-        name: "looduslik niiskus",
-        unit: "%",
-        value: "looduslik_niiskus",
-        isText: false
-      },
-      {
-        name: "turba kasutusala hinnang",
-        unit: "",
-        value: "turba_kasutusala_hinnang",
-        isText: true
-      }
-    ];
-    state.listParameters = testing;
+  SET_LIST_PARAMETERS(state, parameters) {
+    let sortedParams = parameters.sort()
+    state.listParameters = sortedParams;
   },
 
   UPDATE_SAMPLE_HEADERS(state, listOfParams) {
@@ -65,7 +54,11 @@ const mutations = {
     let newHeaders = [];
     if (listOfParams && listOfParams.length > 0) {
       listOfParams.forEach(param => {
-        newHeaders.push({ text: param.name, value: param.value });
+        newHeaders.push({
+          text: param.name,
+          value: param.value,
+          align: "center"
+        });
       });
     }
 

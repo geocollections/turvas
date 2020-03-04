@@ -3,6 +3,7 @@ import cloneDeep from "lodash/cloneDeep";
 
 const API_URL = "https://api.geocollections.info/";
 const SOLR_URL = "https://api.geocollections.info/solr/";
+const RAW_SOLR_URL = "https://api.geocollections.info/raw_solr/";
 
 class SearchService {
   static getDetailView = async (table, id, params) => {
@@ -70,7 +71,7 @@ class SearchService {
 
   static doSolrFacetSearch = async (table, facetFields) => {
     try {
-      let url = `${SOLR_URL}${table}/?facet=on`;
+      let url = `${RAW_SOLR_URL}${table}/?facet=true&facet.sort=index`;
 
       let fields = buildFacetFields(facetFields);
 
@@ -136,7 +137,8 @@ function buildFacetFields(fields) {
 
     if (fieldsQuery.length > 0)
       fieldsQuery = fieldsQuery.substring(0, fieldsQuery.length - 1);
-  } else return fieldsQuery;
+  }
+  return fieldsQuery;
 }
 
 export default SearchService;

@@ -51,19 +51,97 @@ const actions = {
     }
   },
 
-  async fetchListParameters({ commit }) {
-    commit("SET_LIST_PARAMETERS", "TESTING");
+  async fetchListParameters({ state, commit, dispatch }) {
+    let listOfParameters = [];
 
-    // let response = await SearchService.doSolrFacetSearch("peat_analysis", [
-    //   "parameter",
-    //   "parameter_name"
-    // ]);
-    // if (typeof response === "object") {
-    //   commit("SET_LIST_PARAMETERS", response.results);
-    // } else if (typeof response === "string") {
-    //   dispatch("error/updateErrorState", true, { root: true });
-    //   dispatch("error/updateErrorMessage", response, { root: true });
-    // }
+    if (!state.listParameters) {
+      const tablesToFechParameters = ["peat_taxa", "peat_analysis"];
+      let regex = /[|\s\\(\\)]/gi;
+
+      for (let table in tablesToFechParameters) {
+        let response = await SearchService.doSolrFacetSearch(
+          tablesToFechParameters[table],
+          ["parameter", "parameter_name"]
+        );
+
+        if (typeof response === "object") {
+          let parameters =
+            tablesToFechParameters[table] === "peat_taxa"
+              ? response.facet_counts.facet_fields.parameter
+              : response.facet_counts.facet_fields.parameter_name;
+
+          let mappedParameters = parameters
+            .filter(param => param !== 0)
+            .map(param => {
+              if (tablesToFechParameters[table] === "peat_taxa") {
+                return {
+                  name: param,
+                  unit: "%",
+                  value: param.replace(regex, "_"),
+                  isText: false
+                };
+              } else {
+                if (param === "põlemissoojus") {
+                  return {
+                    name: param,
+                    unit: "MJ/kg",
+                    value: param.replace(regex, "_"),
+                    isText: false
+                  };
+                } else if (param === "pH") {
+                  return {
+                    name: param,
+                    unit: "pH",
+                    value: param.replace(regex, "_"),
+                    isText: false
+                  };
+                } else if (param === "põlemissoojus") {
+                  return {
+                    name: param,
+                    unit: "MJ/kg",
+                    value: param.replace(regex, "_"),
+                    isText: false
+                  };
+                } else if (param === "turba kasutusala hinnang") {
+                  return {
+                    name: param,
+                    unit: "",
+                    value: param.replace(regex, "_"),
+                    isText: true
+                  };
+                } else if (param === "turba kasutusala kood") {
+                  return {
+                    name: param,
+                    unit: "",
+                    value: param.replace(regex, "_"),
+                    isText: false
+                  };
+                } else if (param === "turba lagunemisaste (Von Post)") {
+                  return {
+                    name: param,
+                    unit: "",
+                    value: param.replace(regex, "_"),
+                    isText: true
+                  };
+                } else {
+                  return {
+                    name: param,
+                    unit: "%",
+                    value: param.replace(regex, "_"),
+                    isText: false
+                  };
+                }
+              }
+            });
+          listOfParameters = [...mappedParameters, ...listOfParameters];
+        } else if (typeof response === "string") {
+          dispatch("error/updateErrorState", true, { root: true });
+          dispatch("error/updateErrorMessage", response, { root: true });
+        }
+      }
+    }
+
+    commit("SET_LIST_PARAMETERS", listOfParameters);
   },
 
   updateSearchParams({ commit, getters }, params) {
