@@ -1,11 +1,5 @@
 <template>
-  <v-select
-    v-bind="$attrs"
-    v-on="$listeners"
-    hide-details
-    deletable-chips
-    small-chips
-  />
+  <v-select v-bind="$attrs" v-on="$listeners" hide-details />
 </template>
 
 <script>

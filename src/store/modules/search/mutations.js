@@ -1,4 +1,4 @@
-import {sortItems} from "vuetify/lib/util/helpers";
+import { sortItems } from "vuetify/lib/util/helpers";
 
 const mutations = {
   SET_FAST_SEARCH(state, stringVal) {
@@ -42,8 +42,12 @@ const mutations = {
   },
 
   SET_LIST_PARAMETERS(state, parameters) {
-    let sortedParams = parameters.sort()
-    state.listParameters = sortedParams;
+    state.listParameters = parameters;
+  },
+
+  INIT_ACTIVE_LIST_PARAMETERS(state, parameters) {
+    let sortedParams = parameters.sort();
+    state.activeListParameters = [sortedParams[0], sortedParams[1]];
   },
 
   UPDATE_SAMPLE_HEADERS(state, listOfParams) {
@@ -63,6 +67,52 @@ const mutations = {
     }
 
     state.sampleHeaders = [...state.sampleHeaders, ...newHeaders];
+  },
+
+  UPDATE_ACTIVE_LIST_PARAMETERS(state, payload) {
+    state.activeListParameters.splice(payload.index, 1, payload.event);
+  },
+
+  UPDATE_ACTIVE_LIST_PARAMETER(state, payload) {
+    let activeObject = state.activeListParameters[payload.index];
+
+    activeObject[payload.key] = payload.newValue;
+
+    if (activeObject.isText) {
+      if (
+        activeObject.text &&
+        activeObject.lookUpType &&
+        activeObject.text.length > 0
+      ) {
+        let query = activeObject.text;
+        if (activeObject.lookUpType === "sisaldab")
+          query = `*${activeObject.text}*`;
+        else if (activeObject.lookUpType === "võrdub")
+          query = activeObject.text;
+        else if (activeObject.lookUpType === "algab")
+          query = `${activeObject.text}*`;
+        else if (activeObject.lookUpType === "lõpeb")
+          query = `*${activeObject.text}`;
+        activeObject.query = query;
+      } else activeObject.query = "";
+    } else {
+      if (activeObject.start || activeObject.end) {
+        activeObject.query = `[${
+          activeObject.start ? activeObject.start : "*"
+        } TO ${activeObject.end ? activeObject.end : "*"}]`;
+      } else activeObject.query = "";
+    }
+  },
+
+  ADD_ACTIVE_LIST_PARAMETER(state) {
+    state.activeListParameters = [
+      ...state.activeListParameters,
+      state.listParameters[state.activeListParameters.length]
+    ];
+  },
+
+  REMOVE_ACTIVE_LIST_PARAMETER(state, index) {
+    state.activeListParameters.splice(index, 1);
   }
 };
 

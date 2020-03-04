@@ -68,7 +68,9 @@ const state = {
     { text: "Näita 500 kaupa", value: 500 },
     { text: "Näita 1000 kaupa", value: 1000 }
   ],
-  listParameters: null
+  listParameters: null,
+  activeListParameters: null,
+  lookUpTypes: ["sisaldab", "võrdub", "algab", "lõpeb"]
 };
 
 export default {

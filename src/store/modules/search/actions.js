@@ -52,9 +52,9 @@ const actions = {
   },
 
   async fetchListParameters({ state, commit, dispatch }) {
-    let listOfParameters = [];
-
     if (!state.listParameters) {
+      let listOfParameters = [];
+
       const tablesToFechParameters = ["peat_taxa", "peat_analysis"];
       let regex = /[|\s\\(\\)]/gi;
 
@@ -77,58 +77,82 @@ const actions = {
                 return {
                   name: param,
                   unit: "%",
+                  start: null,
+                  end: null,
                   value: param.replace(regex, "_"),
-                  isText: false
+                  isText: false,
+                  query: ""
                 };
               } else {
                 if (param === "põlemissoojus") {
                   return {
                     name: param,
                     unit: "MJ/kg",
+                    start: null,
+                    end: null,
                     value: param.replace(regex, "_"),
-                    isText: false
+                    isText: false,
+                    query: ""
                   };
                 } else if (param === "pH") {
                   return {
                     name: param,
                     unit: "pH",
+                    start: null,
+                    end: null,
                     value: param.replace(regex, "_"),
-                    isText: false
+                    isText: false,
+                    query: ""
                   };
                 } else if (param === "põlemissoojus") {
                   return {
                     name: param,
                     unit: "MJ/kg",
+                    start: null,
+                    end: null,
                     value: param.replace(regex, "_"),
-                    isText: false
+                    isText: false,
+                    query: ""
                   };
                 } else if (param === "turba kasutusala hinnang") {
                   return {
                     name: param,
                     unit: "",
                     value: param.replace(regex, "_"),
-                    isText: true
+                    isText: true,
+                    lookUpType: "sisaldab",
+                    text: "",
+                    query: ""
                   };
                 } else if (param === "turba kasutusala kood") {
                   return {
                     name: param,
                     unit: "",
+                    start: null,
+                    end: null,
                     value: param.replace(regex, "_"),
-                    isText: false
+                    isText: false,
+                    query: ""
                   };
                 } else if (param === "turba lagunemisaste (Von Post)") {
                   return {
                     name: param,
                     unit: "",
                     value: param.replace(regex, "_"),
-                    isText: true
+                    isText: true,
+                    lookUpType: "sisaldab",
+                    text: "",
+                    query: ""
                   };
                 } else {
                   return {
                     name: param,
                     unit: "%",
+                    start: null,
+                    end: null,
                     value: param.replace(regex, "_"),
-                    isText: false
+                    isText: false,
+                    query: ""
                   };
                 }
               }
@@ -139,9 +163,12 @@ const actions = {
           dispatch("error/updateErrorMessage", response, { root: true });
         }
       }
-    }
 
-    commit("SET_LIST_PARAMETERS", listOfParameters);
+      commit("SET_LIST_PARAMETERS", listOfParameters);
+      if (listOfParameters && listOfParameters.length > 1) {
+        commit("INIT_ACTIVE_LIST_PARAMETERS", listOfParameters);
+      }
+    }
   },
 
   updateSearchParams({ commit, getters }, params) {
@@ -238,6 +265,22 @@ const actions = {
 
   updateSampleHeaders({ commit }, value) {
     commit("UPDATE_SAMPLE_HEADERS", value);
+  },
+
+  updateActiveListParameters({ commit }, payload) {
+    commit("UPDATE_ACTIVE_LIST_PARAMETERS", payload);
+  },
+
+  updateActiveListParameter({ commit }, payload) {
+    commit("UPDATE_ACTIVE_LIST_PARAMETER", payload);
+  },
+
+  addActiveListParameter({ commit }) {
+    commit("ADD_ACTIVE_LIST_PARAMETER");
+  },
+
+  removeActiveListParameter({ commit }, index) {
+    commit("REMOVE_ACTIVE_LIST_PARAMETER", index);
   }
 };
 
