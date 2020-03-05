@@ -26,11 +26,28 @@
       </v-col>
 
       <v-col cols="12" md="6" lg="4" class="pa-1">
-        <TextFieldWrapper
-          :value="sampleSearchParams.depth"
-          @input="updateParam($event, 'depth')"
-          label="Sügavus"
-        />
+        <v-row no-gutters>
+          <v-col cols="6" class="pr-1">
+            <TextFieldWrapper
+              :value="sampleSearchParams.depth_start"
+              @input="updateParam($event, 'depth_start')"
+              label="Sügavus alates"
+              type="number"
+              suffix="m"
+              step="0.25"
+            />
+          </v-col>
+          <v-col cols="6" class="pl-1">
+            <TextFieldWrapper
+              :value="sampleSearchParams.depth_end"
+              @input="updateParam($event, 'depth_end')"
+              label="Sügavus kuni"
+              type="number"
+              suffix="m"
+              step="0.25"
+            />
+          </v-col>
+        </v-row>
       </v-col>
 
       <v-col cols="12" md="6" lg="4" class="pa-1">

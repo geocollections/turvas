@@ -44,7 +44,8 @@ const state = {
     { text: "Proovipunkt", value: "site" },
     { text: "Sügavus", value: "depth" },
     { text: "Sügavus kuni", value: "depth_interval" },
-    { text: "Turbaliik", value: "rock", align: "center" }
+    { text: "Turbaliik", value: "rock", align: "center" },
+    { text: "Takson(id)", value: "taxon", sortable: false }
   ],
   sampleResults: [],
   sampleResultsCount: 0,
@@ -55,7 +56,8 @@ const state = {
     sortDesc: [false],
     area: "",
     site: "",
-    depth: "",
+    depth_start: "",
+    depth_end: "",
     rock: "",
     egf: ""
   },

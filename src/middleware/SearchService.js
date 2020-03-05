@@ -56,6 +56,7 @@ class SearchService {
       delete searchParams.sortDesc;
       delete searchParams.filter;
       let queryParams = encodeQueryData(searchParams, true);
+      console.log(queryParams);
       if (queryParams.length > 0) queryParams = "&fq=" + queryParams;
       if (sort.length > 0) queryParams += "&sort=" + sort;
       if (filter.length > 0) filter = "&q=" + encodeURIComponent(filter);
@@ -94,12 +95,30 @@ function buildErrorMessage(table, id) {
 
 function encodeQueryData(data, isSolr = false) {
   const encodedData = [];
+  let start = "*";
+  let end = "*";
+  let depthExists = false;
+
   for (let item in data) {
-    let encodedObject = `${encodeURIComponent(item)}${
-      isSolr ? ":" : "="
-    }${encodeURIComponent(data[item])}`;
+    if (item === "depth_start" || item === "depth_end") {
+      if (isSolr) {
+        depthExists = true;
+        if (item === "depth_start") start = encodeURIComponent(data[item]);
+        else end = encodeURIComponent(data[item]);
+      }
+    } else {
+      let encodedObject = `${encodeURIComponent(item)}${
+        isSolr ? ":" : "="
+      }${encodeURIComponent(data[item])}`;
+      encodedData.push(encodedObject);
+    }
+  }
+
+  if (depthExists) {
+    let encodedObject = `depth:[${start} TO ${end}] OR depth_interval:[${start} TO ${end}]`;
     encodedData.push(encodedObject);
   }
+
   return encodedData.join(isSolr ? "&fq=" : "&");
 }
 

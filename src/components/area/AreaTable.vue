@@ -88,7 +88,6 @@
             :href="getMaardlaUrl(item.maardla)"
             :title="getMaardlaUrl(item.maardla)"
             target="MaardlaWindow"
-            rel="noreferrer noopener"
           >
             {{ item.maardla }}
           </a>

@@ -64,6 +64,7 @@ const state = {
     { text: "EGF", value: "site__area__egf" },
     { text: "Turbaliik", value: "classification_rock__name" }
   ],
+
   listCounties: null
 };
 

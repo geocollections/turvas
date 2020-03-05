@@ -16,7 +16,6 @@
         <a
           href="https://kik.ee"
           target="KikWindow"
-          rel="noreferrer noopener"
           title="Keskkonnainvesteeringute keskus"
         >
           <img

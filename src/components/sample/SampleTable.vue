@@ -109,6 +109,17 @@
             {{ item.rock }}
           </v-card>
         </template>
+
+        <template v-slot:item.taxon="{ item }">
+          <a
+            class="table-link"
+            :href="getTaxonData(item.sample_id).url"
+            title="Link eElurikkuse portaali"
+            target="ElurikkusWindow"
+          >
+            {{ getTaxonData(item.sample_id).id }}
+          </a>
+        </template>
       </v-data-table>
     </v-card>
   </div>
@@ -173,6 +184,16 @@ export default {
     resetSampleSearch() {
       this.resetSearch();
       this.fetchListParameters(true);
+    },
+
+    getTaxonData(sampleId) {
+
+
+      // Todo: Get plutof_taxon_id-s from peat_taxa
+      return {
+        url: "https://elurikkus.ee/bie-hub/species/7368",
+        id: 7368
+      };
     }
   }
 };

@@ -24,7 +24,6 @@
             :href="getMaardlaUrl(item.maardla)"
             :title="getMaardlaUrl(item.maardla)"
             target="MaardlaWindow"
-            rel="noreferrer noopener"
           >
             Maardla info Maa-ameti geoportaalis ({{ item.maardla }})
           </a>
