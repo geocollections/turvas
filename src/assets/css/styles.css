@@ -9,3 +9,9 @@
 .ws-nowrap-table td, .ws-nowrap-table th {
     white-space: nowrap;
 }
+
+/* AUTOCOMPLETE MENU */
+.v-menu__content .v-list-item__mask {
+    color: black !important;
+    background: yellow !important;
+}

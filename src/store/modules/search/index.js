@@ -70,6 +70,7 @@ const state = {
   ],
   listParameters: null,
   activeListParameters: null,
+  shownActiveListParameters: null,
   lookUpTypes: ["sisaldab", "võrdub", "algab", "lõpeb"]
 };
 

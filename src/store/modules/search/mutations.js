@@ -104,14 +104,24 @@ const mutations = {
   },
 
   ADD_ACTIVE_LIST_PARAMETER(state) {
-    state.activeListParameters = [
-      ...state.activeListParameters,
-      state.listParameters[state.activeListParameters.length]
-    ];
+    let nextUniqueParam = state.listParameters.find(
+      param => state.activeListParameters.indexOf(param) === -1
+    );
+
+    if (nextUniqueParam) {
+      state.activeListParameters = [
+        ...state.activeListParameters,
+        nextUniqueParam
+      ];
+    }
   },
 
   REMOVE_ACTIVE_LIST_PARAMETER(state, index) {
     state.activeListParameters.splice(index, 1);
+  },
+
+  SET_SHOWN_ACTIVE_LIST_PARAMETERS(state, list) {
+    state.shownActiveListParameters = list;
   }
 };
 

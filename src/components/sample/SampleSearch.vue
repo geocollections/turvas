@@ -1,6 +1,6 @@
 <template>
   <v-card flat>
-    <v-row no-gutters class="pt-1 px-1">
+    <v-row no-gutters class="px-1">
       <v-col cols="12" md="6" lg="4" class="pa-1">
         <TextFieldWrapper
           :value="sampleSearchParams.maakond"
@@ -63,9 +63,9 @@
       >
         <v-row no-gutters>
           <v-col cols="4" class="pr-1">
-            <SelectWrapper
+            <AutocompleteWrapper
               label="Parameeter"
-              :items="listParameters"
+              :items="distinctListParameters(entity)"
               return-object
               item-text="name"
               :value="entity"
@@ -78,7 +78,7 @@
           <v-col cols="6" v-if="entity.isText">
             <v-row no-gutters>
               <v-col cols="5" class="px-1">
-                <SelectWrapper
+                <AutocompleteWrapper
                   label="Otsingutüüp"
                   :items="lookUpTypes"
                   :value="entity.lookUpType"
@@ -127,18 +127,23 @@
           </v-col>
 
           <v-col cols="1" align-self="center" class="text-center">
-            <v-btn icon @click="addActiveListParameter" color="success">
+            <v-btn
+              icon
+              @click="addActiveListParameter"
+              color="success"
+              :disabled="activeListParameters.length >= 10"
+            >
               <v-icon>fas fa-plus</v-icon>
             </v-btn>
           </v-col>
 
-          <v-col
-            cols="1"
-            align-self="center"
-            class="text-center"
-            v-if="activeListParameters.length > 1"
-          >
-            <v-btn icon @click="removeActiveListParameter(index)" color="error">
+          <v-col cols="1" align-self="center" class="text-center">
+            <v-btn
+              icon
+              @click="removeActiveListParameter(index)"
+              color="error"
+              :disabled="activeListParameters.length <= 1"
+            >
               <v-icon>fas fa-minus</v-icon>
             </v-btn>
           </v-col>
@@ -148,7 +153,7 @@
 
     <v-row no-gutters class="px-1">
       <v-col cols="12" class="pa-1">
-        <SelectWrapper
+        <AutocompleteWrapper
           label="Veerud"
           chips
           clearable
@@ -156,10 +161,11 @@
           :items="listParameters"
           return-object
           item-text="name"
-          :value="distinctActiveListParameters"
+          item-value="string"
+          :value="shownActiveListParameters"
           @input="updateSampleHeaders"
-          deletable-chips
           small-chips
+          deletable-chips
         />
       </v-col>
     </v-row>
@@ -168,24 +174,24 @@
 
 <script>
 import TextFieldWrapper from "../partial/inputs/TextFieldWrapper";
-import {mapActions, mapGetters, mapState} from "vuex";
+import { mapActions, mapGetters, mapState } from "vuex";
 import { cloneDeep } from "lodash";
-import SelectWrapper from "../partial/inputs/SelectWrapper";
+import AutocompleteWrapper from "../partial/inputs/AutocompleteWrapper";
 export default {
   name: "SampleSearch",
-  components: { SelectWrapper, TextFieldWrapper },
+  components: { AutocompleteWrapper, TextFieldWrapper },
   computed: {
     ...mapState("search", [
       "sampleSearchParams",
       "listParameters",
       "activeListParameters",
-      "lookUpTypes"
+      "lookUpTypes",
+      "shownActiveListParameters"
     ]),
 
-    ...mapGetters("search", ["distinctActiveListParameters"])
+    ...mapGetters("search", ["distinctListParameters"])
   },
   created() {
-    // Params from peat_taxa and peat_analysis tables
     this.fetchListParameters();
   },
   methods: {

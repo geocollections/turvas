@@ -1,13 +1,11 @@
 <template>
   <div class="sample-table">
-    {{ sampleSearchParams }}
-
     <!-- SAMPLE SEARCH -->
     <SampleSearch />
 
     <!-- SEARCH -->
     <Search
-      v-on:reset:search="resetSearch"
+      v-on:reset:search="resetSampleSearch"
       :results="sampleResults"
       :count="sampleResultsCount"
     />
@@ -150,7 +148,7 @@ export default {
   },
 
   methods: {
-    ...mapActions("search", ["doSampleSearch"]),
+    ...mapActions("search", ["doSampleSearch", "fetchListParameters"]),
 
     updateSearch: debounce(function(params) {
       this.doSampleSearch(params);
@@ -170,6 +168,11 @@ export default {
         default:
           return "green" + lighten;
       }
+    },
+
+    resetSampleSearch() {
+      this.resetSearch();
+      this.fetchListParameters(true);
     }
   }
 };

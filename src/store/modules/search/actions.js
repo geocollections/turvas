@@ -51,12 +51,12 @@ const actions = {
     }
   },
 
-  async fetchListParameters({ state, commit, dispatch }) {
-    if (!state.listParameters) {
+  async fetchListParameters({ state, commit, dispatch }, reset = false) {
+    if (!state.listParameters || reset) {
       let listOfParameters = [];
 
       const tablesToFechParameters = ["peat_taxa", "peat_analysis"];
-      let regex = /[|\s\\(\\)]/gi;
+      let regex = /[|\s\\(\\)\\õ]/gi;
 
       for (let table in tablesToFechParameters) {
         let response = await SearchService.doSolrFacetSearch(
@@ -267,25 +267,39 @@ const actions = {
     commit("SET_FAST_SEARCH", searchVal);
   },
 
-  updateSampleHeaders({ commit }, value) {
+  updateSampleHeaders({ commit, dispatch }, value) {
     commit("UPDATE_SAMPLE_HEADERS", value);
+    dispatch("setShownActiveListParameters", value);
   },
 
-  updateActiveListParameters({ commit }, payload) {
-    console.log(payload);
+  updateActiveListParameters({ state, commit, dispatch }, payload) {
     commit("UPDATE_ACTIVE_LIST_PARAMETERS", payload);
+
+    let updatedParameters = [...state.shownActiveListParameters, payload.event];
+    let uniqueParameters = [...new Set(updatedParameters)];
+    dispatch("updateSampleHeaders", uniqueParameters);
   },
 
   updateActiveListParameter({ commit }, payload) {
     commit("UPDATE_ACTIVE_LIST_PARAMETER", payload);
   },
 
-  addActiveListParameter({ commit }) {
-    commit("ADD_ACTIVE_LIST_PARAMETER");
+  addActiveListParameter({ state, commit, dispatch }) {
+    if (state.activeListParameters && state.activeListParameters.length < 10) {
+      commit("ADD_ACTIVE_LIST_PARAMETER");
+      dispatch("updateSampleHeaders", state.activeListParameters);
+    }
   },
 
-  removeActiveListParameter({ commit }, index) {
-    commit("REMOVE_ACTIVE_LIST_PARAMETER", index);
+  removeActiveListParameter({ state, commit, dispatch }, index) {
+    if (state.activeListParameters && state.activeListParameters.length >= 2) {
+      commit("REMOVE_ACTIVE_LIST_PARAMETER", index);
+      dispatch("updateSampleHeaders", state.activeListParameters);
+    }
+  },
+
+  setShownActiveListParameters({ state, commit }, list) {
+    commit("SET_SHOWN_ACTIVE_LIST_PARAMETERS", list);
   }
 };
 

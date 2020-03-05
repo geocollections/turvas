@@ -15,12 +15,11 @@ const getters = {
     return state.sampleHeaders.map(header => header.value);
   },
 
-  distinctActiveListParameters: state => {
-    if (state.activeListParameters && state.activeListParameters.length > 0) {
-      return state.activeListParameters.filter(
-        (element, index, array) => array.indexOf(element) === index
-      );
-    } else return [];
+  distinctListParameters: state => mustSeeParam => {
+    let distinctList = state.listParameters.filter(
+      param => state.activeListParameters.indexOf(param) === -1
+    );
+    return [mustSeeParam, ...distinctList];
   }
 };
 
