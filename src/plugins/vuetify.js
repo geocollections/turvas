@@ -1,9 +1,81 @@
 import Vue from "vue";
-import Vuetify from "vuetify";
+import Vuetify, {
+  VApp,
+  VAppBar,
+  VNavigationDrawer,
+  VHover,
+  VList,
+  VBtn,
+  VIcon,
+  VRow,
+  VCol,
+  VCard,
+  VTextField,
+  VAutocomplete,
+  VListItem,
+  VMenu,
+  VListItemTitle,
+  VDataTable,
+  VAppBarNavIcon,
+  VToolbarTitle,
+  VToolbarItems,
+  VListItemGroup,
+  VCardTitle,
+  VSpacer,
+  VListItemIcon,
+  VContent,
+  VContainer,
+  VSelect,
+  VPagination,
+  VCarousel,
+  VCarouselItem,
+  VOverlay,
+  VSheet,
+  VDivider
+} from "vuetify/lib";
 import "vuetify/dist/vuetify.min.css";
 import et from "vuetify/es5/locale/et";
+import { Ripple } from "vuetify/lib/directives";
 
-Vue.use(Vuetify);
+Vue.use(Vuetify, {
+  components: {
+    VApp,
+    VAppBar,
+    VNavigationDrawer,
+    VHover,
+    VList,
+    VBtn,
+    VIcon,
+    VRow,
+    VCol,
+    VCard,
+    VTextField,
+    VAutocomplete,
+    VListItem,
+    VMenu,
+    VListItemTitle,
+    VDataTable,
+    VAppBarNavIcon,
+    VToolbarTitle,
+    VToolbarItems,
+    VListItemGroup,
+    VCardTitle,
+    VSpacer,
+    VListItemIcon,
+    VContent,
+    VContainer,
+    VSelect,
+    VPagination,
+    VCarousel,
+    VCarouselItem,
+    VOverlay,
+    VSheet,
+    VDivider
+  },
+  directives: {
+    Ripple
+  }
+});
 
 export default new Vuetify({
   theme: {

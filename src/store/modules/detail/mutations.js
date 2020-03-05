@@ -7,16 +7,20 @@ const mutations = {
     state.areaSites = sites;
   },
 
-  SET_SITE_DESCRIPTION(state, sites) {
-    state.siteDescription = sites;
+  SET_SITE_DESCRIPTION(state, descriptions) {
+    state.siteDescription = descriptions;
   },
 
-  SET_SITE_SAMPLES(state, sites) {
-    state.siteSamples = sites;
+  SET_SITE_SAMPLES(state, samples) {
+    state.siteSamples = samples;
   },
 
   SET_SAMPLE_TAXA(state, taxa) {
     state.sampleTaxa = taxa;
+  },
+
+  SET_SAMPLE_ANALYSES(state, analyses) {
+    state.sampleAnalyses = analyses;
   },
 
   SET_LIST_COUNTIES(state, counties) {

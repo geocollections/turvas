@@ -53,6 +53,7 @@ const state = {
     { text: "Turbaliik", value: "classification_rock__name", align: "center" }
   ],
   sample: null,
+  sampleAnalyses: null,
   sampleTaxa: null,
   sampleHeaders: [
     { text: "Proovi ID", value: "id" },
@@ -65,9 +66,16 @@ const state = {
     { text: "EGF", value: "site__area__egf" },
     { text: "Turbaliik", value: "classification_rock__name" }
   ],
+  sampleAnalysesHeaders: [
+    { text: "Meetod", value: "analysis_method" },
+    { text: "Labor", value: "lab" },
+    { text: "Agent", value: "agent_analysed" },
+    { text: "Parameeter", value: "parameter_name" },
+    { text: "Väärtus", value: "value" }
+  ],
   sampleTaxaHeaders: [
-    { text: "Takson", value: "taxon_id" },
-    { text: "Plutof", value: "plutof_taxon_id" }
+    { text: "Link Fossiilide portaali", value: "taxon_id" },
+    { text: "Link eElurikkuse portaali", value: "plutof_taxon_id" }
   ],
 
   listCounties: null

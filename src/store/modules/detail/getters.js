@@ -51,12 +51,30 @@ const getters = {
     return state.sample;
   },
 
+  getSampleTaxa: state => {
+    if (state.sampleTaxa && state.sampleTaxa.length > 0) {
+      return state.sampleTaxa.filter(taxon => taxon.taxon_id);
+    } else return state.sampleTaxa;
+  },
+
+  getSampleAnalyses: state => {
+    return state.sampleAnalyses;
+  },
+
   filteredSampleHeaders: (state, getters) => {
     return state.sampleHeaders.filter(header => {
       if (getters.getSample[header.value]) {
         return header;
       }
     });
+  },
+
+  getSampleTaxaHeaders: state => {
+    return state.sampleTaxaHeaders;
+  },
+
+  getSampleAnalysesHeaders: state => {
+    return state.sampleAnalysesHeaders;
   },
 
   getListCounties: state => {

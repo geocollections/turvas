@@ -30,7 +30,7 @@ export default {
     activeSitesBounds: null,
     sitesIcon: new L.DivIcon({
       html:
-        "<i class='far fa-circle' style='color: #D32F2F; background-color: #EF9A9A; border-radius: 100%;' />",
+        "<i class='far fa-circle' style='color: #FBC02D; background-color: #FFF9C4; border-radius: 100%;' />",
       className: "map-marker"
     }),
     center: L.latLng(58.65, 25.0),
@@ -725,8 +725,7 @@ export default {
 
         listOfSites.forEach(site => {
           if (site.latitude && site.longitude) {
-            // Todo: Marker color, size etc. should be dynamic according to
-            let markerRadius = 6.5;
+            let markerRadius = 5;
             let marker = L.circleMarker(
               {
                 lat: parseFloat(site.latitude),
@@ -734,7 +733,10 @@ export default {
               },
               {
                 radius: markerRadius,
-                color: "#fff"
+                color: "#FBC02D",
+                fill: true,
+                fillColor: "#FBC02D",
+                fillOpacity: 0.5
               }
             );
 

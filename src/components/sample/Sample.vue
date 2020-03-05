@@ -39,6 +39,70 @@
         </template>
       </v-data-table>
     </v-card>
+
+    <!-- Analyses -->
+    <v-card
+      flat
+      v-if="getSampleAnalyses && getSampleAnalyses.length > 0"
+      id="analyses"
+    >
+      <h2>
+        <v-card-title class="headline">Analüüsid</v-card-title>
+      </h2>
+
+      <v-data-table
+        class="ws-nowrap-table"
+        multi-sort
+        hide-default-footer
+        disable-sort
+        :headers="getSampleAnalysesHeaders"
+        :items="getSampleAnalyses"
+        group-by="analysis_method"
+      >
+        <template v-slot:item.value="{ item }">
+          <div v-if="item.value">{{ item.value }}</div>
+          <div v-else-if="item.value_txt">{{ item.value_txt[0] }}</div>
+        </template>
+      </v-data-table>
+    </v-card>
+
+    <!-- Taxon info -->
+    <v-card flat v-if="getSampleTaxa && getSampleTaxa.length > 0" id="taxon">
+      <h2>
+        <v-card-title class="headline">Taksonid</v-card-title>
+      </h2>
+
+      <v-data-table
+        class="ws-nowrap-table"
+        multi-sort
+        hide-default-footer
+        disable-sort
+        :headers="getSampleTaxaHeaders"
+        :items="getSampleTaxa"
+      >
+        <template v-slot:item.taxon_id="{ item }">
+          <a
+            class="table-link"
+            :href="getFossilsLink(item.taxon_id)"
+            title="Link fossiilide portaali"
+            target="FossilsWindow"
+          >
+            {{ item.taxon_id }}
+          </a>
+        </template>
+
+        <template v-slot:item.plutof_taxon_id="{ item }">
+          <a
+            class="table-link"
+            :href="getElurikkusLink(item.plutof_taxon_id)"
+            title="Link fossiilide portaali"
+            target="ElurikkusWindow"
+          >
+            {{ item.plutof_taxon_id }}
+          </a>
+        </template>
+      </v-data-table>
+    </v-card>
   </div>
 </template>
 
@@ -49,7 +113,28 @@ export default {
   name: "Sample",
 
   computed: {
-    ...mapGetters("detail", ["getSample", "filteredSampleHeaders"])
+    ...mapGetters("detail", [
+      "getSample",
+      "filteredSampleHeaders",
+      "getSampleAnalyses",
+      "getSampleAnalysesHeaders",
+      "getSampleTaxa",
+      "getSampleTaxaHeaders"
+    ])
+  },
+
+  methods: {
+    getFossilsLink(id) {
+      if (id) {
+        return `https://fossiilid.info/${id}`;
+      } else return "https://fossiilid.info/";
+    },
+
+    getElurikkusLink(id) {
+      if (id) {
+        return `https://elurikkus.ee/bie-hub/species/${id}`;
+      } else return "https://elurikkus.ee";
+    }
   }
 };
 </script>
@@ -84,5 +169,9 @@ export default {
   text-align: left;
   width: 100%;
   padding-left: 10px;
+}
+
+#analyses >>> .v-icon {
+  font-size: 16px !important;
 }
 </style>
