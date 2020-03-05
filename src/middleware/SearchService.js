@@ -71,7 +71,7 @@ class SearchService {
 
   static doSolrFacetSearch = async (table, facetFields) => {
     try {
-      let url = `${RAW_SOLR_URL}${table}/?facet=true&facet.sort=index`;
+      let url = `${RAW_SOLR_URL}${table}/?facet=true&facet.sort=index&facet.limit=-1`;
 
       let fields = buildFacetFields(facetFields);
 
