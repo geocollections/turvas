@@ -20,6 +20,11 @@ const getters = {
       param => state.activeListParameters.indexOf(param) === -1
     );
     return [mustSeeParam, ...distinctList];
+  },
+
+  getDistinctSampleResults: state => {
+    return state.sampleResults;
+    // Todo: Return unique samples by site;
   }
 };
 

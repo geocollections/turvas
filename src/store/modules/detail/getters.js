@@ -52,9 +52,7 @@ const getters = {
   },
 
   getSampleTaxa: state => {
-    if (state.sampleTaxa && state.sampleTaxa.length > 0) {
-      return state.sampleTaxa.filter(taxon => taxon.taxon_id);
-    } else return state.sampleTaxa;
+    return state.sampleTaxa;
   },
 
   getSampleAnalyses: state => {

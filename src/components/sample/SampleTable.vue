@@ -110,28 +110,28 @@
           </v-card>
         </template>
 
-        <template v-slot:item.taxon="{ item }">
-          <div
-            v-for="(entity, index) in taxonData.find(
-              el => el.sample_id === item.sample_id
-            )"
-            :key="index"
-          >
-            <div v-if="index === 'results' && entity && entity.length > 0">
-              <span v-for="(item, key) in entity" :key="key">
-                <a
-                  class="table-link"
-                  :href="item.url"
-                  :title="item.url"
-                  target="ElurikkusWindow"
-                >
-                  {{ item.id }}
-                </a>
-                <span v-if="key !== entity.length - 1">|</span>
-              </span>
-            </div>
-          </div>
-        </template>
+        <!--        <template v-slot:item.taxon="{ item }">-->
+        <!--          <div-->
+        <!--            v-for="(entity, index) in taxonData.find(-->
+        <!--              el => el.sample_id === item.sample_id-->
+        <!--            )"-->
+        <!--            :key="index"-->
+        <!--          >-->
+        <!--            <div v-if="index === 'results' && entity && entity.length > 0">-->
+        <!--              <span v-for="(item, key) in entity" :key="key">-->
+        <!--                <a-->
+        <!--                  class="table-link"-->
+        <!--                  :href="item.url"-->
+        <!--                  :title="item.url"-->
+        <!--                  target="ElurikkusWindow"-->
+        <!--                >-->
+        <!--                  {{ item.id }}-->
+        <!--                </a>-->
+        <!--                <span v-if="key !== entity.length - 1">|</span>-->
+        <!--              </span>-->
+        <!--            </div>-->
+        <!--          </div>-->
+        <!--        </template>-->
       </v-data-table>
     </v-card>
   </div>
@@ -151,9 +151,9 @@ export default {
 
   mixins: [searchMixin],
 
-  data: () => ({
-    taxonData: []
-  }),
+  // data: () => ({
+  //   taxonData: []
+  // }),
 
   computed: {
     ...mapState("search", [
@@ -172,14 +172,14 @@ export default {
         this.updateSearch(newVal);
       },
       immediate: true
-    },
-
-    sampleResults: {
-      handler(newVal) {
-        this.getTaxonData(newVal);
-      },
-      deep: true
     }
+
+    // sampleResults: {
+    //   handler(newVal) {
+    //     this.getTaxonData(newVal);
+    //   },
+    //   deep: true
+    // }
   },
 
   methods: {
@@ -209,32 +209,32 @@ export default {
     resetSampleSearch() {
       this.resetSearch();
       this.fetchListParameters(true);
-    },
-
-    async getTaxonData(sampleResults) {
-      if (sampleResults && sampleResults.length > 0) {
-        for (const sample of sampleResults) {
-          let response = await SearchService.doSolrSearch("peat_taxa", {
-            sample_id: sample.sample_id
-          });
-          if (typeof response === "object") {
-            this.taxonData.push({
-              sample_id: sample.sample_id,
-              results: response.results
-                .filter(item => item.plutof_taxon_id)
-                .map(item => {
-                  return {
-                    id: item.plutof_taxon_id,
-                    url: `https://elurikkus.ee/bie-hub/species/${item.plutof_taxon_id}`,
-                    sample_id: sample.sample_id
-                  };
-                })
-            });
-          } else
-            this.taxonData.push({ sample_id: sample.sample_id, results: [] });
-        }
-      }
     }
+
+    // async getTaxonData(sampleResults) {
+    //   if (sampleResults && sampleResults.length > 0) {
+    //     for (const sample of sampleResults) {
+    //       let response = await SearchService.doSolrSearch("peat_taxa", {
+    //         sample_id: sample.sample_id
+    //       });
+    //       if (typeof response === "object") {
+    //         this.taxonData.push({
+    //           sample_id: sample.sample_id,
+    //           results: response.results
+    //             .filter(item => item.plutof_taxon_id)
+    //             .map(item => {
+    //               return {
+    //                 id: item.plutof_taxon_id,
+    //                 url: `https://elurikkus.ee/bie-hub/species/${item.plutof_taxon_id}`,
+    //                 sample_id: sample.sample_id
+    //               };
+    //             })
+    //         });
+    //       } else
+    //         this.taxonData.push({ sample_id: sample.sample_id, results: [] });
+    //     }
+    //   }
+    // }
   }
 };
 </script>

@@ -50,7 +50,7 @@ const mutations = {
   },
 
   UPDATE_SAMPLE_HEADERS(state, listOfParams) {
-    const SAMPLE_HEADERS_LENGTH = 7;
+    const SAMPLE_HEADERS_LENGTH = 6;
     if (state.sampleHeaders.length > SAMPLE_HEADERS_LENGTH)
       state.sampleHeaders.length = SAMPLE_HEADERS_LENGTH;
 

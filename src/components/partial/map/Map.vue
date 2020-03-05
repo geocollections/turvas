@@ -488,11 +488,8 @@ export default {
 
   computed: {
     ...mapGetters("settings", ["getMapState"]),
-    ...mapState("search", [
-      "siteResults",
-      "siteResultsCount",
-      "allSiteResults"
-    ]),
+    ...mapState("search", ["siteResults", "siteResultsCount"]),
+    ...mapGetters("search", ["getDistinctSampleResults"]),
     ...mapState("map", ["defaultBaseLayer", "defaultOverlayLayers"]),
     ...mapGetters("detail", ["getAreaSites", "getSample"])
   },
@@ -552,6 +549,12 @@ export default {
 
     siteResults(newVal) {
       if (this.$route.name === "SiteTable") {
+        this.updateActiveSites(newVal);
+      }
+    },
+
+    getDistinctSampleResults(newVal) {
+      if (this.$route.name === "SampleTable") {
         this.updateActiveSites(newVal);
       }
     },
@@ -740,15 +743,24 @@ export default {
               }
             );
 
+            console.log(site);
+
             marker.on("click", () => {
-              this.$router.push({ path: "/site/" + site.id });
+              this.$router.push({
+                path: `/site/${
+                  this.$route.meta.object === "sample" ? site.site_id : site.id
+                }`
+              });
             });
 
-            marker.bindTooltip(site.name, {
-              permanent: false,
-              direction: "right",
-              offset: [8, 0]
-            });
+            marker.bindTooltip(
+              this.$route.meta.object === "sample" ? site.site : site.name,
+              {
+                permanent: false,
+                direction: "right",
+                offset: [8, 0]
+              }
+            );
 
             this.activeSites.push(marker);
           }

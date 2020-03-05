@@ -80,26 +80,29 @@
         :headers="getSampleTaxaHeaders"
         :items="getSampleTaxa"
       >
-        <template v-slot:item.taxon_id="{ item }">
-          <a
-            class="table-link"
-            :href="getFossilsLink(item.taxon_id)"
-            title="Link fossiilide portaali"
-            target="FossilsWindow"
-          >
-            {{ item.taxon_id }}
-          </a>
-        </template>
+        <!--        <template v-slot:item.taxon_id="{ item }">-->
+        <!--          <a-->
+        <!--            class="table-link"-->
+        <!--            :href="getFossilsLink(item.taxon_id)"-->
+        <!--            title="Link fossiilide portaali"-->
+        <!--            target="FossilsWindow"-->
+        <!--          >-->
+        <!--            {{ item.taxon_id }}-->
+        <!--          </a>-->
+        <!--        </template>-->
 
         <template v-slot:item.plutof_taxon_id="{ item }">
-          <a
+          <v-btn
+            v-if="item.plutof_taxon_id"
             class="table-link"
             :href="getElurikkusLink(item.plutof_taxon_id)"
-            title="Link fossiilide portaali"
+            title="Link eElurikkuse portaali"
             target="ElurikkusWindow"
+            icon
+            color="primary"
           >
-            {{ item.plutof_taxon_id }}
-          </a>
+            <v-icon>fas fa-external-link-alt</v-icon>
+          </v-btn>
         </template>
       </v-data-table>
     </v-card>
@@ -124,11 +127,11 @@ export default {
   },
 
   methods: {
-    getFossilsLink(id) {
-      if (id) {
-        return `https://fossiilid.info/${id}`;
-      } else return "https://fossiilid.info/";
-    },
+    // getFossilsLink(id) {
+    //   if (id) {
+    //     return `https://fossiilid.info/${id}`;
+    //   } else return "https://fossiilid.info/";
+    // },
 
     getElurikkusLink(id) {
       if (id) {

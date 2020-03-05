@@ -68,14 +68,15 @@ const state = {
   ],
   sampleAnalysesHeaders: [
     { text: "Meetod", value: "analysis_method" },
-    { text: "Labor", value: "lab" },
-    { text: "Agent", value: "agent_analysed" },
     { text: "Parameeter", value: "parameter_name" },
-    { text: "Väärtus", value: "value" }
+    { text: "Väärtus", value: "value" },
+    { text: "Agent", value: "agent_analysed" },
+    { text: "Labor", value: "lab" }
   ],
   sampleTaxaHeaders: [
-    { text: "Link Fossiilide portaali", value: "taxon_id" },
-    { text: "Link eElurikkuse portaali", value: "plutof_taxon_id" }
+    { text: "ID", value: "taxon_id" },
+    { text: "Nimi", value: "parameter_name" },
+    { text: "Link", value: "plutof_taxon_id" }
   ],
 
   listCounties: null
