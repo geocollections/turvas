@@ -15,6 +15,10 @@ const mutations = {
     state.siteSamples = sites;
   },
 
+  SET_SAMPLE_TAXA(state, taxa) {
+    state.sampleTaxa = taxa;
+  },
+
   SET_LIST_COUNTIES(state, counties) {
     state.listCounties = counties;
   }

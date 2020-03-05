@@ -19,6 +19,8 @@ const actions = {
         dispatch("fetchSiteSamples", payload.id);
         dispatch("fetchSiteDescription", payload.id);
         dispatch("fetchAreaSites", response.area);
+      } else {
+        dispatch("fetchSampleTaxa", payload.id);
       }
     } else if (typeof response === "string") {
       dispatch("error/updateErrorState", true, { root: true });
@@ -52,6 +54,19 @@ const actions = {
     let response = await SearchService.doRegularSearch("sample", { site: id });
     if (typeof response === "object") {
       commit("SET_SITE_SAMPLES", response.results);
+    } else if (typeof response === "string") {
+      dispatch("error/updateErrorState", true, { root: true });
+      dispatch("error/updateErrorMessage", response, { root: true });
+    }
+  },
+
+  async fetchSampleTaxa({ commit, dispatch }, id) {
+    let response = await SearchService.doSolrSearch("peat_taxa", {
+      sample_id: id
+    });
+
+    if (typeof response === "object") {
+      commit("SET_SAMPLE_TAXA", response.results);
     } else if (typeof response === "string") {
       dispatch("error/updateErrorState", true, { root: true });
       dispatch("error/updateErrorMessage", response, { root: true });

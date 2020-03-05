@@ -111,14 +111,26 @@
         </template>
 
         <template v-slot:item.taxon="{ item }">
-          <a
-            class="table-link"
-            :href="getTaxonData(item.sample_id).url"
-            title="Link eElurikkuse portaali"
-            target="ElurikkusWindow"
+          <div
+            v-for="(entity, index) in taxonData.find(
+              el => el.sample_id === item.sample_id
+            )"
+            :key="index"
           >
-            {{ getTaxonData(item.sample_id).id }}
-          </a>
+            <div v-if="index === 'results' && entity && entity.length > 0">
+              <span v-for="(item, key) in entity" :key="key">
+                <a
+                  class="table-link"
+                  :href="item.url"
+                  :title="item.url"
+                  target="ElurikkusWindow"
+                >
+                  {{ item.id }}
+                </a>
+                <span v-if="key !== entity.length - 1">|</span>
+              </span>
+            </div>
+          </div>
         </template>
       </v-data-table>
     </v-card>
@@ -131,12 +143,17 @@ import searchMixin from "../../mixins/searchMixin";
 import { mapActions, mapGetters, mapState } from "vuex";
 import debounce from "lodash/debounce";
 import SampleSearch from "./SampleSearch";
+import SearchService from "../../middleware/SearchService";
 export default {
   name: "SampleTable",
 
   components: { SampleSearch, Search },
 
   mixins: [searchMixin],
+
+  data: () => ({
+    taxonData: []
+  }),
 
   computed: {
     ...mapState("search", [
@@ -155,11 +172,19 @@ export default {
         this.updateSearch(newVal);
       },
       immediate: true
+    },
+
+    sampleResults: {
+      handler(newVal) {
+        this.getTaxonData(newVal);
+      },
+      deep: true
     }
   },
 
   methods: {
     ...mapActions("search", ["doSampleSearch", "fetchListParameters"]),
+    ...mapActions("detail", ["fetchSampleTaxa"]),
 
     updateSearch: debounce(function(params) {
       this.doSampleSearch(params);
@@ -186,14 +211,29 @@ export default {
       this.fetchListParameters(true);
     },
 
-    getTaxonData(sampleId) {
-
-
-      // Todo: Get plutof_taxon_id-s from peat_taxa
-      return {
-        url: "https://elurikkus.ee/bie-hub/species/7368",
-        id: 7368
-      };
+    async getTaxonData(sampleResults) {
+      if (sampleResults && sampleResults.length > 0) {
+        for (const sample of sampleResults) {
+          let response = await SearchService.doSolrSearch("peat_taxa", {
+            sample_id: sample.sample_id
+          });
+          if (typeof response === "object") {
+            this.taxonData.push({
+              sample_id: sample.sample_id,
+              results: response.results
+                .filter(item => item.plutof_taxon_id)
+                .map(item => {
+                  return {
+                    id: item.plutof_taxon_id,
+                    url: `https://elurikkus.ee/bie-hub/species/${item.plutof_taxon_id}`,
+                    sample_id: sample.sample_id
+                  };
+                })
+            });
+          } else
+            this.taxonData.push({ sample_id: sample.sample_id, results: [] });
+        }
+      }
     }
   }
 };

@@ -53,6 +53,7 @@ const state = {
     { text: "Turbaliik", value: "classification_rock__name", align: "center" }
   ],
   sample: null,
+  sampleTaxa: null,
   sampleHeaders: [
     { text: "Proovi ID", value: "id" },
     { text: "Proovipunkt", value: "site" },
@@ -63,6 +64,10 @@ const state = {
     { text: "Kogumise aeg", value: "date_collected_free" },
     { text: "EGF", value: "site__area__egf" },
     { text: "Turbaliik", value: "classification_rock__name" }
+  ],
+  sampleTaxaHeaders: [
+    { text: "Takson", value: "taxon_id" },
+    { text: "Plutof", value: "plutof_taxon_id" }
   ],
 
   listCounties: null

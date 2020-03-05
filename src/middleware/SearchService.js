@@ -56,7 +56,6 @@ class SearchService {
       delete searchParams.sortDesc;
       delete searchParams.filter;
       let queryParams = encodeQueryData(searchParams, true);
-      console.log(queryParams);
       if (queryParams.length > 0) queryParams = "&fq=" + queryParams;
       if (sort.length > 0) queryParams += "&sort=" + sort;
       if (filter.length > 0) filter = "&q=" + encodeURIComponent(filter);
