@@ -54,7 +54,7 @@
       </v-card-title>
 
       <v-data-table
-        class="ws-nowrap-table"
+        class="ws-nowrap-table sample-table"
         :headers="sampleHeaders"
         hide-default-footer
         dense
@@ -239,4 +239,9 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.sample-table >>> .v-data-table td,
+.sample-table >>> .v-data-table th {
+  padding: 0 8px;
+}
+</style>

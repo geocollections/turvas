@@ -555,6 +555,7 @@ export default {
 
     getDistinctSampleResults(newVal) {
       if (this.$route.name === "SampleTable") {
+        console.log(newVal.length);
         this.updateActiveSites(newVal);
       }
     },
@@ -742,8 +743,6 @@ export default {
                 fillOpacity: 0.5
               }
             );
-
-            console.log(site);
 
             marker.on("click", () => {
               this.$router.push({

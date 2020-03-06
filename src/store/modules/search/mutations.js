@@ -57,8 +57,12 @@ const mutations = {
     let newHeaders = [];
     if (listOfParams && listOfParams.length > 0) {
       listOfParams.forEach(param => {
+        let text =
+          param.name.length > 5
+            ? param.name.substring(0, 5) + "..."
+            : param.name;
         newHeaders.push({
-          text: param.name,
+          text: text,
           value: param.value,
           align: "center"
         });

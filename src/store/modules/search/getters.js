@@ -23,8 +23,11 @@ const getters = {
   },
 
   getDistinctSampleResults: state => {
-    return state.sampleResults;
-    // Todo: Return unique samples by site;
+    return Array.from(
+      new Set(state.sampleResults.map(sample => sample.site))
+    ).map(site => {
+      return state.sampleResults.find(sample => sample.site === site);
+    });
   }
 };
 
