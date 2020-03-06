@@ -8,7 +8,7 @@
         <ExportButtons :filename="getFilename()" :table-data="results" />
       </v-card>
       <v-card flat class="pa-1">
-        <v-btn @click="$emit('reset:search')" color="primary">
+        <v-btn @click="$emit('reset:search')">
           Puhasta otsing
           <v-icon right small>fas fa-eraser</v-icon>
         </v-btn>

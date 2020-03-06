@@ -59,24 +59,24 @@ const state = {
     { text: "Proovi ID", value: "id" },
     { text: "Proovipunkt", value: "site" },
     { text: "Turbaala", value: "site__area" },
-    { text: "Turba paksus (m)", value: "site__depth" },
-    { text: "Avamus", value: "rock" },
+    { text: "Maakond", value: "site__area__maakond__maakond" },
+    { text: "Proovi sügavus (m)", value: "depth" },
+    { text: "Proovi sügavus (m, intervalli korral)", value: "depth_interval" },
     { text: "Proovi koguja(d)", value: "agent_collected_free" },
     { text: "Kogumise aeg", value: "date_collected_free" },
-    { text: "EGF", value: "site__area__egf" },
     { text: "Turbaliik", value: "classification_rock__name" }
   ],
   sampleAnalysesHeaders: [
     { text: "Meetod", value: "analysis_method" },
     { text: "Parameeter", value: "parameter_name" },
-    { text: "Väärtus", value: "value" },
-    { text: "Agent", value: "agent_analysed" },
-    { text: "Labor", value: "lab" }
+    { text: "Väärtus", value: "value", align: "center" }
   ],
   sampleTaxaHeaders: [
     { text: "ID", value: "taxon_id" },
     { text: "Nimi", value: "parameter_name" },
-    { text: "Link", value: "plutof_taxon_id" }
+    { text: "Nimi (EST)", value: "name_est" },
+    { text: "Osakaal (%)", value: "value", align: "center" },
+    { text: "e-Elurikkus", value: "plutof_taxon_id", align: "center" }
   ],
 
   listCounties: null

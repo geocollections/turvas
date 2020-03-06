@@ -49,6 +49,14 @@
       <h2>
         <v-card-title class="headline">Analüüsid</v-card-title>
       </h2>
+      <h3 class="subtitle-1 pl-6 pr-2" v-if="analysisLab.length > 0">
+        <span>Labor: </span>
+        <span class="font-weight-bold">{{ analysisLab }}</span>
+      </h3>
+      <h3 class="subtitle-1 pl-6 pr-2" v-if="analysisAgent.length > 0">
+        <span>Analüüsija(d): </span>
+        <span class="font-weight-bold">{{ analysisAgent }}</span>
+      </h3>
 
       <v-data-table
         class="ws-nowrap-table"
@@ -59,8 +67,17 @@
         :items="getSampleAnalyses"
         group-by="analysis_method"
       >
+        <template v-slot:group.header="{ group }">
+          <td colspan="2" class="text-start font-weight-bold pl-8">
+            {{ group }}
+          </td>
+        </template>
         <template v-slot:item.value="{ item }">
-          <div v-if="item.value">{{ item.value }}</div>
+          <div v-if="item.value">
+            <span>{{ item.value }}</span>
+            <span v-if="item.parameter_name === 'pH'"></span>
+            <span v-else> %</span>
+          </div>
           <div v-else-if="item.value_txt">{{ item.value_txt[0] }}</div>
         </template>
       </v-data-table>
@@ -69,8 +86,16 @@
     <!-- Taxon info -->
     <v-card flat v-if="getSampleTaxa && getSampleTaxa.length > 0" id="taxon">
       <h2>
-        <v-card-title class="headline">Taksonid</v-card-title>
+        <v-card-title class="headline">Botaaniline koostis</v-card-title>
       </h2>
+      <h3 class="subtitle-1 pl-6 pr-2" v-if="taxaLab.length > 0">
+        <span>Labor: </span>
+        <span class="font-weight-bold">{{ taxaLab }}</span>
+      </h3>
+      <h3 class="subtitle-1 pl-6 pr-2" v-if="taxaAgent.length > 0">
+        <span>Määraja(d): </span>
+        <span class="font-weight-bold">{{ taxaAgent }}</span>
+      </h3>
 
       <v-data-table
         class="ws-nowrap-table"
@@ -91,17 +116,37 @@
         <!--          </a>-->
         <!--        </template>-->
 
+        <template v-slot:item.parameter_name="{ item }">
+          <div class="font-italic">
+            {{ item.parameter_name }}
+          </div>
+        </template>
+
+        <template v-slot:item.name_est="{ item }">
+          <div
+            v-if="
+              item.taxon_id &&
+                taxonCommonNames.find(taxon => taxon.id === item.taxon_id)
+            "
+          >
+            {{
+              taxonCommonNames.find(taxon => taxon.id === item.taxon_id).name
+            }}
+          </div>
+        </template>
+
         <template v-slot:item.plutof_taxon_id="{ item }">
           <v-btn
             v-if="item.plutof_taxon_id"
             class="table-link"
             :href="getElurikkusLink(item.plutof_taxon_id)"
-            title="Link eElurikkuse portaali"
+            title="Link e-Elurikkuse portaali"
             target="ElurikkusWindow"
             icon
+            x-small
             color="primary"
           >
-            <v-icon>fas fa-external-link-alt</v-icon>
+            <v-icon small>fas fa-external-link-alt</v-icon>
           </v-btn>
         </template>
       </v-data-table>
@@ -111,9 +156,18 @@
 
 <script>
 import { mapGetters } from "vuex";
+import SearchService from "../../middleware/SearchService";
 
 export default {
   name: "Sample",
+
+  data: () => ({
+    taxonCommonNames: [],
+    analysisLab: "",
+    analysisAgent: "",
+    taxaLab: "",
+    taxaAgent: ""
+  }),
 
   computed: {
     ...mapGetters("detail", [
@@ -124,6 +178,44 @@ export default {
       "getSampleTaxa",
       "getSampleTaxaHeaders"
     ])
+  },
+
+  watch: {
+    getSampleAnalyses(newVal) {
+      if (newVal) {
+        this.analysisLab = Array.from(
+          new Set(newVal.map(analysis => analysis.lab))
+        )
+          .filter(lab => lab && lab.length > 0)
+          .join(" / ");
+        this.analysisAgent = Array.from(
+          new Set(newVal.map(analysis => analysis.agent_analysed))
+        )
+          .filter(analysis => analysis && analysis.length > 0)
+          .join(" / ");
+      }
+    },
+
+    async getSampleTaxa(newVal) {
+      if (newVal) {
+        this.taxaLab = Array.from(new Set(newVal.map(taxon => taxon.lab)))
+          .filter(lab => lab && lab.length > 0)
+          .join(" / ");
+        this.taxaAgent = Array.from(
+          new Set(newVal.map(taxon => taxon.agent_analysed_txt[0]))
+        )
+          .filter(analysis => analysis && analysis.length > 0)
+          .join(" / ");
+
+        for (let taxon of newVal) {
+          if (taxon.taxon_id) {
+            let name = await this.getTaxonCommonName(taxon.taxon_id);
+            if (name)
+              this.taxonCommonNames.push({ id: taxon.taxon_id, name: name });
+          }
+        }
+      }
+    }
   },
 
   methods: {
@@ -137,6 +229,15 @@ export default {
       if (id) {
         return `https://elurikkus.ee/bie-hub/species/${id}`;
       } else return "https://elurikkus.ee";
+    },
+
+    async getTaxonCommonName(taxonId) {
+      let response = await SearchService.doRegularSearch("taxon_common_name", {
+        taxon: taxonId,
+        language: 4,
+        fields: "name"
+      });
+      return response?.results?.[0]?.name;
     }
   }
 };
