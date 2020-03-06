@@ -88,35 +88,35 @@
     >
       <v-list nav>
         <v-list-item-group active-class="primary--text">
-          <v-list-item to="/">
+          <v-list-item to="/" role="button">
             <v-list-item-icon>
               <v-icon>fas fa-home</v-icon>
             </v-list-item-icon>
             <v-list-item-title>Pealeht</v-list-item-title>
           </v-list-item>
 
-          <v-list-item to="/area">
+          <v-list-item to="/area" role="button">
             <v-list-item-icon>
               <v-icon>fas fa-layer-group</v-icon>
             </v-list-item-icon>
             <v-list-item-title>Turbaalad</v-list-item-title>
           </v-list-item>
 
-          <v-list-item to="/site">
+          <v-list-item to="/site" role="button">
             <v-list-item-icon>
               <v-icon>fas fa-map-pin</v-icon>
             </v-list-item-icon>
             <v-list-item-title>Proovipunktid</v-list-item-title>
           </v-list-item>
 
-          <v-list-item to="/sample">
+          <v-list-item to="/sample" role="button">
             <v-list-item-icon>
               <v-icon>fas fa-vials</v-icon>
             </v-list-item-icon>
             <v-list-item-title>Proovid</v-list-item-title>
           </v-list-item>
 
-          <v-list-item to="/about">
+          <v-list-item to="/about" role="button">
             <v-list-item-icon>
               <v-icon>fas fa-info</v-icon>
             </v-list-item-icon>
