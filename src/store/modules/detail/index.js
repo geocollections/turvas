@@ -69,7 +69,8 @@ const state = {
   sampleAnalysesHeaders: [
     { text: "Meetod", value: "analysis_method" },
     { text: "Parameeter", value: "parameter_name" },
-    { text: "Väärtus", value: "value", align: "center" }
+    { text: "Väärtus", value: "value", align: "center" },
+    { text: "Kuupäev", value: "date" }
   ],
   sampleTaxaHeaders: [
     { text: "ID", value: "taxon_id" },

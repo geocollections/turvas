@@ -49,14 +49,6 @@
       <h2>
         <v-card-title class="headline">Analüüsid</v-card-title>
       </h2>
-      <h3 class="subtitle-1 pl-6 pr-2" v-if="analysisLab.length > 0">
-        <span>Labor: </span>
-        <span class="font-weight-bold">{{ analysisLab }}</span>
-      </h3>
-      <h3 class="subtitle-1 pl-6 pr-2" v-if="analysisAgent.length > 0">
-        <span>Analüüsija(d): </span>
-        <span class="font-weight-bold">{{ analysisAgent }}</span>
-      </h3>
 
       <v-data-table
         class="ws-nowrap-table"
@@ -68,10 +60,13 @@
         group-by="analysis_method"
       >
         <template v-slot:group.header="{ group }">
-          <td colspan="2" class="text-start font-weight-bold pl-8">
-            {{ group }}
+          <td colspan="3" class="text-start pl-8">
+            <span class="font-weight-bold">{{ group }}</span>
+            <span> | labor(id)</span>
+            <span> | analüüsija(d)</span>
           </td>
         </template>
+
         <template v-slot:item.value="{ item }">
           <div v-if="item.value">
             <span>{{ item.value }}</span>
@@ -163,8 +158,6 @@ export default {
 
   data: () => ({
     taxonCommonNames: [],
-    analysisLab: "",
-    analysisAgent: "",
     taxaLab: "",
     taxaAgent: ""
   }),
@@ -181,21 +174,6 @@ export default {
   },
 
   watch: {
-    getSampleAnalyses(newVal) {
-      if (newVal) {
-        this.analysisLab = Array.from(
-          new Set(newVal.map(analysis => analysis.lab))
-        )
-          .filter(lab => lab && lab.length > 0)
-          .join(" / ");
-        this.analysisAgent = Array.from(
-          new Set(newVal.map(analysis => analysis.agent_analysed))
-        )
-          .filter(analysis => analysis && analysis.length > 0)
-          .join(" / ");
-      }
-    },
-
     async getSampleTaxa(newVal) {
       if (newVal) {
         this.taxaLab = Array.from(new Set(newVal.map(taxon => taxon.lab)))
