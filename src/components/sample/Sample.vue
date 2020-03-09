@@ -55,6 +55,7 @@
         mobile-breakpoint="0"
         multi-sort
         hide-default-footer
+        disable-pagination
         disable-sort
         :headers="getSampleAnalysesHeaders"
         :items="getSampleAnalyses"
@@ -103,6 +104,7 @@
         class="ws-nowrap-table"
         multi-sort
         hide-default-footer
+        disable-pagination
         disable-sort
         :headers="getSampleTaxaHeaders"
         :items="getSampleTaxa"

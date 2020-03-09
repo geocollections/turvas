@@ -72,6 +72,7 @@
       <v-data-table
         class="ws-nowrap-table"
         multi-sort
+        disable-pagination
         hide-default-footer
         :headers="getAreaSiteHeaders"
         :items="getAreaSites"

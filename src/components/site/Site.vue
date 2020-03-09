@@ -39,6 +39,7 @@
       <v-data-table
         class="ws-nowrap-table"
         multi-sort
+        disable-pagination
         hide-default-footer
         :headers="getSiteDescriptionHeaders"
         :items="getSiteDescription"
@@ -54,6 +55,7 @@
       <v-data-table
         class="ws-nowrap-table"
         multi-sort
+        disable-pagination
         hide-default-footer
         :headers="getSiteSampleHeaders"
         :items="getSiteSamples"
