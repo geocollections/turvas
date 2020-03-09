@@ -64,20 +64,23 @@ const state = {
     { text: "Proovi sügavus (m, intervalli korral)", value: "depth_interval" },
     { text: "Proovi koguja(d)", value: "agent_collected_free" },
     { text: "Kogumise aeg", value: "date_collected_free" },
+    { text: "Nimi", value: "rock" },
+    { text: "Stratigraafia", value: "stratigraphy__stratigraphy" },
+    { text: "Stratigraafia vaba", value: "stratigraphy_free" },
     { text: "Turbaliik", value: "classification_rock__name" }
   ],
   sampleAnalysesHeaders: [
     { text: "Meetod", value: "analysis_method" },
     { text: "Parameeter", value: "parameter_name" },
     { text: "Väärtus", value: "value", align: "center" },
-    { text: "Kuupäev", value: "date" }
+    { text: "Kuupäev", value: "date_analysed_free" }
   ],
   sampleTaxaHeaders: [
     { text: "ID", value: "taxon_id" },
     { text: "Nimi", value: "parameter_name" },
-    { text: "Nimi (EST)", value: "name_est" },
+    { text: "Nimi (EST)", value: "parameter_name_et" },
     { text: "Osakaal (%)", value: "value", align: "center" },
-    { text: "e-Elurikkus", value: "plutof_taxon_id", align: "center" }
+    { text: "eElurikkus", value: "plutof_taxon_id", align: "center" }
   ],
 
   listCounties: null

@@ -63,7 +63,9 @@ const actions = {
 
   async fetchSampleTaxa({ commit, dispatch }, id) {
     let response = await SearchService.doSolrSearch("peat_taxa", {
-      sample_id: id
+      sample_id: id,
+      sortBy: ["value"],
+      sortDesc: [true]
     });
 
     if (typeof response === "object") {

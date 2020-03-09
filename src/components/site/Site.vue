@@ -40,7 +40,6 @@
         class="ws-nowrap-table"
         multi-sort
         hide-default-footer
-        disable-sort
         :headers="getSiteDescriptionHeaders"
         :items="getSiteDescription"
       />
@@ -55,6 +54,7 @@
       <v-data-table
         class="ws-nowrap-table"
         multi-sort
+        hide-default-footer
         :headers="getSiteSampleHeaders"
         :items="getSiteSamples"
       >
@@ -139,11 +139,11 @@ export default {
   background: #e8f5e9;
 }
 
-.site >>> .v-data-table__mobile-row {
+.site > #general >>> .v-data-table__mobile-row {
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 }
 
-.site >>> .v-data-table__mobile-row:last-child {
+.site > #general >>> .v-data-table__mobile-row:last-child {
   border-bottom: unset;
 }
 

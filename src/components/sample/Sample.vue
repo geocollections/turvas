@@ -52,6 +52,7 @@
 
       <v-data-table
         class="ws-nowrap-table"
+        mobile-breakpoint="0"
         multi-sort
         hide-default-footer
         disable-sort
@@ -62,8 +63,14 @@
         <template v-slot:group.header="{ group }">
           <td colspan="3" class="text-start pl-8">
             <span class="font-weight-bold">{{ group }}</span>
-            <span> | labor(id)</span>
-            <span> | analüüsija(d)</span>
+            <span v-if="getAnalysis(group, 'lab').length > 0">
+              <b> |</b>
+              {{ getAnalysis(group, "lab") }}
+            </span>
+            <span v-if="getAnalysis(group, 'agent').length > 0">
+              <b> |</b>
+              {{ getAnalysis(group, "agent") }}</span
+            >
           </td>
         </template>
 
@@ -117,26 +124,12 @@
           </div>
         </template>
 
-        <template v-slot:item.name_est="{ item }">
-          <div
-            v-if="
-              item.taxon_id &&
-                taxonCommonNames.find(taxon => taxon.id === item.taxon_id)
-            "
-          >
-            {{
-              taxonCommonNames.find(taxon => taxon.id === item.taxon_id).name
-            }}
-          </div>
-        </template>
-
         <template v-slot:item.plutof_taxon_id="{ item }">
           <v-btn
             v-if="item.plutof_taxon_id"
             class="table-link"
-            :href="getElurikkusLink(item.plutof_taxon_id)"
-            title="Link e-Elurikkuse portaali"
-            target="ElurikkusWindow"
+            @click="openElurikkusLink(item.plutof_taxon_id)"
+            title="Link eElurikkuse portaali"
             icon
             x-small
             color="primary"
@@ -157,7 +150,6 @@ export default {
   name: "Sample",
 
   data: () => ({
-    taxonCommonNames: [],
     taxaLab: "",
     taxaAgent: ""
   }),
@@ -174,48 +166,52 @@ export default {
   },
 
   watch: {
-    async getSampleTaxa(newVal) {
+    getSampleTaxa(newVal) {
       if (newVal) {
         this.taxaLab = Array.from(new Set(newVal.map(taxon => taxon.lab)))
           .filter(lab => lab && lab.length > 0)
           .join(" / ");
         this.taxaAgent = Array.from(
-          new Set(newVal.map(taxon => taxon.agent_analysed_txt[0]))
+          new Set(newVal.map(taxon => taxon.agent_analysed_free))
         )
-          .filter(analysis => analysis && analysis.length > 0)
+          .filter(taxa => taxa && taxa.length > 0)
           .join(" / ");
-
-        for (let taxon of newVal) {
-          if (taxon.taxon_id) {
-            let name = await this.getTaxonCommonName(taxon.taxon_id);
-            if (name)
-              this.taxonCommonNames.push({ id: taxon.taxon_id, name: name });
-          }
-        }
       }
     }
   },
 
   methods: {
-    // getFossilsLink(id) {
-    //   if (id) {
-    //     return `https://fossiilid.info/${id}`;
-    //   } else return "https://fossiilid.info/";
-    // },
+    getAnalysis(group, labOrAgent) {
+      let labs = [];
+      let agents = [];
+      if (group) {
+        let filteredAnalyses = this.getSampleAnalyses.filter(
+          analysis => analysis.analysis_method === group
+        );
+        labs = Array.from(
+          new Set(filteredAnalyses.map(analysis => analysis.lab))
+        )
+          .filter(lab => lab && lab.length > 0)
+          .join(", ");
+        agents = Array.from(
+          new Set(
+            filteredAnalyses.map(analysis => analysis.agent_analysed_free)
+          )
+        )
+          .filter(analysis => analysis && analysis.length > 0)
+          .join(", ");
+      }
 
-    getElurikkusLink(id) {
-      if (id) {
-        return `https://elurikkus.ee/bie-hub/species/${id}`;
-      } else return "https://elurikkus.ee";
+      if (labOrAgent === "lab") return labs;
+      else return agents;
     },
 
-    async getTaxonCommonName(taxonId) {
-      let response = await SearchService.doRegularSearch("taxon_common_name", {
-        taxon: taxonId,
-        language: 4,
-        fields: "name"
-      });
-      return response?.results?.[0]?.name;
+    openElurikkusLink(id) {
+      let url = "https://elurikkus.ee";
+      if (id) {
+        url = `https://elurikkus.ee/bie-hub/species/${id}`;
+      }
+      window.open(url, "ElurikkusWindow", "height=700,width=767");
     }
   }
 };
@@ -230,11 +226,11 @@ export default {
   background: #e8f5e9;
 }
 
-.sample >>> .v-data-table__mobile-row {
+.sample > #general >>> .v-data-table__mobile-row {
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 }
 
-.sample >>> .v-data-table__mobile-row:last-child {
+.sample > #general >>> .v-data-table__mobile-row:last-child {
   border-bottom: unset;
 }
 

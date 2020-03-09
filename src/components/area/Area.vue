@@ -72,6 +72,7 @@
       <v-data-table
         class="ws-nowrap-table"
         multi-sort
+        hide-default-footer
         :headers="getAreaSiteHeaders"
         :items="getAreaSites"
       >
@@ -155,11 +156,11 @@ export default {
   background: #e8f5e9;
 }
 
-.area >>> .v-data-table__mobile-row {
+.area > #general >>> .v-data-table__mobile-row {
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 }
 
-.area >>> .v-data-table__mobile-row:last-child {
+.area > #general >>> .v-data-table__mobile-row:last-child {
   border-bottom: unset;
 }
 
