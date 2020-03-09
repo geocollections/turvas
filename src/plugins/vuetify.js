@@ -31,7 +31,8 @@ import Vuetify, {
   VCarouselItem,
   VOverlay,
   VSheet,
-  VDivider
+  VDivider,
+  VSnackbar
 } from "vuetify/lib";
 import "vuetify/dist/vuetify.min.css";
 import et from "vuetify/es5/locale/et";
@@ -70,7 +71,8 @@ Vue.use(Vuetify, {
     VCarouselItem,
     VOverlay,
     VSheet,
-    VDivider
+    VDivider,
+    VSnackbar
   },
   directives: {
     Ripple

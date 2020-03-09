@@ -85,8 +85,11 @@ export default {
       const { Parser } = require("json2csv");
 
       // Possibility to export exact fields for each object
-      const fields = Object.keys(jsonArray[0]);
-      const opts = { fields };
+      // But we are using all available fields
+      let keysSet = new Set();
+      jsonArray.forEach(item => (keysSet = [...keysSet, ...Object.keys(item)]));
+
+      const opts = { keysSet };
 
       try {
         const parser = new Parser(opts);

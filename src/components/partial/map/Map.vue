@@ -555,7 +555,6 @@ export default {
 
     getDistinctSampleResults(newVal) {
       if (this.$route.name === "SampleTable") {
-        console.log(newVal.length);
         this.updateActiveSites(newVal);
       }
     },
