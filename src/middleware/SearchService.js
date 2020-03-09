@@ -6,7 +6,7 @@ const SOLR_URL = "https://api.geocollections.info/solr/";
 const RAW_SOLR_URL = "https://api.geocollections.info/raw_solr/";
 
 const GEOSERVER_URL =
-  "http://gis.geocollections.info/geoserver/turvas/wms?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetFeatureInfo&INFO_FORMAT=application/json&FEATURE_COUNT=1&X=50&Y=50&SRS=EPSG:3301&STYLES=&WIDTH=101&HEIGHT=101&exceptions=text/javascript";
+  "http://gis.geocollections.info/geoserver/turvas/wms?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetFeatureInfo&INFO_FORMAT=application/json&FEATURE_COUNT=101&X=50&Y=50&SRS=EPSG:3301&STYLES=&WIDTH=101&HEIGHT=101&exceptions=text/javascript";
 
 class SearchService {
   static getDetailView = async (table, id, params) => {

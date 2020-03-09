@@ -596,14 +596,26 @@ export default {
       }
     },
 
+    "$route.path": {
+      handler() {
+        if (
+          this.$route.name === "AreaTable" ||
+          this.$route.name === "FrontPage"
+        ) {
+          this.resetAreaAndSiteFromGeoserver();
+        }
+      },
+      immediate: true
+    },
+
     areaFromGeoserver(newVal) {
-      if (newVal && this.$route.name === "FrontPage") {
+      if (newVal) {
         this.$router.push({ path: `/area/${newVal}` });
       }
     },
 
     siteFromGeoserver(newVal) {
-      if (newVal && this.$route.name === "FrontPage") {
+      if (newVal) {
         this.$router.push({ path: `/site/${newVal}` });
       }
     }
@@ -615,7 +627,8 @@ export default {
       "updateDefaultBaseLayer",
       "appendToDefaultOverlayLayer",
       "removeFromDefaultOverlayLayer",
-      "mapClicked"
+      "mapClicked",
+      "resetAreaAndSiteFromGeoserver"
     ]),
 
     initMap() {
@@ -725,19 +738,18 @@ export default {
 
     // Todo: Fix bbox not changing + add checks
     handleMapClick(event) {
-      if (this.$route.name === "FrontPage") {
+      if (
+        (this.$route.name === "FrontPage" ||
+          this.$route.name === "AreaTable") &&
+        (this.map.hasLayer(this.overlayMaps[0].leafletObject) ||
+          this.map.hasLayer(this.overlayMaps[1].leafletObject))
+      ) {
         let crs = event.target.options.crs;
-        let bounds = event.target.getBounds();
+        let point = crs.project(event.latlng);
 
-        let sw = crs.project(bounds.getSouthWest());
-        let ne = crs.project(bounds.getNorthEast());
-
-        console.log(crs);
-        console.log(bounds);
-        console.log(sw);
-        console.log(ne);
-
-        let bbox = sw.x + "," + sw.y + "," + ne.x + "," + ne.y;
+        let bbox =
+          point.x + "," + point.y + "," + (point.x + 2) + "," + (point.y + 2);
+        console.log(bbox);
 
         this.mapClicked(bbox);
       }

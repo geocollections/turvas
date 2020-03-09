@@ -37,11 +37,19 @@ const actions = {
     let areaClicked = turbaalad?.features?.[0]?.properties?.area_id;
     let siteClicked = turbapunktid?.features?.[0]?.properties?.id;
 
+    console.log(areaClicked);
+    console.log(siteClicked);
+
     if (siteClicked) {
       commit("SET_SITE_FROM_GEOSERVER", siteClicked);
     } else if (areaClicked) {
       commit("SET_AREA_FROM_GEOSERVER", areaClicked);
     }
+  },
+
+  resetAreaAndSiteFromGeoserver({ commit }) {
+    commit("SET_SITE_FROM_GEOSERVER", null);
+    commit("SET_AREA_FROM_GEOSERVER", null);
   }
 };
 
