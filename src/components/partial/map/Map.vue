@@ -484,6 +484,7 @@ export default {
     this.map.off("baselayerchange", this.handleBaseLayerChange);
     this.map.off("overlayadd", this.handleOverlayAdded);
     this.map.off("overlayremove", this.handleOverlayRemoved);
+    this.map.off("click", this.handleMapClick);
   },
 
   computed: {
@@ -555,7 +556,15 @@ export default {
 
     getDistinctSampleResults(newVal) {
       if (this.$route.name === "SampleTable") {
-        this.updateActiveSites(newVal);
+        let sitesFromSample = newVal.map(sample => {
+          return {
+            id: sample.site_id,
+            name: sample.site,
+            longitude: sample.longitude,
+            latitude: sample.latitude
+          };
+        });
+        this.updateActiveSites(sitesFromSample);
       }
     },
 
@@ -665,6 +674,7 @@ export default {
       this.map.on("baselayerchange", this.handleBaseLayerChange);
       this.map.on("overlayadd", this.handleOverlayAdded);
       this.map.on("overlayremove", this.handleOverlayRemoved);
+      this.map.on("click", this.handleMapClick);
     },
 
     handleBaseLayerChange(event) {
@@ -677,6 +687,10 @@ export default {
 
     handleOverlayRemoved(event) {
       this.removeFromDefaultOverlayLayer(event.name);
+    },
+
+    handleMapClick(event) {
+      console.log(event);
     },
 
     updateAreaAndSiteLayerOrdering() {
