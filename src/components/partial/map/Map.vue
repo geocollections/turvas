@@ -729,7 +729,11 @@ export default {
 
         listOfSites.forEach(site => {
           if (site.latitude && site.longitude) {
-            let markerRadius = 5;
+            let markerRadius =
+              this.$route.name === "SiteDetail" &&
+              this.$route.params.id === site.id
+                ? 7
+                : 5;
             let marker = L.circleMarker(
               {
                 lat: parseFloat(site.latitude),
@@ -737,29 +741,35 @@ export default {
               },
               {
                 radius: markerRadius,
-                color: "#FBC02D",
+                color:
+                  this.$route.name === "SiteDetail" &&
+                  this.$route.params.id === site.id
+                    ? "#E91E63"
+                    : "#FBC02D",
                 fill: true,
-                fillColor: "#FBC02D",
+                fillColor:
+                  this.$route.name === "SiteDetail" &&
+                  this.$route.params.id === site.id
+                    ? "#E91E63"
+                    : "#FBC02D",
                 fillOpacity: 0.5
               }
             );
 
             marker.on("click", () => {
               this.$router.push({
-                path: `/site/${
-                  this.$route.meta.object === "sample" ? site.site_id : site.id
-                }`
+                path: `/site/${site.id}`
               });
             });
 
-            marker.bindTooltip(
-              this.$route.meta.object === "sample" ? site.site : site.name,
-              {
-                permanent: false,
-                direction: "right",
-                offset: [8, 0]
-              }
-            );
+            marker.bindTooltip(site.name, {
+              permanent:
+                listOfSites.length === 1 ||
+                (this.$route.name === "SiteDetail" &&
+                  this.$route.params.id === site.id),
+              direction: "right",
+              offset: [8, 0]
+            });
 
             this.activeSites.push(marker);
           }
