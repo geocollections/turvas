@@ -1,6 +1,10 @@
+import SearchService from "../../../middleware/SearchService";
+
 const state = {
   defaultBaseLayer: "Fotokaart",
-  defaultOverlayLayers: ["Uuringupunktid", "Turbaalad", "Maakonnad"]
+  defaultOverlayLayers: ["Uuringupunktid", "Turbaalad", "Maakonnad"],
+  siteFromGeoserver: null,
+  areaFromGeoserver: null
 };
 
 const actions = {
@@ -17,6 +21,27 @@ const actions = {
       item => item !== layerName
     );
     commit("SET_DEFAULT_OVERLAY_LAYERS", filtered);
+  },
+
+  async mapClicked({ commit, dispatch }, bbox) {
+    let turbaalad = await SearchService.doGeoserverRequest(
+      "turvas:Turbaalad",
+      bbox
+    );
+
+    let turbapunktid = await SearchService.doGeoserverRequest(
+      "turvas:Turbapunktid",
+      bbox
+    );
+
+    let areaClicked = turbaalad?.features?.[0]?.properties?.area_id;
+    let siteClicked = turbapunktid?.features?.[0]?.properties?.id;
+
+    if (siteClicked) {
+      commit("SET_SITE_FROM_GEOSERVER", siteClicked);
+    } else if (areaClicked) {
+      commit("SET_AREA_FROM_GEOSERVER", areaClicked);
+    }
   }
 };
 
@@ -33,6 +58,14 @@ const mutations = {
 
   SET_DEFAULT_OVERLAY_LAYERS(state, arrOfLayerNames) {
     state.defaultOverlayLayers = arrOfLayerNames;
+  },
+
+  SET_SITE_FROM_GEOSERVER(state, siteId) {
+    state.siteFromGeoserver = siteId;
+  },
+
+  SET_AREA_FROM_GEOSERVER(state, areaId) {
+    state.areaFromGeoserver = areaId;
   }
 };
 

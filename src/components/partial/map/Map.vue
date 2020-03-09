@@ -504,7 +504,12 @@ export default {
     ...mapGetters("settings", ["getMapState"]),
     ...mapState("search", ["siteResults", "siteResultsCount"]),
     ...mapGetters("search", ["getDistinctSampleResults"]),
-    ...mapState("map", ["defaultBaseLayer", "defaultOverlayLayers"]),
+    ...mapState("map", [
+      "defaultBaseLayer",
+      "defaultOverlayLayers",
+      "areaFromGeoserver",
+      "siteFromGeoserver"
+    ]),
     ...mapGetters("detail", ["getAreaSites", "getSample"])
   },
 
@@ -589,6 +594,18 @@ export default {
           [57.3959015512, 28.3681954033]
         ]);
       }
+    },
+
+    areaFromGeoserver(newVal) {
+      if (newVal && this.$route.name === "FrontPage") {
+        this.$router.push({ path: `/area/${newVal}` });
+      }
+    },
+
+    siteFromGeoserver(newVal) {
+      if (newVal && this.$route.name === "FrontPage") {
+        this.$router.push({ path: `/site/${newVal}` });
+      }
     }
   },
 
@@ -597,7 +614,8 @@ export default {
     ...mapActions("map", [
       "updateDefaultBaseLayer",
       "appendToDefaultOverlayLayer",
-      "removeFromDefaultOverlayLayer"
+      "removeFromDefaultOverlayLayer",
+      "mapClicked"
     ]),
 
     initMap() {
@@ -705,8 +723,24 @@ export default {
       this.removeFromDefaultOverlayLayer(event.name);
     },
 
+    // Todo: Fix bbox not changing + add checks
     handleMapClick(event) {
-      console.log(event);
+      if (this.$route.name === "FrontPage") {
+        let crs = event.target.options.crs;
+        let bounds = event.target.getBounds();
+
+        let sw = crs.project(bounds.getSouthWest());
+        let ne = crs.project(bounds.getNorthEast());
+
+        console.log(crs);
+        console.log(bounds);
+        console.log(sw);
+        console.log(ne);
+
+        let bbox = sw.x + "," + sw.y + "," + ne.x + "," + ne.y;
+
+        this.mapClicked(bbox);
+      }
     },
 
     handleMouseover() {

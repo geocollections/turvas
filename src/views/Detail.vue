@@ -1,18 +1,5 @@
 <template>
   <v-card class="detail">
-    <ErrorSnackbar
-      v-if="getErrorState"
-      :error="getErrorState"
-      :message="getErrorMessage"
-      v-on:update:error="updateErrorState"
-    />
-    <SuccessSnackbar
-      v-if="getSuccessState"
-      :success="getSuccessState"
-      :message="getSuccessMessage"
-      v-on:update:success="updateSuccessState"
-    />
-
     <Counties
       v-if="
         getListCounties &&
@@ -36,13 +23,11 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
-import ErrorSnackbar from "../components/partial/snackbar/ErrorSnackbar";
 import Counties from "../components/partial/Counties";
-import SuccessSnackbar from "../components/partial/snackbar/SuccessSnackbar";
 export default {
   name: "Detail",
 
-  components: { SuccessSnackbar, Counties, ErrorSnackbar },
+  components: { Counties },
 
   computed: {
     ...mapGetters("detail", [
@@ -50,9 +35,7 @@ export default {
       "getSample",
       "getSite",
       "getListCounties"
-    ]),
-    ...mapGetters("error", ["getErrorState", "getErrorMessage"]),
-    ...mapGetters("success", ["getSuccessState", "getSuccessMessage"])
+    ])
   },
 
   created() {
@@ -85,9 +68,7 @@ export default {
   },
 
   methods: {
-    ...mapActions("detail", ["fetchData", "fetchListCounties"]),
-    ...mapActions("error", ["updateErrorState"]),
-    ...mapActions("success", ["updateSuccessState"])
+    ...mapActions("detail", ["fetchData", "fetchListCounties"])
   }
 };
 </script>

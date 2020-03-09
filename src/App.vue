@@ -1,5 +1,18 @@
 <template>
   <v-app>
+    <ErrorSnackbar
+      v-if="getErrorState"
+      :error="getErrorState"
+      :message="getErrorMessage"
+      v-on:update:error="updateErrorState"
+    />
+    <SuccessSnackbar
+      v-if="getSuccessState"
+      :success="getSuccessState"
+      :message="getSuccessMessage"
+      v-on:update:success="updateSuccessState"
+    />
+
     <AppHeader
       :is-front-page="$route.name === 'FrontPage'"
       :is-about-page="$route.name === 'About'"
@@ -13,9 +26,20 @@
 
 <script>
 import AppHeader from "./components/partial/header/AppHeader";
+import ErrorSnackbar from "./components/partial/snackbar/ErrorSnackbar";
+import SuccessSnackbar from "./components/partial/snackbar/SuccessSnackbar";
+import { mapActions, mapGetters } from "vuex";
 export default {
   name: "App",
-  components: { AppHeader }
+  components: { SuccessSnackbar, ErrorSnackbar, AppHeader },
+  computed: {
+    ...mapGetters("error", ["getErrorState", "getErrorMessage"]),
+    ...mapGetters("success", ["getSuccessState", "getSuccessMessage"])
+  },
+  methods: {
+    ...mapActions("error", ["updateErrorState"]),
+    ...mapActions("success", ["updateSuccessState"])
+  }
 };
 </script>
 

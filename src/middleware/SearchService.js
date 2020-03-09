@@ -5,6 +5,9 @@ const API_URL = "https://api.geocollections.info/";
 const SOLR_URL = "https://api.geocollections.info/solr/";
 const RAW_SOLR_URL = "https://api.geocollections.info/raw_solr/";
 
+const GEOSERVER_URL =
+  "http://gis.geocollections.info/geoserver/turvas/wms?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetFeatureInfo&INFO_FORMAT=application/json&FEATURE_COUNT=1&X=50&Y=50&SRS=EPSG:3301&STYLES=&WIDTH=101&HEIGHT=101&exceptions=text/javascript";
+
 class SearchService {
   static getDetailView = async (table, id, params) => {
     try {
@@ -77,11 +80,25 @@ class SearchService {
 
       if (fields.length > 0) url += "&" + fields;
 
+      const test = await window.fetch(url);
+
       const res = await axios.get(url);
       if (res.status === 200) return res.data;
       else return buildErrorMessage(table);
     } catch (err) {
       return buildErrorMessage(table);
+    }
+  };
+
+  static doGeoserverRequest = async (layerName, bbox) => {
+    try {
+      let url = `${GEOSERVER_URL}&QUERY_LAYERS=${layerName}&LAYERS=${layerName}&BBOX=${bbox}`;
+
+      const res = await axios.get(url);
+      if (res.status === 200) return res.data;
+      else return "Päring geoserverist ebaõnnestus";
+    } catch (err) {
+      return "Päring geoserverist ebaõnnestus";
     }
   };
 }
