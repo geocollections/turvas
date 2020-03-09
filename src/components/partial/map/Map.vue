@@ -9,7 +9,15 @@
         ? 'position: relative; width: 100%; height: 50vh;'
         : 'width: 50%;'
     "
-  ></div>
+  >
+    <div
+      class="live-coordinates"
+      :class="{ 'live-coordinates-front': $route.name === 'FrontPage' }"
+      v-if="showLiveCoordinates && latlngLive"
+    >
+      Lat: {{ latlngLive.lat.toFixed(6) }} Lon: {{ latlngLive.lng.toFixed(6) }}
+    </div>
+  </div>
 </template>
 
 <script>
@@ -473,7 +481,9 @@ export default {
           }
         )
       }
-    ]
+    ],
+    showLiveCoordinates: false,
+    latlngLive: null
   }),
 
   mounted() {
@@ -485,6 +495,9 @@ export default {
     this.map.off("overlayadd", this.handleOverlayAdded);
     this.map.off("overlayremove", this.handleOverlayRemoved);
     this.map.off("click", this.handleMapClick);
+    this.map.off("mouseover", this.handleMouseover);
+    this.map.off("mouseout", this.handleMouseout);
+    this.map.off("mousemove", this.handleMousemove);
   },
 
   computed: {
@@ -675,6 +688,9 @@ export default {
       this.map.on("overlayadd", this.handleOverlayAdded);
       this.map.on("overlayremove", this.handleOverlayRemoved);
       this.map.on("click", this.handleMapClick);
+      this.map.on("mouseover", this.handleMouseover);
+      this.map.on("mouseout", this.handleMouseout);
+      this.map.on("mousemove", this.handleMousemove);
     },
 
     handleBaseLayerChange(event) {
@@ -691,6 +707,18 @@ export default {
 
     handleMapClick(event) {
       console.log(event);
+    },
+
+    handleMouseover() {
+      this.showLiveCoordinates = true;
+    },
+
+    handleMouseout() {
+      this.showLiveCoordinates = false;
+    },
+
+    handleMousemove(event) {
+      this.latlngLive = event.latlng;
     },
 
     updateAreaAndSiteLayerOrdering() {
@@ -860,5 +888,22 @@ export default {
 
 #map >>> .leaflet-control-attribution > a {
   color: #000;
+}
+
+.live-coordinates {
+  margin-top: 56px;
+  margin-right: 10px;
+  position: absolute;
+  right: 0;
+  z-index: 500;
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 1px 6px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
+}
+
+.live-coordinates-front {
+  bottom: 0;
+  margin-bottom: 26px;
 }
 </style>
