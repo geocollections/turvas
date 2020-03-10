@@ -274,9 +274,10 @@ const actions = {
 
   updateSampleHeaders({ commit, dispatch }, value) {
     if (router.currentRoute.name.includes("Detail") && value.length > 10) {
-      let shiftedValue = value.shift();
-      commit("UPDATE_SAMPLE_HEADERS", value);
-      dispatch("setShownActiveListParameters", value);
+      let clonedValue = [...value];
+      clonedValue.shift();
+      commit("UPDATE_SAMPLE_HEADERS", clonedValue);
+      dispatch("setShownActiveListParameters", clonedValue);
     } else {
       commit("UPDATE_SAMPLE_HEADERS", value);
       dispatch("setShownActiveListParameters", value);
