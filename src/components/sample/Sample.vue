@@ -171,6 +171,8 @@
         </v-col>
       </v-row>
 
+      <Chart :fields="chartFields" :data="getSampleAnalyticalData" />
+
       <v-data-table
         class="ws-nowrap-table"
         multi-sort
@@ -187,10 +189,11 @@
 <script>
 import { mapActions, mapGetters, mapState } from "vuex";
 import AutocompleteWrapper from "../partial/inputs/AutocompleteWrapper";
+import Chart from "../partial/chart/Chart";
 
 export default {
   name: "Sample",
-  components: { AutocompleteWrapper },
+  components: {Chart, AutocompleteWrapper },
   data: () => ({
     taxaLab: "",
     taxaAgent: ""
@@ -215,7 +218,11 @@ export default {
       "listParameters",
       "shownActiveListParameters",
       "sampleHeaders"
-    ])
+    ]),
+
+    chartFields() {
+      return this.shownActiveListParameters.map(field => field.name);
+    }
   },
 
   watch: {
