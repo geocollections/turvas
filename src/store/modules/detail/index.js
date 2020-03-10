@@ -56,6 +56,7 @@ const state = {
   sample: null,
   sampleAnalyses: null,
   sampleTaxa: null,
+  sampleAnalyticalData: null,
   sampleHeaders: [
     { text: "Proovi ID", value: "id" },
     { text: "Proovipunkt", value: "site" },

@@ -63,6 +63,10 @@ const getters = {
     return state.sampleAnalyses;
   },
 
+  getSampleAnalyticalData: state => {
+    return state.sampleAnalyticalData;
+  },
+
   filteredSampleHeaders: (state, getters) => {
     return state.sampleHeaders.filter(header => {
       if (getters.getSample[header.value]) {

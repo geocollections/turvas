@@ -55,25 +55,25 @@ const actions = {
     if (!state.listParameters || reset) {
       let listOfParameters = [];
 
-      const tablesToFechParameters = ["peat_taxa", "peat_analysis"];
+      const tablesToFetchParameters = ["peat_taxa", "peat_analysis"];
       let regex = /[|\s\\(\\)\\õ]/gi;
 
-      for (let table in tablesToFechParameters) {
+      for (let table in tablesToFetchParameters) {
         let response = await SearchService.doSolrFacetSearch(
-          tablesToFechParameters[table],
+          tablesToFetchParameters[table],
           ["parameter", "parameter_name"]
         );
 
         if (typeof response === "object") {
           let parameters =
-            tablesToFechParameters[table] === "peat_taxa"
+            tablesToFetchParameters[table] === "peat_taxa"
               ? response.facet_counts.facet_fields.parameter
               : response.facet_counts.facet_fields.parameter_name;
 
           let mappedParameters = parameters
             .filter(param => param !== 0)
             .map(param => {
-              if (tablesToFechParameters[table] === "peat_taxa") {
+              if (tablesToFetchParameters[table] === "peat_taxa") {
                 return {
                   name: param,
                   unit: "%",
@@ -166,11 +166,16 @@ const actions = {
 
       commit("SET_LIST_PARAMETERS", listOfParameters);
       if (listOfParameters && listOfParameters.length > 1) {
-        commit("INIT_ACTIVE_LIST_PARAMETERS", listOfParameters);
-        dispatch("updateSampleHeaders", [
-          listOfParameters[0],
-          listOfParameters[1]
-        ]);
+        commit("INIT_ACTIVE_LIST_PARAMETERS", {
+          parameters: listOfParameters,
+          isDetail: router.currentRoute.name.includes("Detail")
+        });
+        dispatch(
+          "updateSampleHeaders",
+          router.currentRoute.name.includes("Detail")
+            ? [listOfParameters[0], listOfParameters[4], listOfParameters[7]]
+            : [listOfParameters[0], listOfParameters[1]]
+        );
       }
     }
   },
@@ -268,8 +273,14 @@ const actions = {
   },
 
   updateSampleHeaders({ commit, dispatch }, value) {
-    commit("UPDATE_SAMPLE_HEADERS", value);
-    dispatch("setShownActiveListParameters", value);
+    if (router.currentRoute.name.includes("Detail") && value.length > 10) {
+      let shiftedValue = value.shift();
+      commit("UPDATE_SAMPLE_HEADERS", value);
+      dispatch("setShownActiveListParameters", value);
+    } else {
+      commit("UPDATE_SAMPLE_HEADERS", value);
+      dispatch("setShownActiveListParameters", value);
+    }
   },
 
   updateActiveListParameters({ state, commit, dispatch }, payload) {

@@ -23,6 +23,10 @@ const mutations = {
     state.sampleAnalyses = analyses;
   },
 
+  SET_SAMPLE_ANALYTICAL_DATA(state, analyticalData) {
+    state.sampleAnalyticalData = analyticalData;
+  },
+
   SET_LIST_COUNTIES(state, counties) {
     state.listCounties = counties;
   },
