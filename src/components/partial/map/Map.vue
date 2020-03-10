@@ -33,6 +33,8 @@ export default {
 
   data: () => ({
     map: null,
+    maxZoom: 13.25,
+    minZoom: 2,
     activeSites: null,
     activeSitesLayer: null,
     activeSitesBounds: null,
@@ -510,7 +512,7 @@ export default {
       "areaFromGeoserver",
       "siteFromGeoserver"
     ]),
-    ...mapGetters("detail", ["getAreaSites", "getSample"])
+    ...mapGetters("detail", ["getAreaSites", "getSample", "getAreaGeometry"])
   },
 
   watch: {
@@ -549,6 +551,21 @@ export default {
         this.$route.name === "SiteDetail"
       ) {
         this.updateActiveSites(newVal);
+      }
+    },
+
+    // Todo: coordinates need formatting
+    getAreaGeometry(newVal) {
+      if (newVal && newVal.coordinates && newVal.coordinates.length > 0) {
+        // console.log(newVal.coordinates);
+        // let polygon = L.polygon(newVal.coordinates[0], { color: "#FFF" }).addTo(
+        //   this.map
+        // );
+        // this.map.fitBounds(newVal.coordinates[0]);
+        // this.activeSitesBounds = new L.featureGroup(
+        //   this.activeSites
+        // ).getBounds();
+        // this.map.fitBounds(this.activeSitesBounds, { padding: [100, 100] });
       }
     },
 
@@ -639,8 +656,8 @@ export default {
         cursor: true,
         zoomDelta: 0.25,
         zoomSnap: 0,
-        minZoom: 2,
-        maxZoom: 13.25,
+        minZoom: this.minZoom,
+        maxZoom: this.maxZoom,
         crs: new L.Proj.CRS(
           "EPSG:3301",
           "+proj=lcc +lat_1=59.33333333333334 +lat_2=58 +lat_0=57.51755393055556 +lon_0=24 +x_0=500000 +y_0=6375000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs",
@@ -736,7 +753,6 @@ export default {
       this.removeFromDefaultOverlayLayer(event.name);
     },
 
-    // Todo: Fix bbox not changing + add checks
     handleMapClick(event) {
       if (
         (this.$route.name === "FrontPage" ||
@@ -744,14 +760,28 @@ export default {
         (this.map.hasLayer(this.overlayMaps[0].leafletObject) ||
           this.map.hasLayer(this.overlayMaps[1].leafletObject))
       ) {
+        let radius = (this.maxZoom + 0.25 - this.map.getZoom()) * 500;
         let crs = event.target.options.crs;
-        let point = crs.project(event.latlng);
+        let circle = L.circle(event.latlng, {
+          radius: radius
+        }).addTo(this.map);
 
-        let bbox =
-          point.x + "," + point.y + "," + (point.x + 2) + "," + (point.y + 2);
-        console.log(bbox);
+        let bounds = circle.getBounds();
+        circle.remove();
+        let sw = crs.project(bounds.getSouthWest());
+        let ne = crs.project(bounds.getNorthEast());
 
-        this.mapClicked(bbox);
+        let bbox = sw.x + "," + sw.y + "," + ne.x + "," + ne.y;
+        if (
+          this.map.hasLayer(this.overlayMaps[0].leafletObject) &&
+          this.map.hasLayer(this.overlayMaps[1].leafletObject)
+        ) {
+          this.mapClicked({ bbox: bbox, fetch: "both" });
+        } else if (this.map.hasLayer(this.overlayMaps[0].leafletObject)) {
+          this.mapClicked({ bbox: bbox, fetch: "site" });
+        } else if (this.map.hasLayer(this.overlayMaps[1].leafletObject)) {
+          this.mapClicked({ bbox: bbox, fetch: "area" });
+        }
       }
     },
 

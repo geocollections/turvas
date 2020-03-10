@@ -88,28 +88,6 @@ const routes = [
             }
           }
         ]
-      },
-      {
-        path: "analysis",
-        component: () => import("../views/Detail.vue"),
-        children: [
-          {
-            path: "",
-            name: "AnalysisTable",
-            component: () => import("../components/analysis/AnalysisTable.vue"),
-            meta: {
-              object: "analysis"
-            }
-          },
-          {
-            path: ":id(\\d+)",
-            name: "AnalysisDetail",
-            component: () => import("../components/analysis/Analysis.vue"),
-            meta: {
-              object: "analysis"
-            }
-          }
-        ]
       }
     ]
   }

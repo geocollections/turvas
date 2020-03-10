@@ -15,10 +15,12 @@ const actions = {
 
       if (payload.table === "area") {
         dispatch("fetchAreaSites", payload.id);
+        dispatch("fetchAreaBounds", payload.id);
       } else if (payload.table === "site") {
         dispatch("fetchSiteSamples", payload.id);
         dispatch("fetchSiteDescription", payload.id);
         dispatch("fetchAreaSites", response.area);
+        dispatch("fetchAreaBounds", response.area);
       } else {
         dispatch("fetchSampleTaxa", payload.id);
         dispatch("fetchSampleAnalyses", payload.id);
@@ -33,6 +35,24 @@ const actions = {
     let response = await SearchService.doSolrSearch("site", { area_id: id });
     if (typeof response === "object") {
       commit("SET_AREA_SITES", response.results);
+    } else if (typeof response === "string") {
+      dispatch("error/updateErrorState", true, { root: true });
+      dispatch("error/updateErrorMessage", response, { root: true });
+    }
+  },
+
+  async fetchAreaBounds({ commit, dispatch }, id) {
+    let response = await SearchService.doGeoserverRequest(
+      {
+        typeName: "turvas:Turbaalad",
+        CQL_FILTER: `area_id=${id}`
+      },
+      false
+    );
+
+    if (typeof response === "object") {
+      let areaGeometry = response?.features?.[0]?.geometry;
+      if (areaGeometry) commit("SET_AREA_GEOMETRY", areaGeometry);
     } else if (typeof response === "string") {
       dispatch("error/updateErrorState", true, { root: true });
       dispatch("error/updateErrorMessage", response, { root: true });

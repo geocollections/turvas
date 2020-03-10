@@ -5,6 +5,7 @@ import getters from "./getters";
 const state = {
   area: null,
   areaSites: null,
+  areaGeometry: null,
   areaHeaders: [
     { text: "ID", value: "id" },
     { text: "Maakond", value: "maakond__maakond" },

@@ -25,6 +25,10 @@ const mutations = {
 
   SET_LIST_COUNTIES(state, counties) {
     state.listCounties = counties;
+  },
+
+  SET_AREA_GEOMETRY(state, geometry) {
+    state.areaGeometry = geometry;
   }
 };
 

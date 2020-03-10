@@ -23,22 +23,27 @@ const actions = {
     commit("SET_DEFAULT_OVERLAY_LAYERS", filtered);
   },
 
-  async mapClicked({ commit, dispatch }, bbox) {
-    let turbaalad = await SearchService.doGeoserverRequest(
-      "turvas:Turbaalad",
-      bbox
-    );
+  async mapClicked({ commit, dispatch }, params) {
+    let turbaalad;
+    let turbapunktid;
 
-    let turbapunktid = await SearchService.doGeoserverRequest(
-      "turvas:Turbapunktid",
-      bbox
-    );
+    if (params.fetch === "both" || params.fetch === "area") {
+      turbaalad = await SearchService.doGeoserverRequest({
+        QUERY_LAYERS: "turvas:Turbaalad",
+        LAYERS: "turvas:Turbaalad",
+        BBOX: params.bbox
+      });
+    }
+    if (params.fetch === "both" || params.fetch === "site") {
+      turbapunktid = await SearchService.doGeoserverRequest({
+        QUERY_LAYERS: "turvas:Turbapunktid",
+        LAYERS: "turvas:Turbapunktid",
+        BBOX: params.bbox
+      });
+    }
 
     let areaClicked = turbaalad?.features?.[0]?.properties?.area_id;
     let siteClicked = turbapunktid?.features?.[0]?.properties?.id;
-
-    console.log(areaClicked);
-    console.log(siteClicked);
 
     if (siteClicked) {
       commit("SET_SITE_FROM_GEOSERVER", siteClicked);
