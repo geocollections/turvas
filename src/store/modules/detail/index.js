@@ -6,6 +6,7 @@ const state = {
   area: null,
   areaSites: null,
   areaGeometry: null,
+  areaReferences: null,
   areaHeaders: [
     { text: "ID", value: "id" },
     { text: "Maakond", value: "maakond__maakond" },

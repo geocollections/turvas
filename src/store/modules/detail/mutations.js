@@ -33,6 +33,10 @@ const mutations = {
 
   SET_AREA_GEOMETRY(state, geometry) {
     state.areaGeometry = geometry;
+  },
+
+  SET_AREA_REFERENCES(state, references) {
+    state.areaReferences = references;
   }
 };
 

@@ -221,7 +221,9 @@ export default {
     ]),
 
     chartFields() {
-      return this.shownActiveListParameters.map(field => field.name);
+      if (this.shownActiveListParameters && this.shownActiveListParameters.length > 0) {
+        return this.shownActiveListParameters.map(field => field.name);
+      } else return [];
     }
   },
 

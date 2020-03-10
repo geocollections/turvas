@@ -16,6 +16,7 @@ const actions = {
       if (payload.table === "area") {
         dispatch("fetchAreaSites", payload.id);
         dispatch("fetchAreaBounds", payload.id);
+        dispatch("fetchAreaReferences", payload.id);
       } else if (payload.table === "site") {
         dispatch("fetchSiteSamples", payload.id);
         dispatch("fetchSiteDescription", payload.id);
@@ -54,6 +55,18 @@ const actions = {
     if (typeof response === "object") {
       let areaGeometry = response?.features?.[0]?.geometry;
       if (areaGeometry) commit("SET_AREA_GEOMETRY", areaGeometry);
+    } else if (typeof response === "string") {
+      dispatch("error/updateErrorState", true, { root: true });
+      dispatch("error/updateErrorMessage", response, { root: true });
+    }
+  },
+
+  async fetchAreaReferences({ commit, dispatch }, id) {
+    let response = await SearchService.doRegularSearch("reference", {
+      localityreference__area: id
+    });
+    if (typeof response === "object") {
+      commit("SET_AREA_REFERENCES", response.results);
     } else if (typeof response === "string") {
       dispatch("error/updateErrorState", true, { root: true });
       dispatch("error/updateErrorMessage", response, { root: true });

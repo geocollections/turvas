@@ -98,19 +98,30 @@
         </template>
       </v-data-table>
     </v-card>
+
+    <!-- Related references -->
+    <v-card flat v-if="getAreaReferences" id="references">
+      <h2>
+        <v-card-title class="headline">Kirjandus</v-card-title>
+      </h2>
+
+      <AreaReference :data="getAreaReferences" />
+    </v-card>
   </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
+import AreaReference from "./AreaReference";
 
 export default {
   name: "Area",
-
+  components: {AreaReference},
   computed: {
     ...mapGetters("detail", [
       "getArea",
       "getAreaSites",
+      "getAreaReferences",
       "filteredAreaHeaders",
       "getAreaSiteHeaders"
     ]),

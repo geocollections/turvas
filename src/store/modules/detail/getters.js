@@ -11,6 +11,10 @@ const getters = {
     return state.areaGeometry;
   },
 
+  getAreaReferences: state => {
+    return state.areaReferences;
+  },
+
   filteredAreaHeaders: (state, getters) => {
     return state.areaHeaders.filter(header => {
       if (getters.getArea[header.value]) {
