@@ -42,7 +42,10 @@ const state = {
       text:
         "Projekti vastutav täitja on TTÜ geoloogia instituudi dotsent Mall Orru. Projekti alusandmestik on kogutud Eesti Geoloogiakeskuse poolt ning seda säilitatakse Geoloogiafondis."
     }
-  ]
+  ],
+  block: {
+    area: [true, true, true]
+  }
 };
 
 export default {

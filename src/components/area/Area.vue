@@ -113,10 +113,12 @@
 <script>
 import { mapGetters } from "vuex";
 import AreaReference from "./AreaReference";
+import sectionsMixin from "../../mixins/sectionsMixin";
 
 export default {
   name: "Area",
-  components: {AreaReference},
+  components: { AreaReference },
+  mixins: [sectionsMixin],
   computed: {
     ...mapGetters("detail", [
       "getArea",

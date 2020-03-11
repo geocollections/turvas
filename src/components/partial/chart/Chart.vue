@@ -86,6 +86,11 @@ export default {
   },
 
   watch: {
+    "$route.params.id"() {
+      this.chart.destroy();
+      this.createChart();
+    },
+
     chartLabels: {
       handler(newVal) {
         const labelsAndDatasets = this.updateChart(newVal);
