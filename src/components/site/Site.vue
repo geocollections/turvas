@@ -92,14 +92,58 @@
         </template>
       </v-data-table>
     </v-card>
+
+    <!-- Analytical data -->
+    <v-card
+      flat
+      v-if="getSampleAnalyticalData && getSampleAnalyticalData.length > 0"
+      id="analytical-data"
+    >
+      <h2>
+        <v-card-title class="headline">Analüütilised andmed</v-card-title>
+      </h2>
+
+      <v-row no-gutters class="px-1">
+        <v-col cols="12" class="pa-1">
+          <AutocompleteWrapper
+            label="Veerud"
+            chips
+            clearable
+            multiple
+            :items="listParameters"
+            return-object
+            item-text="name"
+            item-value="string"
+            :value="shownActiveListParameters"
+            @input="updateSampleHeaders"
+            small-chips
+            deletable-chips
+          />
+        </v-col>
+      </v-row>
+
+      <Chart
+        v-if="shownActiveListParameters"
+        chart-type="bubble"
+        :chart-labels="shownActiveListParameters"
+        :chart-data="getSampleAnalyticalData"
+      />
+    </v-card>
   </div>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters, mapState } from "vuex";
+import AutocompleteWrapper from "../partial/inputs/AutocompleteWrapper";
+import Chart from "../partial/chart/Chart";
 
 export default {
   name: "Site",
+  components: { Chart, AutocompleteWrapper },
+
+  created() {
+    this.fetchListParameters();
+  },
 
   computed: {
     ...mapGetters("detail", [
@@ -108,11 +152,20 @@ export default {
       "getSiteSamples",
       "filteredSiteHeaders",
       "getSiteDescriptionHeaders",
-      "getSiteSampleHeaders"
+      "getSiteSampleHeaders",
+      "getSampleAnalyticalData"
+    ]),
+
+    ...mapState("search", [
+      "listParameters",
+      "shownActiveListParameters",
+      "sampleHeaders"
     ])
   },
 
   methods: {
+    ...mapActions("search", ["fetchListParameters", "updateSampleHeaders"]),
+
     getColor(name) {
       let lighten = " lighten-4";
       switch (name) {

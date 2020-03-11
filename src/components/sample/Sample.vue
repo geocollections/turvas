@@ -141,67 +141,18 @@
         </template>
       </v-data-table>
     </v-card>
-
-    <!-- Analytical data -->
-    <v-card
-      flat
-      v-if="getSampleAnalyticalData && getSampleAnalyticalData.length > 0"
-      id="analytical-data"
-    >
-      <h2>
-        <v-card-title class="headline">Analüütilised andmed</v-card-title>
-      </h2>
-
-      <v-row no-gutters class="px-1">
-        <v-col cols="12" class="pa-1">
-          <AutocompleteWrapper
-            label="Veerud"
-            chips
-            clearable
-            multiple
-            :items="listParameters"
-            return-object
-            item-text="name"
-            item-value="string"
-            :value="shownActiveListParameters"
-            @input="updateSampleHeaders"
-            small-chips
-            deletable-chips
-          />
-        </v-col>
-      </v-row>
-
-      <Chart :fields="chartFields" :data="getSampleAnalyticalData" />
-
-      <v-data-table
-        class="ws-nowrap-table"
-        multi-sort
-        hide-default-footer
-        disable-pagination
-        disable-sort
-        :headers="sampleHeaders"
-        :items="getSampleAnalyticalData"
-      />
-    </v-card>
   </div>
 </template>
 
 <script>
 import { mapActions, mapGetters, mapState } from "vuex";
-import AutocompleteWrapper from "../partial/inputs/AutocompleteWrapper";
-import Chart from "../partial/chart/Chart";
 
 export default {
   name: "Sample",
-  components: {Chart, AutocompleteWrapper },
   data: () => ({
     taxaLab: "",
     taxaAgent: ""
   }),
-
-  created() {
-    this.fetchListParameters();
-  },
 
   computed: {
     ...mapGetters("detail", [
@@ -210,21 +161,8 @@ export default {
       "getSampleAnalyses",
       "getSampleAnalysesHeaders",
       "getSampleTaxa",
-      "getSampleTaxaHeaders",
-      "getSampleAnalyticalData"
-    ]),
-
-    ...mapState("search", [
-      "listParameters",
-      "shownActiveListParameters",
-      "sampleHeaders"
-    ]),
-
-    chartFields() {
-      if (this.shownActiveListParameters && this.shownActiveListParameters.length > 0) {
-        return this.shownActiveListParameters.map(field => field.name);
-      } else return [];
-    }
+      "getSampleTaxaHeaders"
+    ])
   },
 
   watch: {
@@ -243,8 +181,6 @@ export default {
   },
 
   methods: {
-    ...mapActions("search", ["fetchListParameters", "updateSampleHeaders"]),
-
     getAnalysis(group, labOrAgent) {
       let labs = [];
       let agents = [];

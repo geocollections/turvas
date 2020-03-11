@@ -22,10 +22,10 @@ const actions = {
         dispatch("fetchSiteDescription", payload.id);
         dispatch("fetchAreaSites", response.area);
         dispatch("fetchAreaBounds", response.area);
+        dispatch("fetchSampleAnalyticalData", payload.id);
       } else {
         dispatch("fetchSampleTaxa", payload.id);
         dispatch("fetchSampleAnalyses", payload.id);
-        dispatch("fetchSampleAnalyticalData", payload.id);
       }
     } else if (typeof response === "string") {
       dispatch("error/updateErrorState", true, { root: true });
@@ -125,7 +125,7 @@ const actions = {
 
   async fetchSampleAnalyticalData({ commit, dispatch }, id) {
     let response = await SearchService.doSolrSearch("peat_samples", {
-      sample_id: id
+      site_id: id
     });
 
     if (typeof response === "object") {
