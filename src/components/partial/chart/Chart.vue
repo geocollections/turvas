@@ -78,7 +78,8 @@ export default {
       "#880E4F",
       "#1A237E",
       "#006064"
-    ]
+    ],
+    defaultDepth: 0
   }),
 
   mounted() {
@@ -138,8 +139,8 @@ export default {
               if (data[label.value]) {
                 return {
                   x: data[label.value],
-                  y: -data.depth_interval,
-                  r: this.calculateRadius(data[label.value])
+                  y: -data.depth || this.defaultDepth
+                  // r: this.calculateRadius(data[label.value])
                 };
               }
             }),

@@ -44,7 +44,10 @@ const state = {
     }
   ],
   block: {
-    area: [true, true, true]
+    area: [true, true, true],
+    site: [true, true, true],
+    sample: [true, true, true],
+    search: [true]
   }
 };
 

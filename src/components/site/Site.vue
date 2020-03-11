@@ -124,7 +124,7 @@
 
       <Chart
         v-if="shownActiveListParameters"
-        chart-type="bubble"
+        chart-type="scatter"
         :chart-labels="shownActiveListParameters"
         :chart-data="getSampleAnalyticalData"
       />
