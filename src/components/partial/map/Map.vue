@@ -490,6 +490,10 @@ export default {
 
   mounted() {
     this.initMap();
+
+    if (this.$route.name === "FrontPage" || this.$route.name === "AreaTable") {
+      document.getElementById("map").classList.add("cursor-crosshair");
+    } else document.getElementById("map").classList.remove("cursor-crosshair");
   },
 
   beforeDestroy() {
@@ -619,8 +623,12 @@ export default {
           this.$route.name === "AreaTable" ||
           this.$route.name === "FrontPage"
         ) {
+          document.getElementById("map")?.classList.add?.("cursor-crosshair");
           this.resetAreaAndSiteFromGeoserver();
-        }
+        } else
+          document
+            .getElementById("map")
+            ?.classList.remove?.("cursor-crosshair");
       },
       immediate: true
     },
@@ -981,5 +989,13 @@ export default {
 .live-coordinates-front {
   bottom: 0;
   margin-bottom: 26px;
+}
+
+.cursor-crosshair {
+  cursor: crosshair;
+}
+
+.cursor-crosshair:active {
+  cursor: grabbing;
 }
 </style>
