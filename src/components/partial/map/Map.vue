@@ -755,6 +755,7 @@ export default {
 
     handleOverlayAdded(event) {
       this.appendToDefaultOverlayLayer(event.name);
+      this.updateAreaAndSiteLayerOrdering();
     },
 
     handleOverlayRemoved(event) {
