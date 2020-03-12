@@ -140,15 +140,23 @@
           </v-btn>
         </template>
       </v-data-table>
+
+      <v-row no-gutters>
+        <v-col>
+          <DoughnutChart :labels="chartLabels" :data="chartData" />
+        </v-col>
+      </v-row>
     </v-card>
   </div>
 </template>
 
 <script>
-import { mapActions, mapGetters, mapState } from "vuex";
+import { mapGetters } from "vuex";
+import DoughnutChart from "../partial/chart/DoughnutChart";
 
 export default {
   name: "Sample",
+  components: { DoughnutChart },
   data: () => ({
     taxaLab: "",
     taxaAgent: ""
@@ -162,7 +170,19 @@ export default {
       "getSampleAnalysesHeaders",
       "getSampleTaxa",
       "getSampleTaxaHeaders"
-    ])
+    ]),
+
+    chartLabels() {
+      return this.getSampleTaxa
+        .filter(data => data.value)
+        .map(data => {
+          return data.parameter_name;
+        });
+    },
+
+    chartData() {
+      return this.getSampleTaxa.map(data => data.value);
+    }
   },
 
   watch: {
