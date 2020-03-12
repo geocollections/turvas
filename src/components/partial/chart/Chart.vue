@@ -1,8 +1,19 @@
 <template>
   <div class="chart">
-    <!-- Todo: Add more charts -->
     <ScatterChart
       v-if="type === 'scatter'"
+      :id="`${type}-chart`"
+      :is-responsive="isResponsive"
+      :class="{ 'fixed-chart': !isResponsive }"
+    />
+    <BubbleChart
+      v-if="type === 'bubble'"
+      :id="`${type}-chart`"
+      :is-responsive="isResponsive"
+      :class="{ 'fixed-chart': !isResponsive }"
+    />
+    <DoughnutChart
+      v-if="type === 'doughnut'"
       :id="`${type}-chart`"
       :is-responsive="isResponsive"
       :class="{ 'fixed-chart': !isResponsive }"
@@ -12,9 +23,11 @@
 
 <script>
 import ScatterChart from "./ScatterChart";
+import DoughnutChart from "./DoughnutChart";
+import BubbleChart from "./BubbleChart";
 export default {
   name: "Chart",
-  components: { ScatterChart },
+  components: { BubbleChart, DoughnutChart, ScatterChart },
   props: {
     type: {
       type: String,
@@ -113,26 +126,26 @@ export default {
         hover: {
           animationDuration: 0
         },
-        responsiveAnimationDuration: 0,
-        scales: {
-          xAxes: [
-            {
-              type: "linear",
-              position: "top",
-              ticks: {
-                suggestedMin: 0
-              }
-            }
-          ],
-          yAxes: [
-            {
-              display: true,
-              ticks: {
-                suggestedMax: 0
-              }
-            }
-          ]
-        }
+        responsiveAnimationDuration: 0
+        // scales: {
+        //   xAxes: [
+        //     {
+        //       type: "linear",
+        //       position: "top",
+        //       ticks: {
+        //         suggestedMin: 0
+        //       }
+        //     }
+        //   ],
+        //   yAxes: [
+        //     {
+        //       display: true,
+        //       ticks: {
+        //         suggestedMax: 0
+        //       }
+        //     }
+        //   ]
+        // }
       };
     }
   },
@@ -198,13 +211,29 @@ export default {
     },
 
     buildData(chartType, field) {
-      if (chartType === "scatter" || chartType === "line") {
+      if (chartType === "scatter") {
         return this.data.map(data => {
           if (data[field]) {
             return {
               x: data[field],
               y: -(data.depth + data.depth_interval) / 2 || this.defaultDepth
             };
+          }
+        });
+      } else if (chartType === "bubble") {
+        return this.data.map(data => {
+          if (data[field]) {
+            return {
+              x: data[field],
+              y: -(data.depth + data.depth_interval) / 2 || this.defaultDepth,
+              r: 5
+            };
+          }
+        });
+      } else if (chartType === "doughnut") {
+        return this.data.map(data => {
+          if (data[field]) {
+            return data[field];
           }
         });
       } else return [];
