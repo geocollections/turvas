@@ -3,94 +3,102 @@
     <!-- Main data -->
     <v-card flat v-if="getSite" id="general">
       <h1>
-        <v-card-title class="display-1">
-          Proovipunkt: {{ getSite.name }}
-        </v-card-title>
+        <CardTitleWrapper
+          :text="`Proovipunkt: ${getSite.name}`"
+          :index="0"
+          input-class="display-1"
+        />
       </h1>
 
-      <v-data-table
-        :mobile-breakpoint="9000"
-        disable-sort
-        disable-filtering
-        disable-pagination
-        hide-default-header
-        hide-default-footer
-        :headers="filteredSiteHeaders"
-        :items="[getSite]"
-      >
-        <template v-slot:item.area="{ item }">
-          <router-link
-            :to="`/area/${item.area}`"
-            title="Ala detailvaade"
-            class="table-link"
-          >
-            {{ item.area__name }}
-          </router-link>
-        </template>
-      </v-data-table>
+      <div v-show="block.site[0]">
+        <v-data-table
+          :mobile-breakpoint="9000"
+          disable-sort
+          disable-filtering
+          disable-pagination
+          hide-default-header
+          hide-default-footer
+          :headers="filteredSiteHeaders"
+          :items="[getSite]"
+        >
+          <template v-slot:item.area="{ item }">
+            <router-link
+              :to="`/area/${item.area}`"
+              title="Ala detailvaade"
+              class="table-link"
+            >
+              {{ item.area__name }}
+            </router-link>
+          </template>
+        </v-data-table>
+      </div>
     </v-card>
 
     <!-- Description -->
     <v-card flat v-if="getSiteDescription" id="description">
       <h2>
-        <v-card-title class="headline">Kirjeldus</v-card-title>
+        <CardTitleWrapper text="Kirjeldus" :index="1" input-class="headline" />
       </h2>
 
-      <v-data-table
-        class="ws-nowrap-table"
-        multi-sort
-        disable-pagination
-        hide-default-footer
-        :headers="getSiteDescriptionHeaders"
-        :items="getSiteDescription"
-      />
+      <div v-show="block.site[1]">
+        <v-data-table
+          class="ws-nowrap-table"
+          multi-sort
+          disable-pagination
+          hide-default-footer
+          :headers="getSiteDescriptionHeaders"
+          :items="getSiteDescription"
+        />
+      </div>
     </v-card>
 
     <!-- Related samples -->
     <v-card flat v-if="getSiteSamples" id="samples">
       <h2>
-        <v-card-title class="headline">Proovid</v-card-title>
+        <CardTitleWrapper text="Proovid" :index="2" input-class="headline" />
       </h2>
 
-      <v-data-table
-        class="ws-nowrap-table"
-        multi-sort
-        disable-pagination
-        hide-default-footer
-        :headers="getSiteSampleHeaders"
-        :items="getSiteSamples"
-      >
-        <template v-slot:item.id="{ item }">
-          <router-link
-            class="table-link"
-            title="Proovi detailvaade"
-            :to="`/sample/${item.id}`"
-          >
-            {{ item.id }}
-          </router-link>
-        </template>
+      <div v-show="block.site[2]">
+        <v-data-table
+          class="ws-nowrap-table"
+          multi-sort
+          disable-pagination
+          hide-default-footer
+          :headers="getSiteSampleHeaders"
+          :items="getSiteSamples"
+        >
+          <template v-slot:item.id="{ item }">
+            <router-link
+              class="table-link"
+              title="Proovi detailvaade"
+              :to="`/sample/${item.id}`"
+            >
+              {{ item.id }}
+            </router-link>
+          </template>
 
-        <template v-slot:item.number_additional="{ item }">
-          <router-link
-            :to="`/sample/${item.id}`"
-            title="Proovi detailvaade"
-            class="table-link"
-          >
-            {{ item.number_additional }}
-          </router-link>
-        </template>
+          <template v-slot:item.number_additional="{ item }">
+            <router-link
+              :to="`/sample/${item.id}`"
+              title="Proovi detailvaade"
+              class="table-link"
+            >
+              {{ item.number_additional }}
+            </router-link>
+          </template>
 
-        <template v-slot:item.classification_rock__name="{ item }">
-          <v-card
-            flat
-            style="margin: 2px 0;"
-            class="px-1"
-            :class="getColor(item.classification_rock__name)"
-          >
-            {{ item.classification_rock__name }}
-          </v-card>
-        </template>
-      </v-data-table>
+          <template v-slot:item.classification_rock__name="{ item }">
+            <v-card
+              flat
+              style="margin: 2px 0;"
+              class="px-1"
+              :class="getColor(item.classification_rock__name)"
+            >
+              {{ item.classification_rock__name }}
+            </v-card>
+          </template>
+        </v-data-table>
+      </div>
     </v-card>
 
     <!-- Analytical data -->
@@ -100,46 +108,52 @@
       id="analytical-data"
     >
       <h2>
-        <v-card-title class="headline">Analüütilised andmed</v-card-title>
+        <CardTitleWrapper
+          text="Analüütilised andmed"
+          :index="3"
+          input-class="headline"
+        />
       </h2>
 
-      <v-row no-gutters class="px-1">
-        <v-col cols="12" class="pa-1">
-          <AutocompleteWrapper
-            label="Veerud"
-            chips
-            clearable
-            multiple
-            :items="listParameters"
-            return-object
-            item-text="name"
-            item-value="string"
-            :value="shownActiveListParameters"
-            @input="updateSampleHeaders"
-            small-chips
-            deletable-chips
-          />
-        </v-col>
-      </v-row>
+      <div v-show="block.site[3]">
+        <v-row no-gutters class="px-1">
+          <v-col cols="12" class="pa-1">
+            <AutocompleteWrapper
+              label="Veerud"
+              chips
+              clearable
+              multiple
+              :items="listParameters"
+              return-object
+              item-text="name"
+              item-value="string"
+              :value="shownActiveListParameters"
+              @input="updateSampleHeaders"
+              small-chips
+              deletable-chips
+            />
+          </v-col>
+        </v-row>
 
-      <v-card flat class="d-flex flex-row flex-wrap justify-space-around">
-        <v-card
-          flat
-          v-for="(parameter, index) in shownActiveListParameters"
-          :key="parameter.value"
-        >
-          <Chart
-            v-if="shownActiveListParameters"
-            type="bubble"
-            :labels="shownActiveListParameters"
-            :data="getSampleAnalyticalData"
-            :is-multi="false"
-            :is-responsive="false"
-            :parameter="parameter"
-            :index="index"
-          />
+        <v-card flat class="d-flex flex-row flex-wrap justify-space-around">
+          <v-card
+            flat
+            v-for="(parameter, index) in shownActiveListParameters"
+            :key="parameter.value"
+          >
+            <Chart
+              v-if="shownActiveListParameters"
+              type="bubble"
+              :labels="shownActiveListParameters"
+              :data="getSampleAnalyticalData"
+              :is-multi="false"
+              :is-responsive="false"
+              :parameter="parameter"
+              :index="index"
+            />
+          </v-card>
         </v-card>
-      </v-card>
+      </div>
     </v-card>
   </div>
 </template>
@@ -148,10 +162,11 @@
 import { mapActions, mapGetters, mapState } from "vuex";
 import AutocompleteWrapper from "../partial/inputs/AutocompleteWrapper";
 import Chart from "../partial/chart/Chart";
+import CardTitleWrapper from "../partial/CardTitleWrapper";
 
 export default {
   name: "Site",
-  components: { Chart, AutocompleteWrapper },
+  components: { CardTitleWrapper, Chart, AutocompleteWrapper },
 
   created() {
     this.fetchListParameters();
@@ -172,7 +187,9 @@ export default {
       "listParameters",
       "shownActiveListParameters",
       "sampleHeaders"
-    ])
+    ]),
+
+    ...mapState("settings", ["block"])
   },
 
   methods: {

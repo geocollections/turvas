@@ -3,123 +3,136 @@
     <!-- Main data -->
     <v-card flat v-if="getArea" id="general">
       <h1>
-        <v-card-title class="display-1">
-          {{ getArea.name }} {{ getArea.area_type__name }}
-        </v-card-title>
+        <CardTitleWrapper
+          :text="`${getArea.name} ${getArea.area_type__name}`"
+          :index="0"
+          input-class="display-1"
+        />
       </h1>
 
-      <v-data-table
-        :mobile-breakpoint="9000"
-        disable-sort
-        disable-filtering
-        disable-pagination
-        hide-default-header
-        hide-default-footer
-        :headers="filteredAreaHeaders"
-        :items="[getArea]"
-      >
-        <template v-slot:item.maardla="{ item }">
-          <a
-            class="table-link"
-            :href="getMaardlaUrl(item.maardla)"
-            :title="getMaardlaUrl(item.maardla)"
-            target="MaardlaWindow"
-          >
-            Maardla info Maa-ameti geoportaalis ({{ item.maardla }})
-          </a>
-        </template>
-
-        <template v-slot:item.eelis>
-          <span v-for="(entity, index) in eelisArray" :key="index">
+      <div v-show="block.area[0]">
+        <v-data-table
+          :mobile-breakpoint="9000"
+          disable-sort
+          disable-filtering
+          disable-pagination
+          hide-default-header
+          hide-default-footer
+          :headers="filteredAreaHeaders"
+          :items="[getArea]"
+        >
+          <template v-slot:item.maardla="{ item }">
             <a
               class="table-link"
-              :href="getEelisUrl(entity)"
-              :title="getEelisUrl(entity)"
-              target="EelisWindow"
+              :href="getMaardlaUrl(item.maardla)"
+              :title="getMaardlaUrl(item.maardla)"
+              target="MaardlaWindow"
             >
-              {{ entity }}
+              Maardla info Maa-ameti geoportaalis ({{ item.maardla }})
             </a>
-            <span v-if="index !== eelisArray.length - 1">|</span>
-          </span>
-        </template>
+          </template>
 
-        <template v-slot:item.egf>
-          <span v-for="(entity, index) in egfArray" :key="index">
-            <a
-              class="table-link"
-              :href="getEgfUrl(entity)"
-              :title="getEgfUrl(entity)"
-              target="EgfWindow"
-            >
-              {{ entity }}
-            </a>
-            <span v-if="index !== egfArray.length - 1">|</span>
-          </span>
-        </template>
+          <template v-slot:item.eelis>
+            <span v-for="(entity, index) in eelisArray" :key="index">
+              <a
+                class="table-link"
+                :href="getEelisUrl(entity)"
+                :title="getEelisUrl(entity)"
+                target="EelisWindow"
+              >
+                {{ entity }}
+              </a>
+              <span v-if="index !== eelisArray.length - 1">|</span>
+            </span>
+          </template>
 
-        <template v-slot:item.description="{ item }">
-          <div v-html="item.description" />
-        </template>
-      </v-data-table>
+          <template v-slot:item.egf>
+            <span v-for="(entity, index) in egfArray" :key="index">
+              <a
+                class="table-link"
+                :href="getEgfUrl(entity)"
+                :title="getEgfUrl(entity)"
+                target="EgfWindow"
+              >
+                {{ entity }}
+              </a>
+              <span v-if="index !== egfArray.length - 1">|</span>
+            </span>
+          </template>
+
+          <template v-slot:item.description="{ item }">
+            <div v-html="item.description" />
+          </template>
+        </v-data-table>
+      </div>
     </v-card>
 
     <!-- Related site -->
     <v-card flat v-if="getAreaSites" id="sites">
       <h2>
-        <v-card-title class="headline">Proovipunktid</v-card-title>
+        <CardTitleWrapper
+          text="Proovipunktid"
+          :index="1"
+          input-class="headline"
+        />
       </h2>
 
-      <v-data-table
-        class="ws-nowrap-table"
-        multi-sort
-        disable-pagination
-        hide-default-footer
-        :headers="getAreaSiteHeaders"
-        :items="getAreaSites"
-      >
-        <template v-slot:item.id="{ item }">
-          <router-link
-            class="table-link"
-            title="Proovipunkti detailvaade"
-            :to="`/site/${item.id}`"
-          >
-            {{ item.id }}
-          </router-link>
-        </template>
+      <div v-show="block.area[1]">
+        <v-data-table
+          class="ws-nowrap-table"
+          multi-sort
+          disable-pagination
+          hide-default-footer
+          :headers="getAreaSiteHeaders"
+          :items="getAreaSites"
+        >
+          <template v-slot:item.id="{ item }">
+            <router-link
+              class="table-link"
+              title="Proovipunkti detailvaade"
+              :to="`/site/${item.id}`"
+            >
+              {{ item.id }}
+            </router-link>
+          </template>
 
-        <template v-slot:item.site="{ item }">
-          <router-link
-            class="table-link"
-            title="Proovipunkti detailvaade"
-            :to="`/site/${item.id}`"
-          >
-            {{ item.name }}
-          </router-link>
-        </template>
-      </v-data-table>
+          <template v-slot:item.site="{ item }">
+            <router-link
+              class="table-link"
+              title="Proovipunkti detailvaade"
+              :to="`/site/${item.id}`"
+            >
+              {{ item.name }}
+            </router-link>
+          </template>
+        </v-data-table>
+      </div>
     </v-card>
 
     <!-- Related references -->
     <v-card flat v-if="getAreaReferences" id="references">
       <h2>
-        <v-card-title class="headline">Kirjandus</v-card-title>
+        <CardTitleWrapper text="Kirjandus" :index="2" input-class="headline" />
       </h2>
 
-      <AreaReference :data="getAreaReferences" />
+      <div v-show="block.area[2]">
+        <AreaReference :data="getAreaReferences" />
+      </div>
     </v-card>
   </div>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapState } from "vuex";
 import AreaReference from "./AreaReference";
-import sectionsMixin from "../../mixins/sectionsMixin";
+import CardTitleWrapper from "../partial/CardTitleWrapper";
 
 export default {
   name: "Area",
-  components: { AreaReference },
-  mixins: [sectionsMixin],
+  components: { CardTitleWrapper, AreaReference },
   computed: {
+    ...mapState("settings", ["block"]),
+
     ...mapGetters("detail", [
       "getArea",
       "getAreaSites",

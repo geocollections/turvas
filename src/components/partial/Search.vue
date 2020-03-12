@@ -19,6 +19,7 @@
 
 <script>
 import ExportButtons from "./export/ExportButtons";
+import { mapState } from "vuex";
 export default {
   name: "Search",
   components: { ExportButtons },

@@ -15,3 +15,8 @@
     color: black !important;
     background: yellow !important;
 }
+
+.card-title--clickable:hover {
+    opacity: 0.7;
+    cursor: pointer;
+}
