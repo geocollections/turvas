@@ -1,31 +1,31 @@
 <template>
   <div class="chart">
-    <canvas id="turvas-chart"></canvas>
+    <canvas ref="canvas" id="scatter-chart"></canvas>
   </div>
 </template>
 
 <script>
-import Chart from "chart.js";
+import { Scatter } from "vue-chartjs";
 
 export default {
   name: "Chart",
+  extends: Scatter,
   props: {
-    chartType: {
+    type: {
       type: String,
       default: "scatter"
     },
-    chartLabels: {
+    labels: {
       type: Array,
       required: true
     },
-    chartData: {
+    data: {
       type: Array,
       required: true
     }
   },
 
   data: () => ({
-    chart: null,
     chartOptions: {
       responsive: true,
       layout: {
@@ -34,6 +34,13 @@ export default {
           bottom: 30
         }
       },
+      animation: {
+        duration: 0
+      },
+      hover: {
+        animationDuration: 0
+      },
+      responsiveAnimationDuration: 0,
       scales: {
         xAxes: [
           {
@@ -82,65 +89,59 @@ export default {
     defaultDepth: 0
   }),
 
+  computed: {
+    chartDataset() {
+      return this.getChartDataset(this.labels);
+    },
+
+    chartLabels() {
+      return this.getChartLabels(this.labels);
+    }
+  },
+
   mounted() {
-    this.createChart();
+    this.renderMyChart();
   },
 
   watch: {
-    "$route.params.id"() {
-      this.chart.destroy();
-      this.createChart();
+    data() {
+      this.$data._chart.destroy();
+      this.renderMyChart();
     },
 
-    chartLabels: {
-      handler(newVal) {
-        const labelsAndDatasets = this.updateChart(newVal);
-        this.chart.data.labels = labelsAndDatasets[0];
-        this.chart.data.datasets = labelsAndDatasets[1];
-        this.chart.update();
-      },
-      deep: true
+    labels() {
+      this.$data._chart.destroy();
+      this.renderMyChart();
     }
   },
 
   methods: {
-    createChart() {
-      const labelsAndDatasets = this.updateChart(this.chartLabels);
-
-      const ctx = document.getElementById("turvas-chart");
-      this.chart = new Chart(ctx, {
-        type: this.chartType,
-        labels: labelsAndDatasets[0],
-        data: {
-          datasets: labelsAndDatasets[1]
+    renderMyChart() {
+      this.renderChart(
+        {
+          labels: this.chartLabels,
+          datasets: this.chartDataset
         },
-        options: this.chartOptions
-      });
+        this.chartOptions
+      );
     },
 
-    calculateRadius(value) {
-      const max = 15;
-      const min = 3;
-      if (value >= 100) return max;
-      else {
-        let newValue = (value * 15) / 100;
-        return newValue < min ? min : newValue;
-      }
+    getChartLabels(labels) {
+      return labels.map(label => label.name);
     },
 
-    updateChart(chartLabels) {
-      const labels = chartLabels.map(label => label.name);
-
-      const datasets = chartLabels.map((label, index) => {
+    getChartDataset(labels) {
+      return labels.map((label, index) => {
         if (!label.isText) {
           return {
             label: label.name,
-            data: this.chartData.map(data => {
+            data: this.data.map(data => {
               if (data[label.value]) {
                 return {
                   x: data[label.value],
-                  y: -data.depth || this.defaultDepth
-                  // r: this.calculateRadius(data[label.value])
+                  y:
+                    -((data.depth + data.depth_interval) / 2) ||
+                    this.defaultDepth
                 };
               }
             }),
@@ -157,8 +158,6 @@ export default {
             borderWidth: 2
           };
       });
-
-      return [labels, datasets];
     }
   }
 };

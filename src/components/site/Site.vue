@@ -124,9 +124,9 @@
 
       <Chart
         v-if="shownActiveListParameters"
-        chart-type="scatter"
-        :chart-labels="shownActiveListParameters"
-        :chart-data="getSampleAnalyticalData"
+        type="scatter"
+        :labels="shownActiveListParameters"
+        :data="getSampleAnalyticalData"
       />
     </v-card>
   </div>
