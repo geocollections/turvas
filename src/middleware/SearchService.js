@@ -82,8 +82,6 @@ class SearchService {
 
       if (fields.length > 0) url += "&" + fields;
 
-      const test = await window.fetch(url);
-
       const res = await axios.get(url);
       if (res.status === 200) return res.data;
       else return buildErrorMessage(table);

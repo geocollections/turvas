@@ -1,15 +1,20 @@
 <template>
   <div class="chart">
-    <canvas ref="canvas" id="scatter-chart"></canvas>
+    <!-- Todo: Add more charts -->
+    <ScatterChart
+      v-if="type === 'scatter'"
+      :id="`${type}-chart`"
+      :is-responsive="isResponsive"
+      :class="{ 'fixed-chart': !isResponsive }"
+    />
   </div>
 </template>
 
 <script>
-import { Scatter } from "vue-chartjs";
-
+import ScatterChart from "./ScatterChart";
 export default {
   name: "Chart",
-  extends: Scatter,
+  components: { ScatterChart },
   props: {
     type: {
       type: String,
@@ -22,34 +27,26 @@ export default {
     data: {
       type: Array,
       required: true
+    },
+    isResponsive: {
+      type: Boolean,
+      default: true
+    },
+    isMulti: {
+      type: Boolean,
+      default: true
+    },
+    parameter: {
+      type: Object,
+      required: false
+    },
+    index: {
+      type: Number,
+      required: false
     }
   },
 
   data: () => ({
-    chartOptions: {
-      responsive: true,
-      layout: {
-        padding: {
-          top: 10,
-          bottom: 30
-        }
-      },
-      animation: {
-        duration: 0
-      },
-      hover: {
-        animationDuration: 0
-      },
-      responsiveAnimationDuration: 0,
-      scales: {
-        xAxes: [
-          {
-            type: "linear",
-            position: "top"
-          }
-        ]
-      }
-    },
     listOfColors: [
       "#F44336",
       "#673AB7",
@@ -91,11 +88,52 @@ export default {
 
   computed: {
     chartDataset() {
-      return this.getChartDataset(this.labels);
+      return this.getChartDataset(
+        this.isMulti ? this.labels : [this.parameter]
+      );
     },
 
     chartLabels() {
-      return this.getChartLabels(this.labels);
+      return this.getChartLabels(this.isMulti ? this.labels : [this.parameter]);
+    },
+
+    chartOptions() {
+      return {
+        responsive: this.isResponsive,
+        maintainAspectRatio: this.isResponsive,
+        layout: {
+          padding: {
+            top: 10,
+            bottom: 30
+          }
+        },
+        animation: {
+          duration: 0
+        },
+        hover: {
+          animationDuration: 0
+        },
+        responsiveAnimationDuration: 0,
+        scales: {
+          xAxes: [
+            {
+              type: "linear",
+              position: "top",
+              ticks: {
+                suggestedMin: 0
+              }
+            }
+          ],
+          yAxes: [
+            {
+              display: true,
+              ticks: {
+                suggestedMax: 0
+              }
+            }
+          ]
+        }
+      };
     }
   },
 
@@ -105,19 +143,19 @@ export default {
 
   watch: {
     data() {
-      this.$data._chart.destroy();
+      this.$children[0].$data._chart.destroy();
       this.renderMyChart();
     },
 
     labels() {
-      this.$data._chart.destroy();
+      this.$children[0].$data._chart.destroy();
       this.renderMyChart();
     }
   },
 
   methods: {
     renderMyChart() {
-      this.renderChart(
+      this.$children[0].renderChart(
         {
           labels: this.chartLabels,
           datasets: this.chartDataset
@@ -135,32 +173,48 @@ export default {
         if (!label.isText) {
           return {
             label: label.name,
-            data: this.data.map(data => {
-              if (data[label.value]) {
-                return {
-                  x: data[label.value],
-                  y:
-                    -((data.depth + data.depth_interval) / 2) ||
-                    this.defaultDepth
-                };
-              }
-            }),
-            backgroundColor: this.listOfColorsLighten[index],
-            borderColor: this.listOfColorsDarken[index],
+            data: this.buildData(this.type, label.value),
+            backgroundColor: this.listOfColorsLighten[
+              this.isMulti ? index : this.index
+            ],
+            borderColor: this.listOfColorsDarken[
+              this.isMulti ? index : this.index
+            ],
             borderWidth: 2
           };
         } else
           return {
             label: label.name,
             data: [],
-            backgroundColor: this.listOfColorsLighten[index],
-            borderColor: this.listOfColorsDarken[index],
+            backgroundColor: this.listOfColorsLighten[
+              this.isMulti ? index : this.index
+            ],
+            borderColor: this.listOfColorsDarken[
+              this.isMulti ? index : this.index
+            ],
             borderWidth: 2
           };
       });
+    },
+
+    buildData(chartType, field) {
+      if (chartType === "scatter" || chartType === "line") {
+        return this.data.map(data => {
+          if (data[field]) {
+            return {
+              x: data[field],
+              y: -(data.depth + data.depth_interval) / 2 || this.defaultDepth
+            };
+          }
+        });
+      } else return [];
     }
   }
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.fixed-chart {
+  width: 300px;
+}
+</style>

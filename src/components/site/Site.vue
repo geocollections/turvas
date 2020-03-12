@@ -122,12 +122,24 @@
         </v-col>
       </v-row>
 
-      <Chart
-        v-if="shownActiveListParameters"
-        type="scatter"
-        :labels="shownActiveListParameters"
-        :data="getSampleAnalyticalData"
-      />
+      <v-card flat class="d-flex flex-row flex-wrap justify-space-around">
+        <v-card
+          flat
+          v-for="(parameter, index) in shownActiveListParameters"
+          :key="parameter.value"
+        >
+          <Chart
+            v-if="shownActiveListParameters"
+            type="scatter"
+            :labels="shownActiveListParameters"
+            :data="getSampleAnalyticalData"
+            :is-multi="false"
+            :is-responsive="false"
+            :parameter="parameter"
+            :index="index"
+          />
+        </v-card>
+      </v-card>
     </v-card>
   </div>
 </template>
