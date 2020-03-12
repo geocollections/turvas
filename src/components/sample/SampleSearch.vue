@@ -203,7 +203,7 @@ import AutocompleteWrapper from "../partial/inputs/AutocompleteWrapper";
 import CardTitleWrapper from "../partial/CardTitleWrapper";
 export default {
   name: "SampleSearch",
-  components: {CardTitleWrapper, AutocompleteWrapper, TextFieldWrapper },
+  components: { CardTitleWrapper, AutocompleteWrapper, TextFieldWrapper },
   computed: {
     ...mapState("search", [
       "sampleSearchParams",
