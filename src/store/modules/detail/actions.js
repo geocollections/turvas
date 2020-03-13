@@ -86,7 +86,7 @@ const actions = {
   },
 
   async fetchSiteSamples({ commit, dispatch }, id) {
-    let response = await SearchService.doRegularSearch("sample", { site: id });
+    let response = await SearchService.doRegularSearch("sample", { site: id, sortBy: ["depth"], sortDesc: [false] });
     if (typeof response === "object") {
       commit("SET_SITE_SAMPLES", response.results);
     } else if (typeof response === "string") {
@@ -125,7 +125,9 @@ const actions = {
 
   async fetchSampleAnalyticalData({ commit, dispatch }, id) {
     let response = await SearchService.doSolrSearch("peat_samples", {
-      site_id: id
+      site_id: id,
+      sortBy: ["depth"],
+      sortDesc: [false]
     });
 
     if (typeof response === "object") {

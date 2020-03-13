@@ -211,25 +211,23 @@ export default {
     },
 
     buildData(chartType, field) {
+      let filteredData = this.data.filter(data => data[field]);
+
       if (chartType === "scatter") {
-        return this.data
-          .filter(data => data[field])
-          .map(data => {
-            return {
-              x: data[field],
-              y: -(data.depth + data.depth_interval) / 2 || this.defaultDepth
-            };
-          });
+        return filteredData.map(data => {
+          return {
+            x: data[field],
+            y: -(data.depth + data.depth_interval) / 2 || this.defaultDepth
+          };
+        });
       } else if (chartType === "bubble") {
-        return this.data
-          .filter(data => data[field])
-          .map(data => {
-            return {
-              x: data[field],
-              y: -(data.depth + data.depth_interval) / 2 || this.defaultDepth,
-              r: 5
-            };
-          });
+        return filteredData.map(data => {
+          return {
+            x: data[field],
+            y: -(data.depth + data.depth_interval) / 2 || this.defaultDepth,
+            r: 5
+          };
+        });
       } else return [];
     }
   }
