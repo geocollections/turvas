@@ -86,7 +86,11 @@ const actions = {
   },
 
   async fetchSiteSamples({ commit, dispatch }, id) {
-    let response = await SearchService.doRegularSearch("sample", { site: id, sortBy: ["depth"], sortDesc: [false] });
+    let response = await SearchService.doRegularSearch("sample", {
+      site: id,
+      sortBy: ["depth"],
+      sortDesc: [false]
+    });
     if (typeof response === "object") {
       commit("SET_SITE_SAMPLES", response.results);
     } else if (typeof response === "string") {

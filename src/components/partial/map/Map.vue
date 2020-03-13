@@ -878,7 +878,7 @@ export default {
                   this.$route.params.id === site.id
                     ? "#E91E63"
                     : "#FBC02D",
-                fillOpacity: 0.5
+                fillOpacity: 0.8
               }
             );
 
