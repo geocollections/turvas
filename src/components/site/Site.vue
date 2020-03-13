@@ -143,7 +143,7 @@
           >
             <Chart
               v-if="shownActiveListParameters"
-              type="bubble"
+              type="scatter"
               :labels="shownActiveListParameters"
               :data="getSampleAnalyticalData"
               :is-multi="false"

@@ -126,7 +126,7 @@ export default {
               type: "linear",
               position: "top",
               ticks: {
-                suggestedMin: 0
+                // suggestedMin: 0
               }
             }
           ],
@@ -161,6 +161,7 @@ export default {
 
   methods: {
     renderMyChart() {
+      console.log(this.chartDataset);
       this.$children[0].renderChart(
         {
           labels: this.chartLabels,
@@ -186,7 +187,10 @@ export default {
             borderColor: this.listOfColorsDarken[
               this.isMulti ? index : this.index
             ],
-            borderWidth: 2
+            borderWidth: 2,
+            showLine: true,
+            fill: false,
+            lineTension: 0
           };
         } else
           return {
@@ -198,31 +202,34 @@ export default {
             borderColor: this.listOfColorsDarken[
               this.isMulti ? index : this.index
             ],
-            borderWidth: 2
+            borderWidth: 2,
+            showLine: true,
+            fill: false,
+            lineTension: 0
           };
       });
     },
 
     buildData(chartType, field) {
       if (chartType === "scatter") {
-        return this.data.map(data => {
-          if (data[field]) {
+        return this.data
+          .filter(data => data[field])
+          .map(data => {
             return {
               x: data[field],
               y: -(data.depth + data.depth_interval) / 2 || this.defaultDepth
             };
-          }
-        });
+          });
       } else if (chartType === "bubble") {
-        return this.data.map(data => {
-          if (data[field]) {
+        return this.data
+          .filter(data => data[field])
+          .map(data => {
             return {
               x: data[field],
               y: -(data.depth + data.depth_interval) / 2 || this.defaultDepth,
               r: 5
             };
-          }
-        });
+          });
       } else return [];
     }
   }
