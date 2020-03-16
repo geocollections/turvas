@@ -12,7 +12,10 @@ const routes = [
   {
     path: "/about",
     name: "About",
-    component: () => import("../views/About.vue")
+    component: () => import("../views/About.vue"),
+    meta: {
+      title: "Turbageoloogia andmebaas: Projekti info"
+    }
   },
   {
     path: "/",
@@ -32,7 +35,8 @@ const routes = [
             name: "AreaTable",
             component: () => import("../components/area/AreaTable.vue"),
             meta: {
-              object: "area"
+              object: "area",
+              title: "Turbageoloogia andmebaas: Turbaalad"
             }
           },
           {
@@ -40,7 +44,8 @@ const routes = [
             name: "AreaDetail",
             component: () => import("../components/area/Area.vue"),
             meta: {
-              object: "area"
+              object: "area",
+              title: "Turbageoloogia andmebaas: Turbaala "
             }
           }
         ]
@@ -54,7 +59,8 @@ const routes = [
             name: "SiteTable",
             component: () => import("../components/site/SiteTable.vue"),
             meta: {
-              object: "site"
+              object: "site",
+              title: "Turbageoloogia andmebaas: Proovipunktid"
             }
           },
           {
@@ -62,7 +68,8 @@ const routes = [
             name: "SiteDetail",
             component: () => import("../components/site/Site.vue"),
             meta: {
-              object: "site"
+              object: "site",
+              title: "Turbageoloogia andmebaas: Proovipunkt "
             }
           }
         ]
@@ -76,7 +83,8 @@ const routes = [
             name: "SampleTable",
             component: () => import("../components/sample/SampleTable.vue"),
             meta: {
-              object: "sample"
+              object: "sample",
+              title: "Turbageoloogia andmebaas: Proovid"
             }
           },
           {
@@ -84,7 +92,8 @@ const routes = [
             name: "SampleDetail",
             component: () => import("../components/sample/Sample.vue"),
             meta: {
-              object: "sample"
+              object: "sample",
+              title: "Turbageoloogia andmebaas: Proov "
             }
           }
         ]

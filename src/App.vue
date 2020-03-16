@@ -36,6 +36,19 @@ export default {
     ...mapGetters("error", ["getErrorState", "getErrorMessage"]),
     ...mapGetters("success", ["getSuccessState", "getSuccessMessage"])
   },
+  watch: {
+    $route: {
+      handler: to => {
+        if (to.name.includes("Detail")) {
+          document.title =
+            to.meta.title + to.params.id || "Turbageoloogia andmebaas";
+        } else {
+          document.title = to.meta.title || "Turbageoloogia andmebaas";
+        }
+      },
+      immediate: true
+    }
+  },
   methods: {
     ...mapActions("error", ["updateErrorState"]),
     ...mapActions("success", ["updateSuccessState"])
