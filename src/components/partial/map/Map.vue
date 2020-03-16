@@ -21,11 +21,11 @@
     <div class="map-legend">
       <div class="map-legend-row d-flex flex-row">
         <span style="background-color: #70b160;"></span>
-        <span>Ala</span>
+        <span>Turbaala</span>
       </div>
       <div class="map-legend-row d-flex flex-row">
         <span style="background-color: #ec1e17;"></span>
-        <span>Punkt</span>
+        <span>Proovipunkt</span>
       </div>
     </div>
   </div>
@@ -572,7 +572,7 @@ export default {
     // Todo: coordinates need formatting
     getAreaGeometry(newVal) {
       if (newVal && newVal.coordinates && newVal.coordinates.length > 0) {
-        // console.log(newVal.coordinates);
+        console.log(newVal.coordinates);
         // let polygon = L.polygon(newVal.coordinates[0], { color: "#FFF" }).addTo(
         //   this.map
         // );
