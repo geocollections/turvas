@@ -103,8 +103,7 @@ const routes = [
 ];
 
 const router = new VueRouter({
-  // Todo: Enable history if app is ready
-  // mode: "history",
+  mode: "history",
   base: process.env.BASE_URL,
   routes
 });
