@@ -17,6 +17,17 @@
     >
       Lat: {{ latlngLive.lat.toFixed(6) }} Lon: {{ latlngLive.lng.toFixed(6) }}
     </div>
+
+    <div class="map-legend">
+      <div class="map-legend-row d-flex flex-row">
+        <span style="background-color: #70b160;"></span>
+        <span>Ala</span>
+      </div>
+      <div class="map-legend-row d-flex flex-row">
+        <span style="background-color: #ec1e17;"></span>
+        <span>Punkt</span>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -990,6 +1001,26 @@ export default {
 .live-coordinates-front {
   bottom: 0;
   margin-bottom: 26px;
+}
+
+.map-legend {
+  margin-left: 10px;
+  position: absolute;
+  z-index: 500;
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 4px 6px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
+  left: 0;
+  bottom: 0;
+  margin-bottom: 32px;
+}
+
+.map-legend-row > span:first-child {
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  margin-right: 5px;
 }
 
 .cursor-crosshair {
