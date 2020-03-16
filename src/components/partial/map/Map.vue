@@ -572,7 +572,7 @@ export default {
     // Todo: coordinates need formatting
     getAreaGeometry(newVal) {
       if (newVal && newVal.coordinates && newVal.coordinates.length > 0) {
-        console.log(newVal.coordinates);
+        // console.log(newVal.coordinates);
         // let polygon = L.polygon(newVal.coordinates[0], { color: "#FFF" }).addTo(
         //   this.map
         // );

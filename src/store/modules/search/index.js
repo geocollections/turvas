@@ -15,7 +15,7 @@ const state = {
   areaResultsCount: 0,
   areaSearchParams: {
     page: 1,
-    paginateBy: 25,
+    paginateBy: 100,
     sortBy: ["name"],
     sortDesc: [false],
     area_type: "turbaala"
@@ -33,7 +33,7 @@ const state = {
   siteResultsCount: 0,
   siteSearchParams: {
     page: 1,
-    paginateBy: 25,
+    paginateBy: 100,
     sortBy: ["name"],
     sortDesc: [false],
     project_id: 20
@@ -51,7 +51,7 @@ const state = {
   sampleResultsCount: 0,
   sampleSearchParams: {
     page: 1,
-    paginateBy: 25,
+    paginateBy: 100,
     sortBy: ["id"],
     sortDesc: [false],
     area: "",

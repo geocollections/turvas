@@ -206,7 +206,7 @@ const actions = {
         searchParams.paginateBy =
           searchParams.paginateBy <= 1000 && searchParams.paginateBy >= 10
             ? searchParams.paginateBy
-            : 25;
+            : 100;
       } else if (
         typeof searchParams.paginateBy === "string" &&
         parseInt(searchParams.paginateBy) !== isNaN(searchParams.paginateBy)
@@ -215,9 +215,9 @@ const actions = {
           parseInt(searchParams.paginateBy) <= 1000 &&
           parseInt(searchParams.paginateBy) >= 10
             ? parseInt(searchParams.paginateBy)
-            : 25;
-      } else searchParams.paginateBy = 25;
-    } else searchParams.paginateBy = 25;
+            : 100;
+      } else searchParams.paginateBy = 100;
+    } else searchParams.paginateBy = 100;
 
     if (searchParams.sortBy) {
       let sortBy = searchParams.sortBy.includes(",")
