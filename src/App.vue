@@ -39,7 +39,7 @@ export default {
   watch: {
     $route: {
       handler: to => {
-        if (to.name.includes("Detail")) {
+        if (to.name && to.name.includes("Detail")) {
           document.title =
             to.meta.title + to.params.id || "Turbageoloogia andmebaas";
         } else {

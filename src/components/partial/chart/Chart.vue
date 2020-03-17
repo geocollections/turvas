@@ -161,7 +161,6 @@ export default {
 
   methods: {
     renderMyChart() {
-      console.log(this.chartDataset);
       this.$children[0].renderChart(
         {
           labels: this.chartLabels,
