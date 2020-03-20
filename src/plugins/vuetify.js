@@ -32,7 +32,8 @@ import Vuetify, {
   VOverlay,
   VSheet,
   VDivider,
-  VSnackbar
+  VSnackbar,
+  VFooter
 } from "vuetify/lib";
 import "vuetify/dist/vuetify.min.css";
 import et from "vuetify/es5/locale/et";
@@ -72,7 +73,8 @@ Vue.use(Vuetify, {
     VOverlay,
     VSheet,
     VDivider,
-    VSnackbar
+    VSnackbar,
+    VFooter
   },
   directives: {
     Ripple

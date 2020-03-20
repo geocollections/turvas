@@ -20,7 +20,10 @@
 
     <v-content :style="$route.name === 'FrontPage' ? 'padding: unset;' : ''">
       <router-view />
+
+      <AppFooter v-if="$route.name !== 'FrontPage'" />
     </v-content>
+
   </v-app>
 </template>
 
@@ -29,10 +32,11 @@ import AppHeader from "./components/partial/header/AppHeader";
 import ErrorSnackbar from "./components/partial/snackbar/ErrorSnackbar";
 import SuccessSnackbar from "./components/partial/snackbar/SuccessSnackbar";
 import { mapActions, mapGetters } from "vuex";
+import AppFooter from "./components/partial/footer/AppFooter";
 
 export default {
   name: "App",
-  components: { SuccessSnackbar, ErrorSnackbar, AppHeader },
+  components: {AppFooter, SuccessSnackbar, ErrorSnackbar, AppHeader },
   computed: {
     ...mapGetters("error", ["getErrorState", "getErrorMessage"]),
     ...mapGetters("success", ["getSuccessState", "getSuccessMessage"])

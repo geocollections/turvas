@@ -16,6 +16,7 @@
         :sm="!getMapState ? 12 : 6"
         order="2"
         order-sm="1"
+        style="height: 100%"
       >
         <router-view />
       </v-col>
@@ -40,4 +41,8 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.home {
+  height: 100%;
+}
+</style>
