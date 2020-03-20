@@ -30,16 +30,19 @@
       </div>
     </div>
 
-    <img
-      src="https://www.kik.ee/sites/default/files/kik_est_logo__2.png"
-      class="kik-logo"
-      alt="kik logo"
-      :class="
-        $vuetify.breakpoint.smAndDown || $route.name !== 'FrontPage'
-          ? 'kik-logo-sm'
-          : ''
-      "
-    />
+    <a
+      href="https://kik.ee"
+      target="KikWindow"
+      title="Keskkonnainvesteeringute keskus"
+    >
+      <img
+        v-if="$route.name === 'FrontPage'"
+        src="https://www.kik.ee/sites/default/files/kik_est_logo__2.png"
+        class="kik-logo"
+        alt="kik logo"
+        :class="$vuetify.breakpoint.smAndDown ? 'kik-logo-sm' : ''"
+      />
+    </a>
   </div>
 </template>
 

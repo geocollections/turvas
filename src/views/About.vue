@@ -13,6 +13,19 @@
         transition="slide-x-transition"
         reverse-transition="slide-x-transition"
       >
+        <a
+          href="https://kik.ee"
+          target="KikWindow"
+          title="Keskkonnainvesteeringute keskus"
+          v-if="$vuetify.breakpoint.smAndUp"
+        >
+          <img
+            src="https://www.kik.ee/sites/default/files/kik_est_logo__2.png"
+            class="kik-logo"
+            alt="kik logo"
+            :class="$vuetify.breakpoint.smAndDown ? 'kik-logo-sm' : ''"
+          />
+        </a>
         <v-overlay absolute>
           <v-sheet height="100%" tile color="transparent">
             <v-row class="fill-height" align="center" no-gutters>
@@ -20,11 +33,10 @@
               <v-col cols="8" md="6" lg="5" xl="4" class="pl-1">
                 <div
                   class="font-weight-medium carousel-text"
-                  :class="
-                    $vuetify.breakpoint.smAndDown
-                      ? 'carousel-text-sm'
-                      : 'carousel-text'
-                  "
+                  :class="{
+                    'carousel-text-xs': $vuetify.breakpoint.xsOnly,
+                    'carousel-text-sm': $vuetify.breakpoint.smOnly
+                  }"
                 >
                   {{ carouselText }}
                 </div>
@@ -63,11 +75,19 @@ export default {
   font-size: 14px;
 }
 
+.carousel-text-xs {
+  font-size: 12px;
+}
+
 .kik-logo {
   position: absolute;
   z-index: 7;
   width: 150px;
   bottom: 70px;
   right: 30px;
+}
+
+.kik-logo-sm {
+  width: 100px;
 }
 </style>
