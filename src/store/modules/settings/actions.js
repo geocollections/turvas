@@ -5,6 +5,10 @@ const actions = {
 
   updateBlock({ commit }, payload) {
     commit("UPDATE_BLOCK", payload);
+  },
+
+  closeCookieLaw({ commit }) {
+    commit("UPDATE_COOKIE_LAW", false);
   }
 };
 

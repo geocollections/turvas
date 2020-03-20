@@ -8,6 +8,10 @@ const mutations = {
     items[payload.index] = payload.value;
 
     state.block[payload.route] = items;
+  },
+
+  UPDATE_COOKIE_LAW(state, bool) {
+    state.cookieLaw = bool;
   }
 };
 

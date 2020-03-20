@@ -33,7 +33,9 @@ import Vuetify, {
   VSheet,
   VDivider,
   VSnackbar,
-  VFooter
+  VFooter,
+  VDialog,
+  VCardText
 } from "vuetify/lib";
 import "vuetify/dist/vuetify.min.css";
 import et from "vuetify/es5/locale/et";
@@ -74,7 +76,9 @@ Vue.use(Vuetify, {
     VSheet,
     VDivider,
     VSnackbar,
-    VFooter
+    VFooter,
+    VDialog,
+    VCardText
   },
   directives: {
     Ripple

@@ -39,7 +39,8 @@ const state = {
     site: [true, true, true, true],
     sample: [true, true, true],
     search: [true]
-  }
+  },
+  cookieLaw: true
 };
 
 export default {
