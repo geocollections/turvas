@@ -13,18 +13,6 @@
         transition="slide-x-transition"
         reverse-transition="slide-x-transition"
       >
-        <a
-          href="https://kik.ee"
-          target="KikWindow"
-          title="Keskkonnainvesteeringute keskus"
-        >
-          <img
-            src="https://www.kik.ee/sites/default/files/kik_est_logo__2.png"
-            class="kik-logo"
-            v-if="slide.id === 1"
-          />
-        </a>
-
         <v-overlay absolute>
           <v-sheet height="100%" tile color="transparent">
             <v-row class="fill-height" align="center" no-gutters>
@@ -33,12 +21,12 @@
                 <div
                   class="font-weight-medium carousel-text"
                   :class="
-                    $vuetify.breakpoint.xsOnly
+                    $vuetify.breakpoint.smAndDown
                       ? 'carousel-text-sm'
                       : 'carousel-text'
                   "
                 >
-                  {{ slide.text }}
+                  {{ carouselText }}
                 </div>
               </v-col>
               <v-col cols="2" md="5"></v-col>
@@ -51,11 +39,12 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapState } from "vuex";
 
 export default {
   name: "About",
   computed: {
+    ...mapState("settings", ["carouselText"]),
     ...mapGetters("settings", ["getCarouselSlides"])
   }
 };
