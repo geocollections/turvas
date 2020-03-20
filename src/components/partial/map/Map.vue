@@ -15,7 +15,8 @@
       :class="{ 'live-coordinates-front': $route.name === 'FrontPage' }"
       v-if="showLiveCoordinates && latlngLive"
     >
-      Lat: {{ latlngLive.lat.toFixed(6) }} Lon: {{ latlngLive.lng.toFixed(6) }}
+      <div>Lat: {{ latlngLive.lat.toFixed(6) }}</div>
+      <div>Lon: {{ latlngLive.lng.toFixed(6) }}</div>
     </div>
 
     <div class="map-legend">
@@ -28,6 +29,17 @@
         <span>Proovipunkt</span>
       </div>
     </div>
+
+    <img
+      src="https://www.kik.ee/sites/default/files/kik_est_logo__2.png"
+      class="kik-logo"
+      alt="kik logo"
+      :class="
+        $vuetify.breakpoint.smAndDown || $route.name !== 'FrontPage'
+          ? 'kik-logo-sm'
+          : ''
+      "
+    />
   </div>
 </template>
 
@@ -545,20 +557,20 @@ export default {
       }
     },
 
-    "$vuetify.breakpoint.smAndDown"(newVal) {
-      if (this.$route.name === "FrontPage") {
-        if (newVal) {
-          document
-            .getElementsByClassName("leaflet-control-layers")
-            .item(0).className = "leaflet-control-layers leaflet-control";
-        } else {
-          document
-            .getElementsByClassName("leaflet-control-layers")
-            .item(0).className =
-            "leaflet-control-layers leaflet-control leaflet-control-layers-expanded";
-        }
-      }
-    },
+    // "$vuetify.breakpoint.smAndDown"(newVal) {
+    //   if (this.$route.name === "FrontPage") {
+    //     if (newVal) {
+    //       document
+    //         .getElementsByClassName("leaflet-control-layers")
+    //         .item(0).className = "leaflet-control-layers leaflet-control";
+    //     } else {
+    //       document
+    //         .getElementsByClassName("leaflet-control-layers")
+    //         .item(0).className =
+    //         "leaflet-control-layers leaflet-control leaflet-control-layers-expanded";
+    //     }
+    //   }
+    // },
 
     getAreaSites(newVal) {
       if (
@@ -724,9 +736,9 @@ export default {
 
       L.control
         .layers(baseLayers, overlayMaps, {
-          collapsed: !(
-            this.$route.name === "FrontPage" && this.$vuetify.breakpoint.mdAndUp
-          )
+          // collapsed: !(
+          //   this.$route.name === "FrontPage" && this.$vuetify.breakpoint.mdAndUp
+          // )
         })
         .addTo(this.map);
 
@@ -987,10 +999,10 @@ export default {
 }
 
 .live-coordinates {
-  margin-top: 56px;
-  margin-right: 10px;
+  margin-top: 10px;
+  margin-left: 46px;
   position: absolute;
-  right: 0;
+  left: 0;
   z-index: 500;
   background-color: #fff;
   border-radius: 5px;
@@ -999,21 +1011,20 @@ export default {
 }
 
 .live-coordinates-front {
-  bottom: 0;
-  margin-bottom: 26px;
+  margin-top: 74px;
 }
 
 .map-legend {
-  margin-left: 10px;
+  margin-right: 10px;
   position: absolute;
   z-index: 500;
   background-color: #fff;
   border-radius: 5px;
   padding: 4px 6px;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
-  left: 0;
+  right: 0;
   bottom: 0;
-  margin-bottom: 32px;
+  margin-bottom: 26px;
 }
 
 .map-legend-row > span:first-child {
@@ -1029,5 +1040,26 @@ export default {
 
 .cursor-crosshair:active {
   cursor: grabbing;
+}
+
+#map >>> .leaflet-control-layers-list {
+  max-height: 320px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  padding-right: 5px;
+}
+
+.kik-logo {
+  position: absolute;
+  z-index: 500;
+  width: 150px;
+  bottom: 0;
+  left: 0;
+  margin-left: 10px;
+  margin-bottom: 32px;
+}
+
+.kik-logo-sm {
+  width: 100px;
 }
 </style>

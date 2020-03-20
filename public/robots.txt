@@ -1,3 +1,4 @@
 User-agent: *
-Disallow: /1_old_turvas_app
-Disallow: /3D
+Disallow: /1_old_turvas_app/
+Disallow: /3D/
+Sitemap: https://turvas.geoloogia.info/sitemap.xml
