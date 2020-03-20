@@ -29,6 +29,7 @@ import AppHeader from "./components/partial/header/AppHeader";
 import ErrorSnackbar from "./components/partial/snackbar/ErrorSnackbar";
 import SuccessSnackbar from "./components/partial/snackbar/SuccessSnackbar";
 import { mapActions, mapGetters } from "vuex";
+
 export default {
   name: "App",
   components: { SuccessSnackbar, ErrorSnackbar, AppHeader },

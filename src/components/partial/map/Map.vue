@@ -1,10 +1,12 @@
 <template>
   <div
     id="map"
-    :class="{ 'top-controls': $route.name === 'FrontPage' }"
+    :class="{
+      'top-controls': $route.name === 'FrontPage'
+    }"
     :style="
       $route.name === 'FrontPage'
-        ? 'width: 100%; height: 100vh'
+        ? 'width: 100%; height: 100%'
         : $vuetify.breakpoint.xsOnly
         ? 'position: relative; width: 100%; height: 50vh;'
         : 'width: 50%;'
@@ -12,7 +14,6 @@
   >
     <div
       class="live-coordinates"
-      :class="{ 'live-coordinates-front': $route.name === 'FrontPage' }"
       v-if="showLiveCoordinates && latlngLive"
     >
       <div>Lat: {{ latlngLive.lat.toFixed(6) }}</div>
@@ -548,6 +549,7 @@ export default {
   watch: {
     "$vuetify.breakpoint.xsOnly"() {
       this.$nextTick(() => {
+        console.log("tere");
         this.map.invalidateSize();
       });
     },
@@ -980,7 +982,7 @@ export default {
 <style scoped>
 #map {
   position: fixed;
-  height: calc(100vh - 64px);
+  height: calc(100% - 64px);
 }
 
 .top-controls >>> .leaflet-top {
@@ -1002,19 +1004,16 @@ export default {
 }
 
 .live-coordinates {
-  margin-top: 10px;
-  margin-left: 46px;
+  margin-bottom: 26px;
+  margin-right: 118px;
   position: absolute;
-  left: 0;
+  right: 0;
+  bottom: 0;
   z-index: 500;
   background-color: #fff;
   border-radius: 5px;
   padding: 1px 6px;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
-}
-
-.live-coordinates-front {
-  margin-top: 74px;
 }
 
 .map-legend {
