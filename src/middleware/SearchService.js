@@ -63,7 +63,7 @@ class SearchService {
       let queryParams = encodeQueryData(searchParams, true);
       if (queryParams.length > 0) queryParams = "&fq=" + queryParams;
       if (sort.length > 0) queryParams += "&sort=" + sort;
-      if (filter.length > 0) filter = "&q=" + encodeURIComponent(filter);
+      if (filter.length > 0) filter = `&q=*${encodeURIComponent(filter)}*`;
       let url = `${SOLR_URL}${table}/?start=${start}&rows=${paginateBy}${filter}${queryParams}&defType=edismax`;
 
       const res = await axios.get(url);
@@ -126,9 +126,17 @@ function encodeQueryData(data, isSolr = false) {
         else end = encodeURIComponent(data[item]);
       }
     } else {
-      let encodedObject = `${encodeURIComponent(item)}${
-        isSolr ? ":" : "="
-      }${encodeURIComponent(data[item])}`;
+      let encodedObject = "";
+      if (item === "project_id" || item === "area_type") {
+        encodedObject = `${encodeURIComponent(item)}${
+          isSolr ? ":" : "="
+        }${encodeURIComponent(data[item])}`;
+      } else {
+        encodedObject = `${encodeURIComponent(item)}${
+          isSolr ? ":" : "="
+        }*${encodeURIComponent(data[item])}*`;
+      }
+
       encodedData.push(encodedObject);
     }
   }
