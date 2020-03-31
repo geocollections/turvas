@@ -138,6 +138,13 @@ export default {
               }
             }
           ]
+        },
+        tooltips: {
+          callbacks: {
+            label: function(tooltipItem, data) {
+              return `(${data["datasets"][0]["data"][tooltipItem["index"]].x}, ${data["datasets"][0]["data"][tooltipItem["index"]].y}) - ${data["datasets"][0]["data"][tooltipItem["index"]].rock}`;
+            }
+          }
         }
       };
     }
@@ -216,7 +223,8 @@ export default {
         return filteredData.map(data => {
           return {
             x: data[field],
-            y: -(data.depth + data.depth_interval) / 2 || this.defaultDepth
+            y: -(data.depth + data.depth_interval) / 2 || this.defaultDepth,
+            rock: data.rock
           };
         });
       } else if (chartType === "bubble") {
@@ -224,7 +232,8 @@ export default {
           return {
             x: data[field],
             y: -(data.depth + data.depth_interval) / 2 || this.defaultDepth,
-            r: 5
+            r: 5,
+            rock: data.rock
           };
         });
       } else return [];

@@ -17,6 +17,8 @@
             deletable-chips
             multiple
             small-chips
+            :search-input.sync="maakondSearchInput"
+            @change="maakondSearchInput = ''"
           />
         </v-col>
 
@@ -31,6 +33,8 @@
             deletable-chips
             multiple
             small-chips
+            :search-input.sync="areaSearchInput"
+            @change="areaSearchInput = ''"
           />
         </v-col>
 
@@ -50,7 +54,7 @@
                 @input="updateParam($event, 'depth_start')"
                 label="Sügavus alates"
                 type="number"
-                suffix="m"
+                suffix="(m)"
                 step="0.25"
               />
             </v-col>
@@ -60,7 +64,7 @@
                 @input="updateParam($event, 'depth_end')"
                 label="Sügavus kuni"
                 type="number"
-                suffix="m"
+                suffix="(m)"
                 step="0.25"
               />
             </v-col>
@@ -218,6 +222,10 @@ export default {
   name: "SampleSearch",
   components: { CardTitleWrapper, AutocompleteWrapper, TextFieldWrapper },
   mixins: [searchMixin],
+  data: () => ({
+    maakondSearchInput: "",
+    areaSearchInput: "",
+  }),
   computed: {
     ...mapState("search", [
       "sampleSearchParams",

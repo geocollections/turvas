@@ -136,7 +136,7 @@ function encodeQueryData(data, isSolr = false) {
           data[item].join(" ")
         )})`;
       } else {
-        if (item === "site" && isSolr) {
+        if ((item === "site" || item === "rock") && isSolr) {
           encodedObject = `${encodeURIComponent(item)}:*${encodeURIComponent(data[item])}*`;
         } else {
           encodedObject = `${encodeURIComponent(item)}${
