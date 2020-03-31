@@ -136,9 +136,13 @@ function encodeQueryData(data, isSolr = false) {
           data[item].join(" ")
         )})`;
       } else {
-        encodedObject = `${encodeURIComponent(item)}${
-          isSolr ? ":" : "="
-        }${encodeURIComponent(data[item])}`;
+        if (item === "site" && isSolr) {
+          encodedObject = `${encodeURIComponent(item)}:*${encodeURIComponent(data[item])}*`;
+        } else {
+          encodedObject = `${encodeURIComponent(item)}${
+            isSolr ? ":" : "="
+          }${encodeURIComponent(data[item])}`;
+        }
       }
 
       encodedData.push(encodedObject);
