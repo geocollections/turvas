@@ -7,18 +7,30 @@
     <div v-show="block.search[0]">
       <v-row no-gutters class="px-1">
         <v-col cols="12" md="6" lg="4" class="pa-1">
-          <TextFieldWrapper
-            :value="sampleSearchParams.maakond"
-            @input="updateParam($event, 'maakond')"
+          <AutocompleteWrapper
             label="Maakond"
+            :items="getListCountiesAsArray"
+            return-object
+            :value="sampleSearchParams.maakond"
+            @input="handleUpdateMaakond"
+            chips
+            deletable-chips
+            multiple
+            small-chips
           />
         </v-col>
 
         <v-col cols="12" md="6" lg="4" class="pa-1">
-          <TextFieldWrapper
-            :value="sampleSearchParams.area"
-            @input="updateParam($event, 'area')"
+          <AutocompleteWrapper
             label="Turbaala"
+            :items="getListAreasAsArray"
+            return-object
+            :value="sampleSearchParams.area"
+            @input="handleUpdateArea"
+            chips
+            deletable-chips
+            multiple
+            small-chips
           />
         </v-col>
 
@@ -201,9 +213,11 @@ import { mapActions, mapGetters, mapState } from "vuex";
 import { cloneDeep } from "lodash";
 import AutocompleteWrapper from "../partial/inputs/AutocompleteWrapper";
 import CardTitleWrapper from "../partial/CardTitleWrapper";
+import searchMixin from "../../mixins/searchMixin";
 export default {
   name: "SampleSearch",
   components: { CardTitleWrapper, AutocompleteWrapper, TextFieldWrapper },
+  mixins: [searchMixin],
   computed: {
     ...mapState("search", [
       "sampleSearchParams",
@@ -215,9 +229,12 @@ export default {
 
     ...mapState("settings", ["block"]),
 
-    ...mapGetters("search", ["distinctListParameters"])
+    ...mapGetters("search", ["distinctListParameters", "getListAreasAsArray"]),
+
+    ...mapGetters("detail", ["getListCountiesAsArray"])
   },
   created() {
+    this.fetchListAreas();
     this.fetchListParameters();
   },
   methods: {
@@ -227,7 +244,8 @@ export default {
       "updateActiveListParameters",
       "addActiveListParameter",
       "removeActiveListParameter",
-      "updateActiveListParameter"
+      "updateActiveListParameter",
+      "fetchListAreas"
     ]),
 
     updateParam(value, field) {

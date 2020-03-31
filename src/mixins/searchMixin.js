@@ -80,6 +80,32 @@ const searchMixin = {
       }
     },
 
+    handleUpdateMaakond(newVal) {
+      if (newVal.length > 0) {
+        this.$router
+          .push({
+            query: { ...this.$route.query, maakond: newVal.toString() }
+          })
+          .catch(err => {});
+      } else {
+        let { maakond, ...noMaakond } = this.$route.query;
+        this.$router.push({ query: noMaakond }).catch(err => {});
+      }
+    },
+
+    handleUpdateArea(newVal) {
+      if (newVal.length > 0) {
+        this.$router
+          .push({
+            query: { ...this.$route.query, area: newVal.toString() }
+          })
+          .catch(err => {});
+      } else {
+        let { area, ...noArea } = this.$route.query;
+        this.$router.push({ query: noArea }).catch(err => {});
+      }
+    },
+
     resetSearch() {
       let path = "/area";
       if (this.$route.name === "SiteTable") path = "/site";

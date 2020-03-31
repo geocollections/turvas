@@ -143,9 +143,10 @@ const actions = {
   },
 
   async fetchListCounties({ commit, dispatch }) {
-    let response = await SearchService.doRegularSearch("list_maakond");
+    let response = await SearchService.doRegularSearch("list_maakond", {
+      fields: "id,maakond"
+    });
     if (typeof response === "object") {
-      // dispatch("error/updateErrorState", false, { root: true });
       commit("SET_LIST_COUNTIES", response.results);
     } else if (typeof response === "string") {
       dispatch("error/updateErrorState", true, { root: true });

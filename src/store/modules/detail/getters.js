@@ -89,6 +89,14 @@ const getters = {
 
   getListCounties: state => {
     return state.listCounties;
+  },
+
+  getListCountiesAsArray: state => {
+    if (state.listCounties !== null) {
+      return state.listCounties.map(county => county.maakond);
+    } else {
+      return [];
+    }
   }
 };
 

@@ -43,6 +43,10 @@ const mutations = {
     state.listParameters = parameters;
   },
 
+  SET_LIST_AREAS(state, areas) {
+    state.listAreas = areas;
+  },
+
   INIT_ACTIVE_LIST_PARAMETERS(state, payload) {
     if (payload.isDetail) {
       state.activeListParameters = [

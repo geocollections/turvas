@@ -126,9 +126,20 @@ function encodeQueryData(data, isSolr = false) {
         else end = encodeURIComponent(data[item]);
       }
     } else {
-      let encodedObject = `${encodeURIComponent(item)}${
-        isSolr ? ":" : "="
-      }${encodeURIComponent(data[item])}`;
+      let encodedObject = "";
+      if (
+        isSolr &&
+        (item === "maakond" || item === "area") &&
+        Array.isArray(data[item])
+      ) {
+        encodedObject = `${encodeURIComponent(item)}:(${encodeURIComponent(
+          data[item].join(" ")
+        )})`;
+      } else {
+        encodedObject = `${encodeURIComponent(item)}${
+          isSolr ? ":" : "="
+        }${encodeURIComponent(data[item])}`;
+      }
 
       encodedData.push(encodedObject);
     }

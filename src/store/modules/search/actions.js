@@ -264,6 +264,19 @@ const actions = {
 
       commit("SET_SITE_SEARCH_PARAMS", searchParams);
     } else {
+      if (searchParams.maakond) {
+        let maakond = searchParams.maakond.includes(",")
+          ? searchParams.maakond.split(",")
+          : [searchParams.maakond];
+        searchParams.maakond = maakond;
+      } else delete searchParams.maakond;
+
+      if (searchParams.area) {
+        let area = searchParams.area.includes(",")
+          ? searchParams.area.split(",")
+          : [searchParams.area];
+        searchParams.area = area;
+      } else delete searchParams.area;
       commit("SET_SAMPLE_SEARCH_PARAMS", searchParams);
     }
   },
@@ -312,6 +325,18 @@ const actions = {
 
   setShownActiveListParameters({ state, commit }, list) {
     commit("SET_SHOWN_ACTIVE_LIST_PARAMETERS", list);
+  },
+
+  async fetchListAreas({ commit, dispatch }) {
+    let response = await SearchService.doRegularSearch("area", {
+      fields: "id,name"
+    });
+    if (typeof response === "object") {
+      commit("SET_LIST_AREAS", response.results);
+    } else if (typeof response === "string") {
+      dispatch("error/updateErrorState", true, { root: true });
+      dispatch("error/updateErrorMessage", response, { root: true });
+    }
   }
 };
 

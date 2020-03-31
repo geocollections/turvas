@@ -28,6 +28,14 @@ const getters = {
     ).map(site => {
       return state.sampleResults.find(sample => sample.site === site);
     });
+  },
+
+  getListAreasAsArray: state => {
+    if (state.listAreas !== null) {
+      return state.listAreas.map(area => area.name);
+    } else {
+      return [];
+    }
   }
 };
 
