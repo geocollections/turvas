@@ -126,16 +126,9 @@ function encodeQueryData(data, isSolr = false) {
         else end = encodeURIComponent(data[item]);
       }
     } else {
-      let encodedObject = "";
-      if (item === "project_id" || item === "area_type") {
-        encodedObject = `${encodeURIComponent(item)}${
-          isSolr ? ":" : "="
-        }${encodeURIComponent(data[item])}`;
-      } else {
-        encodedObject = `${encodeURIComponent(item)}${
-          isSolr ? ":" : "="
-        }*${encodeURIComponent(data[item])}*`;
-      }
+      let encodedObject = `${encodeURIComponent(item)}${
+        isSolr ? ":" : "="
+      }${encodeURIComponent(data[item])}`;
 
       encodedData.push(encodedObject);
     }
