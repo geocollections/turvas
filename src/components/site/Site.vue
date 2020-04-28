@@ -141,9 +141,22 @@
             v-for="(parameter, index) in shownActiveListParameters"
             :key="parameter.value"
           >
+            <div
+              class="d-flex flex-column"
+              v-if="parameter.name === 'turba lagunemisaste'"
+            >
+              <div>
+                <span class="circle red"></span>
+                Vähelagunenud turvas kuni 25% lagunemisaste
+              </div>
+              <div>
+                <div class="circle green"></div>
+                Hästilagunenud turvas alates 26% lagunemisaste
+              </div>
+            </div>
             <Chart
               v-if="shownActiveListParameters"
-              type="scatter"
+              type="line"
               :labels="shownActiveListParameters"
               :data="getSampleAnalyticalData"
               :is-multi="false"
@@ -244,5 +257,12 @@ export default {
   text-align: left;
   width: 100%;
   padding-left: 10px;
+}
+
+.circle {
+  display: inline-block;
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
 }
 </style>

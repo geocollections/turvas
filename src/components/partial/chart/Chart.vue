@@ -12,15 +12,22 @@
       :is-responsive="isResponsive"
       :class="{ 'fixed-chart': !isResponsive }"
     />
+    <LineChart
+      v-if="type === 'line'"
+      :id="`${type}-chart`"
+      :is-responsive="isResponsive"
+      :class="{ 'fixed-chart': !isResponsive }"
+    />
   </div>
 </template>
 
 <script>
 import ScatterChart from "./ScatterChart";
 import BubbleChart from "./BubbleChart";
+import LineChart from "./LineChart";
 export default {
   name: "Chart",
-  components: { BubbleChart, ScatterChart },
+  components: { LineChart, BubbleChart, ScatterChart },
   props: {
     type: {
       type: String,
@@ -89,6 +96,20 @@ export default {
       "#1A237E",
       "#006064"
     ],
+    defaultColor: "#D1B3FF",
+    defaultColorDark: "#9E80CC",
+    rabaturvasColor: "#fff9c4",
+    rabaturvasColorDark: "#CCC691",
+    siirdesooturvasColor: "#c8e6c9",
+    siirdesooturvasColorDark: "#95B396",
+    madalsooturvasColor: "#bbdefb",
+    madalsooturvasColorDark: "#88ABC8",
+    jarvemudaColor: "#cfd8dc",
+    jarvemudaColorDark: "#9CA5A9",
+    slightlyDegraded: "#F44336",
+    slightlyDegradedDark: "#B71C1C",
+    wellDegraded: "#4CAF50",
+    wellDegradedDark: "#1B5E20",
     defaultDepth: 0
   }),
 
@@ -138,14 +159,18 @@ export default {
               }
             }
           ]
-        },
-        tooltips: {
-          callbacks: {
-            label: function(tooltipItem, data) {
-              return `(${data["datasets"][0]["data"][tooltipItem["index"]].x}, ${data["datasets"][0]["data"][tooltipItem["index"]].y}) - ${data["datasets"][0]["data"][tooltipItem["index"]].rock}`;
-            }
-          }
         }
+        // tooltips: {
+        //   callbacks: {
+        //     label: function(tooltipItem, data) {
+        //       return `(${
+        //         data["datasets"][0]["data"][tooltipItem["index"]].x
+        //       }, ${data["datasets"][0]["data"][tooltipItem["index"]].y}) - ${
+        //         data["datasets"][0]["data"][tooltipItem["index"]].rock
+        //       }`;
+        //     }
+        //   }
+        // }
       };
     }
   },
@@ -182,19 +207,124 @@ export default {
     },
 
     getChartDataset(labels) {
-      return labels.map((label, index) => {
+      let builtData = this.buildData(this.type, labels[0].value);
+
+      let rabaturvas = [];
+      let siirdesooturvas = [];
+      let madalsooturvas = [];
+      let jarvemuda = [];
+
+      builtData.forEach(item => {
+        if (item.rock) {
+          if (item.rock === "rabaturvas") rabaturvas.push(item);
+          else if (item.rock === "siirdesooturvas") siirdesooturvas.push(item);
+          else if (item.rock === "madalsooturvas") madalsooturvas.push(item);
+          else if (item.rock === "järvemuda") jarvemuda.push(item);
+        }
+      });
+
+      if (rabaturvas.length > 0) {
+        labels = [
+          ...labels,
+          { ...labels[0], name: "rabaturvas", original_name: labels[0].name }
+        ];
+      }
+      if (siirdesooturvas.length > 0) {
+        labels = [
+          ...labels,
+          {
+            ...labels[0],
+            name: "siirdesooturvas",
+            original_name: labels[0].name
+          }
+        ];
+      }
+      if (madalsooturvas.length > 0) {
+        labels = [
+          ...labels,
+          {
+            ...labels[0],
+            name: "madalsooturvas",
+            original_name: labels[0].name
+          }
+        ];
+      }
+      if (jarvemuda.length > 0) {
+        labels = [
+          ...labels,
+          { ...labels[0], name: "jarvemuda", original_name: labels[0].name }
+        ];
+      }
+
+      if (labels[0].name !== "turba lagunemisaste") labels = labels.splice(0).reverse();
+
+      return labels.map(label => {
         if (!label.isText) {
+          let name = label.name;
+          let data = this.buildData(this.type, label.value);
+          let borderColor = this.defaultColorDark;
+          let backgroundColor = this.defaultColor;
+          let showLine = true;
+          let pointBackgroundColor = context => {
+            if (
+              label.name === "turba lagunemisaste" &&
+              context.dataset.data.length > 0
+            ) {
+              let color = this.slightlyDegraded;
+              let index = context.dataIndex;
+              let value = context.dataset.data[index];
+              if (value && value.x >= 26) color = this.wellDegraded;
+              return color;
+            }
+          };
+          let pointBorderColor = context => {
+            if (
+              label.name === "turba lagunemisaste" &&
+              context.dataset.data.length > 0
+            ) {
+              let color = this.slightlyDegradedDark;
+              let index = context.dataIndex;
+              let value = context.dataset.data[index];
+              if (value && value.x >= 26) color = this.wellDegradedDark;
+              return color;
+            }
+          };
+          if (name === "rabaturvas") {
+            name = `rabaturvas (${label.original_name})`;
+            data = rabaturvas;
+            borderColor = this.rabaturvasColorDark;
+            backgroundColor = this.rabaturvasColor;
+            showLine = false;
+          } else if (name === "siirdesooturvas") {
+            name = `siirdesooturvas (${label.original_name})`;
+            data = siirdesooturvas;
+            borderColor = this.siirdesooturvasColorDark;
+            backgroundColor = this.siirdesooturvasColor;
+            showLine = false;
+          } else if (name === "madalsooturvas") {
+            name = `madalsooturvas (${label.original_name})`;
+            data = madalsooturvas;
+            borderColor = this.madalsooturvasColorDark;
+            backgroundColor = this.madalsooturvasColor;
+            showLine = false;
+          } else if (name === "järvemuda") {
+            name = `järvemuda (${label.original_name})`;
+            data = jarvemuda;
+            borderColor = this.jarvemudaColorDark;
+            backgroundColor = this.jarvemudaColor;
+            showLine = false;
+          }
+
           return {
-            label: label.name,
-            data: this.buildData(this.type, label.value),
-            backgroundColor: this.listOfColorsLighten[
-              this.isMulti ? index : this.index
-            ],
-            borderColor: this.listOfColorsDarken[
-              this.isMulti ? index : this.index
-            ],
+            label: name,
+            data: data,
+            backgroundColor: backgroundColor,
+            borderColor: borderColor,
+            pointBackgroundColor: pointBackgroundColor,
+            pointBorderColor: pointBorderColor,
+            pointRadius: 5,
             borderWidth: 2,
-            showLine: true,
+            showLine: showLine,
             fill: false,
             lineTension: 0
           };
@@ -202,12 +332,8 @@ export default {
           return {
             label: label.name,
             data: [],
-            backgroundColor: this.listOfColorsLighten[
-              this.isMulti ? index : this.index
-            ],
-            borderColor: this.listOfColorsDarken[
-              this.isMulti ? index : this.index
-            ],
+            backgroundColor: this.defaultColorDark,
+            borderColor: this.defaultColor,
             borderWidth: 2,
             showLine: true,
             fill: false,
@@ -219,7 +345,7 @@ export default {
     buildData(chartType, field) {
       let filteredData = this.data.filter(data => data[field]);
 
-      if (chartType === "scatter") {
+      if (chartType === "scatter" || chartType === "line") {
         return filteredData.map(data => {
           return {
             x: data[field],
