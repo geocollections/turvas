@@ -663,7 +663,7 @@ export default {
 
     areaFromGeoserver(newVal) {
       if (newVal) {
-        this.$router.push({ path: `/area/${newVal}` });
+        this.$router.push({ path: `/ala/${newVal}` });
       }
     },
 

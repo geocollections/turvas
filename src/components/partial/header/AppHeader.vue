@@ -25,7 +25,7 @@
         </v-toolbar-title>
 
         <v-toolbar-items class="hidden-sm-and-down">
-          <v-btn text title="Turbaalad" to="/area" exact color="white"
+          <v-btn text title="Turbaalad" to="/ala" exact color="white"
             >Turbaalad</v-btn
           >
           <v-btn text title="Proovipunktid" to="/site" exact color="white"
@@ -34,7 +34,7 @@
           <v-btn text title="Proovid" to="/sample" exact color="white"
             >Proovid</v-btn
           >
-          <v-btn text title="Projekti info" to="/about" exact color="white"
+          <v-btn text title="Projekti info" to="/projekti_info" exact color="white"
             >Projekti info</v-btn
           >
         </v-toolbar-items>
@@ -95,7 +95,7 @@
             <v-list-item-title>Pealeht</v-list-item-title>
           </v-list-item>
 
-          <v-list-item to="/area" role="option">
+          <v-list-item to="/ala" role="option">
             <v-list-item-icon>
               <v-icon>fas fa-layer-group</v-icon>
             </v-list-item-icon>
@@ -116,7 +116,7 @@
             <v-list-item-title>Proovid</v-list-item-title>
           </v-list-item>
 
-          <v-list-item to="/about" role="option">
+          <v-list-item to="/projekti_info" role="option">
             <v-list-item-icon>
               <v-icon>fas fa-info</v-icon>
             </v-list-item-icon>
@@ -171,7 +171,7 @@ export default {
       if (this.getFastSearch && this.getFastSearch.trim().length > 0) {
         this.$router
           .push({
-            path: "/area",
+            path: "/ala",
             query: { filter: this.getFastSearch.trim() }
           })
           .catch(err => {});

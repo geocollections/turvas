@@ -33,7 +33,7 @@
 
           <template v-slot:item.site__area="{ item }">
             <router-link
-              :to="`/area/${item.site__area}`"
+              :to="`/ala/${item.site__area}`"
               title="Ala detailvaade"
               class="table-link"
             >

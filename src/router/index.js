@@ -10,7 +10,7 @@ const routes = [
     redirect: "/"
   },
   {
-    path: "/about",
+    path: "/projekti_info",
     name: "About",
     component: () => import("../views/About.vue"),
     meta: {
@@ -27,7 +27,7 @@ const routes = [
         component: () => import("../components/home/FrontPage.vue")
       },
       {
-        path: "area",
+        path: "ala",
         component: () => import("../views/Detail.vue"),
         children: [
           {

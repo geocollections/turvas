@@ -107,7 +107,7 @@ const searchMixin = {
     },
 
     resetSearch() {
-      let path = "/area";
+      let path = "/ala";
       if (this.$route.name === "SiteTable") path = "/site";
       else if (this.$route.name === "SampleTable") path = "/sample";
       this.$router.push({ path: path }).catch(err => {});
