@@ -18,6 +18,14 @@ const routes = [
     }
   },
   {
+    path: "/kasutusjuhend",
+    name: "UserManual",
+    component: () => import("../views/UserManual.vue"),
+    meta: {
+      title: "Turbageoloogia andmebaas: Kasutusjuhend"
+    }
+  },
+  {
     path: "/",
     component: Home,
     children: [

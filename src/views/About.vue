@@ -39,6 +39,19 @@
                   }"
                 >
                   {{ carouselText }}
+
+                  <a
+                    href="/seletuskiri.pdf"
+                    class="about-link"
+                    title="Loe projekti tutvustust"
+                    >Projekti tutvustus</a
+                  >,
+                  <router-link
+                    to="/kasutusjuhend"
+                    class="about-link"
+                    title="Vaata kasutusjuhendit"
+                    >kasutusjuhend</router-link
+                  >
                 </div>
               </v-col>
               <v-col cols="2" md="5"></v-col>
@@ -65,6 +78,15 @@ export default {
 <style scoped>
 .about >>> .v-overlay__content {
   width: 100%;
+}
+
+.about-link {
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.about-link:hover {
+  opacity: 0.7;
 }
 
 .carousel-text {
