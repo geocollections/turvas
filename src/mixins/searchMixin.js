@@ -108,8 +108,8 @@ const searchMixin = {
 
     resetSearch() {
       let path = "/ala";
-      if (this.$route.name === "SiteTable") path = "/site";
-      else if (this.$route.name === "SampleTable") path = "/sample";
+      if (this.$route.name === "SiteTable") path = "/proovipunkt";
+      else if (this.$route.name === "SampleTable") path = "/proov";
       this.$router.push({ path: path }).catch(err => {});
     }
   }

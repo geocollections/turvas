@@ -71,7 +71,7 @@
             <router-link
               class="table-link"
               title="Proovi detailvaade"
-              :to="`/sample/${item.id}`"
+              :to="`/proov/${item.id}`"
             >
               {{ item.id }}
             </router-link>
@@ -79,7 +79,7 @@
 
           <template v-slot:item.number_additional="{ item }">
             <router-link
-              :to="`/sample/${item.id}`"
+              :to="`/proov/${item.id}`"
               title="Proovi detailvaade"
               class="table-link"
             >

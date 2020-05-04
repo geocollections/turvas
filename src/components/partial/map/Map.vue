@@ -669,7 +669,7 @@ export default {
 
     siteFromGeoserver(newVal) {
       if (newVal) {
-        this.$router.push({ path: `/site/${newVal}` });
+        this.$router.push({ path: `/proovipunkt/${newVal}` });
       }
     }
   },
@@ -912,7 +912,7 @@ export default {
 
             marker.on("click", () => {
               this.$router.push({
-                path: `/site/${site.id}`
+                path: `/proovipunkt/${site.id}`
               });
             });
 

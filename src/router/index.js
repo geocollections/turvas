@@ -51,7 +51,7 @@ const routes = [
         ]
       },
       {
-        path: "site",
+        path: "proovipunkt",
         component: () => import("../views/Detail.vue"),
         children: [
           {
@@ -75,7 +75,7 @@ const routes = [
         ]
       },
       {
-        path: "sample",
+        path: "proov",
         component: () => import("../views/Detail.vue"),
         children: [
           {

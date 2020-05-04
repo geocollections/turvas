@@ -28,10 +28,10 @@
           <v-btn text title="Turbaalad" to="/ala" exact color="white"
             >Turbaalad</v-btn
           >
-          <v-btn text title="Proovipunktid" to="/site" exact color="white"
+          <v-btn text title="Proovipunktid" to="/proovipunkt" exact color="white"
             >Proovipunktid</v-btn
           >
-          <v-btn text title="Proovid" to="/sample" exact color="white"
+          <v-btn text title="Proovid" to="/proov" exact color="white"
             >Proovid</v-btn
           >
           <v-btn text title="Projekti info" to="/projekti_info" exact color="white"
@@ -102,14 +102,14 @@
             <v-list-item-title>Turbaalad</v-list-item-title>
           </v-list-item>
 
-          <v-list-item to="/site" role="option">
+          <v-list-item to="/proovipunkt" role="option">
             <v-list-item-icon>
               <v-icon>fas fa-map-pin</v-icon>
             </v-list-item-icon>
             <v-list-item-title>Proovipunktid</v-list-item-title>
           </v-list-item>
 
-          <v-list-item to="/sample" role="option">
+          <v-list-item to="/proov" role="option">
             <v-list-item-icon>
               <v-icon>fas fa-vials</v-icon>
             </v-list-item-icon>
