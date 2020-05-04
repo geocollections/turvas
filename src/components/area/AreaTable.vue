@@ -74,8 +74,8 @@
       >
         <template v-slot:item.name="{ item }">
           <router-link
-            :to="`/ala/${item.id}`"
-            title="Ala detailvaade"
+            :to="`/turbaala/${item.id}`"
+            title="Turbaala detailvaade"
             class="table-link"
           >
             {{ item.name }}

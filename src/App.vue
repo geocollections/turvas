@@ -16,14 +16,15 @@
     <AppHeader
       :is-front-page="$route.name === 'FrontPage'"
       :is-about-page="$route.name === 'About'"
+      :is-user-manual-page="$route.name === 'UserManual'"
     />
 
     <v-content :style="$route.name === 'FrontPage' ? 'padding: unset;' : ''">
       <router-view />
 
-<!--      <AppFooter-->
-<!--        v-if="$route.name !== 'FrontPage' && $route.name !== 'About'"-->
-<!--      />-->
+      <!--      <AppFooter-->
+      <!--        v-if="$route.name !== 'FrontPage' && $route.name !== 'About'"-->
+      <!--      />-->
     </v-content>
 
     <CookieLaw v-if="cookieLaw" v-on:accept="closeCookieLaw" />

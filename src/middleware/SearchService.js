@@ -137,7 +137,9 @@ function encodeQueryData(data, isSolr = false) {
         )})`;
       } else {
         if ((item === "site" || item === "rock") && isSolr) {
-          encodedObject = `${encodeURIComponent(item)}:*${encodeURIComponent(data[item])}*`;
+          encodedObject = `${encodeURIComponent(item)}:*${encodeURIComponent(
+            data[item]
+          )}*`;
         } else {
           encodedObject = `${encodeURIComponent(item)}${
             isSolr ? ":" : "="

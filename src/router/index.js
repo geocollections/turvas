@@ -35,7 +35,7 @@ const routes = [
         component: () => import("../components/home/FrontPage.vue")
       },
       {
-        path: "ala",
+        path: "turbaala",
         component: () => import("../views/Detail.vue"),
         children: [
           {

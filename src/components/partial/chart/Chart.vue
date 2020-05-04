@@ -256,7 +256,8 @@ export default {
         ];
       }
 
-      if (labels[0].name !== "turba lagunemisaste") labels = labels.splice(0).reverse();
+      if (labels[0].name !== "turba lagunemisaste")
+        labels = labels.splice(0).reverse();
 
       return labels.map(label => {
         if (!label.isText) {

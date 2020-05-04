@@ -224,7 +224,7 @@ export default {
   mixins: [searchMixin],
   data: () => ({
     maakondSearchInput: "",
-    areaSearchInput: "",
+    areaSearchInput: ""
   }),
   computed: {
     ...mapState("search", [

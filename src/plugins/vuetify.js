@@ -35,7 +35,12 @@ import Vuetify, {
   VSnackbar,
   VFooter,
   VDialog,
-  VCardText
+  VCardText,
+  VTabs,
+  VTab,
+  VTabsItems,
+  VTabItem,
+  VImg
 } from "vuetify/lib";
 import "vuetify/dist/vuetify.min.css";
 import et from "vuetify/es5/locale/et";
@@ -78,7 +83,12 @@ Vue.use(Vuetify, {
     VSnackbar,
     VFooter,
     VDialog,
-    VCardText
+    VCardText,
+    VTabs,
+    VTab,
+    VTabsItems,
+    VTabItem,
+    VImg
   },
   directives: {
     Ripple

@@ -25,16 +25,26 @@
         </v-toolbar-title>
 
         <v-toolbar-items class="hidden-sm-and-down">
-          <v-btn text title="Turbaalad" to="/ala" exact color="white"
+          <v-btn text title="Turbaalad" to="/turbaala" exact color="white"
             >Turbaalad</v-btn
           >
-          <v-btn text title="Proovipunktid" to="/proovipunkt" exact color="white"
+          <v-btn
+            text
+            title="Proovipunktid"
+            to="/proovipunkt"
+            exact
+            color="white"
             >Proovipunktid</v-btn
           >
           <v-btn text title="Proovid" to="/proov" exact color="white"
             >Proovid</v-btn
           >
-          <v-btn text title="Projekti info" to="/projekti_info" exact color="white"
+          <v-btn
+            text
+            title="Projekti info"
+            to="/projekti_info"
+            exact
+            color="white"
             >Projekti info</v-btn
           >
         </v-toolbar-items>
@@ -60,7 +70,7 @@
         </v-toolbar-items>
 
         <v-btn
-          v-if="!isAboutPage && !isFrontPage"
+          v-if="!isAboutPage && !isFrontPage && !isUserManualPage"
           @click="updateMapState(!getMapState)"
           :title="getMapState ? 'Peida kaart' : 'Näita kaarti'"
           fab
@@ -95,7 +105,7 @@
             <v-list-item-title>Pealeht</v-list-item-title>
           </v-list-item>
 
-          <v-list-item to="/ala" role="option">
+          <v-list-item to="/turbaala" role="option">
             <v-list-item-icon>
               <v-icon>fas fa-layer-group</v-icon>
             </v-list-item-icon>
@@ -129,7 +139,7 @@
             :value="getFastSearch"
             hide-details
             solo
-            label="Otsi..."
+            label="Otsi ala..."
             class="align-center"
             autocomplete="off"
             append-icon="fas fa-search"
@@ -151,7 +161,8 @@ export default {
 
   props: {
     isFrontPage: Boolean,
-    isAboutPage: Boolean
+    isAboutPage: Boolean,
+    isUserManualPage: Boolean
   },
 
   data: () => ({
@@ -171,7 +182,7 @@ export default {
       if (this.getFastSearch && this.getFastSearch.trim().length > 0) {
         this.$router
           .push({
-            path: "/ala",
+            path: "/turbaala",
             query: { filter: this.getFastSearch.trim() }
           })
           .catch(err => {});

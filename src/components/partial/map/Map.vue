@@ -12,10 +12,7 @@
         : 'width: 50%;'
     "
   >
-    <div
-      class="live-coordinates"
-      v-if="showLiveCoordinates && latlngLive"
-    >
+    <div class="live-coordinates" v-if="showLiveCoordinates && latlngLive">
       <div>Lat: {{ latlngLive.lat.toFixed(6) }}</div>
       <div>Lon: {{ latlngLive.lng.toFixed(6) }}</div>
     </div>
@@ -663,7 +660,7 @@ export default {
 
     areaFromGeoserver(newVal) {
       if (newVal) {
-        this.$router.push({ path: `/ala/${newVal}` });
+        this.$router.push({ path: `/turbaala/${newVal}` });
       }
     },
 
