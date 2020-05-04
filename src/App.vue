@@ -21,9 +21,9 @@
     <v-content :style="$route.name === 'FrontPage' ? 'padding: unset;' : ''">
       <router-view />
 
-      <AppFooter
-        v-if="$route.name !== 'FrontPage' && $route.name !== 'About'"
-      />
+<!--      <AppFooter-->
+<!--        v-if="$route.name !== 'FrontPage' && $route.name !== 'About'"-->
+<!--      />-->
     </v-content>
 
     <CookieLaw v-if="cookieLaw" v-on:accept="closeCookieLaw" />
@@ -35,14 +35,14 @@ import AppHeader from "./components/partial/header/AppHeader";
 import ErrorSnackbar from "./components/partial/snackbar/ErrorSnackbar";
 import SuccessSnackbar from "./components/partial/snackbar/SuccessSnackbar";
 import { mapActions, mapGetters, mapState } from "vuex";
-import AppFooter from "./components/partial/footer/AppFooter";
+// import AppFooter from "./components/partial/footer/AppFooter";
 import CookieLaw from "./components/partial/CookieLaw";
 
 export default {
   name: "App",
   components: {
     CookieLaw,
-    AppFooter,
+    // AppFooter,
     SuccessSnackbar,
     ErrorSnackbar,
     AppHeader

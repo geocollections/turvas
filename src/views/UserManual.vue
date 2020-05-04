@@ -1,6 +1,10 @@
 <template>
   <div class="user-manual">
-    Kasutusjuhend teha
+    <v-row>
+      <v-col>
+<!--        <v-tabs></v-tabs>-->
+      </v-col>
+    </v-row>
   </div>
 </template>
 

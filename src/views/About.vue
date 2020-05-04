@@ -40,18 +40,50 @@
                 >
                   {{ carouselText }}
 
-                  <a
-                    href="/seletuskiri.pdf"
-                    class="about-link"
-                    title="Loe projekti tutvustust"
-                    >Projekti tutvustus</a
-                  >,
-                  <router-link
-                    to="/kasutusjuhend"
-                    class="about-link"
-                    title="Vaata kasutusjuhendit"
-                    >kasutusjuhend</router-link
-                  >
+                  <ul>
+                    <li>
+                      <a
+                        href="/seletuskiri.pdf"
+                        class="about-link"
+                        title="Lae alla"
+                        >Andmete allalaadimine (exceli fail ja digitud
+                        plaanid)</a
+                      >
+                    </li>
+
+                    <li>
+                      <a
+                        href="/seletuskiri.pdf"
+                        class="about-link"
+                        title="Ava mahajäetud väljade failid"
+                        >Mahajäetud väljade failid</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="/seletuskiri.pdf"
+                        class="about-link"
+                        title="Loe projekti seletuskirja"
+                        >Projekti seletuskiri</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="/seletuskiri.pdf"
+                        class="about-link"
+                        title="Loe projekti turvustust"
+                        >Projekti tutvustus</a
+                      >
+                    </li>
+                    <li>
+                      <router-link
+                        to="/kasutusjuhend"
+                        class="about-link"
+                        title="Vaata kasutusjuhendit"
+                        >Kasutusjuhend</router-link
+                      >
+                    </li>
+                  </ul>
                 </div>
               </v-col>
               <v-col cols="2" md="5"></v-col>
@@ -82,7 +114,7 @@ export default {
 
 .about-link {
   text-decoration: none;
-  font-weight: bold;
+  /*font-weight: bold;*/
 }
 
 .about-link:hover {

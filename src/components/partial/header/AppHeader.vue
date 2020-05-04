@@ -48,7 +48,7 @@
             dense
             solo-inverted
             dark
-            label="Otsi..."
+            label="Otsi ala..."
             class="align-center hidden-sm-and-down"
             :class="!isAboutPage && !isFrontPage ? 'mx-4' : 'ml-4'"
             autocomplete="off"
