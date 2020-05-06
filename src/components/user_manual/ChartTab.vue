@@ -8,7 +8,7 @@
       <v-card flat class="d-flex flex-column flex-md-row justify-space-between">
         <v-card flat>
           <v-card-text class="pa-2">
-            Graafik koosneb järgnevatest funktsioonidest:
+            Graafik koosneb järgnevatest funktsioonidest:K
             <ol>
               <li>
                 <b>Pluss</b> ja <b>miinus</b> nupp kaardi suurendamiseks ja

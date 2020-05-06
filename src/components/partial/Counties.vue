@@ -6,7 +6,6 @@
         <span v-for="(item, index) in counties" :key="item.id">
           <router-link
             :to="{
-              path: `/${$route.meta.object}`,
               query: {
                 ...$route.query,
                 maakond: item.maakond,

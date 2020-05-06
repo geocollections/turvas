@@ -53,15 +53,15 @@
 
                     <li>
                       <a
-                        href="/seletuskiri.pdf"
+                        href="/failid/mahajäetud_väljade_failid.zip"
                         class="about-link"
                         title="Ava mahajäetud väljade failid"
-                        >Mahajäetud väljade failid</a
+                        >Mahajäetud väljade failid (.zip formaat 257.3 MB)</a
                       >
                     </li>
                     <li>
                       <a
-                        href="/seletuskiri.pdf"
+                        href="/failid/seletuskiri.pdf"
                         class="about-link"
                         title="Loe projekti seletuskirja"
                         >Projekti seletuskiri</a
@@ -69,7 +69,7 @@
                     </li>
                     <li>
                       <a
-                        href="/seletuskiri.pdf"
+                        href="/failid/projekti_tutvustus.pdf"
                         class="about-link"
                         title="Loe projekti turvustust"
                         >Projekti tutvustus</a
