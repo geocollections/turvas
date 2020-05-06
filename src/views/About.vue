@@ -51,6 +51,7 @@
                     <li>
                       <a
                         href="/failid/projekti_tutvustus.pdf"
+                        target="ProjektiTutvustusWindow"
                         class="about-link"
                         title="Lae alla"
                         >Andmete allalaadimine (exceli fail ja digitud
@@ -63,12 +64,13 @@
                         href="/failid/mahajäetud_väljade_failid.zip"
                         class="about-link"
                         title="Ava mahajäetud väljade failid"
-                        >Mahajäetud väljade failid (.zip formaat 257.3 MB)</a
+                        >Mahajäetud väljade failid (.zip formaat ~250 MB)</a
                       >
                     </li>
                     <li>
                       <a
                         href="/failid/seletuskiri.pdf"
+                        target="SeletuskiriWindow"
                         class="about-link"
                         title="Loe projekti seletuskirja"
                         >Projekti seletuskiri</a
@@ -77,6 +79,7 @@
                     <li>
                       <a
                         href="/failid/projekti_tutvustus.pdf"
+                        target="ProjektiTutvustusWindow"
                         class="about-link"
                         title="Loe projekti turvustust"
                         >Projekti tutvustus</a
