@@ -17,7 +17,6 @@
           href="https://kik.ee"
           target="KikWindow"
           title="Keskkonnainvesteeringute keskus"
-          v-if="$vuetify.breakpoint.smAndUp"
         >
           <img
             src="https://www.kik.ee/sites/default/files/kik_est_logo__2.png"
@@ -26,6 +25,14 @@
             :class="$vuetify.breakpoint.smAndDown ? 'kik-logo-sm' : ''"
           />
         </a>
+
+        <div
+          class="image-info white--text"
+          :class="$vuetify.breakpoint.smAndDown ? 'image-info-sm' : ''"
+        >
+          Pildi autor: <b>Tõnis Saadre</b> (Eesti Geoloogiakeskuse kalender 2000. a)
+        </div>
+
         <v-overlay absolute>
           <v-sheet height="100%" tile color="transparent">
             <v-row class="fill-height" align="center" no-gutters>
@@ -43,7 +50,7 @@
                   <ul>
                     <li>
                       <a
-                        href="/seletuskiri.pdf"
+                        href="/failid/projekti_tutvustus.pdf"
                         class="about-link"
                         title="Lae alla"
                         >Andmete allalaadimine (exceli fail ja digitud
@@ -143,5 +150,17 @@ export default {
 
 .kik-logo-sm {
   width: 100px;
+}
+
+.image-info {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  font-size: 12px;
+  width: 220px;
+}
+
+.image-info-sm {
+  bottom: 50px;
 }
 </style>

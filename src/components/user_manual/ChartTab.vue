@@ -7,7 +7,7 @@
 
       <v-card
         flat
-        class="d-flex flex-column flex-lg-row flex-column-reverse justify-space-between"
+        class="d-flex flex-column-reverse flex-xl-row justify-space-between"
       >
         <v-card flat>
           <v-card-text class="pa-2">
@@ -55,7 +55,7 @@
               <v-card flat class="d-flex flex-row">
                 <v-card flat>
                   <v-img
-                    max-width="300px"
+                    max-width="250px"
                     :src="
                       require('@/assets/img/user_manual/chart/chart_on.png')
                     "
@@ -64,7 +64,7 @@
 
                 <v-card flat>
                   <v-img
-                    max-width="300px"
+                    max-width="250px"
                     :src="
                       require('@/assets/img/user_manual/chart/chart_off.png')
                     "
@@ -75,7 +75,7 @@
           </v-card-text>
         </v-card>
 
-        <v-card flat class="align-self-center pa-2">
+        <v-card flat class="align-self-center align-self-xl-start pa-2">
           <v-img
             max-width="700px"
             :src="require('@/assets/img/user_manual/chart/chart.png')"
