@@ -11,7 +11,7 @@
             <v-card flat class="d-flex flex-column">
               <v-card flat>
                 <v-img
-                    max-width="1000px"
+                  max-width="1000px"
                   :src="
                     require('@/assets/img/user_manual/common/common_navbar.png')
                   "
@@ -40,7 +40,7 @@
               </v-card>
             </v-card>
 
-            <v-divider class="my-2"/>
+            <v-divider class="my-2" />
 
             <v-card flat class="d-flex flex-row">
               <v-card flat class="pr-2">

@@ -6,7 +6,8 @@
       </v-card-title>
 
       <v-card-text>
-        Kasutusjuhendist leiab juhiseid, kuidas rakenduse peamised funktsioonid töötavad.
+        Kasutusjuhendist leiab juhiseid, kuidas rakenduse peamised funktsioonid
+        töötavad.
       </v-card-text>
 
       <v-tabs v-model="tab" grow>

@@ -9,19 +9,19 @@ const state = {
   carouselSlides: [
     {
       id: 1,
-      src: "https://turvas.geoloogia.info/pildid/punasoo_raba.jpg"
+      src: "https://turvas.geoloogia.info/failid/pildid/punasoo_raba.jpg"
     },
     {
       id: 2,
-      src: "https://turvas.geoloogia.info/pildid/kakerdaja_raba.jpg"
+      src: "https://turvas.geoloogia.info/failid/pildid/kakerdaja_raba.jpg"
     },
     {
       id: 3,
-      src: "https://turvas.geoloogia.info/pildid/soosaare_raba.jpg"
+      src: "https://turvas.geoloogia.info/failid/pildid/soosaare_raba.jpg"
     },
     {
       id: 4,
-      src: "https://turvas.geoloogia.info/pildid/tuhu_soo.jpg"
+      src: "https://turvas.geoloogia.info/failid/pildid/tuhu_soo.jpg"
     }
   ],
   block: {

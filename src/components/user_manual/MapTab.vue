@@ -5,7 +5,10 @@
         Kaardi tutvustus ja õpetus
       </v-card-title>
 
-      <v-card flat class="d-flex flex-column flex-md-row justify-space-between">
+      <v-card
+        flat
+        class="d-flex flex-column flex-md-row flex-column-reverse justify-space-between"
+      >
         <v-card flat>
           <v-card-text class="pa-2">
             Kaart koosneb järgnevatest funktsioonidest:
@@ -49,9 +52,7 @@
               <v-card flat class="pr-2">
                 <v-img
                   max-width="150px"
-                  :src="
-                    require('@/assets/img/user_manual/map/map_sites.png')
-                  "
+                  :src="require('@/assets/img/user_manual/map/map_sites.png')"
                 />
               </v-card>
               <v-card flat class="align-self-center">

@@ -5,59 +5,71 @@
         Graafikute tutvustus ja õpetus
       </v-card-title>
 
-      <v-card flat class="d-flex flex-column flex-md-row justify-space-between">
+      <v-card
+        flat
+        class="d-flex flex-column flex-lg-row flex-column-reverse justify-space-between"
+      >
         <v-card flat>
           <v-card-text class="pa-2">
-            Graafik koosneb järgnevatest funktsioonidest:K
+            <div class="mb-2">
+              <b>Y-telg</b> näitab kui <b>sügavalt</b> maapinnast on proov
+              võetud, ning <b>X-telg</b> näitab valitud parameetri
+              <b>väärtust</b>.
+            </div>
+
+            Graafik koosneb järgnevatest funktsioonidest:
             <ol>
               <li>
-                <b>Pluss</b> ja <b>miinus</b> nupp kaardi suurendamiseks ja
-                vähendamiseks.
-              </li>
-
-              <li><b>"Kasti"</b> nupp kaardi täisekraanile panekuks.</li>
-
-              <li>
-                <b>Kaardikihi</b> nupp, millega saab valida erinevaid
-                kaardikihte
+                Graafikul <b>kuvatava andmestiku valimine</b>, igale valikule
+                vastab üks graafik.
               </li>
 
               <li>
-                Näitab hiirekursori abil hetkelist <b>laius- ja pikkuskraadi</b>
+                Graafiku <b>legend</b>, mis näitab värvidena, et mis info
+                graafikul asetseb
               </li>
 
-              <li>Kaardi <b>legend</b></li>
+              <li>
+                Graafiku legendi peale <b>vajutades</b> on võimalik
+                <b>peita ja kuvada</b> konkreetset andmestikku graafikul.
+              </li>
+
+              <li>
+                Graafikul olev andmestik on kuvatud <b>mummudena</b>. Ette antud
+                näite puhul on näha siirdesooturba ja rabaturba andmed.
+              </li>
+
+              <li>
+                Turba lagunemisastme puhul on lisaks näha
+                <b>roheliste ja punaste mummudena</b>, et kas on
+                <b>hästi- või vähelagunenud turvas</b>
+              </li>
             </ol>
 
-            <v-card flat class="d-flex flex-row mt-2">
-              <v-card flat class="pr-2">
-                <v-img
-                    max-width="50px"
+            <v-card flat class="d-flex flex-column mt-3">
+              <v-card flat class="mb-2">
+                Turba lagunemisastme puhul on toodud alljärgnevatel piltidel
+                näide, kuidas graafiku legendi peale vajutades on võimalik
+                kuvatavaid andmeid sisse ja välja lülitada.
+              </v-card>
+              <v-card flat class="d-flex flex-row">
+                <v-card flat>
+                  <v-img
+                    max-width="300px"
                     :src="
-                    require('@/assets/img/user_manual/map/map_crosshair.png')
-                  "
-                />
-              </v-card>
-              <v-card flat class="align-self-center">
-                Kui kaardil olev <b>kursor</b> on <b>risti</b> kujuga, siis on
-                võimalik vajutada <b>turbaalade</b> (rohelised) ja
-                <b>proovipunktide</b> (punased) peale.
-              </v-card>
-            </v-card>
+                      require('@/assets/img/user_manual/chart/chart_on.png')
+                    "
+                  />
+                </v-card>
 
-            <v-card flat class="d-flex flex-column flex-sm-row mt-2">
-              <v-card flat class="pr-2">
-                <v-img
-                    max-width="150px"
+                <v-card flat>
+                  <v-img
+                    max-width="300px"
                     :src="
-                    require('@/assets/img/user_manual/map/map_sites.png')
-                  "
-                />
-              </v-card>
-              <v-card flat class="align-self-center">
-                Kui kaardil on näha niisugune <b>kollane ikoon</b>, siis see on
-                <b>proovipunkt</b> ning selle peale vajutades suunatakse
-                kasutaja proovipunkti <b>detailvaatele</b>.
+                      require('@/assets/img/user_manual/chart/chart_off.png')
+                    "
+                  />
+                </v-card>
               </v-card>
             </v-card>
           </v-card-text>
@@ -65,8 +77,8 @@
 
         <v-card flat class="align-self-center pa-2">
           <v-img
-              max-width="500px"
-              :src="require('@/assets/img/user_manual/map/map.png')"
+            max-width="700px"
+            :src="require('@/assets/img/user_manual/chart/chart.png')"
           />
         </v-card>
       </v-card>

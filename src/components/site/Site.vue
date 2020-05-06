@@ -119,7 +119,7 @@
         <v-row no-gutters class="px-1">
           <v-col cols="12" class="pa-1">
             <AutocompleteWrapper
-              label="Veerud"
+              label="Vali graafikul kuvatav andmestik"
               chips
               clearable
               multiple
