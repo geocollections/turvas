@@ -48,18 +48,18 @@ const mutations = {
   },
 
   INIT_ACTIVE_LIST_PARAMETERS(state, payload) {
-    if (payload.isDetail) {
-      state.activeListParameters = [
-        payload.parameters[0],
-        payload.parameters[4],
-        payload.parameters[7]
-      ];
-    } else {
-      state.activeListParameters = [
-        payload.parameters[0],
-        payload.parameters[1]
-      ];
-    }
+    // if (payload.isDetail) {
+    state.activeListParameters = [
+      payload.parameters[0],
+      payload.parameters[4],
+      payload.parameters[7]
+    ];
+    // } else {
+    //   state.activeListParameters = [
+    //     payload.parameters[0],
+    //     payload.parameters[1]
+    //   ];
+    // }
   },
 
   UPDATE_SAMPLE_HEADERS(state, listOfParams) {

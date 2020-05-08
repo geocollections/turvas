@@ -546,7 +546,6 @@ export default {
   watch: {
     "$vuetify.breakpoint.xsOnly"() {
       this.$nextTick(() => {
-        console.log("tere");
         this.map.invalidateSize();
       });
     },
@@ -660,13 +659,13 @@ export default {
 
     areaFromGeoserver(newVal) {
       if (newVal) {
-        this.$router.push({ path: `/turbaala/${newVal}` });
+        this.$router.push({ path: `/area/${newVal}` });
       }
     },
 
     siteFromGeoserver(newVal) {
       if (newVal) {
-        this.$router.push({ path: `/proovipunkt/${newVal}` });
+        this.$router.push({ path: `/site/${newVal}` });
       }
     }
   },
@@ -909,7 +908,7 @@ export default {
 
             marker.on("click", () => {
               this.$router.push({
-                path: `/proovipunkt/${site.id}`
+                path: `/site/${site.id}`
               });
             });
 

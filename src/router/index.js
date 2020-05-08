@@ -10,7 +10,7 @@ const routes = [
     redirect: "/"
   },
   {
-    path: "/projekti_info",
+    path: "/about",
     name: "About",
     component: () => import("../views/About.vue"),
     meta: {
@@ -35,7 +35,7 @@ const routes = [
         component: () => import("../components/home/FrontPage.vue")
       },
       {
-        path: "turbaala",
+        path: "area",
         component: () => import("../views/Detail.vue"),
         children: [
           {
@@ -59,7 +59,7 @@ const routes = [
         ]
       },
       {
-        path: "proovipunkt",
+        path: "site",
         component: () => import("../views/Detail.vue"),
         children: [
           {
@@ -83,7 +83,7 @@ const routes = [
         ]
       },
       {
-        path: "proov",
+        path: "sample",
         component: () => import("../views/Detail.vue"),
         children: [
           {

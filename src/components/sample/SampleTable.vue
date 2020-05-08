@@ -71,7 +71,7 @@
       >
         <template v-slot:item.sample_id="{ item }">
           <router-link
-            :to="`/proov/${item.sample_id}`"
+            :to="`/sample/${item.sample_id}`"
             title="Proovi detailvaade"
             class="table-link"
           >
@@ -81,7 +81,7 @@
 
         <template v-slot:item.number_additional="{ item }">
           <router-link
-            :to="`/proov/${item.sample_id}`"
+            :to="`/sample/${item.sample_id}`"
             title="Proovi detailvaade"
             class="table-link"
           >
@@ -91,7 +91,7 @@
 
         <template v-slot:item.site="{ item }">
           <router-link
-            :to="`/proovipunkt/${item.site_id}`"
+            :to="`/site/${item.site_id}`"
             title="Proovipunkti detailvaade"
             class="table-link"
           >

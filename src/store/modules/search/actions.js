@@ -172,9 +172,10 @@ const actions = {
         });
         dispatch(
           "updateSampleHeaders",
-          router.currentRoute.name.includes("Detail")
-            ? [listOfParameters[0], listOfParameters[4], listOfParameters[7]]
-            : [listOfParameters[0], listOfParameters[1]]
+          // router.currentRoute.name.includes("Detail")
+          //   ? [listOfParameters[0], listOfParameters[4], listOfParameters[7]]
+          //   : [listOfParameters[0], listOfParameters[1]]
+          [listOfParameters[0], listOfParameters[4], listOfParameters[7]]
         );
       }
     }
