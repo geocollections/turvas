@@ -23,7 +23,7 @@
         >
           <template v-slot:item.site="{ item }">
             <router-link
-              :to="`/site/${item.site}`"
+              :to="`/proovipunkt/${item.site}`"
               title="Proovipunkti detailvaade"
               class="table-link"
             >
@@ -33,7 +33,7 @@
 
           <template v-slot:item.site__area="{ item }">
             <router-link
-              :to="`/area/${item.site__area}`"
+              :to="`/turbaala/${item.site__area}`"
               title="Turbaala detailvaade"
               class="table-link"
             >

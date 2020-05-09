@@ -25,24 +25,24 @@
         </v-toolbar-title>
 
         <v-toolbar-items class="hidden-sm-and-down">
-          <v-btn text title="Turbaalad" to="/area" exact color="white"
+          <v-btn text title="Turbaalad" to="/turbaala" exact color="white"
             >Turbaalad</v-btn
           >
           <v-btn
             text
             title="Proovipunktid"
-            to="/site"
+            to="/proovipunkt"
             exact
             color="white"
             >Proovipunktid</v-btn
           >
-          <v-btn text title="Proovid" to="/sample" exact color="white"
+          <v-btn text title="Proovid" to="/proov" exact color="white"
             >Proovid</v-btn
           >
           <v-btn
             text
             title="Projekti info"
-            to="/about"
+            to="/projekti_info"
             exact
             color="white"
             >Projekti info</v-btn
@@ -105,28 +105,28 @@
             <v-list-item-title>Pealeht</v-list-item-title>
           </v-list-item>
 
-          <v-list-item to="/area" role="option">
+          <v-list-item to="/turbaala" role="option">
             <v-list-item-icon>
               <v-icon>fas fa-layer-group</v-icon>
             </v-list-item-icon>
             <v-list-item-title>Turbaalad</v-list-item-title>
           </v-list-item>
 
-          <v-list-item to="/site" role="option">
+          <v-list-item to="/proovipunkt" role="option">
             <v-list-item-icon>
               <v-icon>fas fa-map-pin</v-icon>
             </v-list-item-icon>
             <v-list-item-title>Proovipunktid</v-list-item-title>
           </v-list-item>
 
-          <v-list-item to="/sample" role="option">
+          <v-list-item to="/proov" role="option">
             <v-list-item-icon>
               <v-icon>fas fa-vials</v-icon>
             </v-list-item-icon>
             <v-list-item-title>Proovid</v-list-item-title>
           </v-list-item>
 
-          <v-list-item to="/about" role="option">
+          <v-list-item to="/projekti_info" role="option">
             <v-list-item-icon>
               <v-icon>fas fa-info</v-icon>
             </v-list-item-icon>
@@ -182,7 +182,7 @@ export default {
       if (this.getFastSearch && this.getFastSearch.trim().length > 0) {
         this.$router
           .push({
-            path: "/area",
+            path: "/turbaala",
             query: { filter: this.getFastSearch.trim() }
           })
           .catch(err => {});

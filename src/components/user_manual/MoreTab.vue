@@ -25,17 +25,17 @@
           kirjete ID koodide kaudu. Näiteks turba andmebaasi uuringupunkti ID
           7782 andmed JSON vormingus saab kätte päringuga:
           <a
-            href="https://api.geocollections.info/site/7782"
+            href="https://api.geocollections.info/site/7782?format=json"
             title="SARV avalik API"
             target="ApiWindow"
-            >https://api.geocollections.info/site/7782</a
+            >https://api.geocollections.info/site/7782?format=json</a
           >
           ning proovi ID 168303 infot näeb päringuga
           <a
-            href="https://api.geocollections.info/sample/168303"
+            href="https://api.geocollections.info/sample/168303?format=json"
             title="SARV avalik API"
             target="ApiWindow"
-            >https://api.geocollections.info/sample/168303</a
+            >https://api.geocollections.info/sample/168303?format=json</a
           >
         </div>
 
@@ -44,10 +44,10 @@
           juhendmaterjalidega API teenuse avalehel. Näiteks järgmine päring
           kuvab nimekirja proovipunktidest kus turba paksus on üle 9 m:
           <a
-            href="https://api.geocollections.info/site/?project=20&depth__gte=8"
+            href="https://api.geocollections.info/site/?project=20&depth__gte=8&format=json"
             title="SARV avalik API"
             target="ApiWindow"
-            >https://api.geocollections.info/site/?project=20&depth__gte=8</a
+            >https://api.geocollections.info/site/?project=20&depth__gte=8&format=json</a
           >. Oluline on täiendava kriteeriumina kasutada proovipunktide otsingus
           parameetrit 'project=20', mis eristab turba uuringutepunkte muudest
           andmetest. Proovide otsingu tuleb kasutada lisaparameetrit

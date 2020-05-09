@@ -74,7 +74,7 @@
       >
         <template v-slot:item.name="{ item }">
           <router-link
-            :to="`/site/${item.id}`"
+            :to="`/proovipunkt/${item.id}`"
             title="Proovipunkti detailvaade"
             class="table-link"
           >
@@ -84,7 +84,7 @@
 
         <template v-slot:item.area_name="{ item }">
           <router-link
-            :to="`/area/${item.area_id}`"
+            :to="`/turbaala/${item.area_id}`"
             title="Turbaala detailvaade"
             class="table-link"
           >

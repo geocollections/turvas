@@ -659,13 +659,13 @@ export default {
 
     areaFromGeoserver(newVal) {
       if (newVal) {
-        this.$router.push({ path: `/area/${newVal}` });
+        this.$router.push({ path: `/turbaala/${newVal}` });
       }
     },
 
     siteFromGeoserver(newVal) {
       if (newVal) {
-        this.$router.push({ path: `/site/${newVal}` });
+        this.$router.push({ path: `/proovipunkt/${newVal}` });
       }
     }
   },
@@ -908,7 +908,7 @@ export default {
 
             marker.on("click", () => {
               this.$router.push({
-                path: `/site/${site.id}`
+                path: `/proovipunkt/${site.id}`
               });
             });
 

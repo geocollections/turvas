@@ -107,9 +107,9 @@ const searchMixin = {
     },
 
     resetSearch() {
-      let path = "/area";
-      if (this.$route.name === "SiteTable") path = "/site";
-      else if (this.$route.name === "SampleTable") path = "/sample";
+      let path = "/turbaala";
+      if (this.$route.name === "SiteTable") path = "/proovipunkt";
+      else if (this.$route.name === "SampleTable") path = "/proov";
       this.$router.push({ path: path }).catch(err => {});
     }
   }

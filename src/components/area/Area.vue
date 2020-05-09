@@ -90,7 +90,7 @@
             <router-link
               class="table-link"
               title="Proovipunkti detailvaade"
-              :to="`/site/${item.id}`"
+              :to="`/proovipunkt/${item.id}`"
             >
               {{ item.id }}
             </router-link>
@@ -100,7 +100,7 @@
             <router-link
               class="table-link"
               title="Proovipunkti detailvaade"
-              :to="`/site/${item.id}`"
+              :to="`/proovipunkt/${item.id}`"
             >
               {{ item.name }}
             </router-link>

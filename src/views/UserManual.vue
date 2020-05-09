@@ -34,11 +34,34 @@
             target="SchemaWindow"
             >https://schema.geocollections.info</a
           >). Turbauuringute andmestiku talletamiseks on kasutusel järgmised
-          peamised andeobjektid ja moodulid: ala (area), proovipunkt (site),
-          proov (sample), analüüs (analysis), analüüsitulemused
-          (analysis_results). Täiendavalt kasutatakse seotud mooduleid
-          kirjanduse, asutuste ja isikute, laborite, analüüsimeetodite, failide
-          jms info talletamiseks, kuvamiseks ja haldamiseks.
+          peamised andeobjektid ja moodulid: ala (<a
+            href="https://schema.geocollections.info/area/"
+            title="Infosteemi andmemudel 'area' tabeli kohta"
+            target="SchemaWindow"
+            >area</a
+          >), proovipunkt (<a
+            href="https://schema.geocollections.info/site/"
+            title="Infosteemi andmemudel 'site' tabeli kohta"
+            target="SchemaWindow"
+            >site</a
+          >), proov (<a
+            href="https://schema.geocollections.info/sample/"
+            title="Infosteemi andmemudel 'sample' tabeli kohta"
+            target="SchemaWindow"
+            >sample</a
+          >), analüüs (<a
+            href="https://schema.geocollections.info/analysis/"
+            title="Infosteemi andmemudel 'analysis' tabeli kohta"
+            target="SchemaWindow"
+            >analysis</a
+          >), analüüsitulemused (<a
+            href="https://schema.geocollections.info/analysis_results/"
+            title="Infosteemi andmemudel 'analysis_results' tabeli kohta"
+            target="SchemaWindow"
+            >analysis_results</a
+          >). Täiendavalt kasutatakse seotud mooduleid kirjanduse, asutuste ja
+          isikute, laborite, analüüsimeetodite, failide jms info talletamiseks,
+          kuvamiseks ja haldamiseks.
         </div>
 
         <div class="mt-2">
@@ -55,7 +78,7 @@
           Peamine kasutajaliides turbageoloogia andmete sirvimiseks ning
           päringuteks, aga ka andmete allalaadimiseks ja turbauuringute
           tutvustamiseks, on käesoleva projekti raames valminud turbageoloogia
-          andmebaasi veebirakendus TurbA:
+          andmebaasi veebirakendus <b>TurbA</b>:
           <router-link to="/" title="Mine pealehele"
             >https://turba.geoloogia.info</router-link
           >.
@@ -95,7 +118,7 @@ import More from "../components/user_manual/MoreTab";
 import MoreTab from "../components/user_manual/MoreTab";
 export default {
   name: "UserManual",
-  components: {MoreTab, ChartTab, TableTab, SearchTab, MapTab, CommonTab },
+  components: { MoreTab, ChartTab, TableTab, SearchTab, MapTab, CommonTab },
   data: () => ({
     tab: null,
     items: ["üldine", "kaart", "otsing", "tabel", "graafik", "rohkem lugemist"]

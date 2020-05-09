@@ -30,7 +30,8 @@
           class="image-info white--text"
           :class="$vuetify.breakpoint.smAndDown ? 'image-info-sm' : ''"
         >
-          Pildi autor: <b>Tõnis Saadre</b> (Eesti Geoloogiakeskuse kalender 2000. a)
+          Pildi autor: <b>Tõnis Saadre</b> (Eesti Geoloogiakeskuse kalender
+          2000. a)
         </div>
 
         <v-overlay absolute>
