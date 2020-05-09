@@ -1,14 +1,11 @@
+const routes = require("./src/router/routesForSitemap");
+
 module.exports = {
   pluginOptions: {
     sitemap: {
-      urls: [
-        "https://turvas.geoloogia.info/",
-        "https://turvas.geoloogia.info/turbaala",
-        "https://turvas.geoloogia.info/proovipunkt",
-        "https://turvas.geoloogia.info/proov",
-        "https://turvas.geoloogia.info/projekti_info",
-        "https://turvas.geoloogia.info/kasutusjuhend"
-      ]
+      // pretty: true,
+      baseURL: "https://turvas.geoloogia.info",
+      routes
     }
   }
 };
