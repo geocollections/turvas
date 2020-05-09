@@ -92,7 +92,7 @@
 
     <v-navigation-drawer
       v-model="drawer"
-      absolute
+      fixed
       temporary
       style="z-index: 5001;"
     >
