@@ -132,6 +132,13 @@
             </v-list-item-icon>
             <v-list-item-title>Projekti info</v-list-item-title>
           </v-list-item>
+
+          <v-list-item to="/kasutusjuhend" role="option">
+            <v-list-item-icon>
+              <v-icon>fas fa-question-circle</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>Kasutusjuhend</v-list-item-title>
+          </v-list-item>
         </v-list-item-group>
 
         <v-list-item class="px-0 pt-2">
