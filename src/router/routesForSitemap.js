@@ -25,6 +25,14 @@ module.exports = [
     }
   },
   {
+    path: "/allalaadimine",
+    name: "Download",
+    component: () => import("../views/Download.vue"),
+    meta: {
+      title: "Turbageoloogia andmebaas: Allalaadimine"
+    }
+  },
+  {
     path: "/",
     component: () => import("../views/UserManual.vue"),
     children: [

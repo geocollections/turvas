@@ -26,6 +26,14 @@ const routes = [
     }
   },
   {
+    path: "/allalaadimine",
+    name: "Download",
+    component: () => import("../views/Download.vue"),
+    meta: {
+      title: "Turbageoloogia andmebaas: Allalaadimine"
+    }
+  },
+  {
     path: "/",
     component: Home,
     children: [

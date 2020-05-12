@@ -6,6 +6,8 @@ const state = {
   showMap: true,
   carouselText:
     'Keskkonnainvesteeringute Keskuse projektid nr 12623 "Turbaalaste uurimistulemuste digitaliseerimine ja andmebaasi koostamine I etapp (Harju, Rapla, Pärnu maakond)" ja nr 14460 “Turbaalaste uurimistulemuste digitaliseerimine ja andmebaasi koostamine II etapp (jätkuprojekt)” eesmärgiks oli turba uurimisel kogutud andmestiku alusel koostada üldsusele kättesaadav andmebaas nii, et see oleks ühildatav geoloogilise kaardistamise käigus kogutavate andmete ja keskkonnaregistri maardlate nimistu infoga.',
+  carouselText2:
+    "Projekti vastutav täitja on TTÜ geoloogia instituudi dotsent <b>Mall Orru</b>. Projekti alusandmestik on kogutud põhiliselt Eesti Geoloogiakeskuse poolt ning seda säilitatakse Geoloogiafondis. ",
   carouselSlides: [
     {
       id: 1,

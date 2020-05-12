@@ -47,6 +47,14 @@
             color="white"
             >Projekti info</v-btn
           >
+          <v-btn
+            text
+            title="Failide allalaadimine"
+            to="/allalaadimine"
+            exact
+            color="white"
+            >Allalaadimine</v-btn
+          >
         </v-toolbar-items>
 
         <v-spacer />
@@ -131,6 +139,13 @@
               <v-icon>fas fa-info</v-icon>
             </v-list-item-icon>
             <v-list-item-title>Projekti info</v-list-item-title>
+          </v-list-item>
+
+          <v-list-item to="/allalaadimine" role="option">
+            <v-list-item-icon>
+              <v-icon>fas fa-download</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>Allalaadimine</v-list-item-title>
           </v-list-item>
 
           <v-list-item to="/kasutusjuhend" role="option">

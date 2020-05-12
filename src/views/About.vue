@@ -43,58 +43,80 @@
                   class="font-weight-medium carousel-text"
                   :class="{
                     'carousel-text-xs': $vuetify.breakpoint.xsOnly,
-                    'carousel-text-sm': $vuetify.breakpoint.smOnly
+                    'carousel-text-sm': $vuetify.breakpoint.smOnly,
+                    'carousel-text-md': $vuetify.breakpoint.mdOnly,
+                    'carousel-text-lg': $vuetify.breakpoint.lgOnly
                   }"
                 >
-                  {{ carouselText }}
+                  <div>{{ carouselText }}</div>
 
-                  <ul>
+                  <ol class="my-3">
                     <li>
-                      <a
-                        href="/failid/projekti_tutvustus.pdf"
-                        target="ProjektiTutvustusWindow"
-                        class="about-link"
-                        title="Lae alla"
-                        >Andmete allalaadimine (exceli fail ja digitud
-                        plaanid)</a
-                      >
+                      Varasemate uurimistööde andmete kogumine ja digitaliseerimine (turba üldtehnilised näitajad: botaaniline koostis, tuhasus, niiskus, pH, kahjulikud elemendid, kütteväärtus jt).
                     </li>
 
                     <li>
-                      <a
-                        href="/failid/mahajäetud_väljade_failid.zip"
-                        class="about-link"
-                        title="Ava mahajäetud väljade failid"
-                        >Mahajäetud väljade failid (.zip formaat ~250 MB)</a
-                      >
+                      Turbamaardlate ja turbaalade (560) plaanide digitaliseerimine ja georefereerimine.
                     </li>
+
                     <li>
-                      <a
-                        href="/failid/seletuskiri.pdf"
-                        target="SeletuskiriWindow"
-                        class="about-link"
-                        title="Loe projekti seletuskirja"
-                        >Projekti seletuskiri</a
-                      >
+                      Turbast võetud proovipunktide koordinaatide ja absoluutkõrguste määramine digitaliseeritud ruumiandmete baasil (kasutades ArcGIS programmi).
                     </li>
+
                     <li>
-                      <a
-                        href="/failid/projekti_tutvustus.pdf"
-                        target="ProjektiTutvustusWindow"
-                        class="about-link"
-                        title="Loe projekti turvustust"
-                        >Projekti tutvustus</a
-                      >
+                      Lühiülevaadete koostamine turbamaardlatest (turba genees, omadused, varude iseloomustus, perspektiivsed kasutusvõimalused) ning nende sidumine andmebaasides olevate andmetega.
                     </li>
-                    <li>
-                      <router-link
-                        to="/kasutusjuhend"
-                        class="about-link"
-                        title="Vaata kasutusjuhendit"
-                        >Kasutusjuhend</router-link
-                      >
-                    </li>
-                  </ul>
+                  </ol>
+
+                  <div v-html="carouselText2" />
+
+<!--                  <ol>-->
+<!--                    <li>-->
+<!--                      <a-->
+<!--                        href="/failid/projekti_tutvustus.pdf"-->
+<!--                        target="ProjektiTutvustusWindow"-->
+<!--                        class="about-link"-->
+<!--                        title="Lae alla"-->
+<!--                        >Andmete allalaadimine (exceli fail ja digitud-->
+<!--                        plaanid)</a-->
+<!--                      >-->
+<!--                    </li>-->
+
+<!--                    <li>-->
+<!--                      <a-->
+<!--                        href="/failid/mahajäetud_väljade_failid.zip"-->
+<!--                        class="about-link"-->
+<!--                        title="Ava mahajäetud väljade failid"-->
+<!--                        >Mahajäetud väljade failid (.zip formaat ~250 MB)</a-->
+<!--                      >-->
+<!--                    </li>-->
+<!--                    <li>-->
+<!--                      <a-->
+<!--                        href="/failid/seletuskiri.pdf"-->
+<!--                        target="SeletuskiriWindow"-->
+<!--                        class="about-link"-->
+<!--                        title="Loe projekti seletuskirja"-->
+<!--                        >Projekti seletuskiri</a-->
+<!--                      >-->
+<!--                    </li>-->
+<!--                    <li>-->
+<!--                      <a-->
+<!--                        href="/failid/projekti_tutvustus.pdf"-->
+<!--                        target="ProjektiTutvustusWindow"-->
+<!--                        class="about-link"-->
+<!--                        title="Loe projekti turvustust"-->
+<!--                        >Projekti tutvustus</a-->
+<!--                      >-->
+<!--                    </li>-->
+<!--                    <li>-->
+<!--                      <router-link-->
+<!--                        to="/kasutusjuhend"-->
+<!--                        class="about-link"-->
+<!--                        title="Vaata kasutusjuhendit"-->
+<!--                        >Kasutusjuhend</router-link-->
+<!--                      >-->
+<!--                    </li>-->
+<!--                  </ol>-->
                 </div>
               </v-col>
               <v-col cols="2" md="5"></v-col>
@@ -112,7 +134,7 @@ import { mapGetters, mapState } from "vuex";
 export default {
   name: "About",
   computed: {
-    ...mapState("settings", ["carouselText"]),
+    ...mapState("settings", ["carouselText", "carouselText2"]),
     ...mapGetters("settings", ["getCarouselSlides"])
   }
 };
@@ -136,12 +158,20 @@ export default {
   font-size: 18px;
 }
 
-.carousel-text-sm {
+.carousel-text-lg {
+  font-size: 16px;
+}
+
+.carousel-text-md {
   font-size: 14px;
 }
 
-.carousel-text-xs {
+.carousel-text-sm {
   font-size: 12px;
+}
+
+.carousel-text-xs {
+  font-size: 10px;
 }
 
 .kik-logo {
