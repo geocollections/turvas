@@ -78,7 +78,7 @@
           Peamine kasutajaliides turbageoloogia andmete sirvimiseks ning
           päringuteks, aga ka andmete allalaadimiseks ja turbauuringute
           tutvustamiseks, on käesoleva projekti raames valminud turbageoloogia
-          andmebaasi veebirakendus <b>TurbA</b>:
+          andmebaasi veebirakendus <b>TURBA</b>:
           <router-link to="/" title="Mine pealehele"
             >https://turba.geoloogia.info</router-link
           >.

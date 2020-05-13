@@ -26,6 +26,54 @@ const state = {
       src: "https://turvas.geoloogia.info/failid/pildid/tuhu_soo.jpg"
     }
   ],
+  downloadText: "Projektiga seotud failide allalaadimine",
+  downloadLinks: [
+    {
+      id: 1,
+      src: "https://fond.egt.ee/fond/egf/7724",
+      title:
+        "Eesti mahajäetud turbatootmisalade revisjon. 1. etapp. Harju, Rapla ja Lääne maakond",
+      text: "Mahajäetud väljade failid 1. etapp",
+      target: "GeoloogiateenistusWindow"
+    },
+    {
+      id: 2,
+      src: "https://fond.egt.ee/fond/egf/7804",
+      title:
+        "Eesti mahajäetud turbatootmisalade revisjon. 2. Etapp. Ida-Viru, Lääne-Viru, Jõgeva, Järva ja Tartu maakond",
+      text: "Mahajäetud väljade failid 2. etapp",
+      target: "GeoloogiateenistusWindow"
+    },
+    {
+      id: 3,
+      src: "https://fond.egt.ee/fond/egf/7913",
+      title:
+        "Eesti mahajäetud turbatootmisalade revisjon. 3.etapp. Viljandi, Pärnu, Saare ja Hiiu maakond",
+      text: "Mahajäetud väljade failid 3. etapp",
+      target: "GeoloogiateenistusWindow"
+    },
+    {
+      id: 4,
+      src: "https://fond.egt.ee/fond/egf/8030",
+      title:
+        "Eesti mahajäetud turbatootmisalade revisjon. 4.etapp. Valga, Võru ja Põlva maakond",
+      text: "Mahajäetud väljade failid 4. etapp",
+      target: "GeoloogiateenistusWindow"
+    },
+    {
+      id: 5,
+      src: "/seletuskiri",
+      title: "Projekti seletuskiri",
+      text: "Projekti seletuskiri"
+    },
+    {
+      id: 6,
+      src: "/kasutusjuhend",
+      title: "Tutvu rakenduse kasutusjuhendiga",
+      text: "Kasutusjuhend",
+      isRouterLink: true
+    }
+  ],
   block: {
     area: [true, true, true],
     site: [true, true, true, true],

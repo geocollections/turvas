@@ -10,7 +10,7 @@
         :class="{ 'app-bar-front': isFrontPage }"
       >
         <v-app-bar-nav-icon
-          class="hidden-md-and-up white--text"
+          class="hidden-lg-and-up white--text"
           @click="drawer = true"
         />
 
@@ -20,7 +20,7 @@
             :to="{ path: '/' }"
             title="Mine pealehele"
           >
-            TurbA
+            TURB<span class="toolbar-title-a">A</span>
           </router-link>
         </v-toolbar-title>
 
@@ -53,7 +53,17 @@
             to="/allalaadimine"
             exact
             color="white"
+            class="hidden-md-and-down"
             >Allalaadimine</v-btn
+          >
+          <v-btn
+            text
+            title="Loe kasutusjuhendit"
+            to="/kasutusjuhend"
+            exact
+            color="white"
+            class="hidden-md-and-down"
+            >Kasutusjuhend</v-btn
           >
         </v-toolbar-items>
 
@@ -78,7 +88,9 @@
         </v-toolbar-items>
 
         <v-btn
-          v-if="!isAboutPage && !isFrontPage && !isUserManualPage"
+          v-if="
+            !isAboutPage && !isFrontPage && !isDownloadPage && !isUserManualPage
+          "
           @click="updateMapState(!getMapState)"
           :title="getMapState ? 'Peida kaart' : 'Näita kaarti'"
           fab
@@ -184,7 +196,8 @@ export default {
   props: {
     isFrontPage: Boolean,
     isAboutPage: Boolean,
-    isUserManualPage: Boolean
+    isUserManualPage: Boolean,
+    isDownloadPage: Boolean
   },
 
   data: () => ({
@@ -225,6 +238,15 @@ export default {
 .toolbar-title:hover {
   color: rgba(0, 0, 0, 0.87) !important;
   transition: color 100ms ease-in;
+}
+
+.toolbar-title-a {
+  color: rgba(0, 0, 0, 0.87);
+  font-weight: bold;
+}
+
+.toolbar-title:hover > .toolbar-title-a {
+  color: #fff !important;
 }
 
 .app-bar {

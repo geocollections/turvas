@@ -21,6 +21,13 @@
           :headers="filteredAreaHeaders"
           :items="[getArea]"
         >
+          <template v-slot:item.maakond="{ item }">
+            <a class="table-link">
+              Lae alla <b>{{ item.maakond__maakond }}</b> turbaalade plaan
+              <v-icon color="primary" small>fas fa-download</v-icon>
+            </a>
+          </template>
+
           <template v-slot:item.maardla="{ item }">
             <a
               class="table-link"
@@ -168,7 +175,7 @@ export default {
     },
 
     getEgfUrl(egf) {
-      return `https://www.egt.ee/et/fond-search?INV_EGF%5Bmin%5D=${egf.trim()}`;
+      return `https://fond.egt.ee/fond/egf/${egf.trim()}`;
     }
   }
 };

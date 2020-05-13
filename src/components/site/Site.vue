@@ -21,6 +21,13 @@
           :headers="filteredSiteHeaders"
           :items="[getSite]"
         >
+          <template v-slot:item.area__maakond="{ item }">
+            <a class="table-link">
+              Lae alla <b>{{ item.area__maakond__maakond }}</b> turbaalade plaan
+              <v-icon color="primary" small>fas fa-download</v-icon>
+            </a>
+          </template>
+
           <template v-slot:item.area="{ item }">
             <router-link
               :to="`/turbaala/${item.area}`"

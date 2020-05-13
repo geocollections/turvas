@@ -96,8 +96,8 @@ export default {
       "#1A237E",
       "#006064"
     ],
-    defaultColor: "#D1B3FF",
-    defaultColorDark: "#9E80CC",
+    defaultColor: "#BDBDBD",
+    defaultColorDark: "#424242",
     rabaturvasColor: "#fff9c4",
     rabaturvasColorDark: "#CCC691",
     siirdesooturvasColor: "#c8e6c9",
@@ -291,25 +291,25 @@ export default {
             }
           };
           if (name === "rabaturvas") {
-            name = `rabaturvas (${label.original_name})`;
+            name = `rabaturvas`;
             data = rabaturvas;
             borderColor = this.rabaturvasColorDark;
             backgroundColor = this.rabaturvasColor;
             showLine = false;
           } else if (name === "siirdesooturvas") {
-            name = `siirdesooturvas (${label.original_name})`;
+            name = `siirdesooturvas`;
             data = siirdesooturvas;
             borderColor = this.siirdesooturvasColorDark;
             backgroundColor = this.siirdesooturvasColor;
             showLine = false;
           } else if (name === "madalsooturvas") {
-            name = `madalsooturvas (${label.original_name})`;
+            name = `madalsooturvas`;
             data = madalsooturvas;
             borderColor = this.madalsooturvasColorDark;
             backgroundColor = this.madalsooturvasColor;
             showLine = false;
           } else if (name === "järvemuda") {
-            name = `järvemuda (${label.original_name})`;
+            name = `järvemuda `;
             data = jarvemuda;
             borderColor = this.jarvemudaColorDark;
             backgroundColor = this.jarvemudaColor;
