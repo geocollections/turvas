@@ -110,6 +110,14 @@
           </v-card>
         </template>
 
+        <template v-slot:item.looduslik_niiskus="{ item }">
+          <div v-if="item.looduslik_niiskus">
+            {{
+              Math.round((item.looduslik_niiskus + Number.EPSILON) * 100) / 100
+            }}
+          </div>
+        </template>
+
         <!--        <template v-slot:item.taxon="{ item }">-->
         <!--          <div-->
         <!--            v-for="(entity, index) in taxonData.find(-->

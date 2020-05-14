@@ -23,7 +23,7 @@
         >
           <template v-slot:item.maakond="{ item }">
             <a class="table-link">
-              Lae alla <b>{{ item.maakond__maakond }}</b> turbaalade plaan
+              Lae alla <b>{{ item.maakond__maakond }}</b> turbaalade plaanid
               <v-icon color="primary" small>fas fa-download</v-icon>
             </a>
           </template>

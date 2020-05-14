@@ -87,7 +87,8 @@ const state = {
     { text: "Osakaal (%)", value: "value", align: "center" },
     { text: "eElurikkus", value: "plutof_taxon_id", align: "center" }
   ],
-  listCounties: null
+  listCounties: null,
+  chartInfo: true
 };
 
 export default {

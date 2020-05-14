@@ -152,6 +152,10 @@ const actions = {
       dispatch("error/updateErrorState", true, { root: true });
       dispatch("error/updateErrorMessage", response, { root: true });
     }
+  },
+
+  updateChartInfo({ commit }, bool) {
+    commit("UPDATE_CHART_INFO", bool);
   }
 };
 

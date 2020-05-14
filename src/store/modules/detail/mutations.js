@@ -37,6 +37,10 @@ const mutations = {
 
   SET_AREA_REFERENCES(state, references) {
     state.areaReferences = references;
+  },
+
+  UPDATE_CHART_INFO(state, bool) {
+    state.chartInfo = bool;
   }
 };
 

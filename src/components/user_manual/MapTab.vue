@@ -11,6 +11,10 @@
       >
         <v-card flat>
           <v-card-text class="pa-2">
+            <div class="mb-2">
+              <b>Turbaplaanid</b> on nähtavad alataes <b>1km</b> kõrguselt.
+            </div>
+
             Kaart koosneb järgnevatest funktsioonidest:
             <ol>
               <li>

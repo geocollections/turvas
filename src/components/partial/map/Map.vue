@@ -26,6 +26,10 @@
         <span style="background-color: #ec1e17;"></span>
         <span>Proovipunkt</span>
       </div>
+      <div class="map-legend-row d-flex flex-row">
+        <span style="background-color: #fff; border: 1px solid #000;"></span>
+        <span>Plaanid al 1km</span>
+      </div>
     </div>
 
     <a
@@ -1001,7 +1005,7 @@ export default {
 
 .live-coordinates {
   margin-bottom: 26px;
-  margin-right: 118px;
+  margin-right: 134px;
   position: absolute;
   right: 0;
   bottom: 0;

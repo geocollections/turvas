@@ -349,21 +349,26 @@ export default {
       if (chartType === "scatter" || chartType === "line") {
         return filteredData.map(data => {
           return {
-            x: data[field],
-            y: -(data.depth + data.depth_interval) / 2 || this.defaultDepth,
+            x: data[field].toFixed(3),
+            y: this.calculateDepth(data.depth, data.depth_interval),
             rock: data.rock
           };
         });
       } else if (chartType === "bubble") {
         return filteredData.map(data => {
           return {
-            x: data[field],
-            y: -(data.depth + data.depth_interval) / 2 || this.defaultDepth,
+            x: data[field].toFixed(3),
+            y: this.calculateDepth(data.depth, data.depth_interval),
             r: 5,
             rock: data.rock
           };
         });
       } else return [];
+    },
+
+    calculateDepth(depth, depthInterval) {
+      let newDepth = -(depth + depthInterval) / 2 || this.defaultDepth;
+      return newDepth.toFixed(3);
     }
   }
 };

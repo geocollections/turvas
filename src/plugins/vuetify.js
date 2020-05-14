@@ -40,7 +40,8 @@ import Vuetify, {
   VTab,
   VTabsItems,
   VTabItem,
-  VImg
+  VImg,
+  VAlert
 } from "vuetify/lib";
 import "vuetify/dist/vuetify.min.css";
 import et from "vuetify/es5/locale/et";
@@ -88,7 +89,8 @@ Vue.use(Vuetify, {
     VTab,
     VTabsItems,
     VTabItem,
-    VImg
+    VImg,
+    VAlert
   },
   directives: {
     Ripple

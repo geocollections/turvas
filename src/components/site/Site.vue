@@ -23,7 +23,8 @@
         >
           <template v-slot:item.area__maakond="{ item }">
             <a class="table-link">
-              Lae alla <b>{{ item.area__maakond__maakond }}</b> turbaalade plaan
+              Lae alla <b>{{ item.area__maakond__maakond }}</b> turbaalade
+              plaanid
               <v-icon color="primary" small>fas fa-download</v-icon>
             </a>
           </template>
@@ -142,6 +143,46 @@
           </v-col>
         </v-row>
 
+        <v-row no-gutters class="px-1">
+          <v-col cols="12" class="pa-1">
+            <div v-if="!showChartInfo" class="text-right">
+              <v-btn
+                class="my-1"
+                outlined
+                @click="showChartInfo = true"
+                title="Näita vihjeid"
+                color="info"
+              >
+                Näita vihjeid
+                <v-icon right>fas fa-info-circle</v-icon>
+              </v-btn>
+            </div>
+            <v-alert
+              v-model="showChartInfo"
+              dense
+              text
+              border="left"
+              dismissible
+              close-label="Sulge vihje"
+              elevation="3"
+              icon="fas fa-info"
+              type="info"
+              class="my-1"
+            >
+              <ul>
+                <li>
+                  Kas teadsid, et legendi peale vajutades on võimalik andmeid
+                  graafikul kuvada/peita.
+                </li>
+                <li>
+                  Hiirega graafiku punktide peale minnes on võimalik näha punkti
+                  detailsemat infot.
+                </li>
+              </ul>
+            </v-alert>
+          </v-col>
+        </v-row>
+
         <v-card flat class="d-flex flex-row flex-wrap justify-space-around">
           <v-card
             flat
@@ -186,6 +227,7 @@ import CardTitleWrapper from "../partial/CardTitleWrapper";
 
 export default {
   name: "Site",
+
   components: { CardTitleWrapper, Chart, AutocompleteWrapper },
 
   created() {
@@ -209,11 +251,24 @@ export default {
       "sampleHeaders"
     ]),
 
-    ...mapState("settings", ["block"])
+    ...mapState("settings", ["block"]),
+
+    ...mapState("detail", ["chartInfo"]),
+
+    showChartInfo: {
+      get() {
+        return this.chartInfo;
+      },
+
+      set(value) {
+        this.updateChartInfo(value);
+      }
+    }
   },
 
   methods: {
     ...mapActions("search", ["fetchListParameters", "updateSampleHeaders"]),
+    ...mapActions("detail", ["updateChartInfo"]),
 
     getColor(name) {
       let lighten = " lighten-4";
