@@ -22,8 +22,13 @@
           :items="[getArea]"
         >
           <template v-slot:item.maakond="{ item }">
-            <a class="table-link">
-              Lae alla <b>{{ item.maakond__maakond }}</b> turbaalade plaanid
+            <a
+              class="table-link"
+              :href="getPlanLink(item.name)"
+              :title="getPlanLink(item.name)"
+              :download="`${item.name}.tif`"
+            >
+              Lae alla <b>{{ item.name }}</b> plaan
               <v-icon color="primary" small>fas fa-download</v-icon>
             </a>
           </template>
@@ -176,6 +181,11 @@ export default {
 
     getEgfUrl(egf) {
       return `https://fond.egt.ee/fond/egf/${egf.trim()}`;
+    },
+
+    getPlanLink(name) {
+      if (name) return `${location.origin}/plaanid/${name}.tif`;
+      else return "";
     }
   }
 };

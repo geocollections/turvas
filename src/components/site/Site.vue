@@ -22,9 +22,13 @@
           :items="[getSite]"
         >
           <template v-slot:item.area__maakond="{ item }">
-            <a class="table-link">
-              Lae alla <b>{{ item.area__maakond__maakond }}</b> turbaalade
-              plaanid
+            <a
+              class="table-link"
+              :href="getPlanLink(item.area__name)"
+              :title="getPlanLink(item.area__name)"
+              :download="`${item.area__name}.tif`"
+            >
+              Lae alla <b>{{ item.area__name }}</b> plaan
               <v-icon color="primary" small>fas fa-download</v-icon>
             </a>
           </template>
@@ -284,6 +288,11 @@ export default {
         default:
           return "green" + lighten;
       }
+    },
+
+    getPlanLink(name) {
+      if (name) return `${location.origin}/plaanid/${name}.tif`;
+      else return "";
     }
   }
 };
