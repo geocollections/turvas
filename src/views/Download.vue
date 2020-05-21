@@ -2,16 +2,18 @@
   <div class="download">
     <v-carousel
       hide-delimiter-background
+      cycle
+      :show-arrows="false"
       prev-icon="fas fa-angle-left"
       next-icon="fas fa-angle-right"
-      height="93.3vh"
+      height="93.4vh"
     >
       <v-carousel-item
         v-for="slide in getCarouselSlides"
         :key="slide.id"
         :src="slide.src"
-        transition="slide-x-transition"
-        reverse-transition="slide-x-transition"
+        :transition="false"
+        :reverse-transition="false"
       >
         <div
           class="image-info white--text"
