@@ -1,5 +1,5 @@
 <template>
-  <v-container class="user-manual" style="max-width: 1185px">
+  <v-container class="user-manual" style="max-width: 1000px">
     <v-card class="ma-3">
       <v-card-title class="display-1">
         Kasutusjuhend
