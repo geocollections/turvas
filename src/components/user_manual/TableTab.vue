@@ -36,7 +36,7 @@
 
         <v-card flat class="align-self-center pa-2">
           <v-img
-            max-width="700px"
+            max-width="600px"
             :src="require('@/assets/img/user_manual/table/table.png')"
           />
         </v-card>

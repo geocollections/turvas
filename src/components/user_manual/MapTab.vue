@@ -55,7 +55,7 @@
             <v-card flat class="d-flex flex-column flex-sm-row mt-2">
               <v-card flat class="pr-2">
                 <v-img
-                  max-width="150px"
+                  max-width="100px"
                   :src="require('@/assets/img/user_manual/map/map_sites.png')"
                 />
               </v-card>

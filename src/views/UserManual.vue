@@ -1,5 +1,5 @@
 <template>
-  <div class="user-manual">
+  <v-container class="user-manual" style="max-width: 1185px">
     <v-card class="ma-3">
       <v-card-title class="display-1">
         Kasutusjuhend
@@ -105,7 +105,7 @@
         </v-tab-item>
       </v-tabs-items>
     </v-card>
-  </div>
+  </v-container>
 </template>
 
 <script>
