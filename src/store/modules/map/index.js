@@ -2,7 +2,7 @@ import SearchService from "../../../middleware/SearchService";
 
 const state = {
   defaultBaseLayer: "Fotokaart",
-  defaultOverlayLayers: ["Turbaalad", "Uuringupunktid"],
+  defaultOverlayLayers: ["Turbaalad", "Uuringupunktid", "Maakonnad"],
   siteFromGeoserver: null,
   areaFromGeoserver: null
 };

@@ -74,35 +74,6 @@ export default {
     center: L.latLng(58.65, 25.0),
     tileProviders: [
       {
-        name: "Maakonnad",
-        leafletObject: L.tileLayer.wms(
-          "https://gis.geocollections.info/geoserver/wms",
-          {
-            attribution:
-              "<a href='https://ttu.ee/geoloogia-instituut' target='MapReferenceWindow'>&copy; Geoloogia instituut</a>",
-            layers: "turvas:maakonnad",
-            format: "image/png",
-            transparent: true,
-            tiled: true,
-            detectRetina: true,
-            updateWhenIdle: true
-          }
-        )
-      },
-      {
-        name: "Hübriidkaart",
-        leafletObject: L.tileLayer(
-          "https://tiles.maaamet.ee/tm/tms/1.0.0/hybriid/{z}/{x}/{y}.png&ASUTUS=TALTECH&KESKKOND=LIVE&IS=SARV",
-          {
-            // attribution:
-            //   "<a href='http://www.maaamet.ee/' target='MapReferenceWindow'>&copy; Maa-amet</a>",
-            tms: true,
-            detectRetina: true,
-            updateWhenIdle: true
-          }
-        )
-      },
-      {
         name: "Põhikaart",
         leafletObject: L.tileLayer(
           "https://tiles.maaamet.ee/tm/tms/1.0.0/kaart/{z}/{x}/{y}.png&ASUTUS=TALTECH&KESKKOND=LIVE&IS=SARV",
@@ -286,6 +257,35 @@ export default {
             updateWhenIdle: true
           }
         )
+      },
+      {
+        name: "Maakonnad",
+        leafletObject: L.tileLayer.wms(
+          "https://gis.geocollections.info/geoserver/wms",
+          {
+            attribution:
+              "<a href='https://ttu.ee/geoloogia-instituut' target='MapReferenceWindow'>&copy; Geoloogia instituut</a>",
+            layers: "turvas:maakonnad",
+            format: "image/png",
+            transparent: true,
+            tiled: true,
+            detectRetina: true,
+            updateWhenIdle: true
+          }
+        )
+      },
+      {
+        name: "Hübriidkaart",
+        leafletObject: L.tileLayer(
+          "https://tiles.maaamet.ee/tm/tms/1.0.0/hybriid/{z}/{x}/{y}.png&ASUTUS=TALTECH&KESKKOND=LIVE&IS=SARV",
+          {
+            // attribution:
+            //   "<a href='http://www.maaamet.ee/' target='MapReferenceWindow'>&copy; Maa-amet</a>",
+            tms: true,
+            detectRetina: true,
+            updateWhenIdle: true
+          }
+        )
       }
     ],
     showLiveCoordinates: false,
@@ -462,7 +462,7 @@ export default {
 
     initMap() {
       this.map = L.map("map", {
-        layers: [this.tileProviders[3].leafletObject],
+        layers: [this.tileProviders[1].leafletObject],
         scrollWheelZoom: true,
         // wheelPxPerZoomLevel: 120,
         cursor: true,
@@ -739,6 +739,10 @@ export default {
 
       overlayLayersEl[0].insertBefore(planLabel, overlayLayersEl[0].firstChild);
       overlayLayersEl[0].insertBefore(geoLabel, overlayLayersEl[0].children[5]);
+      overlayLayersEl[0].insertBefore(
+        baseLabel,
+        overlayLayersEl[0].children[11]
+      );
     },
 
     createLayerControlLabel(labelName) {
