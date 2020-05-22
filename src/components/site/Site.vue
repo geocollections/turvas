@@ -21,16 +21,21 @@
           :headers="filteredSiteHeaders"
           :items="[getSite]"
         >
-          <template v-slot:item.area__maakond="{ item }">
-            <a
-              class="table-link"
-              :href="getPlanLink(item.area__name)"
-              :title="getPlanLink(item.area__name)"
-              :download="`${item.area__name}.tif`"
-            >
-              Lae alla <b>{{ item.area__name }}</b> plaan
-              <v-icon color="primary" small>fas fa-download</v-icon>
-            </a>
+          <template v-slot:item.area__text1>
+            <span v-for="(entity, index) in planArray" :key="index">
+              <a
+                class="table-link"
+                :href="getPlanUrl(entity)"
+                :title="getPlanUrl(entity)"
+                :download="entity.trim()"
+              >
+                {{ entity }}
+                <v-icon color="primary" small class="mr-1"
+                  >fas fa-download</v-icon
+                >
+              </a>
+              <span v-if="index !== planArray.length - 1">|</span>
+            </span>
           </template>
 
           <template v-slot:item.area="{ item }">
@@ -267,6 +272,14 @@ export default {
       set(value) {
         this.updateChartInfo(value);
       }
+    },
+
+    planArray() {
+      if (this.getSite.area__text1) {
+        if (this.getSite.area__text1.includes(",")) {
+          return this.getSite.area__text1.split(",");
+        } else return [this.getSite.area__text1];
+      } else return [];
     }
   },
 
@@ -290,8 +303,8 @@ export default {
       }
     },
 
-    getPlanLink(name) {
-      if (name) return `${location.origin}/plaanid/${name}.tif`;
+    getPlanUrl(file) {
+      if (file) return `${location.origin}/plaanid/${file.trim()}`;
       else return "";
     }
   }

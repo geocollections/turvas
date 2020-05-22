@@ -21,16 +21,19 @@
           :headers="filteredAreaHeaders"
           :items="[getArea]"
         >
-          <template v-slot:item.maakond="{ item }">
-            <a
-              class="table-link"
-              :href="getPlanLink(item.name)"
-              :title="getPlanLink(item.name)"
-              :download="`${item.name}.tif`"
-            >
-              Lae alla <b>{{ item.name }}</b> plaan
-              <v-icon color="primary" small>fas fa-download</v-icon>
-            </a>
+          <template v-slot:item.text1>
+            <span v-for="(entity, index) in planArray" :key="index">
+              <a
+                class="table-link"
+                :href="getPlanUrl(entity)"
+                :title="getPlanUrl(entity)"
+                :download="entity.trim()"
+              >
+                {{ entity }}
+                <v-icon color="primary" small class="mr-1">fas fa-download</v-icon>
+              </a>
+              <span v-if="index !== planArray.length - 1">|</span>
+            </span>
           </template>
 
           <template v-slot:item.maardla="{ item }">
@@ -167,6 +170,14 @@ export default {
           return this.getArea.egf.split(";");
         } else return [this.getArea.egf];
       } else return [];
+    },
+
+    planArray() {
+      if (this.getArea.text1) {
+        if (this.getArea.text1.includes(",")) {
+          return this.getArea.text1.split(",");
+        } else return [this.getArea.text1];
+      } else return [];
     }
   },
 
@@ -183,8 +194,8 @@ export default {
       return `https://fond.egt.ee/fond/egf/${egf.trim()}`;
     },
 
-    getPlanLink(name) {
-      if (name) return `${location.origin}/plaanid/${name}.tif`;
+    getPlanUrl(file) {
+      if (file) return `${location.origin}/plaanid/${file.trim()}`;
       else return "";
     }
   }
