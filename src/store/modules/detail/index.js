@@ -10,13 +10,13 @@ const state = {
   areaHeaders: [
     { text: "ID", value: "id" },
     { text: "Maakond", value: "maakond__maakond" },
-    { text: "Turbaalade plaan", value: "text1" },
     { text: "Ala (ha)", value: "area_ha" },
-    { text: "Maardla (viide registrisse)", value: "maardla" },
     { text: "Maardla (ha)", value: "deposit_area_ha" },
-    { text: "Looduskaitse (viide registrisse)", value: "eelis" },
+    { text: "Iseloomustus", value: "description" },
     { text: "EGF", value: "egf" },
-    { text: "Iseloomustus", value: "description" }
+    { text: "Maardla (viide registrisse)", value: "maardla" },
+    { text: "Looduskaitse (viide registrisse)", value: "eelis" },
+    { text: "Turbaala plaan", value: "text1" }
   ],
   areaSiteHeaders: [
     { text: "ID", value: "id" },
@@ -33,7 +33,7 @@ const state = {
     { text: "ID", value: "id" },
     { text: "Proovipunkt", value: "name" },
     { text: "Turbaala", value: "area" },
-    { text: "Turbaalade plaan", value: "area__text1" },
+    { text: "Turbaala plaan", value: "area__text1" },
     { text: "X (L-EST, m)", value: "coordx" },
     { text: "Y (L-EST, m)", value: "coordy" },
     { text: "Z (m)", value: "elevation" },
