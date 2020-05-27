@@ -37,12 +37,56 @@
         </div>
 
         <v-overlay absolute>
-          <v-sheet height="100%" tile color="transparent">
-            <v-row class="fill-height" align="center" no-gutters>
+          <v-sheet class="py-2" height="100%" tile color="transparent">
+            <v-row no-gutters>
               <v-col cols="2" md="1"></v-col>
-              <v-col cols="8" md="6" lg="5" xl="4" class="pl-1">
+              <v-col cols="8" md="6" lg="5" xl="4">
+                <!-- WHITE BACKGROUND DIV -->
                 <div
-                  class="font-weight-medium carousel-text"
+                  style="position: absolute;"
+                  class="font-weight-medium carousel-text-abs pa-3 white-background-div"
+                  :class="{
+                    'carousel-text-xs-abs': $vuetify.breakpoint.xsOnly,
+                    'carousel-text-sm-abs': $vuetify.breakpoint.smOnly,
+                    'carousel-text-md-abs': $vuetify.breakpoint.mdOnly,
+                    'carousel-text-lg-abs': $vuetify.breakpoint.lgOnly
+                  }"
+                >
+                  <div style="visibility: hidden">{{ carouselText }}</div>
+
+                  <ol class="my-3" style="visibility: hidden">
+                    <li>
+                      Varasemate uurimistööde andmete kogumine ja
+                      digitaliseerimine (turba üldtehnilised näitajad:
+                      botaaniline koostis, tuhasus, niiskus, pH, kahjulikud
+                      elemendid, kütteväärtus jt).
+                    </li>
+
+                    <li>
+                      Turbamaardlate ja turbaalade (560) plaanide
+                      digitaliseerimine ja georefereerimine.
+                    </li>
+
+                    <li>
+                      Turbast võetud proovipunktide koordinaatide ja
+                      absoluutkõrguste määramine digitaliseeritud ruumiandmete
+                      baasil (kasutades ArcGIS programmi).
+                    </li>
+
+                    <li>
+                      Lühiülevaadete koostamine turbamaardlatest (turba genees,
+                      omadused, varude iseloomustus, perspektiivsed
+                      kasutusvõimalused) ning nende sidumine andmebaasides
+                      olevate andmetega.
+                    </li>
+                  </ol>
+
+                  <div style="visibility: hidden" v-html="carouselText2" />
+                </div>
+                <!--  WHITE BACKGROUND DIV -->
+
+                <div
+                  class="font-weight-medium carousel-text pa-3"
                   :class="{
                     'carousel-text-xs': $vuetify.breakpoint.xsOnly,
                     'carousel-text-sm': $vuetify.breakpoint.smOnly,
@@ -54,71 +98,32 @@
 
                   <ol class="my-3">
                     <li>
-                      Varasemate uurimistööde andmete kogumine ja digitaliseerimine (turba üldtehnilised näitajad: botaaniline koostis, tuhasus, niiskus, pH, kahjulikud elemendid, kütteväärtus jt).
+                      Varasemate uurimistööde andmete kogumine ja
+                      digitaliseerimine (turba üldtehnilised näitajad:
+                      botaaniline koostis, tuhasus, niiskus, pH, kahjulikud
+                      elemendid, kütteväärtus jt).
                     </li>
 
                     <li>
-                      Turbamaardlate ja turbaalade (560) plaanide digitaliseerimine ja georefereerimine.
+                      Turbamaardlate ja turbaalade (560) plaanide
+                      digitaliseerimine ja georefereerimine.
                     </li>
 
                     <li>
-                      Turbast võetud proovipunktide koordinaatide ja absoluutkõrguste määramine digitaliseeritud ruumiandmete baasil (kasutades ArcGIS programmi).
+                      Turbast võetud proovipunktide koordinaatide ja
+                      absoluutkõrguste määramine digitaliseeritud ruumiandmete
+                      baasil (kasutades ArcGIS programmi).
                     </li>
 
                     <li>
-                      Lühiülevaadete koostamine turbamaardlatest (turba genees, omadused, varude iseloomustus, perspektiivsed kasutusvõimalused) ning nende sidumine andmebaasides olevate andmetega.
+                      Lühiülevaadete koostamine turbamaardlatest (turba genees,
+                      omadused, varude iseloomustus, perspektiivsed
+                      kasutusvõimalused) ning nende sidumine andmebaasides
+                      olevate andmetega.
                     </li>
                   </ol>
 
                   <div v-html="carouselText2" />
-
-<!--                  <ol>-->
-<!--                    <li>-->
-<!--                      <a-->
-<!--                        href="/failid/projekti_tutvustus.pdf"-->
-<!--                        target="ProjektiTutvustusWindow"-->
-<!--                        class="about-link"-->
-<!--                        title="Lae alla"-->
-<!--                        >Andmete allalaadimine (exceli fail ja digitud-->
-<!--                        plaanid)</a-->
-<!--                      >-->
-<!--                    </li>-->
-
-<!--                    <li>-->
-<!--                      <a-->
-<!--                        href="/failid/mahajäetud_väljade_failid.zip"-->
-<!--                        class="about-link"-->
-<!--                        title="Ava mahajäetud väljade failid"-->
-<!--                        >Mahajäetud väljade failid (.zip formaat ~250 MB)</a-->
-<!--                      >-->
-<!--                    </li>-->
-<!--                    <li>-->
-<!--                      <a-->
-<!--                        href="/failid/seletuskiri.pdf"-->
-<!--                        target="SeletuskiriWindow"-->
-<!--                        class="about-link"-->
-<!--                        title="Loe projekti seletuskirja"-->
-<!--                        >Projekti seletuskiri</a-->
-<!--                      >-->
-<!--                    </li>-->
-<!--                    <li>-->
-<!--                      <a-->
-<!--                        href="/failid/projekti_tutvustus.pdf"-->
-<!--                        target="ProjektiTutvustusWindow"-->
-<!--                        class="about-link"-->
-<!--                        title="Loe projekti turvustust"-->
-<!--                        >Projekti tutvustus</a-->
-<!--                      >-->
-<!--                    </li>-->
-<!--                    <li>-->
-<!--                      <router-link-->
-<!--                        to="/kasutusjuhend"-->
-<!--                        class="about-link"-->
-<!--                        title="Vaata kasutusjuhendit"-->
-<!--                        >Kasutusjuhend</router-link-->
-<!--                      >-->
-<!--                    </li>-->
-<!--                  </ol>-->
                 </div>
               </v-col>
               <v-col cols="2" md="5"></v-col>
@@ -145,6 +150,7 @@ export default {
 <style scoped>
 .about >>> .v-overlay__content {
   width: 100%;
+  top: -70px;
 }
 
 .about-link {
@@ -158,6 +164,7 @@ export default {
 
 .carousel-text {
   font-size: 18px;
+  text-shadow: 2px 2px 4px #000;
 }
 
 .carousel-text-lg {
@@ -174,6 +181,38 @@ export default {
 
 .carousel-text-xs {
   font-size: 10px;
+}
+
+.white-background-div {
+  position: absolute;
+  z-index: -1;
+  border-radius: 4px;
+  opacity: 0.46;
+  background-color: white;
+}
+
+.carousel-text-abs {
+  font-size: 18px;
+  max-width: 50%;
+}
+
+.carousel-text-lg-abs {
+  font-size: 16px;
+  max-width: 41.6666666667%;
+}
+
+.carousel-text-md-abs {
+  font-size: 14px;
+  max-width: 50%;
+}
+
+.carousel-text-sm-abs {
+  font-size: 12px;
+  max-width: 66.6666666667%;
+}
+.carousel-text-xs-abs {
+  font-size: 10px;
+  max-width: 66.6666666667%;
 }
 
 .kik-logo {
