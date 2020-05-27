@@ -1,6 +1,6 @@
 <template>
   <div class="common-tab px-2 pb-2">
-    <v-card flat>
+    <v-card flat class="user-manual-tab-card">
       <v-card-title>
         Turbauuringute andmebaasi veebirakendus: TurbA
       </v-card-title>
@@ -16,14 +16,18 @@
           </li>
 
           <li>
-            Turbaalade loend ja otsing (<router-link to="/turbaala"
+            Turbaalade loend ja otsing (<router-link
+              class="table-link"
+              to="/turbaala"
               >https://turba.geoloogia.info/turbaala</router-link
             >), kus kasutajal on võimalus alasid võimalik filtreerida nimes või
             kirjelduses sisalduvate märksõnade järgi.
           </li>
 
           <li>
-            Turbaala detailvaade (<router-link to="/turbaala/514"
+            Turbaala detailvaade (<router-link
+              class="table-link"
+              to="/turbaala/514"
               >https://turba.geoloogia.info/turbaala/514</router-link
             >), mille osaks on ala asukoha kaardikuva, ala info ning
             proovipunktide nimekiri. Turbaala info hulka kuulub ala tekstiline
@@ -36,7 +40,7 @@
 
           <li>
             Proovipunktide nimekiri ja otsing (nt
-            <router-link to="/proovipunkt"
+            <router-link class="table-link" to="/proovipunkt"
               >https://turba.geoloogia.info/proovipunkt</router-link
             >), kus kasutaja saab selekteerida huvipakkuva maakonna
             uuringupunktide nimekirja, või sooritada päring proovipunktide nime
@@ -46,7 +50,7 @@
 
           <li>
             Proovipunkti detailvaade (nt
-            <router-link to="/proovipunkt/7975"
+            <router-link class="table-link" to="/proovipunkt/7975"
               >https://turba.geoloogia.info/proovipunkt/7975</router-link
             >), kus kuvatakse punkti asukohta kaardil, detailinfot, punktist
             kogutud proovide nimekirja, analüüsitud parameetrite variatsioonide
@@ -55,7 +59,9 @@
           </li>
 
           <li>
-            Proovide nimekirja ja otsingu vaates (<router-link to="/proov"
+            Proovide nimekirja ja otsingu vaates (<router-link
+              class="table-link"
+              to="/proov"
               >https://turba.geoloogia.info/proov</router-link
             >) saab kasutaja filtreerida andmeid maakonna, turbalala,
             uuringupunkti nime, proovi sügavuse, turba liigi ning kõigi
@@ -68,7 +74,9 @@
           </li>
 
           <li>
-            Proovi detailvaade (<router-link to="/proov/171117"
+            Proovi detailvaade (<router-link
+              class="table-link"
+              to="/proov/171117"
               >https://turba.geoloogia.info/proov/171117</router-link
             >), kus näidatakse proovi infot, proovist tehtud analüüse ning nende
             analüüside tulemusi. Turba botaanilise koostise analüüsi olemasolu
@@ -102,7 +110,7 @@
           Rakenduse kõigile detailvaadetele saab viidata aadressi kaudu, mis
           sisaldab andmeobjekti ID koodi, nt proovi 171102 detailinfo juurde
           jõuab aadressil:
-          <router-link to="/proov/171102"
+          <router-link class="table-link" to="/proov/171102"
             >https://turba.geoloogia.info/proov/171102</router-link
           >.
         </div>
@@ -112,12 +120,14 @@
           application) rakendusena javascripti raamistiku Vue.js (<a
             href="https://vuejs.org"
             target="VueWindow"
+            class="table-link"
             title="Vue.js raamistiku koduleht"
             >https://vuejs.org</a
           >) ning mitmete lisamoodulite baasil. Rakenduse lähtekood on avatud
           GitHubi keskkonnas (<a
             href="https://github.com/geocollections/turvas"
             target="GithubWindow"
+            class="table-link"
             title="Projekti GitHub repositoorium"
             >https://github.com/geocollections/turvas</a
           >) ning vabalt kasutatav ja edasiarendatav GPL-3.0 litsentsi
@@ -126,16 +136,16 @@
       </v-card-text>
     </v-card>
 
-    <v-card flat>
+    <v-card flat class="user-manual-tab-card">
       <v-card-title>
         Üldine tutvustus ja õpetus
       </v-card-title>
 
-      <v-card flat class="d-flex flex-column">
-        <v-card flat>
+      <v-card flat class="d-flex flex-column user-manual-tab-card">
+        <v-card flat class="user-manual-tab-card">
           <v-card-text class="pa-2">
-            <v-card flat class="d-flex flex-column">
-              <v-card flat>
+            <v-card flat class="d-flex flex-column user-manual-tab-card">
+              <v-card flat class="user-manual-tab-card">
                 <v-img
                   max-width="1000px"
                   :src="
@@ -143,15 +153,15 @@
                   "
                 />
               </v-card>
-              <v-card flat>
+              <v-card flat class="user-manual-tab-card">
                 Navigatsioonireal olevad asjad paremalt vasakule: Pealkiri (viib
                 tagasi esilehele), lingid, turbaala otsing (viib turbaala
                 vaatele) ja kaardi kuvamise/peitmise nupp.
               </v-card>
             </v-card>
 
-            <v-card flat class="d-flex flex-column mt-2">
-              <v-card flat>
+            <v-card flat class="d-flex flex-column my-2 user-manual-tab-card">
+              <v-card flat class="user-manual-tab-card">
                 <v-img
                   max-width="500px"
                   :src="
@@ -159,17 +169,15 @@
                   "
                 />
               </v-card>
-              <v-card flat>
+              <v-card flat class="user-manual-tab-card">
                 Navigatsiooniriba väiksemate ekraanide korral. Vasakul olev nupp
                 avab külgrea, kus on kõik samad lingid ja otsinguväli, mis on
                 nähtvad pika navigatsiooni rea korral.
               </v-card>
             </v-card>
 
-            <v-divider class="my-2" />
-
-            <v-card flat class="d-flex flex-row">
-              <v-card flat class="pr-2">
+            <v-card flat class="d-flex flex-row user-manual-tab-card">
+              <v-card flat class="pr-2 user-manual-tab-card">
                 <v-img
                   max-width="100px"
                   :src="
@@ -177,14 +185,17 @@
                   "
                 />
               </v-card>
-              <v-card flat class="align-self-center">
+              <v-card flat class="align-self-center user-manual-tab-card">
                 Enamus tekstidest, mis on <b>rohelist</b> värvi on
                 <b>lingid</b> ja neid saab vajutada.
               </v-card>
             </v-card>
 
-            <v-card flat class="d-flex flex-column flex-sm-row mt-2">
-              <v-card flat class="pr-2">
+            <v-card
+              flat
+              class="d-flex flex-column flex-sm-row mt-2 user-manual-tab-card"
+            >
+              <v-card flat class="pr-2 user-manual-tab-card">
                 <v-img
                   max-width="40px"
                   :src="
@@ -192,7 +203,7 @@
                   "
                 />
               </v-card>
-              <v-card flat class="align-self-center">
+              <v-card flat class="align-self-center user-manual-tab-card">
                 Rakenduse navigatsiooni real paremal asuv <b>nupp</b>, mis
                 võimaldab <b>kaarti näidata ja peita</b>. Nupp on nähtav ainult
                 nendel vaadetel, kus on võimalik kaarti paralleelselt tabeli või

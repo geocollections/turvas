@@ -1,6 +1,6 @@
 <template>
   <div class="more px-2 pb-2">
-    <v-card flat>
+    <v-card flat class="user-manual-tab-card">
       <v-card-title class="pb-1">
         Avalik API
       </v-card-title>
@@ -14,6 +14,7 @@
           SARV avaliku API liidese kaudu (<a
             href="https://api.geocollections.info"
             title="SARV avalik API"
+            class="table-link"
             target="ApiWindow"
             >https://api.geocollections.info</a
           >), mida saab kasutada nt andmete allalaadimiseks või automatiseeritud
@@ -27,6 +28,7 @@
           <a
             href="https://api.geocollections.info/site/7782?format=json"
             title="SARV avalik API"
+            class="table-link"
             target="ApiWindow"
             >https://api.geocollections.info/site/7782?format=json</a
           >
@@ -34,6 +36,7 @@
           <a
             href="https://api.geocollections.info/sample/168303?format=json"
             title="SARV avalik API"
+            class="table-link"
             target="ApiWindow"
             >https://api.geocollections.info/sample/168303?format=json</a
           >
@@ -46,6 +49,7 @@
           <a
             href="https://api.geocollections.info/site/?project=20&depth__gte=8&format=json"
             title="SARV avalik API"
+            class="table-link"
             target="ApiWindow"
             >https://api.geocollections.info/site/?project=20&depth__gte=8&format=json</a
           >. Oluline on täiendava kriteeriumina kasutada proovipunktide otsingus
@@ -56,7 +60,7 @@
       </v-card-text>
     </v-card>
 
-    <v-card flat>
+    <v-card flat class="user-manual-tab-card">
       <v-card-title class="pb-1">
         Kaardiserver
       </v-card-title>
@@ -71,6 +75,7 @@
           <a
             href="https://gis.geocollections.info/geoserver/wms?"
             title="Kaardiserver"
+            class="table-link"
             target="GeoserverWindow"
             >https://gis.geocollections.info/geoserver/wms?</a
           >
@@ -83,6 +88,7 @@
           turbauuringute veebiportaali lähtekoodist (<a
             href="https://github.com/geocollections/turvas"
             title="Projekti GitHub repositoorium"
+            class="table-link"
             target="GithubWindow"
             >https://github.com/geocollections/turvas</a
           >). Turbauuringute WMS/WFS kaardikihte saab kasutada ka
@@ -91,7 +97,7 @@
       </v-card-text>
     </v-card>
 
-    <v-card flat>
+    <v-card flat class="user-manual-tab-card">
       <v-card-title class="pb-1">
         Andmete allalaadimine
       </v-card-title>
@@ -106,6 +112,7 @@
           kättesaadavuse ja mugava viidatavuse (<a
             href="https://doi.org/"
             title="DOI system"
+            class="table-link"
             target="DoiWindow"
             >https://doi.org/...</a
           >).

@@ -1,15 +1,15 @@
 <template>
   <div class="chart-tab px-2 pb-2">
-    <v-card flat>
+    <v-card flat class="user-manual-tab-card">
       <v-card-title>
         Graafikute tutvustus ja õpetus
       </v-card-title>
 
       <v-card
         flat
-        class="d-flex flex-column-reverse flex-xl-row justify-space-between"
+        class="d-flex flex-column-reverse flex-xl-row justify-space-between user-manual-tab-card"
       >
-        <v-card flat>
+        <v-card flat class="user-manual-tab-card">
           <v-card-text class="pa-2">
             <div class="mb-2">
               <b>Y-telg</b> näitab kui <b>sügavalt</b> maapinnast on proov
@@ -46,25 +46,27 @@
               </li>
             </ol>
 
-            <v-card flat class="d-flex flex-column mt-3">
-              <v-card flat class="mb-2">
+            <v-card flat class="d-flex flex-column mt-3 user-manual-tab-card">
+              <v-card flat class="mb-2 user-manual-tab-card">
                 Turba lagunemisastme puhul on toodud alljärgnevatel piltidel
                 näide, kuidas graafiku legendi peale vajutades on võimalik
                 kuvatavaid andmeid sisse ja välja lülitada.
               </v-card>
-              <v-card flat class="d-flex flex-row">
-                <v-card flat>
+              <v-card flat class="d-flex flex-row flex-wrap justify-space-around user-manual-tab-card">
+                <v-card flat class="user-manual-tab-card pb-4 px-2">
                   <v-img
                     max-width="250px"
+                    height="344px"
                     :src="
                       require('@/assets/img/user_manual/chart/chart_on.png')
                     "
                   />
                 </v-card>
 
-                <v-card flat>
+                <v-card flat class="user-manual-tab-card pb-4 px-2">
                   <v-img
                     max-width="250px"
+                    height="344px"
                     :src="
                       require('@/assets/img/user_manual/chart/chart_off.png')
                     "
@@ -75,7 +77,7 @@
           </v-card-text>
         </v-card>
 
-        <v-card flat class="align-self-center align-self-xl-start pa-2">
+        <v-card flat class="align-self-center align-self-xl-start pa-2 user-manual-tab-card">
           <v-img
             max-width="700px"
             :src="require('@/assets/img/user_manual/chart/chart.png')"

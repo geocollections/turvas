@@ -1,12 +1,12 @@
 <template>
   <div class="search-tab px-2 pb-2">
-    <v-card flat>
+    <v-card flat class="user-manual-tab-card">
       <v-card-title>
         Otsingu tutvustus ja õpetus
       </v-card-title>
 
-      <v-card flat class="d-flex flex-column flex-md-row justify-space-between">
-        <v-card flat>
+      <v-card flat class="d-flex flex-column flex-md-row justify-space-between user-manual-tab-card">
+        <v-card flat class="user-manual-tab-card">
           <v-card-text class="pa-2">
             Otsing koosneb järgnevatest funktsioonidest:
             <ol>
@@ -35,7 +35,7 @@
           </v-card-text>
         </v-card>
 
-        <v-card flat class="align-self-center pa-2">
+        <v-card flat class="align-self-center pa-2 user-manual-tab-card">
           <v-img
             max-width="600px"
             :src="require('@/assets/img/user_manual/search/search.png')"
