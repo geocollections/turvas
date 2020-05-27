@@ -34,19 +34,19 @@ export default {
   },
   methods: {
     getFilename() {
-      let name = "Andmed-turbageoloogia_andmebaas";
+      let name = "Andmed-turbauuringute_andmebaas";
       switch (this.$route.meta.object) {
         case "area":
-          name = "Alade_tabel-turbageoloogia_andmebaas";
+          name = "Alade_tabel-turbauuringute_andmebaas";
           break;
         case "site":
-          name = "Proovipunktide_tabel-turbageoloogia_andmebaas";
+          name = "Proovipunktide_tabel-turbauuringute_andmebaas";
           break;
         case "sample":
-          name = "Proovide_tabel-turbageoloogia_andmebaas";
+          name = "Proovide_tabel-turbauuringute_andmebaas";
           break;
         default:
-          name = "Andmed-turbageoloogia_andmebaas";
+          name = "Andmed-turbauuringute_andmebaas";
       }
       return name;
     }

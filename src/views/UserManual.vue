@@ -75,9 +75,9 @@
         </div>
 
         <div class="mt-2">
-          Peamine kasutajaliides turbageoloogia andmete sirvimiseks ning
+          Peamine kasutajaliides turbauuringute andmete sirvimiseks ning
           päringuteks, aga ka andmete allalaadimiseks ja turbauuringute
-          tutvustamiseks, on käesoleva projekti raames valminud turbageoloogia
+          tutvustamiseks, on käesoleva projekti raames valminud turbauuringute
           andmebaasi veebirakendus <b>TURBA</b>:
           <router-link to="/" title="Mine pealehele"
             >https://turba.geoloogia.info</router-link

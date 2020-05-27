@@ -34,7 +34,7 @@ export default {
   props: {
     filename: {
       type: String,
-      default: "Turbageoloogia andmebaas"
+      default: "Turbauuringute andmebaas"
     },
     tableData: {
       type: Array

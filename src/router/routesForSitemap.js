@@ -13,7 +13,7 @@ module.exports = [
     name: "About",
     component: () => import("../views/About.vue"),
     meta: {
-      title: "Turbageoloogia andmebaas: Projekti info"
+      title: "Turbauuringute andmebaas: Projekti info"
     }
   },
   {
@@ -21,7 +21,7 @@ module.exports = [
     name: "UserManual",
     component: () => import("../views/UserManual.vue"),
     meta: {
-      title: "Turbageoloogia andmebaas: Kasutusjuhend"
+      title: "Turbauuringute andmebaas: Kasutusjuhend"
     }
   },
   {
@@ -29,7 +29,7 @@ module.exports = [
     name: "Download",
     component: () => import("../views/Download.vue"),
     meta: {
-      title: "Turbageoloogia andmebaas: Allalaadimine"
+      title: "Turbauuringute andmebaas: Allalaadimine"
     }
   },
   {
@@ -51,7 +51,7 @@ module.exports = [
             component: () => import("../components/area/AreaTable.vue"),
             meta: {
               object: "area",
-              title: "Turbageoloogia andmebaas: Turbaalad"
+              title: "Turbauuringute andmebaas: Turbaalad"
             }
           },
           {
@@ -60,7 +60,7 @@ module.exports = [
             component: () => import("../components/area/Area.vue"),
             meta: {
               object: "area",
-              title: "Turbageoloogia andmebaas: Turbaala ",
+              title: "Turbauuringute andmebaas: Turbaala ",
               sitemap: {
                 slugs: async () => await getIdsForSitemap("area")
               }
@@ -78,7 +78,7 @@ module.exports = [
             component: () => import("../components/site/SiteTable.vue"),
             meta: {
               object: "site",
-              title: "Turbageoloogia andmebaas: Proovipunktid"
+              title: "Turbauuringute andmebaas: Proovipunktid"
             }
           },
           {
@@ -87,7 +87,7 @@ module.exports = [
             component: () => import("../components/site/Site.vue"),
             meta: {
               object: "site",
-              title: "Turbageoloogia andmebaas: Proovipunkt ",
+              title: "Turbauuringute andmebaas: Proovipunkt ",
               sitemap: {
                 slugs: async () => await getIdsForSitemap("site")
               }
@@ -105,7 +105,7 @@ module.exports = [
             component: () => import("../components/sample/SampleTable.vue"),
             meta: {
               object: "sample",
-              title: "Turbageoloogia andmebaas: Proovid"
+              title: "Turbauuringute andmebaas: Proovid"
             }
           },
           {
@@ -114,7 +114,7 @@ module.exports = [
             component: () => import("../components/sample/Sample.vue"),
             meta: {
               object: "sample",
-              title: "Turbageoloogia andmebaas: Proov ",
+              title: "Turbauuringute andmebaas: Proov ",
               sitemap: {
                 slugs: async () => await getIdsForSitemap("sample")
               }

@@ -59,9 +59,9 @@ export default {
       handler: to => {
         if (to.name && to.name.includes("Detail")) {
           document.title =
-            to.meta.title + to.params.id || "Turbageoloogia andmebaas";
+            to.meta.title + to.params.id || "Turbauuringute andmebaas";
         } else {
-          document.title = to.meta.title || "Turbageoloogia andmebaas";
+          document.title = to.meta.title || "Turbauuringute andmebaas";
         }
       },
       immediate: true

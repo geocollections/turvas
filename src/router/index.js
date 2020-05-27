@@ -14,7 +14,7 @@ const routes = [
     name: "About",
     component: () => import("../views/About.vue"),
     meta: {
-      title: "Turbageoloogia andmebaas: Projekti info"
+      title: "Turbauuringute andmebaas: Projekti info"
     }
   },
   {
@@ -22,7 +22,7 @@ const routes = [
     name: "UserManual",
     component: () => import("../views/UserManual.vue"),
     meta: {
-      title: "Turbageoloogia andmebaas: Kasutusjuhend"
+      title: "Turbauuringute andmebaas: Kasutusjuhend"
     }
   },
   {
@@ -30,7 +30,7 @@ const routes = [
     name: "Download",
     component: () => import("../views/Download.vue"),
     meta: {
-      title: "Turbageoloogia andmebaas: Allalaadimine"
+      title: "Turbauuringute andmebaas: Allalaadimine"
     }
   },
   {
@@ -52,7 +52,7 @@ const routes = [
             component: () => import("../components/area/AreaTable.vue"),
             meta: {
               object: "area",
-              title: "Turbageoloogia andmebaas: Turbaalad"
+              title: "Turbauuringute andmebaas: Turbaalad"
             }
           },
           {
@@ -61,7 +61,7 @@ const routes = [
             component: () => import("../components/area/Area.vue"),
             meta: {
               object: "area",
-              title: "Turbageoloogia andmebaas: Turbaala "
+              title: "Turbauuringute andmebaas: Turbaala "
             }
           }
         ]
@@ -76,7 +76,7 @@ const routes = [
             component: () => import("../components/site/SiteTable.vue"),
             meta: {
               object: "site",
-              title: "Turbageoloogia andmebaas: Proovipunktid"
+              title: "Turbauuringute andmebaas: Proovipunktid"
             }
           },
           {
@@ -85,7 +85,7 @@ const routes = [
             component: () => import("../components/site/Site.vue"),
             meta: {
               object: "site",
-              title: "Turbageoloogia andmebaas: Proovipunkt "
+              title: "Turbauuringute andmebaas: Proovipunkt "
             }
           }
         ]
@@ -100,7 +100,7 @@ const routes = [
             component: () => import("../components/sample/SampleTable.vue"),
             meta: {
               object: "sample",
-              title: "Turbageoloogia andmebaas: Proovid"
+              title: "Turbauuringute andmebaas: Proovid"
             }
           },
           {
@@ -109,7 +109,7 @@ const routes = [
             component: () => import("../components/sample/Sample.vue"),
             meta: {
               object: "sample",
-              title: "Turbageoloogia andmebaas: Proov "
+              title: "Turbauuringute andmebaas: Proov "
             }
           }
         ]

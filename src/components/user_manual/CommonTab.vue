@@ -2,7 +2,7 @@
   <div class="common-tab px-2 pb-2">
     <v-card flat>
       <v-card-title>
-        Turbageoloogia andmebaasi veebirakendus: TurbA
+        Turbauuringute andmebaasi veebirakendus: TurbA
       </v-card-title>
 
       <v-card-text>

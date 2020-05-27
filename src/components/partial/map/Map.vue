@@ -734,7 +734,7 @@ export default {
       const overlayLayersEl = document.getElementsByClassName(
         "leaflet-control-layers-overlays"
       );
-      let planLabel = this.createLayerControlLabel("Turbageoloogia");
+      let planLabel = this.createLayerControlLabel("Turbauuringute");
       let geoLabel = this.createLayerControlLabel("Geoloogiline taust");
 
       overlayLayersEl[0].insertBefore(planLabel, overlayLayersEl[0].firstChild);
