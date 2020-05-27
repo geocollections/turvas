@@ -140,6 +140,7 @@ import TableTab from "../components/user_manual/TableTab";
 import ChartTab from "../components/user_manual/ChartTab";
 import MoreTab from "../components/user_manual/MoreTab";
 import { mapState } from "vuex";
+import {cloneDeep} from "lodash";
 export default {
   name: "UserManual",
   components: { MoreTab, ChartTab, TableTab, SearchTab, MapTab, CommonTab },
@@ -164,11 +165,11 @@ export default {
   methods: {
     startInterval() {
       let counter = 1;
-      // this.interval = setInterval(() => {
-      //   if (counter === 4) counter = 0;
-      //   this.image = cloneDeep(this.carouselSlides[counter].src);
-      //   counter = counter + 1;
-      // }, 6000);
+      this.interval = setInterval(() => {
+        if (counter === 4) counter = 0;
+        this.image = cloneDeep(this.carouselSlides[counter].src);
+        counter = counter + 1;
+      }, 6000);
     }
   }
 };
