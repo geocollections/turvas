@@ -62,12 +62,18 @@ const state = {
     },
     {
       id: 5,
-      src: "/seletuskiri",
+      src: "/failid/turbaalade_tehnilised_plaanid.tar",
+      title: "Lae alla turbaalade tehnilised plaanid",
+      text: "Turbaalade tehnilised plaanid (~6GB)"
+    },
+    {
+      id: 6,
+      src: "/failid/seletuskiri.pdf",
       title: "Projekti seletuskiri",
       text: "Projekti seletuskiri"
     },
     {
-      id: 6,
+      id: 7,
       src: "/kasutusjuhend",
       title: "Tutvu rakenduse kasutusjuhendiga",
       text: "Kasutusjuhend",
