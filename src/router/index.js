@@ -11,27 +11,45 @@ const routes = [
   },
   {
     path: "/projekti_info",
-    name: "About",
     component: () => import("../views/About.vue"),
     meta: {
       title: "Turbauuringute andmebaas: Projekti info"
-    }
+    },
+    children: [
+      {
+        path: "",
+        name: "ProjectInfo",
+        component: () => import("../components/about/ProjectInfo.vue")
+      }
+    ]
   },
   {
     path: "/kasutusjuhend",
-    name: "UserManual",
-    component: () => import("../views/UserManual.vue"),
+    component: () => import("../views/About.vue"),
     meta: {
       title: "Turbauuringute andmebaas: Kasutusjuhend"
-    }
+    },
+    children: [
+      {
+        path: "",
+        name: "UserManual",
+        component: () => import("../components/about/UserManual.vue")
+      }
+    ]
   },
   {
     path: "/allalaadimine",
-    name: "Download",
-    component: () => import("../views/Download.vue"),
+    component: () => import("../views/About.vue"),
     meta: {
       title: "Turbauuringute andmebaas: Allalaadimine"
-    }
+    },
+    children: [
+      {
+        path: "",
+        name: "Download",
+        component: () => import("../components/about/Download.vue")
+      }
+    ]
   },
   {
     path: "/",

@@ -15,7 +15,7 @@
 
     <AppHeader
       :is-front-page="$route.name === 'FrontPage'"
-      :is-about-page="$route.name === 'About'"
+      :is-about-page="$route.name === 'ProjectInfo'"
       :is-user-manual-page="$route.name === 'UserManual'"
       :is-download-page="$route.name === 'Download'"
     />

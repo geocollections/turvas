@@ -33,7 +33,8 @@ const state = {
       src: "https://fond.egt.ee/fond/egf/7724",
       title:
         "Eesti mahajäetud turbatootmisalade revisjon. 1. etapp. Harju, Rapla ja Lääne maakond",
-      text: "Mahajäetud väljade failid 1. etapp",
+      text:
+        "Mahajäetud väljade failid 1. etapp (link geoloogiateenistuse fondile: 7724)",
       target: "GeoloogiateenistusWindow"
     },
     {
@@ -41,7 +42,8 @@ const state = {
       src: "https://fond.egt.ee/fond/egf/7804",
       title:
         "Eesti mahajäetud turbatootmisalade revisjon. 2. Etapp. Ida-Viru, Lääne-Viru, Jõgeva, Järva ja Tartu maakond",
-      text: "Mahajäetud väljade failid 2. etapp",
+      text:
+        "Mahajäetud väljade failid 2. etapp (link geoloogiateenistuse fondile: 7804)",
       target: "GeoloogiateenistusWindow"
     },
     {
@@ -49,7 +51,8 @@ const state = {
       src: "https://fond.egt.ee/fond/egf/7913",
       title:
         "Eesti mahajäetud turbatootmisalade revisjon. 3.etapp. Viljandi, Pärnu, Saare ja Hiiu maakond",
-      text: "Mahajäetud väljade failid 3. etapp",
+      text:
+        "Mahajäetud väljade failid 3. etapp (link geoloogiateenistuse fondile: 7913)",
       target: "GeoloogiateenistusWindow"
     },
     {
@@ -57,7 +60,8 @@ const state = {
       src: "https://fond.egt.ee/fond/egf/8030",
       title:
         "Eesti mahajäetud turbatootmisalade revisjon. 4.etapp. Valga, Võru ja Põlva maakond",
-      text: "Mahajäetud väljade failid 4. etapp",
+      text:
+        "Mahajäetud väljade failid 4. etapp (link geoloogiateenistuse fondile: 8030)",
       target: "GeoloogiateenistusWindow"
     },
     {

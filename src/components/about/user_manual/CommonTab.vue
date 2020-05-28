@@ -2,7 +2,7 @@
   <div class="common-tab px-2 pb-2">
     <v-card flat class="user-manual-tab-card">
       <v-card-title class="headline">
-        Turbauuringute andmebaasi veebirakendus: TurbA
+        Turbauuringute andmebaasi veebirakendus: TURBA
       </v-card-title>
 
       <v-card-text>
@@ -116,7 +116,7 @@
         </div>
 
         <div class="mt-2">
-          Tehniliselt on TurbA veebirakendus on loodud nn SPA (single page
+          Tehniliselt on TURBA veebirakendus on loodud nn SPA (single page
           application) rakendusena javascripti raamistiku Vue.js (<a
             href="https://vuejs.org"
             target="VueWindow"
