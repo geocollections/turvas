@@ -1,7 +1,7 @@
 <template>
   <div class="common-tab px-2 pb-2">
     <v-card flat class="user-manual-tab-card">
-      <v-card-title>
+      <v-card-title class="headline">
         Turbauuringute andmebaasi veebirakendus: TurbA
       </v-card-title>
 
@@ -137,7 +137,7 @@
     </v-card>
 
     <v-card flat class="user-manual-tab-card">
-      <v-card-title>
+      <v-card-title class="headline">
         Üldine tutvustus ja õpetus
       </v-card-title>
 

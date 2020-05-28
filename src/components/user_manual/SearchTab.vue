@@ -1,7 +1,7 @@
 <template>
   <div class="search-tab px-2 pb-2">
     <v-card flat class="user-manual-tab-card">
-      <v-card-title>
+      <v-card-title class="headline">
         Otsingu tutvustus ja õpetus
       </v-card-title>
 

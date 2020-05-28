@@ -37,12 +37,17 @@
         </div>
 
         <v-overlay absolute>
-          <v-sheet class="py-2" height="100%" tile color="transparent">
+          <v-sheet
+            class="py-2 black--text"
+            height="100%"
+            tile
+            color="transparent"
+          >
             <v-row no-gutters>
-              <v-col cols="2" md="1"></v-col>
-              <v-col cols="8" md="6" lg="5" xl="4">
+              <v-col cols="2"></v-col>
+              <v-col cols="8" style="max-width: 1000px">
                 <div
-                  class="font-weight-medium carousel-text pa-3"
+                  class="font-weight-medium carousel-text pa-6"
                   :class="{
                     'carousel-text-xs': $vuetify.breakpoint.xsOnly,
                     'carousel-text-sm': $vuetify.breakpoint.smOnly,
@@ -82,7 +87,7 @@
                   <div v-html="carouselText2" />
                 </div>
               </v-col>
-              <v-col cols="2" md="5"></v-col>
+              <v-col cols="2"></v-col>
             </v-row>
           </v-sheet>
         </v-overlay>
@@ -120,8 +125,7 @@ export default {
 
 .carousel-text {
   font-size: 18px;
-  text-shadow: 2px 2px 2px #000;
-  background-color: rgba(255, 255, 255, 0.16);
+  background-color: rgba(255, 255, 255, 0.8);
   border-radius: 4px;
 }
 

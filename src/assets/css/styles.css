@@ -23,29 +23,25 @@
 }
 
 .user-manual-card {
-    background-color: rgba(255, 255, 255, 0.16) !important;
-    color: #fff !important;
-    text-shadow: 2px 2px 2px #000;
+    background-color: rgba(255, 255, 255, 0.8) !important;
+    color: #000 !important;
 }
 
 .user-manual-card > .v-card__text {
-    color: #fff !important;
-    text-shadow: 2px 2px 2px #000;
+    color: #000 !important;
     font-weight: 500;
 }
 
 .user-manual-tab-card {
     background-color: transparent !important;
-    color: #fff !important;
-    text-shadow: 2px 2px 2px #000;
+    color: #000 !important;
 }
 
 .user-manual-tab-card > .v-card__text {
-    color: #fff !important;
-    text-shadow: 2px 2px 2px #000;
+    color: #000 !important;
     font-weight: 500;
 }
 
 .user-manual-tab {
-    background-color: rgba(255, 255, 255, 0.16) !important;
+    background-color: rgba(255, 255, 255, 0.8) !important;
 }

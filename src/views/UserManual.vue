@@ -11,13 +11,13 @@
     ></div>
 
     <v-container style="max-width: 1000px; z-index: 3">
-      <v-card flat class="ma-3 user-manual-card" style="z-index: 3">
-        <v-card-title class="display-1">
+      <v-card flat class="ma-3 user-manual-card pa-3" style="z-index: 3">
+        <v-card-title class="display-3">
           Kasutusjuhend
         </v-card-title>
 
         <v-card-text>
-          <div class="headline">
+          <div class="display-1">
             Turbauuringute andmebaasi tehniline iseloomustus
           </div>
 
@@ -106,10 +106,21 @@
           </div>
         </v-card-text>
 
-        <v-tabs slider-size="4" v-model="tab" grow show-arrows>
-          <v-tab style="color: #fff; font-weight: bold" v-for="item in items" :key="item">{{
-            item
-          }}</v-tab>
+        <v-tabs
+          slider-size="4"
+          v-model="tab"
+          grow
+          show-arrows
+          background-color="transparent"
+        >
+          <v-tab
+            active-class="tab-background"
+            class="font-weight-bold"
+            style="color: #000;"
+            v-for="item in items"
+            :key="item"
+            >{{ item }}</v-tab
+          >
         </v-tabs>
 
         <v-tabs-items class="user-manual-tabs-items" v-model="tab">
@@ -140,7 +151,7 @@ import TableTab from "../components/user_manual/TableTab";
 import ChartTab from "../components/user_manual/ChartTab";
 import MoreTab from "../components/user_manual/MoreTab";
 import { mapState } from "vuex";
-import {cloneDeep} from "lodash";
+import { cloneDeep } from "lodash";
 export default {
   name: "UserManual",
   components: { MoreTab, ChartTab, TableTab, SearchTab, MapTab, CommonTab },
@@ -191,6 +202,22 @@ export default {
 }
 
 .user-manual >>> .v-tabs-bar {
-  background-color: rgba(255, 255, 255, 0.16);
+  /*background-color: rgba(255, 255, 255, 0.32);*/
+}
+
+.user-manual a {
+  color: #000;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.user-manual >>> a {
+  color: #000;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.tab-background {
+  background-color: rgba(0, 0, 0, 0.16);
 }
 </style>

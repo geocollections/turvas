@@ -1,7 +1,7 @@
 <template>
   <div class="more px-2 pb-2">
     <v-card flat class="user-manual-tab-card">
-      <v-card-title class="pb-1">
+      <v-card-title class="pb-1 headline">
         Avalik API
       </v-card-title>
 
@@ -61,7 +61,7 @@
     </v-card>
 
     <v-card flat class="user-manual-tab-card">
-      <v-card-title class="pb-1">
+      <v-card-title class="pb-1 headline">
         Kaardiserver
       </v-card-title>
 
@@ -98,7 +98,7 @@
     </v-card>
 
     <v-card flat class="user-manual-tab-card">
-      <v-card-title class="pb-1">
+      <v-card-title class="pb-1 headline">
         Andmete allalaadimine
       </v-card-title>
 

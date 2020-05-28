@@ -24,12 +24,12 @@
         </div>
 
         <v-overlay absolute>
-          <v-sheet height="100%" tile color="transparent">
+          <v-sheet class="black--text" height="100%" tile color="transparent">
             <v-row class="fill-height" align="center" no-gutters>
-              <v-col cols="2" md="1"></v-col>
-              <v-col cols="8" md="6" lg="5" xl="4">
+              <v-col cols="2"></v-col>
+              <v-col cols="8" style="max-width: 1000px">
                 <div
-                  class="font-weight-medium carousel-text pa-3"
+                  class="font-weight-medium carousel-text pa-6"
                   :class="{
                     'carousel-text-xs': $vuetify.breakpoint.xsOnly,
                     'carousel-text-sm': $vuetify.breakpoint.smOnly,
@@ -37,7 +37,7 @@
                     'carousel-text-lg': $vuetify.breakpoint.lgOnly
                   }"
                 >
-                  <div>{{ downloadText }}</div>
+                  <div class="pb-2">{{ downloadText }}</div>
 
                   <ul>
                     <li v-for="link in downloadLinks" :key="link.id">
@@ -45,14 +45,14 @@
                         v-if="link.isRouterLink"
                         :to="link.src"
                         :title="link.title"
-                        class="about-link"
+                        class="download-link"
                         >{{ link.text }}</router-link
                       >
                       <a
                         v-else
                         :href="link.src"
                         :title="link.title"
-                        class="about-link"
+                        class="download-link"
                         :target="link.target"
                         >{{ link.text }}</a
                       >
@@ -87,19 +87,18 @@ export default {
   top: -70px;
 }
 
-.about-link {
-  text-decoration: none;
-  /*font-weight: bold;*/
+.download-link {
+  color: #000;
+  font-weight: bold;
 }
 
-.about-link:hover {
+.download-link:hover {
   opacity: 0.7;
 }
 
 .carousel-text {
   font-size: 18px;
-  text-shadow: 2px 2px 2px #000;
-  background-color: rgba(255, 255, 255, 0.16);
+  background-color: rgba(255, 255, 255, 0.8);
   border-radius: 4px;
 }
 
