@@ -71,7 +71,7 @@ export default {
 
 .app-title-xs {
   font-size: 1.35em;
-  left: 50px;
+  left: 55px;
   top: 75px;
   max-width: 300px;
 }
