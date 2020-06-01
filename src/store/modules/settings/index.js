@@ -29,10 +29,11 @@ const state = {
   downloadLinks: [
     {
       id: 0,
-      src: "/failid/seletuskiri.pdf",
-      title: "Vaata seletuskirja",
+      src: "https://doi.geocollections.info/10.15152/GEO.487",
+      title: "https://doi.geocollections.info/10.15152/GEO.487",
       text:
-        "KIKi projekti nr 14460 seletuskiri ja kasutusjuhend (pdf vormingus, 1MB)"
+        "KIKi projekti nr 14460 seletuskiri ja kasutusjuhend (pdf vormingus, 1MB)",
+      target: "DoiWindow"
     },
     {
       id: 1,

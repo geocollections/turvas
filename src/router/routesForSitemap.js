@@ -132,7 +132,10 @@ module.exports = [
             component: () => import("../components/sample/Sample.vue"),
             meta: {
               object: "sample",
-              title: "Turbauuringute andmebaas: Proov "
+              title: "Turbauuringute andmebaas: Proov ",
+              sitemap: {
+                slugs: async () => await getIdsForSitemap("sample")
+              }
             }
           }
         ]
@@ -142,7 +145,7 @@ module.exports = [
 ];
 
 async function getIdsForSitemap(table) {
-  if (table) {
+  if (table && table === "area") {
     const API_URL = "https://api.geocollections.info/";
 
     let url = API_URL + table + "?";
