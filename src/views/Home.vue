@@ -1,5 +1,17 @@
 <template>
   <v-container class="pa-0" fluid v-if="$route.name === 'FrontPage'">
+    <div
+      class="app-title"
+      :class="{
+        'app-title-xs': $vuetify.breakpoint.xsOnly,
+        'app-title-sm': $vuetify.breakpoint.smOnly,
+        'app-title-md': $vuetify.breakpoint.mdOnly,
+        'app-title-lg': $vuetify.breakpoint.lgAndUp
+      }"
+    >
+      Eesti turbauuringute andmebaas
+    </div>
+
     <router-view />
   </v-container>
 
@@ -44,5 +56,41 @@ export default {
 <style scoped>
 .home {
   height: 100%;
+}
+
+.app-title {
+  position: absolute;
+  top: 80px;
+  left: 70px;
+  right: 50px;
+  z-index: 1000;
+  color: #fff;
+  font-weight: 600;
+  text-shadow: 1px 1px 10px #000;
+}
+
+.app-title-xs {
+  font-size: 1.35em;
+  left: 50px;
+  top: 75px;
+  max-width: 300px;
+}
+
+.app-title-sm {
+  font-size: 2em;
+  left: 60px;
+  top: 75px;
+  max-width: 400px;
+}
+
+.app-title-md {
+  font-size: 2.5em;
+  max-width: 500px;
+  left: 70px;
+}
+
+.app-title-lg {
+  font-size: 3em;
+  max-width: 600px;
 }
 </style>

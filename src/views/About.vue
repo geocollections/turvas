@@ -90,7 +90,7 @@ export default {
 
     cardTitle() {
       if (this.$route.name === "ProjectInfo") return "Projekti info";
-      else if (this.$route.name === "Download") return "Allalaadimine";
+      else if (this.$route.name === "Download") return "Andmete allalaadimine";
       else return "Kasutusjuhend";
     }
   },
