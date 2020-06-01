@@ -55,7 +55,7 @@
           >. Oluline on täiendava kriteeriumina kasutada proovipunktide otsingus
           parameetrit 'project=20', mis eristab turba uuringutepunkte muudest
           andmetest. Proovide otsingu tuleb kasutada lisaparameetrit
-          'series_id=258', mis piirab tulemused turba andmebaasi kirjetega.
+          'series_id=257', mis piirab tulemused turba andmebaasi kirjetega.
         </div>
       </v-card-text>
     </v-card>
