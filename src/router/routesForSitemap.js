@@ -132,10 +132,7 @@ module.exports = [
             component: () => import("../components/sample/Sample.vue"),
             meta: {
               object: "sample",
-              title: "Turbauuringute andmebaas: Proov ",
-              sitemap: {
-                slugs: async () => await getIdsForSitemap("sample")
-              }
+              title: "Turbauuringute andmebaas: Proov "
             }
           }
         ]

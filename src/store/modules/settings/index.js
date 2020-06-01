@@ -26,62 +26,69 @@ const state = {
       src: "https://turvas.geoloogia.info/failid/pildid/tuhu_soo.jpg"
     }
   ],
-  downloadText: "Projektiga seotud failide allalaadimine",
   downloadLinks: [
     {
-      id: 1,
-      src: "https://fond.egt.ee/fond/egf/7724",
-      title:
-        "Eesti mahajäetud turbatootmisalade revisjon. 1. etapp. Harju, Rapla ja Lääne maakond",
+      id: 0,
+      src: "/failid/seletuskiri.pdf",
+      title: "Vaata seletuskirja",
       text:
-        "Mahajäetud väljade failid 1. etapp (link geoloogiateenistuse fondile: 7724)",
-      target: "GeoloogiateenistusWindow"
+        "KIKi projekti nr 14460 seletuskiri ja kasutusjuhend (pdf vormingus, 1MB)"
+    },
+    {
+      id: 1,
+      src: "https://doi.geocollections.info/10.15152/GEO.487",
+      title: "https://doi.geocollections.info/10.15152/GEO.487",
+      text:
+        "Eesti turbauuringute andmebaas (põhiandmed xlsx vormingus, 7MB, registreeritud andmekogum DOI:10.15152/GEO.487)",
+      target: "DoiWindow"
     },
     {
       id: 2,
-      src: "https://fond.egt.ee/fond/egf/7804",
-      title:
-        "Eesti mahajäetud turbatootmisalade revisjon. 2. Etapp. Ida-Viru, Lääne-Viru, Jõgeva, Järva ja Tartu maakond",
+      src: "/failid/turbaalade_tehnilised_plaanid.tar",
+      title: "Lae alla turbaalade georefereeritud tehnilised plaanid",
       text:
-        "Mahajäetud väljade failid 2. etapp (link geoloogiateenistuse fondile: 7804)",
-      target: "GeoloogiateenistusWindow"
+        "Turbaalade georefereeritud tehnilised plaanid (geotiff vormingus, ~6GB)"
     },
     {
       id: 3,
-      src: "https://fond.egt.ee/fond/egf/7913",
-      title:
-        "Eesti mahajäetud turbatootmisalade revisjon. 3.etapp. Viljandi, Pärnu, Saare ja Hiiu maakond",
+      src: "",
+      title: "",
       text:
-        "Mahajäetud väljade failid 3. etapp (link geoloogiateenistuse fondile: 7913)",
-      target: "GeoloogiateenistusWindow"
-    },
-    {
-      id: 4,
-      src: "https://fond.egt.ee/fond/egf/8030",
-      title:
-        "Eesti mahajäetud turbatootmisalade revisjon. 4.etapp. Valga, Võru ja Põlva maakond",
-      text:
-        "Mahajäetud väljade failid 4. etapp (link geoloogiateenistuse fondile: 8030)",
-      target: "GeoloogiateenistusWindow"
-    },
-    {
-      id: 5,
-      src: "/failid/turbaalade_tehnilised_plaanid.tar",
-      title: "Lae alla turbaalade tehnilised plaanid",
-      text: "Turbaalade tehnilised plaanid (~6GB)"
-    },
-    {
-      id: 6,
-      src: "/failid/seletuskiri.pdf",
-      title: "Projekti seletuskiri",
-      text: "Projekti seletuskiri"
-    },
-    {
-      id: 7,
-      src: "/kasutusjuhend",
-      title: "Tutvu rakenduse kasutusjuhendiga",
-      text: "Kasutusjuhend",
-      isRouterLink: true
+        "Mahajäetud turbaväljade failid (lingid Geoloogiafondi aruannetele):",
+      additionalLinks: [
+        {
+          id: 0,
+          src: "https://fond.egt.ee/fond/egf/7724",
+          title:
+            "Eesti mahajäetud turbatootmisalade revisjon. 1. etapp. Harju, Rapla ja Lääne maakond",
+          text: "1. etapp",
+          target: "GeoloogiateenistusWindow"
+        },
+        {
+          id: 1,
+          src: "https://fond.egt.ee/fond/egf/7804",
+          title:
+            "Eesti mahajäetud turbatootmisalade revisjon. 2. Etapp. Ida-Viru, Lääne-Viru, Jõgeva, Järva ja Tartu maakond",
+          text: "2. etapp",
+          target: "GeoloogiateenistusWindow"
+        },
+        {
+          id: 2,
+          src: "https://fond.egt.ee/fond/egf/7913",
+          title:
+            "Eesti mahajäetud turbatootmisalade revisjon. 3.etapp. Viljandi, Pärnu, Saare ja Hiiu maakond",
+          text: "3. etapp",
+          target: "GeoloogiateenistusWindow"
+        },
+        {
+          id: 3,
+          src: "https://fond.egt.ee/fond/egf/8030",
+          title:
+            "Eesti mahajäetud turbatootmisalade revisjon. 4.etapp. Valga, Võru ja Põlva maakond",
+          text: "4. etapp",
+          target: "GeoloogiateenistusWindow"
+        }
+      ]
     }
   ],
   block: {

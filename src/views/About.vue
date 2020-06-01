@@ -1,8 +1,11 @@
 <template>
   <div class="about">
     <div
+      v-if="carouselSlides && carouselSlides.length > 0"
       class="background-image"
-      :style="`background-image: url('${image}'); z-index: 1;`"
+      :style="
+        `background-image: url('${carouselSlides[imageIndex].src}'); z-index: 1;`
+      "
     ></div>
 
     <div
@@ -45,7 +48,7 @@
           :class="{
             'display-1': $vuetify.breakpoint.smAndDown,
             'display-2': $vuetify.breakpoint.mdOnly,
-            'display-3': $vuetify.breakpoint.lgOnly
+            'display-3': $vuetify.breakpoint.lgAndUp
           }"
         >
           {{ cardTitle }}
@@ -61,17 +64,20 @@
 
 <script>
 import { mapState } from "vuex";
-import { cloneDeep } from "lodash";
 
 export default {
   name: "About",
 
   data: () => ({
     interval: null,
-    image: "https://turvas.geoloogia.info/failid/pildid/punasoo_raba.jpg"
+    imageIndex: 0
   }),
 
   created() {
+    this.preloadImages();
+  },
+
+  mounted() {
     this.startInterval();
   },
 
@@ -90,12 +96,20 @@ export default {
   },
 
   methods: {
+    preloadImages() {
+      this.carouselSlides.forEach(item => {
+        const linkEl = document.createElement("link");
+        linkEl.setAttribute("rel", "preload");
+        linkEl.setAttribute("href", item.src);
+        linkEl.setAttribute("as", "image");
+        document.head.appendChild(linkEl);
+      });
+    },
+
     startInterval() {
-      let counter = 1;
       this.interval = setInterval(() => {
-        if (counter === 4) counter = 0;
-        this.image = cloneDeep(this.carouselSlides[counter].src);
-        counter = counter + 1;
+        if (this.imageIndex === 3) this.imageIndex = 0;
+        this.imageIndex += 1;
       }, 6000);
     }
   }
@@ -111,6 +125,8 @@ export default {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  -webkit-transition: all 1s ease-in;
+  transition: all 1s ease-in;
 }
 
 .kik-logo {
