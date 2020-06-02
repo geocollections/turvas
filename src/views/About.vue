@@ -118,6 +118,7 @@ export default {
 
 <style scoped>
 .background-image {
+  /*background-image: url(https://turba.geoloogia.info/failid/pildid/kakerdaja_raba.jpg);*/
   position: fixed;
   width: 100%;
   height: 100%;

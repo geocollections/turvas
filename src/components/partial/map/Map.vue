@@ -295,9 +295,7 @@ export default {
   mounted() {
     this.initMap();
 
-    if (this.$route.name === "FrontPage" || this.$route.name === "AreaTable") {
-      document.getElementById("map").classList.add("cursor-crosshair");
-    } else document.getElementById("map").classList.remove("cursor-crosshair");
+    document.getElementById("map").classList.add("cursor-crosshair");
   },
 
   beforeDestroy() {
@@ -423,28 +421,19 @@ export default {
 
     "$route.path": {
       handler() {
-        if (
-          this.$route.name === "AreaTable" ||
-          this.$route.name === "FrontPage"
-        ) {
-          document.getElementById("map")?.classList.add?.("cursor-crosshair");
-          this.resetAreaAndSiteFromGeoserver();
-        } else
-          document
-            .getElementById("map")
-            ?.classList.remove?.("cursor-crosshair");
+        this.resetAreaAndSiteFromGeoserver();
       },
       immediate: true
     },
 
     areaFromGeoserver(newVal) {
-      if (newVal) {
+      if (newVal && this.$route.path !== `/turbaala/${newVal}`) {
         this.$router.push({ path: `/turbaala/${newVal}` });
       }
     },
 
     siteFromGeoserver(newVal) {
-      if (newVal) {
+      if (newVal && this.$route.path !== `/proovipunkt/${newVal}`) {
         this.$router.push({ path: `/proovipunkt/${newVal}` });
       }
     }
@@ -568,10 +557,8 @@ export default {
 
     handleMapClick(event) {
       if (
-        (this.$route.name === "FrontPage" ||
-          this.$route.name === "AreaTable") &&
-        (this.map.hasLayer(this.overlayMaps[0].leafletObject) ||
-          this.map.hasLayer(this.overlayMaps[1].leafletObject))
+        this.map.hasLayer(this.overlayMaps[0].leafletObject) ||
+        this.map.hasLayer(this.overlayMaps[1].leafletObject)
       ) {
         let radius = (this.maxZoom + 0.25 - this.map.getZoom()) * 500;
         let crs = event.target.options.crs;
