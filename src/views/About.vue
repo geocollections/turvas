@@ -118,7 +118,6 @@ export default {
 
 <style scoped>
 .background-image {
-  background-image: url(https://turvas.geoloogia.info/failid/pildid/kakerdaja_raba.jpg);
   position: fixed;
   width: 100%;
   height: 100%;

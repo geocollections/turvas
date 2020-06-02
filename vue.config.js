@@ -4,7 +4,7 @@ module.exports = {
   pluginOptions: {
     sitemap: {
       pretty: true,
-      baseURL: "https://turvas.geoloogia.info",
+      baseURL: "https://turba.geoloogia.info",
       routes
     }
   }
