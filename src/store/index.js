@@ -11,7 +11,7 @@ import map from "./modules/map";
 Vue.use(Vuex);
 
 const vuexLocal = new VuexPersistence({
-  key: "turba.geoloogia.info_v1.1.5",
+  key: "turba.geoloogia.info_v1.2.0",
   storage: window.localStorage,
   reducer: state => ({ settings: state.settings })
 });

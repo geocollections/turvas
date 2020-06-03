@@ -1,10 +1,10 @@
 <template>
   <div class="about">
     <div
-      v-if="carouselSlides && carouselSlides.length > 0"
+      v-if="backgroundImages && backgroundImages.length > 0"
       class="background-image"
       :style="
-        `background-image: url('${carouselSlides[imageIndex].src}'); z-index: 1;`
+        `background-image: url('${backgroundImages[imageIndex].src}'); z-index: 1;`
       "
     ></div>
 
@@ -86,7 +86,7 @@ export default {
   },
 
   computed: {
-    ...mapState("settings", ["carouselSlides"]),
+    ...mapState("settings", ["backgroundImages"]),
 
     cardTitle() {
       if (this.$route.name === "ProjectInfo") return "Projekti info";
@@ -97,7 +97,7 @@ export default {
 
   methods: {
     preloadImages() {
-      this.carouselSlides.forEach(item => {
+      this.backgroundImages.forEach(item => {
         const linkEl = document.createElement("link");
         linkEl.setAttribute("rel", "preload");
         linkEl.setAttribute("href", item.src);
