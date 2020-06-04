@@ -29,11 +29,23 @@
       />
     </a>
 
-    <div
-      class="image-info white--text"
-      v-if="imageIndex === 0 || imageIndex === 1"
-    >
-      Pildi autor: <b>Tõnis Saadre</b> (Eesti Geoloogiakeskuse kalender 2000. a)
+    <div class="image-info white--text">
+      <div v-if="imageIndex === 0 || imageIndex === 2">
+        Pildi autor: <b>Tõnis Saadre</b> (Eesti Geoloogiakeskuse kalender 2000.
+        a)
+      </div>
+      <div v-else>
+        Pildi autor:
+        <a
+          class="font-weight-bold table-link white--text"
+          href="https://www.turbaliit.ee/"
+          target="TurbaliitWindow"
+          title="https://www.turbaliit.ee/"
+          style="text-decoration: none;"
+          >Turbaliit</a
+        >
+        (2018)
+      </div>
     </div>
 
     <v-container style="max-width: 1000px">
