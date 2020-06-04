@@ -111,8 +111,8 @@ export default {
 
     startInterval() {
       this.interval = setInterval(() => {
-        if (this.imageIndex === 5) this.imageIndex = 0;
-        this.imageIndex += 1;
+        if (this.imageIndex === 3) this.imageIndex = 0;
+        else this.imageIndex += 1;
       }, 6000);
     }
   }
@@ -121,7 +121,6 @@ export default {
 
 <style scoped>
 .background-image {
-  /*background-image: url(https://turba.geoloogia.info/failid/pildid/kakerdaja_raba.jpg);*/
   position: fixed;
   width: 100%;
   height: 100%;

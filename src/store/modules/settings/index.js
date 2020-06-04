@@ -47,23 +47,19 @@ const state = {
   backgroundImages: [
     {
       id: 0,
-      src: "https://turba.geoloogia.info/failid/pildid/punasoo_raba.jpg"
+      src: "https://turba.geoloogia.info/failid/pildid/punasoo_raba_1.jpg"
     },
     {
       id: 1,
-      src: "https://turba.geoloogia.info/failid/pildid/kakerdaja_raba.jpg"
+      src: "https://turba.geoloogia.info/failid/pildid/Turvas-0001_1.jpg"
     },
     {
       id: 2,
-      src: "https://turba.geoloogia.info/failid/pildid/Turvas0001.jpg"
+      src: "https://turba.geoloogia.info/failid/pildid/kakerdaja_raba_1.jpg"
     },
     {
       id: 3,
-      src: "https://turba.geoloogia.info/failid/pildid/Turvas0003.jpg"
-    },
-    {
-      id: 4,
-      src: "https://turba.geoloogia.info/failid/pildid/Turvas0007.jpg"
+      src: "https://turba.geoloogia.info/failid/pildid/Turvas-0007_1.jpg"
     }
   ],
   downloadLinks: [
