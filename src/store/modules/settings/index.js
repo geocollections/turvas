@@ -55,11 +55,15 @@ const state = {
     },
     {
       id: 2,
-      src: "https://turba.geoloogia.info/failid/pildid/soosaare_raba.jpg"
+      src: "https://turba.geoloogia.info/failid/pildid/Turvas-0001.jpg"
     },
     {
       id: 3,
-      src: "https://turba.geoloogia.info/failid/pildid/tuhu_soo.jpg"
+      src: "https://turba.geoloogia.info/failid/pildid/Turvas-0003.jpg"
+    },
+    {
+      id: 4,
+      src: "https://turba.geoloogia.info/failid/pildid/Turvas-0007.jpg"
     }
   ],
   downloadLinks: [

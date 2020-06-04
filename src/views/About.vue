@@ -29,7 +29,10 @@
       />
     </a>
 
-    <div class="image-info white--text">
+    <div
+      class="image-info white--text"
+      v-if="imageIndex === 0 || imageIndex === 1"
+    >
       Pildi autor: <b>Tõnis Saadre</b> (Eesti Geoloogiakeskuse kalender 2000. a)
     </div>
 
@@ -108,7 +111,7 @@ export default {
 
     startInterval() {
       this.interval = setInterval(() => {
-        if (this.imageIndex === 3) this.imageIndex = 0;
+        if (this.imageIndex === 5) this.imageIndex = 0;
         this.imageIndex += 1;
       }, 6000);
     }
