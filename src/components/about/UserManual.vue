@@ -6,7 +6,7 @@
       </div>
 
       <div class="mt-2">
-        Turbauuringute andmaas kasutab geoteaduste infosüsteemi SARV (vt
+        Turbauuringute andmebaas kasutab geoteaduste infosüsteemi SARV (vt
         <a
           href="https://geocollections.info"
           title="Eesti geokogude portaal"
