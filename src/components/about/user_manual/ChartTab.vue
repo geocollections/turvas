@@ -79,7 +79,7 @@
 
         <v-card flat class="align-self-center align-self-xl-start pa-2 user-manual-tab-card">
           <v-img
-            max-width="700px"
+            max-width="600px"
             :src="require('@/assets/img/user_manual/chart/chart.png')"
           />
         </v-card>

@@ -14,15 +14,16 @@
           @click="drawer = true"
         />
 
-        <v-toolbar-title>
-          <router-link
-            class="toolbar-title mr-3"
-            :to="{ path: '/' }"
-            title="Mine pealehele"
-          >
-            TURB<span class="toolbar-title-a">A</span>
-          </router-link>
-        </v-toolbar-title>
+        <v-tooltip bottom>
+          <template v-slot:activator="{ on }">
+            <v-toolbar-title v-on="on">
+              <router-link class="toolbar-title mr-3" :to="{ path: '/' }">
+                TURB<span class="toolbar-title-a">A</span>
+              </router-link>
+            </v-toolbar-title>
+          </template>
+          <span>Mine pealehele</span>
+        </v-tooltip>
 
         <v-toolbar-items class="hidden-sm-and-down">
           <v-btn text title="Turbaalad" to="/turbaala" exact color="white"
@@ -87,26 +88,27 @@
           />
         </v-toolbar-items>
 
-        <v-btn
+        <v-tooltip
+          bottom
           v-if="
             !isAboutPage && !isFrontPage && !isDownloadPage && !isUserManualPage
           "
-          @click="updateMapState(!getMapState)"
-          :title="getMapState ? 'Peida kaart' : 'Näita kaarti'"
-          fab
-          icon
-          class="white--text"
         >
-          <span v-if="getMapState" class="fa-stack">
-            <i class="fa-stack-2x fas fa-globe-americas"></i>
-            <i class="fa-stack-2x fas fa-eye-slash error--text corner-icon"></i>
-          </span>
+          <template v-slot:activator="{ on }">
+            <v-btn
+              v-on="on"
+              @click="updateMapState(!getMapState)"
+              fab
+              icon
+              dark
+            >
+              <v-icon v-if="!!getMapState">fas fa-map</v-icon>
+              <v-icon v-else>far fa-map</v-icon>
+            </v-btn>
+          </template>
 
-          <span v-else class="fa-stack">
-            <i class="fa-stack-2x fas fa-globe-americas"></i>
-            <i class="fa-stack-2x fas fa-eye black--text corner-icon"></i>
-          </span>
-        </v-btn>
+          <span>{{ getMapState ? "Peida kaart" : "Näita kaarti" }}</span>
+        </v-tooltip>
       </v-app-bar>
     </v-hover>
 
@@ -275,10 +277,5 @@ export default {
 
 .app-bar >>> .v-toolbar__image {
   opacity: 0.25;
-}
-
-.corner-icon {
-  font-size: 20px;
-  padding-left: 12px;
 }
 </style>

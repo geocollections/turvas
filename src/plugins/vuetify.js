@@ -41,7 +41,8 @@ import Vuetify, {
   VTabsItems,
   VTabItem,
   VImg,
-  VAlert
+  VAlert,
+  VTooltip
 } from "vuetify/lib";
 import "vuetify/dist/vuetify.min.css";
 import et from "vuetify/es5/locale/et";
@@ -90,7 +91,8 @@ Vue.use(Vuetify, {
     VTabsItems,
     VTabItem,
     VImg,
-    VAlert
+    VAlert,
+    VTooltip
   },
   directives: {
     Ripple
