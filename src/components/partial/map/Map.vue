@@ -570,7 +570,6 @@ export default {
     },
 
     handleMapClick(event) {
-      console.log("mapClick");
       if (
         this.map.hasLayer(this.overlayMaps[0].leafletObject) ||
         this.map.hasLayer(this.overlayMaps[1].leafletObject)
@@ -601,7 +600,6 @@ export default {
     },
 
     handleMarkerClick(siteId) {
-      console.log("markerClick");
       this.$router.push({
         path: `/proovipunkt/${siteId}`
       });
