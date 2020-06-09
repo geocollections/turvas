@@ -68,6 +68,7 @@ import "leaflet-fullscreen/dist/leaflet.fullscreen.css";
 import "leaflet-fullscreen/dist/Leaflet.fullscreen";
 import "proj4leaflet";
 import { mapActions, mapGetters, mapState } from "vuex";
+import { debounce } from "lodash";
 
 export default {
   name: "Map",
@@ -569,11 +570,12 @@ export default {
     },
 
     handleMapClick(event) {
+      console.log("mapClick");
       if (
         this.map.hasLayer(this.overlayMaps[0].leafletObject) ||
         this.map.hasLayer(this.overlayMaps[1].leafletObject)
       ) {
-        let radius = (this.maxZoom + 0.25 - this.map.getZoom()) * 500;
+        let radius = (this.maxZoom + 0.25 - this.map.getZoom()) * 50;
         let crs = event.target.options.crs;
         let circle = L.circle(event.latlng, {
           radius: radius
@@ -596,6 +598,13 @@ export default {
           this.mapClicked({ bbox: bbox, fetch: "area" });
         }
       }
+    },
+
+    handleMarkerClick(siteId) {
+      console.log("markerClick");
+      this.$router.push({
+        path: `/proovipunkt/${siteId}`
+      });
     },
 
     handleMouseover() {
@@ -686,10 +695,9 @@ export default {
               }
             );
 
-            marker.on("click", () => {
-              this.$router.push({
-                path: `/proovipunkt/${site.id}`
-              });
+            L.DomEvent.on(marker, "click", event => {
+              L.DomEvent.stopPropagation(event);
+              this.handleMarkerClick(site.id);
             });
 
             marker.bindTooltip(site.name, {
