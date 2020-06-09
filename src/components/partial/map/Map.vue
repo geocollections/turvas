@@ -600,9 +600,11 @@ export default {
     },
 
     handleMarkerClick(siteId) {
-      this.$router.push({
-        path: `/proovipunkt/${siteId}`
-      });
+      if (this.$route.params.id !== siteId) {
+        this.$router.push({
+          path: `/proovipunkt/${siteId}`
+        });
+      }
     },
 
     handleMouseover() {
