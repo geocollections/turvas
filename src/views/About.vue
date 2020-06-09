@@ -47,6 +47,9 @@
           'custom-mb-md': $vuetify.breakpoint.mdAndUp
         }"
       >
+
+        <span class="project-version">({{ projectVersion }})</span>
+
         <v-card-title
           v-if="$route.name !== 'UserManual'"
           :class="{
@@ -58,7 +61,9 @@
           {{ cardTitle }}
         </v-card-title>
 
-        <v-card-title class="display-3" v-else>{{ cardTitle }}</v-card-title>
+        <v-card-title class="display-3" v-else>
+          {{ cardTitle }}
+        </v-card-title>
 
         <router-view />
       </v-card>
@@ -90,7 +95,7 @@ export default {
   },
 
   computed: {
-    ...mapState("settings", ["backgroundImages"]),
+    ...mapState("settings", ["backgroundImages", "projectVersion"]),
 
     cardTitle() {
       if (this.$route.name === "ProjectInfo") return "Projekti info";
@@ -176,5 +181,11 @@ export default {
   color: #000;
   text-decoration: underline;
   font-weight: bold;
+}
+
+.project-version {
+  position: absolute;
+  right: 15px;
+  font-size: 12px;
 }
 </style>
