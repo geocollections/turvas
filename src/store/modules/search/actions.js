@@ -330,7 +330,9 @@ const actions = {
 
   async fetchListAreas({ commit, dispatch }) {
     let response = await SearchService.doRegularSearch("area", {
-      fields: "id,name"
+      fields: "id,name",
+      sortBy: ["name"],
+      sortDesc: [false]
     });
     if (typeof response === "object") {
       commit("SET_LIST_AREAS", response.results);
