@@ -799,6 +799,7 @@ export default {
   border-radius: 5px;
   padding: 1px 6px;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
+  opacity: 0.7;
 }
 
 .map-legend {
@@ -812,6 +813,7 @@ export default {
   right: 0;
   bottom: 0;
   margin-bottom: 26px;
+  opacity: 0.7;
 }
 
 .map-legend-row > span:first-child {
