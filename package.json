@@ -17,7 +17,7 @@
     "json2csv": "^4.5.4",
     "leaflet": "^1.6.0",
     "leaflet-fullscreen": "^1.0.2",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "proj4leaflet": "^1.0.2",
     "vue": "^2.6.11",
     "vue-chartjs": "^3.5.0",
