@@ -21,6 +21,7 @@
     "proj4leaflet": "^1.0.2",
     "vue": "^2.6.11",
     "vue-chartjs": "^3.5.0",
+    "vue-i18n": "^8.24.1",
     "vue-router": "^3.1.6",
     "vuetify": "^2.2.25",
     "vuex": "^3.3.0",

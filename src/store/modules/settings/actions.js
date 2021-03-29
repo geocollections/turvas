@@ -9,6 +9,10 @@ const actions = {
 
   closeCookieLaw({ commit }) {
     commit("UPDATE_COOKIE_LAW", false);
+  },
+
+  updateLanguage({ commit }, language) {
+    commit("UPDATE_LANGUAGE", language);
   }
 };
 

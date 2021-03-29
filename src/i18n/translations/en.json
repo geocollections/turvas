@@ -1,0 +1,18 @@
+{
+  "frontpage": {
+    "title": "Estonian peat database"
+  },
+  "header": {
+    "areas": "Peat areas",
+    "sites": "Sampling sites",
+    "samples": "Samples",
+    "projectInfo": "Project info",
+    "download": "Download",
+    "userManual": "User manual",
+    "goToFrontPage": "Go to homepage",
+    "searchArea": "Search area...",
+    "frontPage": "Front page",
+    "hideMap": "Hide map",
+    "showMap": "Show map"
+  }
+}

@@ -12,6 +12,10 @@ const mutations = {
 
   UPDATE_COOKIE_LAW(state, bool) {
     state.cookieLaw = bool;
+  },
+
+  UPDATE_LANGUAGE(state, language) {
+    state.language = language;
   }
 };
 
