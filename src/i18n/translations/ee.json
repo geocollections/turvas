@@ -1,0 +1,18 @@
+{
+  "frontpage": {
+    "title": "Eesti turbauuringute andmebaas"
+  },
+  "header": {
+    "areas": "Turbaalad",
+    "sites": "Proovipunktid",
+    "samples": "Proovid",
+    "projectInfo": "Projekti info",
+    "download": "Allalaadimine",
+    "userManual": "Kasutusjuhend",
+    "goToFrontPage": "Mine pealehele",
+    "searchArea": "Otsi ala...",
+    "frontPage": "Pealeht",
+    "hideMap": "Peida kaart",
+    "showMap": "Näita kaarti"
+  }
+}

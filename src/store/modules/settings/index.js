@@ -3,6 +3,7 @@ import mutations from "./mutations";
 import getters from "./getters";
 
 const state = {
+  language: "ee",
   projectVersion: "1.3.0",
   showMap: true,
   projectInfoText1:

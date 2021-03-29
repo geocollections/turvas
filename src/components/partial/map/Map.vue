@@ -56,7 +56,7 @@
         'app-title-lg': $vuetify.breakpoint.lgAndUp
       }"
     >
-      Eesti turbauuringute andmebaas
+      {{ $t("frontpage.title") }}
     </div>
   </div>
 </template>
