@@ -10,7 +10,7 @@
       color="white"
       icon
       @click="$emit('update:success', !success)"
-      title="Sulge sõnum"
+      :title="$t('snackbar.close')"
     >
       <v-icon small>fas fa-times</v-icon>
     </v-btn>

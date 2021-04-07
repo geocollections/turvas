@@ -54,18 +54,12 @@ export default {
     ...mapGetters("success", ["getSuccessState", "getSuccessMessage"]),
     ...mapState("settings", ["cookieLaw"])
   },
-  watch: {
-    $route: {
-      handler: to => {
-        if (to.name && to.name.includes("Detail")) {
-          document.title =
-            to.meta.title + to.params.id || "Turbauuringute andmebaas";
-        } else {
-          document.title = to.meta.title || "Turbauuringute andmebaas";
-        }
-      },
-      immediate: true
-    }
+  metaInfo() {
+    const title = this.$t("frontpage.titleShort");
+    return {
+      title: title,
+      titleTemplate: "%s | TURBA"
+    };
   },
   methods: {
     ...mapActions("error", ["updateErrorState"]),

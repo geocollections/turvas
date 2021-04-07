@@ -7,26 +7,23 @@
           'cookie-law-text-sm': $vuetify.breakpoint.smAndDown
         }"
       >
-        See veebileht kasutab küpsiseid. Veebilehe kasutamist jätkates nõustute
-        küpsiste kasutamisega.
+        {{ $t("cookie.info") }}
         <v-dialog
           v-model="cookieDialog"
           max-width="500px"
           style="z-index: 150000;"
         >
           <template v-slot:activator="{ on }">
-            <a class="table-link" v-on="on" title="Loe kasutustingimusi"
-              >Loe lähemalt</a
+            <a
+              class="table-link"
+              v-on="on"
+              :title="$t('cookie.termsOfUseTitle')"
+              >{{ $t("cookie.readMore") }}</a
             >
           </template>
           <v-card>
-            <v-card-title>Kasutustingimused</v-card-title>
-            <v-card-text
-              >Veebilehe külastajate andmeid kasutatakse ainult mitteisikustatud
-              statistiliseks analüüsiks ning lehekülje funktsionaalsuse
-              parandamiseks. Andmeid ei edastada kolmandatele
-              osapooltele.</v-card-text
-            >
+            <v-card-title>{{ $t("cookie.termsOfUse") }}</v-card-title>
+            <v-card-text>{{ $t("cookie.termsOfUseText") }}</v-card-text>
           </v-card>
         </v-dialog>
       </div>
@@ -35,7 +32,7 @@
         <v-btn
           color="primary"
           @click="$emit('accept')"
-          title="Sulge küpsiste teavitus"
+          :title="$t('cookie.close')"
         >
           OK
         </v-btn>

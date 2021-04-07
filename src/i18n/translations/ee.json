@@ -1,6 +1,8 @@
 {
   "frontpage": {
-    "title": "Eesti turbauuringute andmebaas"
+    "title": "Eesti turbauuringute andmebaas",
+    "titleShort": "Turbauuringute andmebaas",
+    "kik": "Keskkonnainvesteeringute keskus"
   },
   "header": {
     "areas": "Turbaalad",
@@ -14,5 +16,82 @@
     "frontPage": "Pealeht",
     "hideMap": "Peida kaart",
     "showMap": "Näita kaarti"
+  },
+  "about": {
+    "imageAuthor": "Pildi autor",
+    "egkCalendar": "Eesti Geoloogiakeskuse kalender",
+    "projectInfo": "Projekti info",
+    "download": "Allalaadimine",
+    "userManual": "Kasutusjuhend"
+  },
+  "counties": {
+    "title": "Maakonnad"
+  },
+  "search": {
+    "clear": "Puhasta otsing",
+    "table": "Otsi tabelist...",
+    "area": "Alasid ei leitud | Leitud <b>1</b> ala | Leitud <b>{count}</b> ala",
+    "site": "Proovipunkte ei leitud | Leitud <b>1</b> proovipunkt | Leitud <b>{count}</b> proovipunkti",
+    "sample": "Proove ei leitud | Leitud <b>1</b> proov | Leitud <b>{count}</b> proovi",
+    "pagination": "Kuva {num} kaupa"
+  },
+  "export": {
+    "title": "Ekspordi",
+    "defaultFilename": "Andmed-turbauuringute_andmebaas",
+    "areaFilename": "Turbaalade_tabel-turbauuringute_andmebaas",
+    "siteFilename": "Proovipunktide_tabel-turbauuringute_andmebaas",
+    "sampleFilename": "Proovide_tabel-turbauuringute_andmebaas",
+    "csv": "Lae alla CSV",
+    "copy": "Kopeeri lõikelauale",
+    "fail": "Allalaadimine ebaõnnestus: Andmed puuduvad!",
+    "successCsv": "Andmed eksporditi CSV-sse",
+    "successCopy": "Andmed kopeeritud!"
+  },
+  "cookie": {
+    "info": "See veebileht kasutab küpsiseid. Veebilehe kasutamist jätkates nõustute küpsiste kasutamisega.",
+    "readMore": "Loe lähemalt",
+    "termsOfUse": "Kasutustingimused",
+    "termsOfUseTitle": "Loe kasutustingimusi",
+    "termsOfUseText": "Veebilehe külastajate andmeid kasutatakse ainult mitteisikustatud statistiliseks analüüsiks ning lehekülje funktsionaalsuse parandamiseks. Andmeid ei edastada kolmandatele osapooltele.",
+    "close": "Sulge küpsiste teavitus"
+  },
+  "snackbar": {
+    "close": "Sulge sõnum"
+  },
+  "map": {
+    "area": "Turbaala",
+    "site": "Proovipunkt",
+    "plans": "Plaanid al 1km"
+  },
+  "area": {
+    "detailView": "Turbaala detailvaade",
+    "name": "Nimi",
+    "maakond": "Maakond",
+    "area_ha": "Ala (ha)",
+    "deposit_area_ha": "Maardla (ha)",
+    "maardla": "Maardla"
+  },
+  "site": {
+    "detailView": "Proovipunkti detailvaade",
+    "name": "Proovipunkt",
+    "maakond": "Maakond",
+    "area_name": "Turbaala",
+    "x": "X (L-EST, m)",
+    "y": "Y (L-EST, m)",
+    "z": "Z (m)",
+    "depth": "Sügavus / turba paksus (m)"
+  },
+  "sample": {
+    "detailView": "Proovi detailvaade",
+    "madalsooturvas": "madalsooturvas",
+    "rabaturvas": "rabaturvas",
+    "siirdesooturvas": "siirdesooturvas",
+    "järvemuda": "järvemuda",
+    "sample_id": "ID",
+    "number_additional": "Number",
+    "site": "Proovipunkt",
+    "depth": "Sügavus",
+    "depth_interval": "Sügavus kuni",
+    "rock": "Turbaliik"
   }
 }

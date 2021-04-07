@@ -22,7 +22,7 @@
           dense
           hide-details
           :value="areaSearchParams.paginateBy"
-          :items="paginateByItems"
+          :items="translatedPaginateByItems"
           @change="handleUpdatePaginateBy"
         />
       </v-col>
@@ -43,22 +43,21 @@
     <v-card flat>
       <v-card-title>
         <v-icon color="primary" left>fas fa-layer-group</v-icon>
-        <span
-          >Leitud <b>{{ areaResultsCount }}</b> ala</span
-        >
+        <span v-html="$tc('search.area', areaResultsCount)" />
+
         <v-spacer />
         <v-text-field
           :value="filter"
           hide-details
           single-line
-          label="Otsi tabelist..."
+          :label="$t('search.table')"
           @input="handleUpdateFilter"
         ></v-text-field>
       </v-card-title>
 
       <v-data-table
         class="ws-nowrap-table"
-        :headers="areaHeaders"
+        :headers="translatedAreaHeaders"
         hide-default-footer
         dense
         :items="areaResults"
@@ -75,7 +74,7 @@
         <template v-slot:item.name="{ item }">
           <router-link
             :to="`/turbaala/${item.id}`"
-            title="Turbaala detailvaade"
+            :title="$t('area.detailView')"
             class="table-link"
           >
             {{ item.name }}
@@ -102,17 +101,17 @@ import { mapActions, mapGetters, mapState } from "vuex";
 import debounce from "lodash/debounce";
 import searchMixin from "../../mixins/searchMixin";
 import Search from "../partial/Search";
+import tableTranslations from "@/mixins/tableTranslations";
 
 export default {
   name: "AreaTable",
 
   components: { Search },
 
-  mixins: [searchMixin],
+  mixins: [searchMixin, tableTranslations],
 
   computed: {
     ...mapState("search", [
-      "areaHeaders",
       "areaResults",
       "areaResultsCount",
       "paginateByItems"

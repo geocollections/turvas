@@ -1,6 +1,7 @@
 {
   "frontpage": {
-    "title": "Estonian peat database"
+    "title": "Estonian peat database",
+    "titleShort": "Peat database"
   },
   "header": {
     "areas": "Peat areas",
@@ -14,5 +15,82 @@
     "frontPage": "Front page",
     "hideMap": "Hide map",
     "showMap": "Show map"
+  },
+  "about": {
+    "imageAuthor": "Image author",
+    "egkCalendar": "Geological Survey of Estonia calendar",
+    "projectInfo": "Project info",
+    "download": "Download",
+    "userManual": "User manual"
+  },
+  "counties": {
+    "title": "Counties"
+  },
+  "search": {
+    "clear": "Clear search",
+    "table": "Search...",
+    "area": "Found no areas | Found <b>1</b> area | Found <b>{count}</b> areas",
+    "site": "Found no sampling sites | Found <b>1</b> sampling site | Found <b>{count}</b> sampling sites",
+    "sample": "Found no samples | Found <b>1</b> sample | Found <b>{count}</b> samples",
+    "pagination": "Show {num} results per page"
+  },
+  "export": {
+    "title": "Export",
+    "defaultFilename": "Data-peat_database",
+    "areaFilename": "Peat_area_table-peat_database",
+    "siteFilename": "Sampling_sites_table-peat_database",
+    "sampleFilename": "Samples_table-peat_database",
+    "csv": "Download CSV",
+    "copy": "Copy to clipboard",
+    "fail": "Download failed: Missing data!",
+    "successCsv": "Export successful: CSV downloaded!",
+    "successCopy": "Data copied to clipboard!"
+  },
+  "cookie": {
+    "info": "This website uses cookies in order to deliver the best possible web experience. By continuing to visit this website you agree to our use of cookies.",
+    "readMore": "Read our terms of use",
+    "termsOfUse": "Terms of use",
+    "termsOfUseTitle": "Read our terms of use",
+    "termsOfUseText": "Website visitor data is used only for non-personalized statistical analysis and to improve the functionality of the site. Data will not be passed on to third parties.",
+    "close": "Close notification"
+  },
+  "snackbar": {
+    "close": "Close message"
+  },
+  "map": {
+    "area": "Peat area",
+    "site": "Sampling site",
+    "plans": "Plans from 1km"
+  },
+  "area": {
+    "detailView": "Peat area detail view",
+    "name": "Name",
+    "maakond": "County",
+    "area_ha": "Area (ha)",
+    "deposit_area_ha": "Deposit area (ha)",
+    "maardla": "Deposit area"
+  },
+  "site": {
+    "detailView": "Sampling site detail view",
+    "name": "Sampling site",
+    "maakond": "County",
+    "area_name": "Peat area",
+    "x": "X (L-EST, m)",
+    "y": "Y (L-EST, m)",
+    "z": "Z (m)",
+    "depth": "Depth / peat thickness (m)"
+  },
+  "sample": {
+    "detailView": "Sample detail view",
+    "madalsooturvas": " fen peat",
+    "rabaturvas": "bog peat",
+    "siirdesooturvas": "transitional peat",
+    "järvemuda": "lake mud",
+    "sample_id": "ID",
+    "number_additional": "Number",
+    "site": "Sampling site",
+    "depth": "Depth",
+    "depth_interval": "Depth to",
+    "rock": "Peat type"
   }
 }

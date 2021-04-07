@@ -20,22 +20,22 @@
     <div class="map-legend">
       <div class="map-legend-row d-flex flex-row">
         <span style="background-color: #70b160;"></span>
-        <span>Turbaala</span>
+        <span>{{ $t("map.area") }}</span>
       </div>
       <div class="map-legend-row d-flex flex-row">
         <span style="background-color: #ec1e17;"></span>
-        <span>Proovipunkt</span>
+        <span>{{ $t("map.site") }}</span>
       </div>
       <div class="map-legend-row d-flex flex-row">
         <span style="background-color: #fff; border: 1px solid #000;"></span>
-        <span>Plaanid al 1km</span>
+        <span>{{ $t("map.plans") }}</span>
       </div>
     </div>
 
     <a
       href="https://kik.ee"
       target="KikWindow"
-      title="Keskkonnainvesteeringute keskus"
+      :title="$t('frontpage.kik')"
       v-if="$route.name === 'FrontPage'"
     >
       <img

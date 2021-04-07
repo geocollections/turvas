@@ -9,7 +9,7 @@
       </v-card>
       <v-card flat class="pa-1">
         <v-btn @click="$emit('reset:search')">
-          Puhasta otsing
+          {{ $t("search.clear") }}
           <v-icon right small>fas fa-eraser</v-icon>
         </v-btn>
       </v-card>
@@ -34,19 +34,19 @@ export default {
   },
   methods: {
     getFilename() {
-      let name = "Andmed-turbauuringute_andmebaas";
+      let name = this.$t("export.defaultFilename");
       switch (this.$route.meta.object) {
         case "area":
-          name = "Alade_tabel-turbauuringute_andmebaas";
+          name = this.$t("export.areaFilename");
           break;
         case "site":
-          name = "Proovipunktide_tabel-turbauuringute_andmebaas";
+          name = this.$t("export.siteFilename");
           break;
         case "sample":
-          name = "Proovide_tabel-turbauuringute_andmebaas";
+          name = this.$t("export.sampleFilename");
           break;
         default:
-          name = "Andmed-turbauuringute_andmebaas";
+          name = this.$t("export.defaultFilename");
       }
       return name;
     }
