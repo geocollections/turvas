@@ -11,7 +11,8 @@
     "textField": "Text field",
     "from": "From",
     "to": "To",
-    "columns": "Columns"
+    "columns": "Columns",
+    "linkToRegistry": "(link to registry)"
   },
   "frontpage": {
     "title": "Estonian peat database",
@@ -82,11 +83,23 @@
     "maakond": "County",
     "area_ha": "Area (ha)",
     "deposit_area_ha": "Deposit area (ha)",
-    "maardla": "Deposit area"
+    "maardla": "Deposit area",
+    "id": "ID",
+    "maakond__maakond": "County",
+    "description": "Description",
+    "egf": "EGF",
+    "text1": "Peat area plan",
+    "sites": "Sites",
+    "eelis": "Nature protection",
+    "references": "References",
+    "referenceLink": "Link to Estonian geoscience literature database",
+    "depositLink": "Deposit area information in Land Board portal"
   },
   "site": {
     "detailView": "Sampling site detail view",
     "name": "Sampling site",
+    "id": "ID",
+    "site": "Site",
     "maakond": "County",
     "area_name": "Peat area",
     "x": "X (L-EST, m)",

@@ -4,7 +4,7 @@
       <div class="list-row ml-2 p-1">
         <a
           :href="getReferenceUrl(entity.id)"
-          title="Link e-maapõue portaali"
+          :title="$t('area.referenceLink')"
           v-if="entity.author"
           class="font-weight-medium black--text link"
           target="ReferenceWindow"
@@ -97,7 +97,7 @@ export default {
   name: "AreaReference",
   methods: {
     getReferenceUrl(id) {
-      return `https://geoloogia.info/reference/${id}`;
+      return `https://kirjandus.geoloogia.info/reference/${id}`;
     },
 
     getDoiUrl(doi) {

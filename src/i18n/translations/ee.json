@@ -11,7 +11,8 @@
     "textField": "Tekstiväli",
     "from": "Alates",
     "to": "Kuni",
-    "columns": "Veerud"
+    "columns": "Veerud",
+    "linkToRegistry": "(viide registrisse)"
   },
   "frontpage": {
     "title": "Eesti turbauuringute andmebaas",
@@ -83,11 +84,23 @@
     "maakond": "Maakond",
     "area_ha": "Ala (ha)",
     "deposit_area_ha": "Maardla (ha)",
-    "maardla": "Maardla"
+    "maardla": "Maardla",
+    "id": "ID",
+    "maakond__maakond": "Maakond",
+    "description": "Kirjeldus",
+    "egf": "EGF",
+    "text1": "Turbaala plaan",
+    "sites": "Proovipunktid",
+    "eelis": "Looduskaitse",
+    "references": "Kirjandus",
+    "referenceLink": "Link e-maapõue kirjanduse portaali",
+    "depositLink": "Maardla info Maa-ameti geoportaalis"
   },
   "site": {
     "detailView": "Proovipunkti detailvaade",
     "name": "Proovipunkt",
+    "id": "ID",
+    "site": "Proovipunkt",
     "maakond": "Maakond",
     "area_name": "Turbaala",
     "x": "X (L-EST, m)",
