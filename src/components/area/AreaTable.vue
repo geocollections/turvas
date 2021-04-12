@@ -77,8 +77,12 @@
             :title="$t('area.detailView')"
             class="table-link"
           >
-            {{ item.name }}
+            {{ $translate({ et: item.name, en: item.name_en }) }}
           </router-link>
+        </template>
+
+        <template v-slot:item.maakond="{ item }">
+          <div>{{ $translate({ et: item.maakond, en: item.maakond_en }) }}</div>
         </template>
 
         <template v-slot:item.maardla="{ item }">

@@ -71,7 +71,7 @@ const mutations = {
     if (listOfParams && listOfParams.length > 0) {
       listOfParams.forEach(param => {
         let text =
-          param.name.length > 5
+          param.name.length > 50
             ? param.name.substring(0, 5) + "..."
             : param.name;
         newHeaders.push({

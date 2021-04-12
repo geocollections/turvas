@@ -1,4 +1,18 @@
 {
+  "common":{
+    "maakond": "Maakond",
+    "area": "Turbaala",
+    "depthStart": "Sügavus alates",
+    "depthEnd": "Sügavus kuni",
+    "search": "Otsing",
+    "peatType": "Turbaliik",
+    "parameter": "Parameeter",
+    "searchType": "Otsingu tüüp",
+    "textField": "Tekstiväli",
+    "from": "Alates",
+    "to": "Kuni",
+    "columns": "Veerud"
+  },
   "frontpage": {
     "title": "Eesti turbauuringute andmebaas",
     "titleShort": "Turbauuringute andmebaas",
@@ -90,8 +104,18 @@
     "sample_id": "ID",
     "number_additional": "Number",
     "site": "Proovipunkt",
+    "siteSearch": "Proovipunkt/proov",
     "depth": "Sügavus",
     "depth_interval": "Sügavus kuni",
-    "rock": "Turbaliik"
+    "rock": "Turbaliik",
+    "looduslik_niiskus": "Looduslik niiskus",
+    "orgaanika": "Orgaanika",
+    "pH": "pH",
+    "p_lemissoojus": "Põlemissoojus",
+    "tuhasus": "Tuhasus",
+    "turba_kasutusala_hinnang": "Turba kasutusala hinnang",
+    "turba_kasutusala_kood": "Turba kasutusala kood",
+    "turba_lagunemisaste": "Turba lagunemisaste",
+    "turba_lagunemisaste__Von_Post_": "Turba lagunemisaste (Von Post)"
   }
 }

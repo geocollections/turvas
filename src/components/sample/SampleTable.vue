@@ -93,7 +93,7 @@
             :title="$t('site.detailView')"
             class="table-link"
           >
-            {{ item.site }}
+            <div>{{ $translate({ et: item.site, en: item.site_en }) }}</div>
           </router-link>
         </template>
 
@@ -115,7 +115,7 @@
               {{ $t(`sample.${item.rock}`) }}
             </span>
             <span v-else>
-              {{ item.rock }}
+              {{ $translate({ et: item.rock, en: item.rock_en }) }}
             </span>
           </v-card>
         </template>

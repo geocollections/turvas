@@ -1,4 +1,18 @@
 {
+  "common": {
+    "maakond": "Maakond",
+    "area": "Peat area",
+    "depthStart": "Depth start",
+    "depthEnd": "Depth end",
+    "search": "Search",
+    "peatType": "Peat type",
+    "parameter": "Parameter",
+    "searchType": "Search type",
+    "textField": "Text field",
+    "from": "From",
+    "to": "To",
+    "columns": "Columns"
+  },
   "frontpage": {
     "title": "Estonian peat database",
     "titleShort": "Peat database"
@@ -89,8 +103,18 @@
     "sample_id": "ID",
     "number_additional": "Number",
     "site": "Sampling site",
+    "siteSearch": "Site/sample",
     "depth": "Depth",
     "depth_interval": "Depth to",
-    "rock": "Peat type"
+    "rock": "Peat type",
+    "looduslik_niiskus": "Moisture content",
+    "orgaanika": "Organics",
+    "pH": "pH",
+    "p_lemissoojus": "Heat of combustion",
+    "tuhasus": "Ash content",
+    "turba_kasutusala_hinnang": "Peat use assessment",
+    "turba_kasutusala_kood": "Peat use code",
+    "turba_lagunemisaste": "Degree of degradation",
+    "turba_lagunemisaste__Von_Post_": "Degree of degradation (Von Post)"
   }
 }

@@ -1,14 +1,18 @@
 <template>
   <v-card flat>
     <h1>
-      <CardTitleWrapper text="Otsing" :index="0" input-class="display-1" />
+      <CardTitleWrapper
+        :text="$t('common.search')"
+        :index="0"
+        input-class="display-1"
+      />
     </h1>
 
     <div v-show="block.search[0]">
       <v-row no-gutters class="px-1">
         <v-col cols="12" md="6" lg="4" class="pa-1">
           <AutocompleteWrapper
-            label="Maakond"
+            :label="$t('common.maakond')"
             :items="getListCountiesAsArray"
             return-object
             :value="sampleSearchParams.maakond"
@@ -24,7 +28,7 @@
 
         <v-col cols="12" md="6" lg="4" class="pa-1">
           <AutocompleteWrapper
-            label="Turbaala"
+            :label="$t('common.area')"
             :items="getListAreasAsArray"
             return-object
             :value="sampleSearchParams.area"
@@ -42,7 +46,7 @@
           <TextFieldWrapper
             :value="sampleSearchParams.site"
             @input="updateParam($event, 'site')"
-            label="Proovipunkt/proov"
+            :label="$t('sample.siteSearch')"
           />
         </v-col>
 
@@ -52,7 +56,7 @@
               <TextFieldWrapper
                 :value="sampleSearchParams.depth_start"
                 @input="updateParam($event, 'depth_start')"
-                label="Sügavus alates"
+                :label="$t('common.depthStart')"
                 type="number"
                 suffix="(m)"
                 step="0.25"
@@ -62,7 +66,7 @@
               <TextFieldWrapper
                 :value="sampleSearchParams.depth_end"
                 @input="updateParam($event, 'depth_end')"
-                label="Sügavus kuni"
+                :label="$t('common.depthEnd')"
                 type="number"
                 suffix="(m)"
                 step="0.25"
@@ -75,7 +79,7 @@
           <TextFieldWrapper
             :value="sampleSearchParams.rock"
             @input="updateParam($event, 'rock')"
-            label="Turbaliik"
+            :label="$t('common.peatType')"
           />
         </v-col>
 
@@ -102,7 +106,7 @@
           <v-row no-gutters>
             <v-col cols="4" class="pr-1">
               <AutocompleteWrapper
-                label="Parameeter"
+                :label="$t('common.parameter')"
                 :items="distinctListParameters(entity)"
                 return-object
                 item-text="name"
@@ -117,7 +121,7 @@
               <v-row no-gutters>
                 <v-col cols="5" class="px-1">
                   <AutocompleteWrapper
-                    label="Otsingutüüp"
+                    :label="$t('common.searchType')"
                     :items="lookUpTypes"
                     :value="entity.lookUpType"
                     @input="updateActiveParam($event, 'lookUpType', index)"
@@ -126,7 +130,7 @@
 
                 <v-col cols="7" class="px-1">
                   <TextFieldWrapper
-                    label="Tekstiväli"
+                    :label="$t('common.textField')"
                     :value="entity.text"
                     @input="updateActiveParam($event, 'text', index)"
                   />
@@ -138,7 +142,7 @@
               <v-row no-gutters>
                 <v-col cols="5" class="px-1">
                   <TextFieldWrapper
-                    label="Alates"
+                    :label="$t('common.from')"
                     type="number"
                     :value="entity.start"
                     @input="updateActiveParam($event, 'start', index)"
@@ -147,7 +151,7 @@
 
                 <v-col cols="5" class="px-1">
                   <TextFieldWrapper
-                    label="Kuni"
+                    :label="$t('common.to')"
                     type="number"
                     :value="entity.end"
                     @input="updateActiveParam($event, 'end', index)"
@@ -192,13 +196,13 @@
       <v-row no-gutters class="px-1">
         <v-col cols="12" class="pa-1">
           <AutocompleteWrapper
-            label="Veerud"
+            :label="$t('common.columns')"
             chips
             clearable
             multiple
             :items="listParameters"
             return-object
-            item-text="name"
+            item-text="i18n"
             item-value="string"
             :value="shownActiveListParameters"
             @input="updateSampleHeaders"
@@ -296,6 +300,10 @@ export default {
 
         this.$router.push({ query: query }).catch(err => {});
       }
+    },
+
+    getListParameterItemText() {
+
     }
   }
 };

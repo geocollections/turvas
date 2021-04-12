@@ -38,10 +38,13 @@ const tableTranslations = {
 
     translatedSampleHeaders() {
       return this.sampleHeaders.map(header => {
-        console.log(header)
+        console.log(header);
         return {
           ...header,
-          text: this.$t(`sample.${header.text}`)
+          text:
+            header.text.includes("...") || /[A-Z]/.test(header.text.charAt(0))
+              ? header.text
+              : this.$t(`sample.${header.value}`)
         };
       });
     }

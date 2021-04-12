@@ -1,6 +1,7 @@
 import SearchService from "../../../middleware/SearchService";
 import cloneDeep from "lodash/cloneDeep";
 import router from "../../../router";
+import i18n from "@/i18n";
 
 const actions = {
   async doAreaSearch({ state, commit, dispatch }, params = {}) {
@@ -70,90 +71,66 @@ const actions = {
               ? response.facet_counts.facet_fields.parameter
               : response.facet_counts.facet_fields.parameter_name;
 
+
           let mappedParameters = parameters
             .filter(param => param !== 0)
             .map(param => {
+              const replacedParam = param.replace(regex, "_");
               if (tablesToFetchParameters[table] === "peat_taxa") {
                 return {
                   name: param,
                   unit: "%",
                   start: null,
                   end: null,
-                  value: param.replace(regex, "_"),
+                  value: replacedParam,
+                  i18n: param,
                   isText: false,
                   query: ""
                 };
               } else {
+                let object = {
+                  name: param,
+                  unit: "%",
+                  start: null,
+                  end: null,
+                  value: replacedParam,
+                  i18n: i18n.t(`sample.${replacedParam}`),
+                  isText: false,
+                  query: ""
+                };
                 if (param === "põlemissoojus") {
                   return {
-                    name: param,
-                    unit: "MJ/kg",
-                    start: null,
-                    end: null,
-                    value: param.replace(regex, "_"),
-                    isText: false,
-                    query: ""
+                    ...object,
+                    unit: "MJ/kg"
                   };
                 } else if (param === "pH") {
                   return {
-                    name: param,
-                    unit: "pH",
-                    start: null,
-                    end: null,
-                    value: param.replace(regex, "_"),
-                    isText: false,
-                    query: ""
-                  };
-                } else if (param === "põlemissoojus") {
-                  return {
-                    name: param,
-                    unit: "MJ/kg",
-                    start: null,
-                    end: null,
-                    value: param.replace(regex, "_"),
-                    isText: false,
-                    query: ""
+                    ...object,
+                    unit: "pH"
                   };
                 } else if (param === "turba kasutusala hinnang") {
                   return {
-                    name: param,
+                    ...object,
                     unit: "",
-                    value: param.replace(regex, "_"),
                     isText: true,
                     lookUpType: "sisaldab",
-                    text: "",
-                    query: ""
+                    text: ""
                   };
                 } else if (param === "turba kasutusala kood") {
                   return {
-                    name: param,
-                    unit: "",
-                    start: null,
-                    end: null,
-                    value: param.replace(regex, "_"),
-                    isText: false,
-                    query: ""
+                    ...object,
+                    unit: ""
                   };
                 } else if (param === "turba lagunemisaste (Von Post)") {
                   return {
-                    name: param,
+                    ...object,
                     unit: "",
-                    value: param.replace(regex, "_"),
                     isText: true,
                     lookUpType: "sisaldab",
-                    text: "",
-                    query: ""
+                    text: ""
                   };
                 } else {
-                  return {
-                    name: param,
-                    unit: "%",
-                    start: null,
-                    end: null,
-                    value: param.replace(regex, "_"),
-                    isText: false,
-                    query: ""
-                  };
+                  return object;
                 }
               }
             });
