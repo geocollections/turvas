@@ -76,7 +76,13 @@
   "map": {
     "area": "Turbaala",
     "site": "Proovipunkt",
-    "plans": "Plaanid al 1km"
+    "plans": "Plaanid al 1km",
+    "maaamet": "Maa-amet",
+    "gi": "Geoloogia instituut",
+    "egt": "Eesti Geoloogiateenistus",
+    "peatResearch": "Turbauuringud",
+    "geologicalBackground": "Geoloogiline taust",
+    "basemaps": "Aluskaardid"
   },
   "area": {
     "detailView": "Turbaala detailvaade",

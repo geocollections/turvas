@@ -76,7 +76,13 @@
   "map": {
     "area": "Peat area",
     "site": "Sampling site",
-    "plans": "Plans from 1km"
+    "plans": "Plans from 1km",
+    "maaamet": "Land Board",
+    "gi": "Department of Geology",
+    "egt": "Geological Survey of Estonia",
+    "peatResearch": "Peat research",
+    "geologicalBackground": "Geological background",
+    "basemaps": "Basemaps"
   },
   "area": {
     "detailView": "Peat area detail view",
