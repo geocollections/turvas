@@ -5,11 +5,14 @@ const detailTranslations = {
     ...mapState("detail", [
       "filteredAreaHeaders",
       "filteredSiteHeaders",
-      "filteredSampleHeaders",
       "filteredSampleHeaders"
     ]),
 
-    ...mapGetters("detail", ["getAreaSiteHeaders"]),
+    ...mapGetters("detail", [
+      "getAreaSiteHeaders",
+      "getSiteDescriptionHeaders",
+      "getSiteSampleHeaders"
+    ]),
 
     translatedAreaHeaders() {
       return this.filteredAreaHeaders.map(header => {
@@ -39,10 +42,33 @@ const detailTranslations = {
 
     translatedSiteHeaders() {
       return this.filteredSiteHeaders.map(header => {
-        console.log(header);
         return {
           ...header,
           text: this.$t(`site.${header.value}`)
+        };
+      });
+    },
+
+    translatedSiteDescriptionHeaders() {
+      return this.getSiteDescriptionHeaders.map(header => {
+        return {
+          ...header,
+          text:
+            header.value === "description"
+              ? this.$t(`site.descriptionTitle`)
+              : this.$t(`site.${header.value}`)
+        };
+      });
+    },
+
+    translatedSiteSampleHeaders() {
+      return this.getSiteSampleHeaders.map(header => {
+        return {
+          ...header,
+          text:
+            header.value === "depth"
+              ? this.$t(`site.depthSample`)
+              : this.$t(`site.${header.value}`)
         };
       });
     },

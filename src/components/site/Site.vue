@@ -4,7 +4,7 @@
     <v-card flat v-if="getSite" id="general">
       <h1>
         <CardTitleWrapper
-          :text="`Proovipunkt: ${getSite.name}`"
+          :text="`${$t('site.name')}: ${getSite.name}`"
           :index="0"
           input-class="display-1"
         />
@@ -17,7 +17,7 @@
           disable-filtering
           disable-pagination
           hide-default-footer
-          :headers="filteredSiteHeaders"
+          :headers="translatedSiteHeaders"
           :items="[getSite]"
         >
           <template v-slot:item.area__text1>
@@ -53,7 +53,11 @@
     <!-- Description -->
     <v-card flat v-if="getSiteDescription" id="description">
       <h2>
-        <CardTitleWrapper text="Kirjeldus" :index="1" input-class="headline" />
+        <CardTitleWrapper
+          :text="$t('site.descriptionTitle')"
+          :index="1"
+          input-class="headline"
+        />
       </h2>
 
       <div v-show="block.site[1]">
@@ -62,7 +66,7 @@
           multi-sort
           disable-pagination
           hide-default-footer
-          :headers="getSiteDescriptionHeaders"
+          :headers="translatedSiteDescriptionHeaders"
           :items="getSiteDescription"
         />
       </div>
@@ -71,7 +75,11 @@
     <!-- Related samples -->
     <v-card flat v-if="getSiteSamples" id="samples">
       <h2>
-        <CardTitleWrapper text="Proovid" :index="2" input-class="headline" />
+        <CardTitleWrapper
+          :text="$t('site.sampleTitle')"
+          :index="2"
+          input-class="headline"
+        />
       </h2>
 
       <div v-show="block.site[2]">
@@ -80,7 +88,7 @@
           multi-sort
           disable-pagination
           hide-default-footer
-          :headers="getSiteSampleHeaders"
+          :headers="translatedSiteSampleHeaders"
           :items="getSiteSamples"
         >
           <template v-slot:item.id="{ item }">
@@ -110,7 +118,12 @@
               class="px-1"
               :class="getColor(item.classification_rock__name)"
             >
-              {{ item.classification_rock__name }}
+              {{
+                $translate({
+                  et: item.classification_rock__name,
+                  en: item.classification_rock__name_en
+                })
+              }}
             </v-card>
           </template>
         </v-data-table>
@@ -125,7 +138,7 @@
     >
       <h2>
         <CardTitleWrapper
-          text="Analüütilised andmed"
+          :text="$t('site.analyticalData')"
           :index="3"
           input-class="headline"
         />
@@ -135,13 +148,13 @@
         <v-row no-gutters class="px-1">
           <v-col cols="12" class="pa-1">
             <AutocompleteWrapper
-              label="Vali graafikul kuvatav andmestik"
+              :label="$t('site.analyticalLabel')"
               chips
               clearable
               multiple
               :items="listParameters"
               return-object
-              item-text="name"
+              :item-text="$i18n.locale === 'ee' ? 'name' : 'name_en'"
               item-value="string"
               :value="shownActiveListParameters"
               @input="updateSampleHeaders"
@@ -158,10 +171,10 @@
                 class="my-1"
                 outlined
                 @click="showChartInfo = true"
-                title="Näita vihjeid"
+                :title="$t('site.showHints')"
                 color="info"
               >
-                Näita vihjeid
+                {{ $t("site.showHints") }}
                 <v-icon right>fas fa-info-circle</v-icon>
               </v-btn>
             </div>
@@ -171,7 +184,7 @@
               text
               border="left"
               dismissible
-              close-label="Sulge vihje"
+              :close-label="$t('site.closeHints')"
               elevation="3"
               icon="fas fa-info"
               type="info"
@@ -179,12 +192,10 @@
             >
               <ul>
                 <li>
-                  Kas teadsid, et legendi peale vajutades on võimalik andmeid
-                  graafikul kuvada/peita.
+                  {{ $t("site.hintOne") }}
                 </li>
                 <li>
-                  Hiirega graafiku punktide peale minnes on võimalik näha punkti
-                  detailsemat infot.
+                  {{ $t("site.hintTwo") }}
                 </li>
               </ul>
             </v-alert>
@@ -203,11 +214,11 @@
             >
               <div>
                 <span class="circle red"></span>
-                Vähelagunenud turvas kuni 25% lagunemisaste
+                {{ $t("site.badPeat") }}
               </div>
               <div>
                 <div class="circle green"></div>
-                Hästilagunenud turvas alates 26% lagunemisaste
+                {{ $t("site.goodPeat") }}
               </div>
             </div>
             <Chart
@@ -232,11 +243,14 @@ import { mapActions, mapGetters, mapState } from "vuex";
 import AutocompleteWrapper from "../partial/inputs/AutocompleteWrapper";
 import Chart from "../partial/chart/Chart";
 import CardTitleWrapper from "../partial/CardTitleWrapper";
+import detailTranslations from "@/mixins/detailTranslations";
 
 export default {
   name: "Site",
 
   components: { CardTitleWrapper, Chart, AutocompleteWrapper },
+
+  mixins: [detailTranslations],
 
   created() {
     this.fetchListParameters();
