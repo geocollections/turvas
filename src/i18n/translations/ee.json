@@ -161,6 +161,39 @@
     "turba_kasutusala_hinnang": "Turba kasutusala hinnang",
     "turba_kasutusala_kood": "Turba kasutusala kood",
     "turba_lagunemisaste": "Turba lagunemisaste",
-    "turba_lagunemisaste__Von_Post_": "Turba lagunemisaste (Von Post)"
+    "turba_lagunemisaste__Von_Post_": "Turba lagunemisaste (Von Post)",
+    "title": "Proov",
+    "titleAnalyses": "Analüüsid",
+    "titleBotanical": "Botaaniline koostis",
+    "lab": "Labor",
+    "agents": "Määraja(d)",
+    "linkToElurikkus": "Link eElurikkuse portaali"
+  },
+  "sampleDetailHeaders": {
+    "id": "Proovi ID",
+    "site": "Proovipunkt",
+    "site__area": "Turbaala",
+    "site__area__maakond__maakond": "Maakond",
+    "depth": "Proovi sügavus (m)",
+    "depth_interval": "Proovi sügavus (m, intervalli korral)",
+    "agent_collected_free": "Proovi koguja(d)",
+    "date_collected_free": "Kogumise aeg",
+    "rock": "Nimi",
+    "stratigraphy__stratigraphy": "Stratigraafia",
+    "stratigraphy_free": "Stratigraafia vaba",
+    "classification_rock__name": "Turbaliik"
+  },
+  "sampleAnalyses": {
+    "analysis_method": "Meetod",
+    "parameter_name": "Parameeter",
+    "value": "Väärtus",
+    "date_analysed_free": "Kuupäev"
+  },
+  "sampleTaxa": {
+    "taxon_id": "ID",
+    "parameter_name": "Nimi",
+    "parameter_name_et": "Nimi (EST)",
+    "value": "Osakaal (%)",
+    "plutof_taxon_id": "eElurikkus"
   }
 }

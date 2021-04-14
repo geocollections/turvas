@@ -11,7 +11,9 @@ const detailTranslations = {
     ...mapGetters("detail", [
       "getAreaSiteHeaders",
       "getSiteDescriptionHeaders",
-      "getSiteSampleHeaders"
+      "getSiteSampleHeaders",
+      "getSampleAnalysesHeaders",
+      "getSampleTaxaHeaders"
     ]),
 
     translatedAreaHeaders() {
@@ -75,13 +77,28 @@ const detailTranslations = {
 
     translatedSampleHeaders() {
       return this.filteredSampleHeaders.map(header => {
+        return {
+          ...header,
+          text: this.$t(`sampleDetailHeaders.${header.value}`)
+        };
+      });
+    },
+
+    translatedSampleAnalysesHeaders() {
+      return this.getSampleAnalysesHeaders.map(header => {
         console.log(header);
         return {
           ...header,
-          text:
-            header.text.includes("...") || /[A-Z]/.test(header.text.charAt(0))
-              ? header.text
-              : this.$t(`sample.${header.value}`)
+          text: this.$t(`sampleAnalyses.${header.value}`)
+        };
+      });
+    },
+
+    translatedSampleTaxaHeaders() {
+      return this.getSampleTaxaHeaders.map(header => {
+        return {
+          ...header,
+          text: this.$t(`sampleTaxa.${header.value}`)
         };
       });
     }

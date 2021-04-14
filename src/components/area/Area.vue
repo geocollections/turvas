@@ -22,6 +22,7 @@
           disable-filtering
           disable-pagination
           hide-default-footer
+          hide-default-header
           :headers="translatedAreaHeaders"
           :items="[getArea]"
         >

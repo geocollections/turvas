@@ -75,7 +75,6 @@ const state = {
     { text: "Turbaliik", value: "classification_rock__name" }
   ],
   sampleAnalysesHeaders: [
-    { text: "Meetod", value: "analysis_method" },
     { text: "Parameeter", value: "parameter_name" },
     { text: "Väärtus", value: "value", align: "center" },
     { text: "Kuupäev", value: "date_analysed_free" }

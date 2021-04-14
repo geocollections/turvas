@@ -161,6 +161,39 @@
     "turba_kasutusala_hinnang": "Peat use assessment",
     "turba_kasutusala_kood": "Peat use code",
     "turba_lagunemisaste": "Degree of decomposition",
-    "turba_lagunemisaste__Von_Post_": "Degree of decomposition (Von Post)"
+    "turba_lagunemisaste__Von_Post_": "Degree of decomposition (Von Post)",
+    "title": "Sample",
+    "titleAnalyses": "Analyses",
+    "titleBotanical": "Botanical composition",
+    "lab": "Lab",
+    "agents": "Identifier(s)",
+    "linkToElurikkus": "Link to eElurikkus portal"
+  },
+  "sampleDetailHeaders": {
+    "id": "Sample ID",
+    "site": "Sampling site",
+    "site__area": "Peat area",
+    "site__area__maakond__maakond": "County",
+    "depth": "Sample depth (m)",
+    "depth_interval": "Sample depth (m, interval)",
+    "agent_collected_free": "Sample collector(s)",
+    "date_collected_free": "Date collected",
+    "rock": "Name",
+    "stratigraphy__stratigraphy": "Stratigraphy",
+    "stratigraphy_free": "Stratigraphy txt",
+    "classification_rock__name": "Peat type"
+  },
+  "sampleAnalyses": {
+    "analysis_method": "Method",
+    "parameter_name": "Parameter",
+    "value": "Value",
+    "date_analysed_free": "Date"
+  },
+  "sampleTaxa": {
+    "taxon_id": "ID",
+    "parameter_name": "Name",
+    "parameter_name_et": "Name (EST)",
+    "value": "Share (%)",
+    "plutof_taxon_id": "eElurikkus"
   }
 }
