@@ -59,82 +59,89 @@ const actions = {
       const tablesToFetchParameters = ["peat_taxa", "peat_analysis"];
       let regex = /[|\s\\(\\)\\õ]/gi;
 
-      for (let table in tablesToFetchParameters) {
-        let response = await SearchService.doSolrFacetSearch(
-          tablesToFetchParameters[table],
-          ["parameter", "parameter_name"]
-        );
+      for (let table of tablesToFetchParameters) {
+        let response = await SearchService.doSolrFacetSearch(table, [
+          "parameter",
+          "parameter_name",
+          "parameter_name_en"
+        ]);
 
         if (typeof response === "object") {
-          let parameters =
-            tablesToFetchParameters[table] === "peat_taxa"
-              ? response.facet_counts.facet_fields.parameter
-              : response.facet_counts.facet_fields.parameter_name;
+          if (table === "peat_taxa") {
+            const parameters = response.facet_counts.facet_fields.parameter;
 
-
-          let mappedParameters = parameters
-            .filter(param => param !== 0)
-            .map(param => {
-              const replacedParam = param.replace(regex, "_");
-              if (tablesToFetchParameters[table] === "peat_taxa") {
-                return {
-                  name: param,
+            const mappedParameters = parameters.reduce((prev, val) => {
+              if (typeof val !== "number") {
+                const replacedParam = val.replace(regex, "_");
+                prev.push({
+                  name: val,
+                  name_en: val,
                   unit: "%",
                   start: null,
                   end: null,
                   value: replacedParam,
-                  i18n: param,
                   isText: false,
                   query: ""
-                };
-              } else {
-                let object = {
-                  name: param,
-                  unit: "%",
-                  start: null,
-                  end: null,
-                  value: replacedParam,
-                  i18n: i18n.t(`sample.${replacedParam}`),
-                  isText: false,
-                  query: ""
-                };
-                if (param === "põlemissoojus") {
-                  return {
-                    ...object,
-                    unit: "MJ/kg"
-                  };
-                } else if (param === "pH") {
-                  return {
-                    ...object,
-                    unit: "pH"
-                  };
-                } else if (param === "turba kasutusala hinnang") {
-                  return {
-                    ...object,
-                    unit: "",
-                    isText: true,
-                    lookUpType: "sisaldab",
-                    text: ""
-                  };
-                } else if (param === "turba kasutusala kood") {
-                  return {
-                    ...object,
-                    unit: ""
-                  };
-                } else if (param === "turba lagunemisaste (Von Post)") {
-                  return {
-                    ...object,
-                    unit: "",
-                    isText: true,
-                    lookUpType: "sisaldab",
-                    text: ""
-                  };
-                } else {
-                  return object;
-                }
+                });
               }
-            });
-          listOfParameters = [...mappedParameters, ...listOfParameters];
+              return prev;
+            }, []);
+            listOfParameters = [...mappedParameters, ...listOfParameters];
+          } else if (table === "peat_analysis") {
+            const parameters =
+              response.facet_counts.facet_pivot[
+                "parameter_name,parameter_name_en"
+              ];
+
+            const mappedParameters = parameters.reduce((prev, valueObj) => {
+              const replacedParam = valueObj.value.replace(regex, "_");
+              let object = {
+                name: valueObj.value,
+                name_en: valueObj.pivot[0].value,
+                unit: "%",
+                start: null,
+                end: null,
+                value: replacedParam,
+                isText: false,
+                query: ""
+              };
+              if (valueObj.value === "põlemissoojus") {
+                object = {
+                  ...object,
+                  unit: "MJ/kg"
+                };
+              } else if (valueObj.value === "pH") {
+                object = {
+                  ...object,
+                  unit: "pH"
+                };
+              } else if (valueObj.value === "turba kasutusala hinnang") {
+                object = {
+                  ...object,
+                  unit: "",
+                  isText: true,
+                  lookUpType: "sisaldab",
+                  text: ""
+                };
+              } else if (valueObj.value === "turba kasutusala kood") {
+                object = {
+                  ...object,
+                  unit: ""
+                };
+              } else if (valueObj.value === "turba lagunemisaste (Von Post)") {
+                object = {
+                  ...object,
+                  unit: "",
+                  isText: true,
+                  lookUpType: "sisaldab",
+                  text: ""
+                };
+              }
+              prev.push(object);
+              return prev;
+            }, []);
+            listOfParameters = [...mappedParameters, ...listOfParameters];
+          }
         } else if (typeof response === "string") {
           dispatch("error/updateErrorState", true, { root: true });
           dispatch("error/updateErrorMessage", response, { root: true });

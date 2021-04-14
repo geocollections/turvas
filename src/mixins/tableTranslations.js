@@ -38,7 +38,6 @@ const tableTranslations = {
 
     translatedSampleHeaders() {
       return this.sampleHeaders.map(header => {
-        console.log(header);
         return {
           ...header,
           text:

@@ -109,7 +109,7 @@
                 :label="$t('common.parameter')"
                 :items="distinctListParameters(entity)"
                 return-object
-                item-text="name"
+                :item-text="$i18n.locale === 'ee' ? 'name' : 'name_en'"
                 :value="entity"
                 @input="
                   updateActiveListParameters({ event: $event, index: index })
@@ -202,7 +202,7 @@
             multiple
             :items="listParameters"
             return-object
-            item-text="i18n"
+            :item-text="$i18n.locale === 'ee' ? 'name' : 'name_en'"
             item-value="string"
             :value="shownActiveListParameters"
             @input="updateSampleHeaders"

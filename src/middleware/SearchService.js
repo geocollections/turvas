@@ -79,6 +79,8 @@ class SearchService {
       let url = `${RAW_SOLR_URL}${table}/?facet=true&facet.sort=index&facet.limit=-1&format=json`;
 
       let fields = buildFacetFields(facetFields);
+      if (table === "peat_analysis")
+        fields += `&facet.pivot=parameter_name,parameter_name_en&q=*`;
 
       if (fields.length > 0) url += "&" + fields;
 

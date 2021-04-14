@@ -104,17 +104,7 @@
             class="px-1"
             :class="getColor(item.rock)"
           >
-            <span
-              v-if="
-                item.rock === 'madalsooturvas' ||
-                  item.rock === 'rabaturvas' ||
-                  item.rock === 'siirdesooturvas' ||
-                  item.rock === 'järvemuda'
-              "
-            >
-              {{ $t(`sample.${item.rock}`) }}
-            </span>
-            <span v-else>
+            <span>
               {{ $translate({ et: item.rock, en: item.rock_en }) }}
             </span>
           </v-card>
