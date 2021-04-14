@@ -274,7 +274,6 @@ export default {
         labels = labels.splice(0).reverse();
 
       return labels.map(label => {
-        console.log(label);
         if (!label.isText) {
           let name = label.name;
           let name_en = label.name_en;

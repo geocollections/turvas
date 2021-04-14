@@ -152,7 +152,7 @@
               chips
               clearable
               multiple
-              :items="listParameters"
+              :items="filteredListParameters"
               return-object
               :item-text="$i18n.locale === 'ee' ? 'name' : 'name_en'"
               item-value="string"
@@ -293,6 +293,10 @@ export default {
           return this.getSite.area__text1.split(",");
         } else return [this.getSite.area__text1];
       } else return [];
+    },
+
+    filteredListParameters() {
+      return this.listParameters.filter(item => !item.isText);
     }
   },
 
