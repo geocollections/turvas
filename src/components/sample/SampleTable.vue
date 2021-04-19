@@ -25,7 +25,7 @@
           dense
           hide-details
           :value="sampleSearchParams.paginateBy"
-          :items="paginateByItems"
+          :items="translatedPaginateByItems"
           @change="handleUpdatePaginateBy"
         />
       </v-col>
@@ -48,14 +48,12 @@
     <v-card flat>
       <v-card-title>
         <v-icon color="primary" left>fas fa-layer-group</v-icon>
-        <span
-          >Leitud <b>{{ sampleResultsCount }}</b> proovi</span
-        >
+        <span v-html="$tc('search.sample', sampleResultsCount)" />
       </v-card-title>
 
       <v-data-table
         class="ws-nowrap-table sample-table"
-        :headers="sampleHeaders"
+        :headers="translatedSampleHeaders"
         hide-default-footer
         dense
         :items="sampleResults"
@@ -72,7 +70,7 @@
         <template v-slot:item.sample_id="{ item }">
           <router-link
             :to="`/proov/${item.sample_id}`"
-            title="Proovi detailvaade"
+            :title="$t('sample.detailView')"
             class="table-link"
           >
             {{ item.sample_id }}
@@ -82,7 +80,7 @@
         <template v-slot:item.number_additional="{ item }">
           <router-link
             :to="`/proov/${item.sample_id}`"
-            title="Proovi detailvaade"
+            :title="$t('sample.detailView')"
             class="table-link"
           >
             {{ item.number_additional }}
@@ -92,10 +90,10 @@
         <template v-slot:item.site="{ item }">
           <router-link
             :to="`/proovipunkt/${item.site_id}`"
-            title="Proovipunkti detailvaade"
+            :title="$t('site.detailView')"
             class="table-link"
           >
-            {{ item.site }}
+            <div>{{ $translate({ et: item.site, en: item.site_en }) }}</div>
           </router-link>
         </template>
 
@@ -106,7 +104,9 @@
             class="px-1"
             :class="getColor(item.rock)"
           >
-            {{ item.rock }}
+            <span>
+              {{ $translate({ et: item.rock, en: item.rock_en }) }}
+            </span>
           </v-card>
         </template>
 
@@ -152,26 +152,29 @@ import { mapActions, mapGetters, mapState } from "vuex";
 import debounce from "lodash/debounce";
 import SampleSearch from "./SampleSearch";
 import SearchService from "../../middleware/SearchService";
+import tableTranslations from "@/mixins/tableTranslations";
 export default {
   name: "SampleTable",
 
   components: { SampleSearch, Search },
 
-  mixins: [searchMixin],
+  mixins: [searchMixin, tableTranslations],
 
   // data: () => ({
   //   taxonData: []
   // }),
 
   computed: {
-    ...mapState("search", [
-      "sampleHeaders",
-      "sampleResults",
-      "sampleResultsCount",
-      "paginateByItems"
-    ]),
+    ...mapState("search", ["sampleResults", "sampleResultsCount"]),
 
     ...mapGetters("settings", ["getMapState"])
+  },
+
+  metaInfo() {
+    const title = this.$t("header.samples");
+    return {
+      title: title
+    };
   },
 
   watch: {

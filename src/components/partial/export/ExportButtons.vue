@@ -2,7 +2,7 @@
   <v-menu offset-y>
     <template v-slot:activator="{ on }">
       <v-btn v-on="on">
-        <span>Ekspordi</span>
+        <span>{{ $t("export.title") }}</span>
         <v-icon small right>fas fa-file-export</v-icon>
       </v-btn>
     </template>
@@ -10,14 +10,14 @@
     <v-list dense>
       <v-list-item @click="exportToCSV">
         <v-list-item-title>
-          <span>Lae alla CSV</span>
+          <span>{{ $t("export.csv") }}</span>
           <v-icon right small>fas fa-file</v-icon>
         </v-list-item-title>
       </v-list-item>
 
       <v-list-item @click="copyToClipboard">
         <v-list-item-title>
-          <span>Kopeeri lõikelauale</span>
+          <span>{{ $t("export.copy") }}</span>
           <v-icon right small>fas fa-copy</v-icon>
         </v-list-item-title>
       </v-list-item>
@@ -54,7 +54,7 @@ export default {
 
       if (csvString.length === 0) {
         this.updateErrorState(true);
-        this.updateErrorMessage("Allalaadimine ebaõnnestus: Andmed puuduvad!");
+        this.updateErrorMessage(this.$t("export.fail"));
         return;
       }
 
@@ -78,7 +78,7 @@ export default {
       }
 
       this.updateSuccessState(true);
-      this.updateSuccessMessage("Andmed eksporditi CSV-sse");
+      this.updateSuccessMessage(this.$t("export.successCsv"));
     },
 
     convertJsonToCsv(jsonArray) {
@@ -132,7 +132,7 @@ export default {
       sel.removeAllRanges();
 
       this.updateSuccessState(true);
-      this.updateSuccessMessage("Andmed kopeeritud!");
+      this.updateSuccessMessage(this.$t("export.successCopy"));
     }
   }
 };

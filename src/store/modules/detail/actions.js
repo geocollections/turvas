@@ -144,7 +144,7 @@ const actions = {
 
   async fetchListCounties({ commit, dispatch }) {
     let response = await SearchService.doRegularSearch("list_maakond", {
-      fields: "id,maakond"
+      fields: "id,maakond,maakond_en"
     });
     if (typeof response === "object") {
       commit("SET_LIST_COUNTIES", response.results);

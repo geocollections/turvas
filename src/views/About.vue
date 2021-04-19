@@ -13,11 +13,7 @@
       style="opacity: 0.46;background-color: rgb(33, 33, 33);border-color: rgb(33, 33, 33); z-index: 2"
     ></div>
 
-    <a
-      href="https://kik.ee"
-      target="KikWindow"
-      title="Keskkonnainvesteeringute keskus"
-    >
+    <a href="https://kik.ee" target="KikWindow" :title="$t('frontpage.kik')">
       <img
         src="https://www.kik.ee/sites/default/files/kik_est_logo__2.png"
         class="kik-logo"
@@ -31,10 +27,12 @@
 
     <div class="image-info white--text">
       <div v-if="imageIndex === 0 || imageIndex === 2">
-        Pildi autor: <b>Tõnis Saadre</b> (Eesti Geoloogiakeskuse kalender 2000.
-        a)
+        {{ $t("about.imageAuthor") }}: <b>Tõnis Saadre</b> ({{
+          $t("about.egkCalendar")
+        }}
+        2000. a)
       </div>
-      <div v-else>Pildi autor: <b>Peeter Koll</b> (2018)</div>
+      <div v-else>{{ $t("about.imageAuthor") }}: <b>Peeter Koll</b> (2018)</div>
     </div>
 
     <v-container style="max-width: 1000px">
@@ -47,7 +45,6 @@
           'custom-mb-md': $vuetify.breakpoint.mdAndUp
         }"
       >
-
         <span class="project-version">({{ projectVersion }})</span>
 
         <v-card-title
@@ -98,9 +95,11 @@ export default {
     ...mapState("settings", ["backgroundImages", "projectVersion"]),
 
     cardTitle() {
-      if (this.$route.name === "ProjectInfo") return "Projekti info";
-      else if (this.$route.name === "Download") return "Andmete allalaadimine";
-      else return "Kasutusjuhend";
+      if (this.$route.name === "ProjectInfo")
+        return this.$t("about.projectInfo");
+      else if (this.$route.name === "Download")
+        return this.$t("about.download");
+      else return this.$t("about.userManual");
     }
   },
 

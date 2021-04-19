@@ -139,7 +139,13 @@ export default {
   data: () => ({
     tab: null,
     items: ["üldine", "kaart", "otsing", "tabel", "graafik", "rohkem lugemist"]
-  })
+  }),
+  metaInfo() {
+    const title = this.$t("header.userManual");
+    return {
+      title: title
+    };
+  }
 };
 </script>
 

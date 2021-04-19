@@ -1,6 +1,7 @@
 import SearchService from "../../../middleware/SearchService";
 import cloneDeep from "lodash/cloneDeep";
 import router from "../../../router";
+import i18n from "@/i18n";
 
 const actions = {
   async doAreaSearch({ state, commit, dispatch }, params = {}) {
@@ -58,106 +59,89 @@ const actions = {
       const tablesToFetchParameters = ["peat_taxa", "peat_analysis"];
       let regex = /[|\s\\(\\)\\õ]/gi;
 
-      for (let table in tablesToFetchParameters) {
-        let response = await SearchService.doSolrFacetSearch(
-          tablesToFetchParameters[table],
-          ["parameter", "parameter_name"]
-        );
+      for (let table of tablesToFetchParameters) {
+        let response = await SearchService.doSolrFacetSearch(table, [
+          "parameter",
+          "parameter_name",
+          "parameter_name_en"
+        ]);
 
         if (typeof response === "object") {
-          let parameters =
-            tablesToFetchParameters[table] === "peat_taxa"
-              ? response.facet_counts.facet_fields.parameter
-              : response.facet_counts.facet_fields.parameter_name;
+          if (table === "peat_taxa") {
+            const parameters = response.facet_counts.facet_fields.parameter;
 
-          let mappedParameters = parameters
-            .filter(param => param !== 0)
-            .map(param => {
-              if (tablesToFetchParameters[table] === "peat_taxa") {
-                return {
-                  name: param,
+            const mappedParameters = parameters.reduce((prev, val) => {
+              if (typeof val !== "number") {
+                const replacedParam = val.replace(regex, "_");
+                prev.push({
+                  name: val,
+                  name_en: val,
                   unit: "%",
                   start: null,
                   end: null,
-                  value: param.replace(regex, "_"),
+                  value: replacedParam,
                   isText: false,
                   query: ""
-                };
-              } else {
-                if (param === "põlemissoojus") {
-                  return {
-                    name: param,
-                    unit: "MJ/kg",
-                    start: null,
-                    end: null,
-                    value: param.replace(regex, "_"),
-                    isText: false,
-                    query: ""
-                  };
-                } else if (param === "pH") {
-                  return {
-                    name: param,
-                    unit: "pH",
-                    start: null,
-                    end: null,
-                    value: param.replace(regex, "_"),
-                    isText: false,
-                    query: ""
-                  };
-                } else if (param === "põlemissoojus") {
-                  return {
-                    name: param,
-                    unit: "MJ/kg",
-                    start: null,
-                    end: null,
-                    value: param.replace(regex, "_"),
-                    isText: false,
-                    query: ""
-                  };
-                } else if (param === "turba kasutusala hinnang") {
-                  return {
-                    name: param,
-                    unit: "",
-                    value: param.replace(regex, "_"),
-                    isText: true,
-                    lookUpType: "sisaldab",
-                    text: "",
-                    query: ""
-                  };
-                } else if (param === "turba kasutusala kood") {
-                  return {
-                    name: param,
-                    unit: "",
-                    start: null,
-                    end: null,
-                    value: param.replace(regex, "_"),
-                    isText: false,
-                    query: ""
-                  };
-                } else if (param === "turba lagunemisaste (Von Post)") {
-                  return {
-                    name: param,
-                    unit: "",
-                    value: param.replace(regex, "_"),
-                    isText: true,
-                    lookUpType: "sisaldab",
-                    text: "",
-                    query: ""
-                  };
-                } else {
-                  return {
-                    name: param,
-                    unit: "%",
-                    start: null,
-                    end: null,
-                    value: param.replace(regex, "_"),
-                    isText: false,
-                    query: ""
-                  };
-                }
+                });
               }
-            });
-          listOfParameters = [...mappedParameters, ...listOfParameters];
+              return prev;
+            }, []);
+            listOfParameters = [...mappedParameters, ...listOfParameters];
+          } else if (table === "peat_analysis") {
+            const parameters =
+              response.facet_counts.facet_pivot[
+                "parameter_name,parameter_name_en"
+              ];
+
+            const mappedParameters = parameters.reduce((prev, valueObj) => {
+              const replacedParam = valueObj.value.replace(regex, "_");
+              let object = {
+                name: valueObj.value,
+                name_en: valueObj.pivot[0].value,
+                unit: "%",
+                start: null,
+                end: null,
+                value: replacedParam,
+                isText: false,
+                query: ""
+              };
+              if (valueObj.value === "põlemissoojus") {
+                object = {
+                  ...object,
+                  unit: "MJ/kg"
+                };
+              } else if (valueObj.value === "pH") {
+                object = {
+                  ...object,
+                  unit: "pH"
+                };
+              } else if (valueObj.value === "turba kasutusala hinnang") {
+                object = {
+                  ...object,
+                  unit: "",
+                  isText: true,
+                  lookUpType: "sisaldab",
+                  text: ""
+                };
+              } else if (valueObj.value === "turba kasutusala kood") {
+                object = {
+                  ...object,
+                  unit: ""
+                };
+              } else if (valueObj.value === "turba lagunemisaste (Von Post)") {
+                object = {
+                  ...object,
+                  unit: "",
+                  isText: true,
+                  lookUpType: "sisaldab",
+                  text: ""
+                };
+              }
+              prev.push(object);
+              return prev;
+            }, []);
+            listOfParameters = [...mappedParameters, ...listOfParameters];
+          }
         } else if (typeof response === "string") {
           dispatch("error/updateErrorState", true, { root: true });
           dispatch("error/updateErrorMessage", response, { root: true });

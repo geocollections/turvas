@@ -2,7 +2,7 @@
   <v-card flat tile class="counties">
     <v-row no-gutters>
       <v-col cols="12" class="pa-2">
-        <span class="font-weight-bold">Maakonnad: </span>
+        <span class="font-weight-bold">{{ $t("counties.title") }}: </span>
         <span v-for="(item, index) in counties" :key="item.id">
           <router-link
             :to="{
@@ -16,7 +16,7 @@
             class="table-link"
             exact-active-class="font-weight-bold primary--text text--darken-1"
           >
-            {{ item.maakond }}
+            {{ $translate({ et: item.maakond, en: item.maakond_en }) }}
           </router-link>
           <span v-if="index !== counties.length - 1">|</span>
         </span>

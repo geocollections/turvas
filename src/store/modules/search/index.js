@@ -5,11 +5,11 @@ import getters from "./getters";
 const state = {
   fastSearch: "",
   areaHeaders: [
-    { text: "Nimi", value: "name" },
-    { text: "Maakond", value: "maakond" },
-    { text: "Ala (ha)", value: "area_ha" },
-    { text: "Maardla (ha)", value: "deposit_area_ha" },
-    { text: "Maardla", value: "maardla" }
+    { text: "name", value: "name" },
+    { text: "maakond", value: "maakond" },
+    { text: "area_ha", value: "area_ha" },
+    { text: "deposit_area_ha", value: "deposit_area_ha" },
+    { text: "maardla", value: "maardla" }
   ],
   areaResults: [],
   areaResultsCount: 0,
@@ -21,13 +21,13 @@ const state = {
     area_type: "turbaala"
   },
   siteHeaders: [
-    { text: "Proovipunkt", value: "name" },
-    { text: "Maakond", value: "maakond" },
-    { text: "Turbaala", value: "area_name" },
-    { text: "X (L-EST, m)", value: "x" },
-    { text: "Y (L-EST, m)", value: "y" },
-    { text: "Z (m)", value: "z" },
-    { text: "Sügavus / turba paksus (m)", value: "depth" }
+    { text: "name", value: "name" },
+    { text: "maakond", value: "maakond" },
+    { text: "area_name", value: "area_name" },
+    { text: "x", value: "x" },
+    { text: "y", value: "y" },
+    { text: "z", value: "z" },
+    { text: "depth", value: "depth" }
   ],
   siteResults: [],
   siteResultsCount: 0,
@@ -39,12 +39,12 @@ const state = {
     project_id: 20
   },
   sampleHeaders: [
-    { text: "ID", value: "sample_id" },
-    { text: "Number", value: "number_additional" },
-    { text: "Proovipunkt", value: "site" },
-    { text: "Sügavus", value: "depth" },
-    { text: "Sügavus kuni", value: "depth_interval" },
-    { text: "Turbaliik", value: "rock", align: "center" }
+    { text: "sample_id", value: "sample_id" },
+    { text: "number_additional", value: "number_additional" },
+    { text: "site", value: "site" },
+    { text: "depth", value: "depth" },
+    { text: "depth_interval", value: "depth_interval" },
+    { text: "rock", value: "rock", align: "center" }
     // { text: "Takson(id)", value: "taxon", sortable: false }
   ],
   sampleResults: [],
@@ -62,13 +62,13 @@ const state = {
     egf: ""
   },
   paginateByItems: [
-    { text: "Näita 10 kaupa", value: 10 },
-    { text: "Näita 25 kaupa", value: 25 },
-    { text: "Näita 50 kaupa", value: 50 },
-    { text: "Näita 100 kaupa", value: 100 },
-    { text: "Näita 250 kaupa", value: 250 },
-    { text: "Näita 500 kaupa", value: 500 },
-    { text: "Näita 1000 kaupa", value: 1000 }
+    { text: "search.pagination", value: 10 },
+    { text: "search.pagination", value: 25 },
+    { text: "search.pagination", value: 50 },
+    { text: "search.pagination", value: 100 },
+    { text: "search.pagination", value: 250 },
+    { text: "search.pagination", value: 500 },
+    { text: "search.pagination", value: 1000 }
   ],
   listParameters: null,
   activeListParameters: null,

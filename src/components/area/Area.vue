@@ -4,7 +4,12 @@
     <v-card flat v-if="getArea" id="general">
       <h1>
         <CardTitleWrapper
-          :text="`${getArea.name} ${getArea.area_type__name}`"
+          :text="
+            $translate({
+              et: `${getArea.name} ${getArea.area_type__name}`,
+              en: `${getArea.name_en}`
+            })
+          "
           :index="0"
           input-class="display-1"
         />
@@ -17,7 +22,8 @@
           disable-filtering
           disable-pagination
           hide-default-footer
-          :headers="filteredAreaHeaders"
+          hide-default-header
+          :headers="translatedAreaHeaders"
           :items="[getArea]"
         >
           <template v-slot:item.text1>
@@ -29,10 +35,34 @@
                 :download="entity.trim()"
               >
                 {{ entity }}
-                <v-icon color="primary" small class="mr-1">fas fa-download</v-icon>
+                <v-icon color="primary" small class="mr-1"
+                  >fas fa-download</v-icon
+                >
               </a>
               <span v-if="index !== planArray.length - 1">|</span>
             </span>
+          </template>
+
+          <template v-slot:item.maakond__maakond="{ item }">
+            <div>
+              {{
+                $translate({
+                  et: item.maakond__maakond,
+                  en: item.maakond__maakond_en
+                })
+              }}
+            </div>
+          </template>
+
+          <template v-slot:item.description="{ item }">
+            <div
+              v-html="
+                $translate({
+                  et: item.description,
+                  en: item.description_en
+                })
+              "
+            />
           </template>
 
           <template v-slot:item.maardla="{ item }">
@@ -42,7 +72,8 @@
               :title="getMaardlaUrl(item.maardla)"
               target="MaardlaWindow"
             >
-              Maardla info Maa-ameti geoportaalis ({{ item.maardla }})
+              {{ $t("area.depositLink") }}
+              ({{ item.maardla }})
             </a>
           </template>
 
@@ -73,10 +104,6 @@
               <span v-if="index !== egfArray.length - 1">|</span>
             </span>
           </template>
-
-          <template v-slot:item.description="{ item }">
-            <div v-html="item.description" />
-          </template>
         </v-data-table>
       </div>
     </v-card>
@@ -85,7 +112,7 @@
     <v-card flat v-if="getAreaSites" id="sites">
       <h2>
         <CardTitleWrapper
-          text="Proovipunktid"
+          :text="$t('area.sites')"
           :index="1"
           input-class="headline"
         />
@@ -97,7 +124,7 @@
           multi-sort
           disable-pagination
           hide-default-footer
-          :headers="getAreaSiteHeaders"
+          :headers="translatedAreaSiteHeaders"
           :items="getAreaSites"
         >
           <template v-slot:item.id="{ item }">
@@ -116,7 +143,7 @@
               title="Proovipunkti detailvaade"
               :to="`/proovipunkt/${item.id}`"
             >
-              {{ item.name }}
+              {{ $translate({ et: item.name, en: item.name_en }) }}
             </router-link>
           </template>
         </v-data-table>
@@ -126,7 +153,11 @@
     <!-- Related references -->
     <v-card flat v-if="getAreaReferences" id="references">
       <h2>
-        <CardTitleWrapper text="Kirjandus" :index="2" input-class="headline" />
+        <CardTitleWrapper
+          :text="$t('area.references')"
+          :index="2"
+          input-class="headline"
+        />
       </h2>
 
       <div v-show="block.area[2]">
@@ -140,10 +171,12 @@
 import { mapGetters, mapState } from "vuex";
 import AreaReference from "./AreaReference";
 import CardTitleWrapper from "../partial/CardTitleWrapper";
+import detailTranslations from "@/mixins/detailTranslations";
 
 export default {
   name: "Area",
   components: { CardTitleWrapper, AreaReference },
+  mixins: [detailTranslations],
   computed: {
     ...mapState("settings", ["block"]),
 
@@ -178,6 +211,26 @@ export default {
         } else return [this.getArea.text1];
       } else return [];
     }
+  },
+
+  metaInfo() {
+    const areaEt =
+      this?.getArea?.name && this?.getArea?.area_type__name
+        ? `${this?.getArea?.name} ${this?.getArea?.area_type__name}`
+        : this.$route.params.id;
+    const area = this.$translate({
+      et: areaEt,
+      en: `${this?.getArea?.name_en ?? this.$route.params.id}`
+    });
+    const title = `${this.$t("sample.title")}: ${area}`;
+    const description = this.$translate({
+      et: this?.getArea?.description,
+      en: this?.getArea?.description_en
+    });
+    return {
+      title: title,
+      description: description
+    };
   },
 
   methods: {

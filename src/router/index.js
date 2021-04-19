@@ -4,13 +4,15 @@ import Home from "../views/Home.vue";
 
 Vue.use(VueRouter);
 
+const LANGUAGE_REGEX = "(ee|en)";
+
 const routes = [
   {
     path: "*",
     redirect: "/"
   },
   {
-    path: "/projekti_info",
+    path: `/:locale${LANGUAGE_REGEX}?/projekti_info`,
     component: () => import("../views/About.vue"),
     meta: {
       title: "Turbauuringute andmebaas: Projekti info"
@@ -24,7 +26,7 @@ const routes = [
     ]
   },
   {
-    path: "/kasutusjuhend",
+    path: `/:locale${LANGUAGE_REGEX}?/kasutusjuhend`,
     component: () => import("../views/About.vue"),
     meta: {
       title: "Turbauuringute andmebaas: Kasutusjuhend"
@@ -38,7 +40,7 @@ const routes = [
     ]
   },
   {
-    path: "/allalaadimine",
+    path: `/:locale${LANGUAGE_REGEX}?/allalaadimine`,
     component: () => import("../views/About.vue"),
     meta: {
       title: "Turbauuringute andmebaas: Allalaadimine"
@@ -52,7 +54,7 @@ const routes = [
     ]
   },
   {
-    path: "/",
+    path: `/:locale${LANGUAGE_REGEX}?`,
     component: Home,
     children: [
       {
@@ -140,6 +142,39 @@ const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
   routes
+});
+
+import store from "@/store/index";
+import i18n from "@/i18n";
+
+router.beforeEach((to, from, next) => {
+  const hasLang = to.params?.locale;
+  const hadLang = from.params?.locale;
+
+  // If the language hasn't changed since last then route we're done
+  if (
+    hasLang &&
+    hadLang &&
+    to.params.locale.toLowerCase() === from.params.locale.toLowerCase()
+  )
+    next();
+
+  // Getting the current language
+  let lang = i18n.locale;
+
+  // Overwriting
+  if (hasLang) lang = to.params.locale.toLowerCase();
+
+  // Is language valid
+  if (!lang.match(LANGUAGE_REGEX)) lang = "ee";
+
+  // Setting language based on the URL
+  i18n.locale = lang;
+  if (store.state.settings.language !== lang)
+    store.dispatch("settings/updateLanguage", lang);
+
+  if (!hasLang && lang !== "ee") return next(`/${lang}${to.fullPath}`);
+  else return next();
 });
 
 export default router;

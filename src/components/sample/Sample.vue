@@ -4,7 +4,7 @@
     <v-card flat v-if="getSample" id="general">
       <h1>
         <CardTitleWrapper
-          :text="`Proov: ${getSample.number_additional}`"
+          :text="`${$t('sample.title')}: ${getSample.number_additional}`"
           :index="0"
           input-class="display-1"
         />
@@ -17,7 +17,8 @@
           disable-filtering
           disable-pagination
           hide-default-footer
-          :headers="filteredSampleHeaders"
+          hide-default-header
+          :headers="translatedSampleHeaders"
           :items="[getSample]"
         >
           <template v-slot:item.site="{ item }">
@@ -46,7 +47,11 @@
     <!-- Analyses -->
     <v-card flat v-if="getSampleAnalyses && getSampleAnalyses.length > 0">
       <h2>
-        <CardTitleWrapper text="Analüüsid" :index="1" input-class="headline" />
+        <CardTitleWrapper
+          :text="$t('sample.titleAnalyses')"
+          :index="1"
+          input-class="headline"
+        />
       </h2>
 
       <div v-show="block.sample[1]">
@@ -57,9 +62,11 @@
           hide-default-footer
           disable-pagination
           disable-sort
-          :headers="getSampleAnalysesHeaders"
+          :headers="translatedSampleAnalysesHeaders"
           :items="getSampleAnalyses"
-          group-by="analysis_method"
+          :group-by="
+            $translate({ et: 'analysis_method', en: 'analysis_method_en' })
+          "
         >
           <template v-slot:group.header="{ group }">
             <td colspan="3" class="text-start pl-8">
@@ -73,6 +80,24 @@
                 {{ getAnalysis(group, "agent") }}</span
               >
             </td>
+          </template>
+
+          <template v-slot:item.analysis_method="{ item }">
+            <div
+              v-translate="{
+                et: item.analysis_method,
+                en: item.analysis_method_en
+              }"
+            />
+          </template>
+
+          <template v-slot:item.parameter_name="{ item }">
+            <div
+              v-translate="{
+                et: item.parameter_name,
+                en: item.parameter_name_en
+              }"
+            />
           </template>
 
           <template v-slot:item.value="{ item }">
@@ -91,7 +116,7 @@
     <v-card flat v-if="getSampleTaxa && getSampleTaxa.length > 0" id="taxon">
       <h2>
         <CardTitleWrapper
-          text="Botaaniline koostis"
+          :text="$t('sample.titleBotanical')"
           :index="2"
           input-class="headline"
         />
@@ -99,11 +124,11 @@
 
       <div v-show="block.sample[2]">
         <h3 class="subtitle-1 pl-6 pr-2" v-if="taxaLab.length > 0">
-          <span>Labor: </span>
+          <span>{{ $t("sample.lab") }}: </span>
           <span class="font-weight-bold">{{ taxaLab }}</span>
         </h3>
         <h3 class="subtitle-1 pl-6 pr-2" v-if="taxaAgent.length > 0">
-          <span>Määraja(d): </span>
+          <span>{{ $t("sample.agents") }}: </span>
           <span class="font-weight-bold">{{ taxaAgent }}</span>
         </h3>
 
@@ -113,7 +138,7 @@
           hide-default-footer
           disable-pagination
           disable-sort
-          :headers="getSampleTaxaHeaders"
+          :headers="translatedSampleTaxaHeaders"
           :items="getSampleTaxa"
         >
           <!--        <template v-slot:item.taxon_id="{ item }">-->
@@ -138,7 +163,7 @@
               v-if="item.plutof_taxon_id"
               class="table-link"
               @click="openElurikkusLink(item.plutof_taxon_id)"
-              title="Link eElurikkuse portaali"
+              :title="$t('sample.linkToElurikkus')"
               icon
               x-small
               color="primary"
@@ -162,10 +187,12 @@
 import { mapGetters, mapState } from "vuex";
 import DoughnutChart from "../partial/chart/DoughnutChart";
 import CardTitleWrapper from "../partial/CardTitleWrapper";
+import detailTranslations from "@/mixins/detailTranslations";
 
 export default {
   name: "Sample",
   components: { CardTitleWrapper, DoughnutChart },
+  mixins: [detailTranslations],
   data: () => ({
     taxaLab: "",
     taxaAgent: ""
@@ -196,10 +223,24 @@ export default {
     }
   },
 
+  metaInfo() {
+    const title = `${this.$t("sample.title")}: ${this?.getSample
+      ?.number_additional ?? this.$route.params.id}`;
+    return {
+      title: title
+    };
+  },
+
   watch: {
     getSampleTaxa(newVal) {
       if (newVal) {
-        this.taxaLab = Array.from(new Set(newVal.map(taxon => taxon.lab)))
+        this.taxaLab = Array.from(
+          new Set(
+            newVal.map(taxon =>
+              this.$translate({ et: taxon.lab, en: taxon.lab_en })
+            )
+          )
+        )
           .filter(lab => lab && lab.length > 0)
           .join(" / ");
         this.taxaAgent = Array.from(
@@ -217,10 +258,21 @@ export default {
       let agents = [];
       if (group) {
         let filteredAnalyses = this.getSampleAnalyses.filter(
-          analysis => analysis.analysis_method === group
+          analysis =>
+            this.$translate({
+              et: analysis.analysis_method,
+              en: analysis.analysis_method_en
+            }) === group
         );
         labs = Array.from(
-          new Set(filteredAnalyses.map(analysis => analysis.lab))
+          new Set(
+            filteredAnalyses.map(analysis =>
+              this.$translate({
+                et: analysis.lab,
+                en: analysis.lab_en
+              })
+            )
+          )
         )
           .filter(lab => lab && lab.length > 0)
           .join(", ");

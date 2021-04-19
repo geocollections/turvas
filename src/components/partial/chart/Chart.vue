@@ -203,7 +203,9 @@ export default {
     },
 
     getChartLabels(labels) {
-      return labels.map(label => label.name);
+      return labels.map(label =>
+        this.$translate({ et: label.name, en: label.name_en })
+      );
     },
 
     getChartDataset(labels) {
@@ -226,7 +228,12 @@ export default {
       if (rabaturvas.length > 0) {
         labels = [
           ...labels,
-          { ...labels[0], name: "rabaturvas", original_name: labels[0].name }
+          {
+            ...labels[0],
+            name: "rabaturvas",
+            name_en: "bog peat",
+            original_name: labels[0].name
+          }
         ];
       }
       if (siirdesooturvas.length > 0) {
@@ -235,6 +242,7 @@ export default {
           {
             ...labels[0],
             name: "siirdesooturvas",
+            name_en: "transitional peat",
             original_name: labels[0].name
           }
         ];
@@ -245,6 +253,7 @@ export default {
           {
             ...labels[0],
             name: "madalsooturvas",
+            name_en: "fen peat",
             original_name: labels[0].name
           }
         ];
@@ -252,7 +261,12 @@ export default {
       if (jarvemuda.length > 0) {
         labels = [
           ...labels,
-          { ...labels[0], name: "jarvemuda", original_name: labels[0].name }
+          {
+            ...labels[0],
+            name: "jarvemuda",
+            name_en: "gyttja",
+            original_name: labels[0].name
+          }
         ];
       }
 
@@ -262,6 +276,7 @@ export default {
       return labels.map(label => {
         if (!label.isText) {
           let name = label.name;
+          let name_en = label.name_en;
           let data = this.buildData(this.type, label.value);
           let borderColor = this.defaultColorDark;
           let backgroundColor = this.defaultColor;
@@ -292,24 +307,28 @@ export default {
           };
           if (name === "rabaturvas") {
             name = `rabaturvas`;
+            name_en = `bog peat`;
             data = rabaturvas;
             borderColor = this.rabaturvasColorDark;
             backgroundColor = this.rabaturvasColor;
             showLine = false;
           } else if (name === "siirdesooturvas") {
             name = `siirdesooturvas`;
+            name_en = `transitional peat`;
             data = siirdesooturvas;
             borderColor = this.siirdesooturvasColorDark;
             backgroundColor = this.siirdesooturvasColor;
             showLine = false;
           } else if (name === "madalsooturvas") {
             name = `madalsooturvas`;
+            name_en = `fen peat`;
             data = madalsooturvas;
             borderColor = this.madalsooturvasColorDark;
             backgroundColor = this.madalsooturvasColor;
             showLine = false;
           } else if (name === "järvemuda") {
-            name = `järvemuda `;
+            name = `järvemuda`;
+            name_en = `gyttja`;
             data = jarvemuda;
             borderColor = this.jarvemudaColorDark;
             backgroundColor = this.jarvemudaColor;
@@ -317,7 +336,7 @@ export default {
           }
 
           return {
-            label: name,
+            label: this.$translate({ et: name, en: name_en }),
             data: data,
             backgroundColor: backgroundColor,
             borderColor: borderColor,
@@ -331,7 +350,7 @@ export default {
           };
         } else
           return {
-            label: label.name,
+            label: this.$translate({ et: label.name, en: label.name_en }),
             data: [],
             backgroundColor: this.defaultColorDark,
             borderColor: this.defaultColor,
@@ -351,7 +370,8 @@ export default {
           return {
             x: data[field].toFixed(3),
             y: this.calculateDepth(data.depth, data.depth_interval),
-            rock: data.rock
+            rock: data.rock,
+            rock_en: data.rock_en
           };
         });
       } else if (chartType === "bubble") {
@@ -360,7 +380,8 @@ export default {
             x: data[field].toFixed(3),
             y: this.calculateDepth(data.depth, data.depth_interval),
             r: 5,
-            rock: data.rock
+            rock: data.rock,
+            rock_en: data.rock_en
           };
         });
       } else return [];

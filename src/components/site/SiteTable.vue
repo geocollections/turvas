@@ -22,7 +22,7 @@
           dense
           hide-details
           :value="siteSearchParams.paginateBy"
-          :items="paginateByItems"
+          :items="translatedPaginateByItems"
           @change="handleUpdatePaginateBy"
         />
       </v-col>
@@ -43,22 +43,21 @@
     <v-card flat>
       <v-card-title>
         <v-icon color="primary" left>fas fa-layer-group</v-icon>
-        <span
-          >Leitud <b>{{ siteResultsCount }}</b> proovipunkti</span
-        >
+        <span v-html="$tc('search.site', siteResultsCount)" />
+
         <v-spacer />
         <v-text-field
           :value="filter"
           hide-details
           single-line
-          label="Otsi tabelist..."
+          :label="$t('search.table')"
           @input="handleUpdateFilter"
         ></v-text-field>
       </v-card-title>
 
       <v-data-table
         class="ws-nowrap-table"
-        :headers="siteHeaders"
+        :headers="translatedSiteHeaders"
         hide-default-footer
         dense
         :items="siteResults"
@@ -75,20 +74,24 @@
         <template v-slot:item.name="{ item }">
           <router-link
             :to="`/proovipunkt/${item.id}`"
-            title="Proovipunkti detailvaade"
+            :title="$t('site.detailView')"
             class="table-link"
           >
-            {{ item.name }}
+            {{ $translate({ et: item.name, en: item.name_en }) }}
           </router-link>
+        </template>
+
+        <template v-slot:item.maakond="{ item }">
+          <div>{{ $translate({ et: item.maakond, en: item.maakond_en }) }}</div>
         </template>
 
         <template v-slot:item.area_name="{ item }">
           <router-link
             :to="`/turbaala/${item.area_id}`"
-            title="Turbaala detailvaade"
+            :title="$t('area.detailView')"
             class="table-link"
           >
-            {{ item.area_name }}
+            {{ $translate({ et: item.area_name, en: item.area_name_en }) }}
           </router-link>
         </template>
       </v-data-table>
@@ -101,25 +104,28 @@ import { mapActions, mapGetters, mapState } from "vuex";
 import debounce from "lodash/debounce";
 import searchMixin from "../../mixins/searchMixin";
 import Search from "../partial/Search";
+import tableTranslations from "@/mixins/tableTranslations";
 
 export default {
   name: "SiteTable",
   components: { Search },
-  mixins: [searchMixin],
+  mixins: [searchMixin, tableTranslations],
 
   computed: {
-    ...mapState("search", [
-      "siteHeaders",
-      "siteResults",
-      "siteResultsCount",
-      "paginateByItems"
-    ]),
+    ...mapState("search", ["siteResults", "siteResultsCount"]),
 
     ...mapGetters("settings", ["getMapState"]),
 
     filter() {
       return this.$route.query.filter || "";
     }
+  },
+
+  metaInfo() {
+    const title = this.$t("header.sites");
+    return {
+      title: title
+    };
   },
 
   watch: {
