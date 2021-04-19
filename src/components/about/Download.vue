@@ -39,6 +39,12 @@ export default {
   name: "Download",
   computed: {
     ...mapState("settings", ["downloadLinks"])
+  },
+  metaInfo() {
+    const title = this.$t("header.download");
+    return {
+      title: title
+    };
   }
 };
 </script>

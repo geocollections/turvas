@@ -121,6 +121,13 @@ export default {
     }
   },
 
+  metaInfo() {
+    const title = this.$t("header.sites");
+    return {
+      title: title
+    };
+  },
+
   watch: {
     "$route.query": {
       handler(newVal) {

@@ -301,6 +301,13 @@ export default {
     }
   },
 
+  metaInfo() {
+    const title = `${this.$t("site.name")}: ${this?.getSite?.name ?? this.$route.params.id}`;
+    return {
+      title: title
+    };
+  },
+
   methods: {
     ...mapActions("search", ["fetchListParameters", "updateSampleHeaders"]),
     ...mapActions("detail", ["updateChartInfo"]),

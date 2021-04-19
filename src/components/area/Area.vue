@@ -213,6 +213,26 @@ export default {
     }
   },
 
+  metaInfo() {
+    const areaEt =
+      this?.getArea?.name && this?.getArea?.area_type__name
+        ? `${this?.getArea?.name} ${this?.getArea?.area_type__name}`
+        : this.$route.params.id;
+    const area = this.$translate({
+      et: areaEt,
+      en: `${this?.getArea?.name_en ?? this.$route.params.id}`
+    });
+    const title = `${this.$t("sample.title")}: ${area}`;
+    const description = this.$translate({
+      et: this?.getArea?.description,
+      en: this?.getArea?.description_en
+    });
+    return {
+      title: title,
+      description: description
+    };
+  },
+
   methods: {
     getMaardlaUrl(maardla) {
       return `https://xgis.maaamet.ee/xGIS/bronx/maardlad/showdata.aspx?registrikaart=${maardla}`;

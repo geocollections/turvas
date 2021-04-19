@@ -170,6 +170,13 @@ export default {
     ...mapGetters("settings", ["getMapState"])
   },
 
+  metaInfo() {
+    const title = this.$t("header.samples");
+    return {
+      title: title
+    };
+  },
+
   watch: {
     "$route.query": {
       handler(newVal) {

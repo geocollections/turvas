@@ -128,6 +128,13 @@ export default {
     }
   },
 
+  metaInfo() {
+    const title = this.$t("header.areas");
+    return {
+      title: title
+    };
+  },
+
   watch: {
     "$route.query": {
       handler(newVal) {

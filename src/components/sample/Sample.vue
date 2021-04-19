@@ -223,6 +223,14 @@ export default {
     }
   },
 
+  metaInfo() {
+    const title = `${this.$t("sample.title")}: ${this?.getSample
+      ?.number_additional ?? this.$route.params.id}`;
+    return {
+      title: title
+    };
+  },
+
   watch: {
     getSampleTaxa(newVal) {
       if (newVal) {

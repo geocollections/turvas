@@ -64,6 +64,12 @@ export default {
       "projectInfoText3",
       "listOfLogos"
     ])
+  },
+  metaInfo() {
+    const title = this.$t("header.projectInfo");
+    return {
+      title: title
+    };
   }
 };
 </script>
