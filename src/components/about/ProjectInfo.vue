@@ -69,6 +69,10 @@ export default {
 </script>
 
 <style scoped>
+.logo {
+  margin: 8px;
+}
+
 .logo:hover {
   opacity: 0.7;
 }
@@ -86,5 +90,18 @@ export default {
 .sarv-logo {
   height: 60px;
   padding: 0 0 10px 0;
+}
+
+.asb-logo {
+  height: 70px;
+}
+
+.kekkila-logo {
+  height: 60px;
+  margin: 12px;
+}
+
+.kalloveen-logo {
+  height: 100px;
 }
 </style>

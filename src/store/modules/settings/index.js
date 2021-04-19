@@ -44,6 +44,47 @@ const state = {
       title: "SARV: Maapõue infosüsteem",
       src: "https://files.geocollections.info/img/sarv_logo.svg",
       class: "logo sarv-logo"
+    },
+    {
+      id: 4,
+      href: "https://www.turbaliit.ee/",
+      target: "TurbaliitWindow",
+      title: "Eesti Turbaliit",
+      src: require("@/assets/img/logos/etl_logo.png"),
+      class: "logo etl-logo"
+    },
+    {
+      id: 5,
+      href: "https://www.mikskaar.com/",
+      target: "MikskaarWindow",
+      title:
+        "Mikskaar: Kvaliteetne kasvuturvas ja turbatoote kõigile taimedele",
+      src: require("@/assets/img/logos/mikskaar_logo.png"),
+      class: "logo mikskaar-logo"
+    },
+    {
+      id: 6,
+      href: "https://asbgreenworld.com/en/",
+      target: "ASBWindow",
+      title: "ASB Greenworld",
+      src: require("@/assets/img/logos/asb_logo.svg"),
+      class: "logo asb-logo"
+    },
+    {
+      id: 7,
+      href: "https://www.kekkila-bvb.com/",
+      target: "KekkilaWindow",
+      title: "Kekkilä: Kasvades ja kasvatades koos parema tuleviku nimel",
+      src: require("@/assets/img/logos/kekkila_logo.png"),
+      class: "logo kekkila-logo"
+    },
+    {
+      id: 8,
+      href: "",
+      target: "",
+      title: "Kalloveen Eesti OÜ",
+      src: require("@/assets/img/logos/kalloveen_logo.png"),
+      class: "logo kalloveen-logo"
     }
   ],
   backgroundImages: [
