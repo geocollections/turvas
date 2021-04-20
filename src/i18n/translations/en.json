@@ -17,7 +17,8 @@
   "frontpage": {
     "title": "Estonian peat database",
     "titleShort": "Peat database",
-    "kik": " Environmental Investment Centre"
+    "kik": " Environmental Investment Centre",
+    "subtitle": "<div>Data collected by the <a style='color: white' href='http://www.egk.ee/' target='EGKWindow'>Geological Survey of Estonia</a> 1967-2013</div><div>Digitised and enhanced by <a style='color: white' href='https://www.taltech.ee/en/department-geology' target='TalTechWindow'>TalTech</a> 2016-2021</div><div>Supported by <a style='color: white' href='http://kik.ee/en' target='KikWindow'>KIK</a></div>"
   },
   "header": {
     "areas": "Peat areas",
@@ -30,7 +31,8 @@
     "searchArea": "Search area...",
     "frontPage": "Front page",
     "hideMap": "Hide map",
-    "showMap": "Show map"
+    "showMap": "Show map",
+    "emaapou": "Geological data from Estonia"
   },
   "about": {
     "imageAuthor": "Image author",
@@ -195,5 +197,30 @@
     "parameter_name_et": "Name (EST)",
     "value": "Share (%)",
     "plutof_taxon_id": "eElurikkus"
+  },
+  "download": {
+    "kikTitle": "View headnote",
+    "kik": "EIC project no. 14460 headnote and user manual (pdf format, 1MB)",
+    "doiTitle": "https://doi.geocollections.info/10.15152/GEO.487",
+    "doi": "Estonian peat database (data in xlsx format, 7MB, registered dataset DOI:10.15152/GEO.487)",
+    "plansTitle": "Download georeferenced technical plans for peatlands",
+    "plans": "Georeferenced technical plans of peatlands (geotiff format, ~6GB)",
+    "files": "Abandoned peat field files (links to Geological Survey reports):",
+    "files1Title": "Revision of abandoned peat production areas in Estonia. 1. stage. Harju, Rapla ja Lääne county",
+    "files1": "1. stage",
+    "files2Title": "Revision of abandoned peat production areas in Estonia. 2. stage. Ida-Viru, Lääne-Viru, Jõgeva, Järva ja Tartu county",
+    "files2": "2. stage",
+    "files3Title": "Revision of abandoned peat production areas in Estonia. 3. stage. Viljandi, Pärnu, Saare ja Hiiu county",
+    "files3": "3. stage",
+    "files4Title": "Revision of abandoned peat production areas in Estonia. 4. stage. Valga, Võru ja Põlva county",
+    "files4": "4. stage"
+  },
+  "userManual": {
+    "common": "General",
+    "map": "Map",
+    "search": "Search",
+    "table": "Table",
+    "graph": "Graph",
+    "more": "More"
   }
 }

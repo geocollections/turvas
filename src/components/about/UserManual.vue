@@ -1,91 +1,11 @@
 <template>
   <div class="user-manual">
     <v-card-text class="pt-0">
-      <div class="display-1">
-        Turbauuringute andmebaasi tehniline iseloomustus
-      </div>
-
-      <div class="mt-2">
-        Turbauuringute andmebaas kasutab geoteaduste infosüsteemi SARV (vt
-        <a
-          href="https://geocollections.info"
-          title="Eesti geokogude portaal"
-          class="table-link"
-          target="GeocollectionsWindow"
-          >https://geocollections.info</a
-        >) relatsioonilist andmemudelit ning tehnilist infrastruktuuri, mis on
-        välja arendatud Tallinna Tehnikaülikooli geoloogia instituudis enam kui
-        10 a vältel, viimastel aastatel peamiselt Eesti teadustaristu teekaardi
-        projekti Loodusteaduslikud arhiivid ja andmevõrgustik NATARC (<a
-          href="https://natarc.ut.ee"
-          title="Eesti teaduse taristu teekaart"
-          class="table-link"
-          target="NatarchWindow"
-          >https://natarc.ut.ee</a
-        >) raames. Infosüsteemi andmed ja e-teenused on majutatud
-        tehnikaülikooli serveritesse. Infosüsteemi terviklik andmemudel on
-        kättesaadav aadressil (<a
-          href="https://schema.geocollections.info"
-          title="Infosteemi andmemudel"
-          class="table-link"
-          target="SchemaWindow"
-          >https://schema.geocollections.info</a
-        >). Turbauuringute andmestiku talletamiseks on kasutusel järgmised
-        peamised andeobjektid ja moodulid: ala (<a
-          href="https://schema.geocollections.info/area/"
-          title="Infosteemi andmemudel 'area' tabeli kohta"
-          class="table-link"
-          target="SchemaWindow"
-          >area</a
-        >), proovipunkt (<a
-          href="https://schema.geocollections.info/site/"
-          title="Infosteemi andmemudel 'site' tabeli kohta"
-          class="table-link"
-          target="SchemaWindow"
-          >site</a
-        >), proov (<a
-          href="https://schema.geocollections.info/sample/"
-          title="Infosteemi andmemudel 'sample' tabeli kohta"
-          class="table-link"
-          target="SchemaWindow"
-          >sample</a
-        >), analüüs (<a
-          href="https://schema.geocollections.info/analysis/"
-          title="Infosteemi andmemudel 'analysis' tabeli kohta"
-          class="table-link"
-          target="SchemaWindow"
-          >analysis</a
-        >), analüüsitulemused (<a
-          href="https://schema.geocollections.info/analysis_results/"
-          title="Infosteemi andmemudel 'analysis_results' tabeli kohta"
-          class="table-link"
-          target="SchemaWindow"
-          >analysis_results</a
-        >). Täiendavalt kasutatakse seotud mooduleid kirjanduse, asutuste ja
-        isikute, laborite, analüüsimeetodite, failide jms info talletamiseks,
-        kuvamiseks ja haldamiseks.
-      </div>
-
-      <div class="mt-2">
-        Turbauuringute andmebaas kasutab täiendavalt veebipõhise kaardiserveri
-        WMS teenuseid ruumiobjektide kuvamiseks, ning SARV-DOI rakendust (<a
-          href="https://doi.geocollections.info"
-          title="SARV-DOI rakendus"
-          class="table-link"
-          target="DoiWindow"
-          >https://doi.geocollections.info</a
-        >) andmebaasi staatilise väljavõtte arhiveerimiseks.
-      </div>
-
-      <div class="mt-2">
-        Peamine kasutajaliides turbauuringute andmete sirvimiseks ning
-        päringuteks, aga ka andmete allalaadimiseks ja turbauuringute
-        tutvustamiseks, on käesoleva projekti raames valminud turbauuringute
-        andmebaasi veebirakendus <b>TURBA</b>:
-        <router-link class="table-link" to="/" title="Mine pealehele"
-          >https://turba.geoloogia.info</router-link
-        >.
-      </div>
+      <div
+        class="user-manual--content"
+        v-if="page"
+        v-html="$translate({ et: page.content_et, en: page.content_en })"
+      />
     </v-card-text>
 
     <v-tabs
@@ -100,26 +20,23 @@
         class="font-weight-bold"
         style="color: #000;"
         v-for="item in items"
-        :key="item"
-        >{{ item }}</v-tab
+        :key="item.id"
+        @click="$vuetify.goTo(`#${item.id}`)"
+        >{{ $t(item.text) }}</v-tab
       >
     </v-tabs>
 
-    <v-tabs-items class="user-manual-tabs-items" v-model="tab">
-      <v-tab-item v-for="item in items" :key="item">
-        <common-tab v-if="item === 'üldine'" />
+    <common-tab id="common" />
 
-        <map-tab v-else-if="item === 'kaart'" />
+    <map-tab id="map" />
 
-        <search-tab v-else-if="item === 'otsing'" />
+    <search-tab id="search" />
 
-        <table-tab v-else-if="item === 'tabel'" />
+    <table-tab id="table" />
 
-        <chart-tab v-else-if="item === 'graafik'" />
+    <chart-tab id="graph" />
 
-        <more-tab v-else-if="item === 'rohkem lugemist'" />
-      </v-tab-item>
-    </v-tabs-items>
+    <more-tab id="more" />
   </div>
 </template>
 
@@ -130,6 +47,7 @@ import TableTab from "./user_manual/TableTab";
 import SearchTab from "./user_manual/SearchTab";
 import MapTab from "./user_manual/MapTab";
 import CommonTab from "./user_manual/CommonTab";
+import SearchService from "@/middleware/SearchService";
 
 export default {
   name: "UserManual",
@@ -138,13 +56,30 @@ export default {
 
   data: () => ({
     tab: null,
-    items: ["üldine", "kaart", "otsing", "tabel", "graafik", "rohkem lugemist"]
+    items: [
+      { id: "common", text: "userManual.common" },
+      { id: "map", text: "userManual.map" },
+      { id: "search", text: "userManual.search" },
+      { id: "table", text: "userManual.table" },
+      { id: "graph", text: "userManual.graph" },
+      { id: "more", text: "userManual.more" }
+    ],
+    page: null,
+    pageId: 80,
+    isLoading: false
   }),
   metaInfo() {
     const title = this.$t("header.userManual");
     return {
       title: title
     };
+  },
+  async created() {
+    this.isLoading = true;
+    const response = await SearchService.getDetailView("page", this.pageId);
+    console.log(response);
+    if (response && response?.public) this.page = response;
+    this.isLoading = false;
   }
 };
 </script>
@@ -156,5 +91,15 @@ export default {
 
 .tab-background {
   background-color: rgba(0, 0, 0, 0.16);
+}
+
+/* Styles copied from .display-1 class */
+.user-manual--content >>> h1 {
+  font-size: 2.125rem !important;
+  line-height: 2.5rem;
+  letter-spacing: 0.0073529412em !important;
+  font-weight: 400;
+  font-family: Roboto, sans-serif !important;
+  margin-bottom: 8px;
 }
 </style>

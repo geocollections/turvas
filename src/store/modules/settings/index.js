@@ -4,7 +4,7 @@ import getters from "./getters";
 
 const state = {
   language: "ee",
-  projectVersion: "1.3.0",
+  projectVersion: "1.4.0",
   showMap: true,
   projectInfoText1:
     '<a href="https://kik.ee" title="KIK" target="KikWindow" class="table-link">Keskkonnainvesteeringute Keskuse</a> projektid nr 12623 "Turbaalaste uurimistulemuste digitaliseerimine ja andmebaasi koostamine I etapp (Harju, Rapla, Pärnu maakond)" ja nr 14460 “Turbaalaste uurimistulemuste digitaliseerimine ja andmebaasi koostamine II etapp (jätkuprojekt)” eesmärgiks oli turba uurimisel kogutud andmestiku alusel koostada üldsusele kättesaadav andmebaas nii, et see oleks ühildatav geoloogilise kaardistamise käigus kogutavate andmete ja keskkonnaregistri maardlate nimistu infoga.',
@@ -109,62 +109,54 @@ const state = {
     {
       id: 0,
       src: "/failid/seletuskiri.pdf",
-      title: "Vaata seletuskirja",
-      text:
-        "KIKi projekti nr 14460 seletuskiri ja kasutusjuhend (pdf vormingus, 1MB)"
+      title: "download.kikTitle",
+      text: "download.kik"
     },
     {
       id: 1,
       src: "https://doi.geocollections.info/10.15152/GEO.487",
-      title: "https://doi.geocollections.info/10.15152/GEO.487",
-      text:
-        "Eesti turbauuringute andmebaas (põhiandmed xlsx vormingus, 7MB, registreeritud andmekogum DOI:10.15152/GEO.487)",
+      title: "download.doiTitle",
+      text: "download.doi",
       target: "DoiWindow"
     },
     {
       id: 2,
       src: "/failid/turbaalade_tehnilised_plaanid.tar",
-      title: "Lae alla turbaalade georefereeritud tehnilised plaanid",
-      text:
-        "Turbaalade georefereeritud tehnilised plaanid (geotiff vormingus, ~6GB)"
+      title: "download.plansTitle",
+      text: "download.plans"
     },
     {
       id: 3,
       src: "",
       title: "",
-      text:
-        "Mahajäetud turbaväljade failid (lingid Geoloogiafondi aruannetele):",
+      text: "download.files",
       additionalLinks: [
         {
           id: 0,
           src: "https://fond.egt.ee/fond/egf/7724",
-          title:
-            "Eesti mahajäetud turbatootmisalade revisjon. 1. etapp. Harju, Rapla ja Lääne maakond",
-          text: "1. etapp",
+          title: "download.files1Title",
+          text: "download.files1",
           target: "FondWindow"
         },
         {
           id: 1,
           src: "https://fond.egt.ee/fond/egf/7804",
-          title:
-            "Eesti mahajäetud turbatootmisalade revisjon. 2. Etapp. Ida-Viru, Lääne-Viru, Jõgeva, Järva ja Tartu maakond",
-          text: "2. etapp",
+          title: "download.files2Title",
+          text: "download.files2",
           target: "FondWindow"
         },
         {
           id: 2,
           src: "https://fond.egt.ee/fond/egf/7913",
-          title:
-            "Eesti mahajäetud turbatootmisalade revisjon. 3.etapp. Viljandi, Pärnu, Saare ja Hiiu maakond",
-          text: "3. etapp",
+          title: "download.files3Title",
+          text: "download.files3",
           target: "FondWindow"
         },
         {
           id: 3,
           src: "https://fond.egt.ee/fond/egf/8030",
-          title:
-            "Eesti mahajäetud turbatootmisalade revisjon. 4.etapp. Valga, Võru ja Põlva maakond",
-          text: "4. etapp",
+          title: "download.files4Title",
+          text: "download.files4",
           target: "FondWindow"
         }
       ]

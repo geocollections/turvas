@@ -57,6 +57,17 @@
       }"
     >
       {{ $t("frontpage.title") }}
+      <div
+        class="app-subtitle"
+        v-if="$vuetify.breakpoint.smAndUp"
+        :class="{
+          'app-subtitle-xs': $vuetify.breakpoint.xsOnly,
+          'app-subtitle-sm': $vuetify.breakpoint.smOnly,
+          'app-subtitle-md': $vuetify.breakpoint.mdOnly,
+          'app-subtitle-lg': $vuetify.breakpoint.lgAndUp
+        }"
+        v-html="$t('frontpage.subtitle')"
+      />
     </div>
   </div>
 </template>
@@ -877,6 +888,11 @@ export default {
   left: 0;
   margin-left: 10px;
   margin-bottom: 32px;
+  transition: opacity 100ms ease-in-out;
+}
+
+.kik-logo:hover {
+  opacity: 0.8;
 }
 
 .kik-logo-sm {
@@ -917,5 +933,34 @@ export default {
 .app-title-lg {
   font-size: 3em;
   max-width: 600px;
+}
+
+.app-subtitle {
+  font-weight: normal;
+}
+
+.app-subtitle-xs {
+  font-size: 0.65rem;
+}
+
+.app-subtitle-sm {
+  font-size: 0.75rem;
+  letter-spacing: 0.75px;
+}
+
+.app-subtitle-md {
+  font-size: 0.85rem;
+}
+
+.app-subtitle-lg {
+  font-size: 0.95rem;
+}
+
+.app-subtitle >>> a {
+  transition: opacity 100ms ease-in-out;
+}
+
+.app-subtitle >>> a:hover {
+  opacity: 0.8;
 }
 </style>

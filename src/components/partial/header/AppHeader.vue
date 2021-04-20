@@ -71,6 +71,26 @@
         <v-spacer />
 
         <v-toolbar-items>
+          <v-tooltip bottom>
+            <template v-slot:activator="{ on }">
+              <v-btn
+                v-on="on"
+                icon
+                href="https://geoloogia.info"
+                target="EMaapouWindow"
+              >
+                <img
+                  height="28"
+                  width="28"
+                  :src="require('@/assets/img/emaapou6white.svg')"
+                  alt="e-Maapõu"
+                />
+              </v-btn>
+            </template>
+
+            <span>{{ $t("header.emaapou") }}</span>
+          </v-tooltip>
+
           <lang-buttons />
 
           <v-text-field
