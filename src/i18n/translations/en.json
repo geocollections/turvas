@@ -18,7 +18,7 @@
     "title": "Estonian peat database",
     "titleShort": "Peat database",
     "kik": " Environmental Investment Centre",
-    "subtitle": "<div>Data collected by the Geological Survey of Estonia 1967-2013</div><div>Digitised and enhanced by TalTech 2016-2021</div><div>Supported by KIK</div>"
+    "subtitle": "<div>Data collected by the <a style='color: white' href='http://www.egk.ee/' target='EGKWindow'>Geological Survey of Estonia</a> 1967-2013</div><div>Digitised and enhanced by <a style='color: white' href='https://www.taltech.ee/en/department-geology' target='TalTechWindow'>TalTech</a> 2016-2021</div><div>Supported by <a style='color: white' href='http://kik.ee/en' target='KikWindow'>KIK</a></div>"
   },
   "header": {
     "areas": "Peat areas",

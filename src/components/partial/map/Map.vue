@@ -888,6 +888,11 @@ export default {
   left: 0;
   margin-left: 10px;
   margin-bottom: 32px;
+  transition: opacity 100ms ease-in-out;
+}
+
+.kik-logo:hover {
+  opacity: 0.8;
 }
 
 .kik-logo-sm {
@@ -949,5 +954,13 @@ export default {
 
 .app-subtitle-lg {
   font-size: 0.95rem;
+}
+
+.app-subtitle >>> a {
+  transition: opacity 100ms ease-in-out;
+}
+
+.app-subtitle >>> a:hover {
+  opacity: 0.8;
 }
 </style>
