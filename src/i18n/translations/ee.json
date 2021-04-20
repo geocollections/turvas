@@ -213,5 +213,13 @@
     "files3": "3. etapp",
     "files4Title": "Eesti mahajäetud turbatootmisalade revisjon. 4.etapp. Valga, Võru ja Põlva maakond",
     "files4": "4. etapp"
+  },
+  "userManual": {
+    "common": "Üldine",
+    "map": "Kaart",
+    "search": "Otsing",
+    "table": "Tabel",
+    "graph": "Graafik",
+    "more": "Rohkem lugemist"
   }
 }

@@ -213,5 +213,13 @@
     "files3": "3. stage",
     "files4Title": "Revision of abandoned peat production areas in Estonia. 4. stage. Valga, Võru ja Põlva county",
     "files4": "4. stage"
+  },
+  "userManual": {
+    "common": "General",
+    "map": "Map",
+    "search": "Search",
+    "table": "Table",
+    "graph": "Graph",
+    "more": "More"
   }
 }

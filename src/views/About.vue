@@ -1,5 +1,6 @@
 <template>
   <div class="about">
+    <scroll-to-top />
     <div
       v-if="backgroundImages && backgroundImages.length > 0"
       class="background-image"
@@ -13,19 +14,22 @@
       style="opacity: 0.46;background-color: rgb(33, 33, 33);border-color: rgb(33, 33, 33); z-index: 2"
     ></div>
 
-    <a href="https://kik.ee" target="KikWindow" :title="$t('frontpage.kik')">
-      <img
-        src="https://www.kik.ee/sites/default/files/kik_est_logo__2.png"
-        class="kik-logo"
-        alt="kik logo"
-        :class="{
-          'kik-logo-sm': $vuetify.breakpoint.smOnly,
-          'kik-logo-xs': $vuetify.breakpoint.xsOnly
-        }"
-      />
-    </a>
+    <img
+      @click="openKikWindow"
+      src="https://www.kik.ee/sites/default/files/kik_est_logo__2.png"
+      class="kik-logo"
+      alt="kik logo"
+      :style="$vuetify.breakpoint.xlOnly ? 'position: fixed;' : ''"
+      :class="{
+        'kik-logo-sm': $vuetify.breakpoint.smOnly,
+        'kik-logo-xs': $vuetify.breakpoint.xsOnly
+      }"
+    />
 
-    <div class="image-info white--text">
+    <div
+      class="image-info white--text"
+      :style="$vuetify.breakpoint.xlOnly ? 'position: fixed;' : ''"
+    >
       <div v-if="imageIndex === 0 || imageIndex === 2">
         {{ $t("about.imageAuthor") }}: <b>Tõnis Saadre</b> ({{
           $t("about.egkCalendar")
@@ -70,10 +74,11 @@
 
 <script>
 import { mapState } from "vuex";
+import ScrollToTop from "@/components/partial/ScrollToTop";
 
 export default {
   name: "About",
-
+  components: { ScrollToTop },
   data: () => ({
     interval: null,
     imageIndex: 0
@@ -119,6 +124,10 @@ export default {
         if (this.imageIndex === 3) this.imageIndex = 0;
         else this.imageIndex += 1;
       }, 6000);
+    },
+
+    openKikWindow() {
+      window.open("https://kik.ee", "KikWindow");
     }
   }
 };
@@ -142,6 +151,12 @@ export default {
   width: 150px;
   bottom: 20px;
   right: 20px;
+  transition: opacity 100ms ease-in-out;
+}
+
+.kik-logo:hover {
+  cursor: pointer;
+  opacity: 0.8;
 }
 
 .kik-logo-sm {

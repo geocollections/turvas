@@ -36,7 +36,8 @@ export default {
   data() {
     return {
       page: null,
-      pageId: 79
+      pageId: 79,
+      isLoading: false
     };
   },
   computed: {
