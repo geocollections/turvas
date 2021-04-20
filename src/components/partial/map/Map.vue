@@ -57,6 +57,17 @@
       }"
     >
       {{ $t("frontpage.title") }}
+      <div
+        class="app-subtitle"
+        v-if="$vuetify.breakpoint.smAndUp"
+        :class="{
+          'app-subtitle-xs': $vuetify.breakpoint.xsOnly,
+          'app-subtitle-sm': $vuetify.breakpoint.smOnly,
+          'app-subtitle-md': $vuetify.breakpoint.mdOnly,
+          'app-subtitle-lg': $vuetify.breakpoint.lgAndUp
+        }"
+        v-html="$t('frontpage.subtitle')"
+      />
     </div>
   </div>
 </template>
@@ -917,5 +928,26 @@ export default {
 .app-title-lg {
   font-size: 3em;
   max-width: 600px;
+}
+
+.app-subtitle {
+  font-weight: normal;
+}
+
+.app-subtitle-xs {
+  font-size: 0.65rem;
+}
+
+.app-subtitle-sm {
+  font-size: 0.75rem;
+  letter-spacing: 0.75px;
+}
+
+.app-subtitle-md {
+  font-size: 0.85rem;
+}
+
+.app-subtitle-lg {
+  font-size: 0.95rem;
 }
 </style>

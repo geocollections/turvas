@@ -6,14 +6,14 @@
           class="font-weight-bold"
           v-if="link.additionalLinks && link.additionalLinks.length > 0"
         >
-          {{ link.text }}
+          {{ $t(link.text) }}
           <span v-for="(item, index) in link.additionalLinks" :key="item.id">
             <a
               :href="item.src"
-              :title="item.title"
+              :title="$t(item.title)"
               class="table-link"
               :target="item.target"
-              >{{ item.text }}</a
+              >{{ $t(item.text) }}</a
             >
             <span v-if="index !== link.additionalLinks.length - 1">, </span>
           </span>
@@ -22,10 +22,10 @@
         <a
           v-else
           :href="link.src"
-          :title="link.title"
+          :title="$t(link.title)"
           class="table-link"
           :target="link.target"
-          >{{ link.text }}
+          >{{ $t(link.text) }}
         </a>
       </li>
     </ul>

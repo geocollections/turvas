@@ -180,6 +180,11 @@ export default {
   color: #000;
   text-decoration: underline;
   font-weight: bold;
+  transition: opacity 100ms ease-in-out;
+}
+
+.about >>> a:hover {
+  opacity: 0.7;
 }
 
 .project-version {

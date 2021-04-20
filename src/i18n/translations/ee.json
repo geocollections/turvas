@@ -17,7 +17,8 @@
   "frontpage": {
     "title": "Eesti turbauuringute andmebaas",
     "titleShort": "Turbauuringute andmebaas",
-    "kik": "Keskkonnainvesteeringute keskus"
+    "kik": "Keskkonnainvesteeringute keskus",
+    "subtitle": "<div>Andmestik on kogutud Eesti Geoloogiakeskuse poolt 1967-2013</div><div>Digiteeritud ja täiendatud Tallinna Tehnikaülikoolis 2016-2021</div><div>Toetas KIK</div>"
   },
   "header": {
     "areas": "Turbaalad",
@@ -195,5 +196,22 @@
     "parameter_name_et": "Nimi (EST)",
     "value": "Osakaal (%)",
     "plutof_taxon_id": "eElurikkus"
+  },
+  "download": {
+    "kikTitle": "Vaata seletuskirja",
+    "kik": "KIKi projekti nr 14460 seletuskiri ja kasutusjuhend (pdf vormingus, 1MB)",
+    "doiTitle": "https://doi.geocollections.info/10.15152/GEO.487",
+    "doi": "Eesti turbauuringute andmebaas (põhiandmed xlsx vormingus, 7MB, registreeritud andmekogum DOI:10.15152/GEO.487)",
+    "plansTitle": "Lae alla turbaalade georefereeritud tehnilised plaanid",
+    "plans": "Turbaalade georefereeritud tehnilised plaanid (geotiff vormingus, ~6GB)",
+    "files": "Mahajäetud turbaväljade failid (lingid Geoloogiafondi aruannetele):",
+    "files1Title": "Eesti mahajäetud turbatootmisalade revisjon. 1. etapp. Harju, Rapla ja Lääne maakond",
+    "files1": "1. etapp",
+    "files2Title": "Eesti mahajäetud turbatootmisalade revisjon. 2. Etapp. Ida-Viru, Lääne-Viru, Jõgeva, Järva ja Tartu maakond",
+    "files2": "2. etapp",
+    "files3Title": "Eesti mahajäetud turbatootmisalade revisjon. 3.etapp. Viljandi, Pärnu, Saare ja Hiiu maakond",
+    "files3": "3. etapp",
+    "files4Title": "Eesti mahajäetud turbatootmisalade revisjon. 4.etapp. Valga, Võru ja Põlva maakond",
+    "files4": "4. etapp"
   }
 }

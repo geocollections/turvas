@@ -6,6 +6,7 @@
         :class="{
           'cookie-law-text-sm': $vuetify.breakpoint.smAndDown
         }"
+        style="max-width: 800px;"
       >
         {{ $t("cookie.info") }}
         <v-dialog

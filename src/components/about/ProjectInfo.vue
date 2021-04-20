@@ -1,35 +1,9 @@
 <template>
   <v-card-text>
-    <div v-html="projectInfoText1" />
-
-    <ol class="my-3">
-      <li>
-        Varasemate uurimistööde andmete kogumine ja digitaliseerimine (turba
-        üldtehnilised näitajad: botaaniline koostis, tuhasus, niiskus, pH,
-        kahjulikud elemendid, kütteväärtus jt).
-      </li>
-
-      <li>
-        Turbamaardlate ja turbaalade (560) plaanide digitaliseerimine ja
-        georefereerimine.
-      </li>
-
-      <li>
-        Turbast võetud proovipunktide koordinaatide ja absoluutkõrguste
-        määramine digitaliseeritud ruumiandmete baasil (kasutades ArcGIS
-        programmi).
-      </li>
-
-      <li>
-        Lühiülevaadete koostamine turbamaardlatest (turba genees, omadused,
-        varude iseloomustus, perspektiivsed kasutusvõimalused) ning nende
-        sidumine andmebaasides olevate andmetega.
-      </li>
-    </ol>
-
-    <div v-html="projectInfoText2" />
-
-    <p v-html="projectInfoText3" />
+    <div
+      v-if="page"
+      v-html="$translate({ et: page.content_et, en: page.content_en })"
+    />
 
     <hr class="mt-6 mb-5" />
 
@@ -54,9 +28,16 @@
 
 <script>
 import { mapState } from "vuex";
+import SearchService from "@/middleware/SearchService";
 
 export default {
   name: "ProjectInfo",
+  data() {
+    return {
+      page: null,
+      pageId: 79
+    };
+  },
   computed: {
     ...mapState("settings", [
       "projectInfoText1",
@@ -70,6 +51,13 @@ export default {
     return {
       title: title
     };
+  },
+  async created() {
+    this.isLoading = true;
+    const response = await SearchService.getDetailView("page", this.pageId);
+    console.log(response);
+    if (response && response?.public) this.page = response;
+    this.isLoading = false;
   }
 };
 </script>
@@ -109,5 +97,9 @@ export default {
 
 .kalloveen-logo {
   height: 100px;
+}
+
+img {
+  border-radius: 4px !important;
 }
 </style>
