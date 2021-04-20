@@ -1,6 +1,7 @@
 <template>
   <v-card-text>
     <div
+      class="project-info--content"
       v-if="page"
       v-html="$translate({ et: page.content_et, en: page.content_en })"
     />
@@ -99,7 +100,8 @@ export default {
   height: 100px;
 }
 
-img {
-  border-radius: 4px !important;
+.project-info--content >>> img {
+  border-radius: 4px;
+  margin-right: 16px !important;
 }
 </style>
