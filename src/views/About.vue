@@ -31,10 +31,10 @@
       :style="$vuetify.breakpoint.xlOnly ? 'position: fixed;' : ''"
     >
       <div v-if="imageIndex === 0 || imageIndex === 2">
-        {{ $t("about.imageAuthor") }}: <b>Tõnis Saadre</b> ({{
-          $t("about.egkCalendar")
-        }}
-        2000. a)
+        <!--        {{ $t("about.imageAuthor") }}: <b>Tõnis Saadre</b> ({{-->
+        <!--          $t("about.egkCalendar")-->
+        <!--        }}-->
+        <!--        2000. a)-->
       </div>
       <div v-else>{{ $t("about.imageAuthor") }}: <b>Peeter Koll</b> (2018)</div>
     </div>
@@ -199,7 +199,7 @@ export default {
 }
 
 .about >>> a:hover {
-  opacity: 0.7;
+  opacity: 0.8;
 }
 
 .project-version {

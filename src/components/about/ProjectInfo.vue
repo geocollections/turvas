@@ -10,7 +10,7 @@
 
     <div class="d-flex flex-row flex-wrap px-5 py-0 justify-space-around">
       <div
-        class="align-self-end pa-1"
+        class="align-self-center pa-1"
         v-for="logo in listOfLogos"
         :key="logo.id"
       >
@@ -103,5 +103,9 @@ export default {
 .project-info--content >>> img {
   border-radius: 4px;
   margin-right: 16px !important;
+}
+
+.etl-logo {
+  height: 70px;
 }
 </style>
