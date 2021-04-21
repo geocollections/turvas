@@ -26,43 +26,32 @@
       >
     </v-tabs>
 
-    <common-tab id="common" />
-
-    <map-tab id="map" />
-
-    <search-tab id="search" />
-
-    <table-tab id="table" />
-
-    <chart-tab id="graph" />
-
-    <more-tab id="more" />
+    <v-card-text
+      v-for="item in filteredItems"
+      :key="item.id"
+      :id="item.id"
+      class="user-manual--secondary-content pt-0"
+      v-html="
+        $translate({ et: item.page.content_et, en: item.page.content_en })
+      "
+    />
   </div>
 </template>
 
 <script>
-import MoreTab from "./user_manual/MoreTab";
-import ChartTab from "./user_manual/ChartTab";
-import TableTab from "./user_manual/TableTab";
-import SearchTab from "./user_manual/SearchTab";
-import MapTab from "./user_manual/MapTab";
-import CommonTab from "./user_manual/CommonTab";
 import SearchService from "@/middleware/SearchService";
 
 export default {
   name: "UserManual",
-
-  components: { MoreTab, ChartTab, TableTab, SearchTab, MapTab, CommonTab },
-
   data: () => ({
     tab: null,
     items: [
-      { id: "common", text: "userManual.common" },
-      { id: "map", text: "userManual.map" },
-      { id: "search", text: "userManual.search" },
-      { id: "table", text: "userManual.table" },
-      { id: "graph", text: "userManual.graph" },
-      { id: "more", text: "userManual.more" }
+      { id: "common", text: "userManual.common", tableId: 81, page: null },
+      { id: "map", text: "userManual.map", tableId: 82, page: null },
+      { id: "search", text: "userManual.search", tableId: 83, page: null },
+      { id: "table", text: "userManual.table", tableId: 84, page: null },
+      { id: "graph", text: "userManual.graph", tableId: 85, page: null },
+      { id: "more", text: "userManual.more", tableId: 86, page: null }
     ],
     page: null,
     pageId: 80,
@@ -77,9 +66,24 @@ export default {
   async created() {
     this.isLoading = true;
     const response = await SearchService.getDetailView("page", this.pageId);
-    console.log(response);
     if (response && response?.public) this.page = response;
+
+    for (const item of this.items) {
+      const itemResponse = await SearchService.getDetailView(
+        "page",
+        item.tableId
+      );
+      if (response && response?.public) item.page = itemResponse;
+    }
+
     this.isLoading = false;
+  },
+  computed: {
+    filteredItems() {
+      return this.items.filter(
+        item => item.page && (item.page?.content_et || item.page?.content_en)
+      );
+    }
   }
 };
 </script>
@@ -98,8 +102,25 @@ export default {
   font-size: 2.125rem !important;
   line-height: 2.5rem;
   letter-spacing: 0.0073529412em !important;
-  font-weight: 400;
-  font-family: Roboto, sans-serif !important;
+  font-weight: 500;
+  font-family: "Raleway", "Fira Sans", sans-serif !important;
   margin-bottom: 8px;
+}
+
+/* Styles copied from .headline class */
+.user-manual--secondary-content >>> h2 {
+  line-height: 2rem;
+  font-family: "Raleway", "Fira Sans", sans-serif !important;
+  font-size: 1.75rem !important;
+  font-weight: 500;
+  letter-spacing: normal !important;
+  padding: 16px 0;
+}
+
+.user-manual--secondary-content >>> img {
+  max-width: 100%;
+  border-radius: 4px;
+  display: block;
+  height: unset !important;
 }
 </style>
