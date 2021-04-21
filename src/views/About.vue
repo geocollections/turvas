@@ -207,4 +207,11 @@ export default {
   right: 15px;
   font-size: 12px;
 }
+
+.display-1,
+.display-2,
+.display-3 {
+  font-family: "Raleway", "Fira Sans", sans-serif !important;
+  font-weight: 400;
+}
 </style>

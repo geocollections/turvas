@@ -86,7 +86,6 @@ const detailTranslations = {
 
     translatedSampleAnalysesHeaders() {
       return this.getSampleAnalysesHeaders.map(header => {
-        console.log(header);
         return {
           ...header,
           text: this.$t(`sampleAnalyses.${header.value}`)
