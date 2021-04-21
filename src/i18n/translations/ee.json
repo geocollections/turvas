@@ -18,7 +18,7 @@
     "title": "Eesti turbauuringute andmebaas",
     "titleShort": "Turbauuringute andmebaas",
     "kik": "Keskkonnainvesteeringute keskus",
-    "subtitle": "<div>Andmestik on kogutud <a style='color: white' href='http://www.egk.ee/' target='EGKWindow'>Eesti Geoloogiakeskuse</a> poolt 1967-2013</div><div>Digiteeritud ja täiendatud <a style='color: white' href='https://www.taltech.ee/geoloogia-instituut' target='TalTechWindow'>Tallinna Tehnikaülikoolis</a> 2016-2021</div><div>Toetas <a style='color: white' href='http://kik.ee/et' target='KikWindow'>KIK</a></div>"
+    "subtitle": "<div>Andmestik on kogutud <a style='color: white' href='http://www.egt.ee/' target='EGTWindow'>Eesti Geoloogiakeskuse</a> poolt 1967-2013</div><div>Digiteeritud ja täiendatud <a style='color: white' href='https://www.taltech.ee/geoloogia-instituut' target='TalTechWindow'>Tallinna Tehnikaülikoolis</a> 2016-2021</div><div>Toetas <a style='color: white' href='http://kik.ee/et' target='KikWindow'>KIK</a></div>"
   },
   "header": {
     "areas": "Turbaalad",
