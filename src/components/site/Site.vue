@@ -296,12 +296,15 @@ export default {
     },
 
     filteredListParameters() {
-      return this.listParameters.filter(item => !item.isText);
+      if (this.listParameters && this.listParameters.length > 0)
+        return this.listParameters.filter(item => !item.isText);
+      else return [];
     }
   },
 
   metaInfo() {
-    const title = `${this.$t("site.name")}: ${this?.getSite?.name ?? this.$route.params.id}`;
+    const title = `${this.$t("site.name")}: ${this?.getSite?.name ??
+      this.$route.params.id}`;
     return {
       title: title
     };
