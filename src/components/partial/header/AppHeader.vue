@@ -46,6 +46,7 @@
             to="/projekti_info"
             exact
             color="white"
+            class="hidden-md-and-down"
             >{{ $t("header.projectInfo") }}</v-btn
           >
           <v-btn
@@ -92,6 +93,7 @@
           <!--          </v-tooltip>-->
 
           <v-menu
+            v-if="$vuetify.breakpoint.smAndUp"
             transition="slide-y-transition"
             v-model="externalResourcesDropdown"
             offset-y
@@ -130,7 +132,8 @@
             </v-list>
           </v-menu>
 
-          <lang-buttons />
+          <lang-buttons v-if="false" />
+          <lang-buttons-separate />
 
           <v-text-field
             :value="getFastSearch"
@@ -235,6 +238,27 @@
           </v-list-item>
         </v-list-item-group>
 
+        <v-list-item-group v-if="$vuetify.breakpoint.xsOnly">
+          <v-list-item
+            v-for="(item, id) in externalResources"
+            :key="item.text"
+            :href="item.url"
+            target="ExternalResourcesWindow"
+          >
+            <v-list-item-icon>
+              <img
+                v-if="id === 0"
+                height="24"
+                width="24"
+                :src="require('@/assets/img/emaapou6.svg')"
+                :alt="$t(item.text)"
+              />
+              <v-icon v-else v-text="item.icon" />
+            </v-list-item-icon>
+            <v-list-item-title>{{ $t(item.text) }}</v-list-item-title>
+          </v-list-item>
+        </v-list-item-group>
+
         <v-list-item class="px-0 pt-2">
           <v-text-field
             :value="getFastSearch"
@@ -257,10 +281,11 @@
 <script>
 import { mapActions, mapGetters } from "vuex";
 import LangButtons from "@/components/partial/LangButtons";
+import LangButtonsSeparate from "@/components/partial/LangButtonsSeparate";
 
 export default {
   name: "AppHeader",
-  components: { LangButtons },
+  components: { LangButtonsSeparate, LangButtons },
   props: {
     isFrontPage: Boolean,
     isAboutPage: Boolean,
@@ -287,6 +312,10 @@ export default {
         text: "resources.publicApi",
         url: "https://api.geocollections.info/"
       }
+    ],
+    languages: [
+      { value: "ee", text: "EST" },
+      { value: "en", text: "ENG" }
     ]
   }),
 

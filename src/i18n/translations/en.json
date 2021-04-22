@@ -85,7 +85,32 @@
     "egt": "Geological Survey of Estonia",
     "peatResearch": "Peat research",
     "geologicalBackground": "Geological background",
-    "basemaps": "Basemaps"
+    "basemaps": "Basemaps",
+    "madalsoo": "Fen peat",
+    "siirdesoo": "Transitional peat",
+    "rabaSega": "Bog - mix",
+    "raba": "Bog peat",
+    "metsa": "Forest",
+    "metsaMare": "Forest - wetland",
+    "mare": "Wetland",
+    "sookaitse_alad": "Peat protection areas",
+    "turbamaardla_0_kontuur": "Peat deposit 0-outline",
+    "toostuslasund_kontuur": "Industrial property outline",
+    "kultuurpind": "Cultural area",
+    "sapropeeli_0_kontuur": "Gyttja  0-outline",
+    "sapropeeli_toostuslasund": "Gyttja industrial property",
+    "alusturba_levikuala": "Base peat coverage",
+    "majandi_piir": "farm border",
+    "lasundituubi_kontuur": "Deposit type outline",
+    "rajooni_piir": "District border",
+    "vabariigi_piir": "State border",
+    "proovipunkt": "Sampling site",
+    "sondeerimispunkt": "Probing point",
+    "vana_proovipunkt": "Old sampling site",
+    "vana_sondeerimispunkt": "Old probing point",
+    "vana_karjaar": "Old quarry outline",
+    "tootmisala": "Production outline",
+    "vana_raudtee": "Old railway dam"
   },
   "area": {
     "detailView": "Peat area detail view",
@@ -225,7 +250,7 @@
     "more": "More"
   },
   "resources": {
-    "eMaapou": "e-Maapõu",
+    "eMaapou": "e-Geology",
     "publicApi": "Geocollections API",
     "turvasGithub": "TURBA on GitHub"
   }

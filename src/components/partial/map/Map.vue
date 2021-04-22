@@ -17,20 +17,12 @@
       <div>Lon: {{ latlngLive.lng.toFixed(6) }}</div>
     </div>
 
-    <div class="map-legend">
-      <div class="map-legend-row d-flex flex-row">
-        <span style="background-color: #70b160;"></span>
-        <span>{{ $t("map.area") }}</span>
-      </div>
-      <div class="map-legend-row d-flex flex-row">
-        <span style="background-color: #ec1e17;"></span>
-        <span>{{ $t("map.site") }}</span>
-      </div>
-      <div class="map-legend-row d-flex flex-row">
-        <span style="background-color: #fff; border: 1px solid #000;"></span>
-        <span>{{ $t("map.plans") }}</span>
-      </div>
-    </div>
+    <map-legend
+      v-if="$vuetify.breakpoint.smAndUp"
+      :is-plans-layer-active="isPlansLayerActive"
+      @handle:mouseEnter="map.scrollWheelZoom.disable()"
+      @handle:mouseLeave="map.scrollWheelZoom.enable()"
+    />
 
     <a
       href="https://kik.ee"
@@ -80,10 +72,11 @@ import "leaflet-fullscreen/dist/Leaflet.fullscreen";
 import "proj4leaflet";
 import { mapActions, mapGetters, mapState } from "vuex";
 import { debounce } from "lodash";
+import MapLegend from "@/components/partial/map/MapLegend";
 
 export default {
   name: "Map",
-
+  components: { MapLegend },
   data() {
     return {
       map: null,
@@ -372,7 +365,8 @@ export default {
       "areaFromGeoserver",
       "siteFromGeoserver"
     ]),
-    ...mapGetters("detail", ["getAreaSites", "getSample", "getAreaGeometry"])
+    ...mapGetters("detail", ["getAreaSites", "getSample", "getAreaGeometry"]),
+    ...mapGetters("map", ["isPlansLayerActive"])
   },
 
   watch: {
@@ -812,7 +806,8 @@ export default {
   height: calc(100% - 64px);
 }
 
-.top-controls >>> .leaflet-top {
+.top-controls >>> .leaflet-top,
+.top-controls >>> .live-coordinates {
   top: 64px;
 }
 
@@ -831,38 +826,19 @@ export default {
 }
 
 .live-coordinates {
-  margin-bottom: 26px;
-  margin-right: 134px;
+  /*margin-top: 56px;*/
+  margin-top: 64px; /* mobile size needs to be 8px higher becuase of layerswitch */
+  /*margin-right: 134px;*/
+  margin-right: 10px;
   position: absolute;
   right: 0;
-  bottom: 0;
+  top: 0;
   z-index: 500;
   background-color: #fff;
   border-radius: 5px;
   padding: 1px 6px;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
   opacity: 0.7;
-}
-
-.map-legend {
-  margin-right: 10px;
-  position: absolute;
-  z-index: 500;
-  background-color: #fff;
-  border-radius: 5px;
-  padding: 4px 6px;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
-  right: 0;
-  bottom: 0;
-  margin-bottom: 26px;
-  opacity: 0.7;
-}
-
-.map-legend-row > span:first-child {
-  width: 18px;
-  height: 18px;
-  display: inline-block;
-  margin-right: 5px;
 }
 
 .cursor-crosshair {
