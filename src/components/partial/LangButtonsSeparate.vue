@@ -9,7 +9,6 @@
       small
       v-for="item in languages"
       :key="item.text"
-      v-on="on"
       @click="changeLang(item.value)"
     >
       {{ item.text }}

@@ -113,7 +113,42 @@
     "vana_raudtee": "Vana raudteetamm",
     "legend": "Legend",
     "peatTypes": "Turbalasundi tüübid",
-    "peatSubtypes": "Turbalasundi alltüübid"
+    "peatSubtypes": "Turbalasundi alltüübid",
+
+    "Peat areas": "Turbaalad",
+    "Sampling sites": "Uuringupunktid",
+    "Peat area plans": "Turbaalade plaanid",
+    "Peat deposits 2020": "Turbamaardlad 2020",
+
+    "Peat sediments (400k)": "Soosetted (400k)",
+    "Soil map": "Mullakaart",
+    "Coating thickness": "Pinnakatte paksus",
+    "Bedrock relief": "Aluspõhja reljeef",
+    "Bedrock geology 400k": "Aluspõhja geoloogia 400k",
+
+    "Counties": "Maakonnad",
+    "Hybrid map": "Hübriidkaart",
+    "Main map": "Põhikaart",
+    "Satellite map": "Fotokaart",
+    "Relief map": "Reljeefkaart",
+
+
+    "Turbaalad": "Turbaalad",
+    "Uuringupunktid": "Uuringupunktid",
+    "Turbaalade plaanid": "Turbaalade plaanid",
+    "Turbamaardlad 2020": "Turbamaardlad 2020",
+
+    "Soosetted (400k)": "Soosetted (400k)",
+    "Mullakaart": "Mullakaart",
+    "Pinnakatte paksus": "Pinnakatte paksus",
+    "Aluspõhja reljeef": "Aluspõhja reljeef",
+    "Aluspõhja geoloogia 400k": "Aluspõhja geoloogia 400k",
+
+    "Maakonnad": "Maakonnad",
+    "Hübriidkaart": "Hübriidkaart",
+    "Põhikaart": "Põhikaart",
+    "Fotokaart": "Fotokaart",
+    "Reljeefkaart": "Reljeefkaart"
   },
   "area": {
     "detailView": "Turbaala detailvaade",

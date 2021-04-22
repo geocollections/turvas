@@ -93,6 +93,7 @@ export default {
       center: L.latLng(58.65, 25.0),
       tileProviders: [
         {
+          id: "Põhikaart",
           name: "Põhikaart",
           name_en: "Main map",
           leafletObject: L.tileLayer(
@@ -109,6 +110,7 @@ export default {
           )
         },
         {
+          id: "Fotokaart",
           name: "Fotokaart",
           name_en: "Satellite map",
           leafletObject: L.tileLayer(
@@ -125,6 +127,7 @@ export default {
           )
         },
         {
+          id: "Reljeefikaart",
           name: "Reljeefikaart",
           name_en: "Relief map",
           leafletObject: L.tileLayer(
@@ -142,6 +145,7 @@ export default {
       ],
       overlayMaps: [
         {
+          id: "Turbaalad",
           name: "Turbaalad",
           name_en: "Peat areas",
           leafletObject: L.tileLayer.wms(
@@ -160,6 +164,7 @@ export default {
           )
         },
         {
+          id: "Uuringupunktid",
           name: "Uuringupunktid",
           name_en: "Sampling sites",
           leafletObject: L.tileLayer.wms(
@@ -178,6 +183,7 @@ export default {
           )
         },
         {
+          id: "Turbaalade plaanid",
           name: "Turbaalade plaanid",
           name_en: "Peat area plans",
           leafletObject: L.tileLayer.wms(
@@ -196,6 +202,7 @@ export default {
           )
         },
         {
+          id: "Turbamaardlad 2020",
           name: "Turbamaardlad 2020",
           name_en: "Peat deposits 2020",
           leafletObject: L.tileLayer.wms(
@@ -215,6 +222,7 @@ export default {
           )
         },
         {
+          id: "Soosetted (400k)",
           name: "Soosetted (400k)",
           name_en: "Peat sediments (400k)",
           leafletObject: L.tileLayer.wms(
@@ -233,6 +241,7 @@ export default {
           )
         },
         {
+          id: "Mullakaart",
           name: "Mullakaart",
           name_en: "Soil map",
           leafletObject: L.tileLayer.wms("https://kaart.maaamet.ee/wms/alus?", {
@@ -248,6 +257,7 @@ export default {
           })
         },
         {
+          id: "Pinnakatte paksus",
           name: "Pinnakatte paksus",
           name_en: "Coating thickness",
           leafletObject: L.tileLayer.wms(
@@ -266,6 +276,7 @@ export default {
           )
         },
         {
+          id: "Aluspõhja reljeef",
           name: "Aluspõhja reljeef",
           name_en: "Bedrock relief",
           leafletObject: L.tileLayer.wms(
@@ -284,6 +295,7 @@ export default {
           )
         },
         {
+          id: "Aluspõhja geoloogia 400k",
           name: "Aluspõhja geoloogia 400k",
           name_en: "Bedrock geology 400k",
           leafletObject: L.tileLayer.wms(
@@ -302,6 +314,7 @@ export default {
           )
         },
         {
+          id: "Maakonnad",
           name: "Maakonnad",
           name_en: "Counties",
           leafletObject: L.tileLayer.wms(
@@ -320,6 +333,7 @@ export default {
           )
         },
         {
+          id: "Hübriidkaart",
           name: "Hübriidkaart",
           name_en: "Hybrid map",
           leafletObject: L.tileLayer(
@@ -366,7 +380,26 @@ export default {
       "siteFromGeoserver"
     ]),
     ...mapGetters("detail", ["getAreaSites", "getSample", "getAreaGeometry"]),
-    ...mapGetters("map", ["isPlansLayerActive"])
+    ...mapGetters("map", ["isPlansLayerActive"]),
+    computedDefaultBaseLayer() {
+      return this.$t("map.Satellite map");
+    },
+    computedDefaultOverlayLayers() {
+      console.log(this.defaultOverlayLayers);
+      if (this.defaultOverlayLayers && this.defaultOverlayLayers.length > 0) {
+        const translated = this.defaultOverlayLayers.map(item => {
+          console.log(item);
+          return this.$t(`map.${item}`);
+        });
+        console.log(translated);
+        return translated;
+      } else
+        return [
+          this.$t("map.Turbaalad"),
+          this.$t("map.Uuringupunktid"),
+          this.$t("map.Maakonnad")
+        ];
+    }
   },
 
   watch: {
@@ -545,11 +578,16 @@ export default {
 
       let baseLayers = {};
       this.tileProviders.forEach(provider => {
-        baseLayers[provider.name] = provider.leafletObject;
+        baseLayers[
+          this.$i18n.locale === "ee" ? provider.name : provider.name_en
+        ] = provider.leafletObject;
       });
       let overlayMaps = {};
       this.overlayMaps.forEach(
-        provider => (overlayMaps[provider.name] = provider.leafletObject)
+        provider =>
+          (overlayMaps[
+            this.$i18n.locale === "ee" ? provider.name : provider.name_en
+          ] = provider.leafletObject)
       );
 
       L.control
@@ -564,14 +602,20 @@ export default {
       this.map.addControl(new window.L.Control.Fullscreen());
 
       // Adding default base layer
-      if (this.defaultBaseLayer && this.defaultBaseLayer !== "Fotokaart") {
-        this.map.removeLayer(baseLayers["Fotokaart"]);
-        this.map.addLayer(baseLayers[this.defaultBaseLayer]);
+      if (
+        this.defaultBaseLayer &&
+        this.defaultBaseLayer !== this.$t("map.Satellite map")
+      ) {
+        this.map.removeLayer(baseLayers[this.$t("map.Satellite map")]);
+        this.map.addLayer(baseLayers[this.computedDefaultBaseLayer]);
       }
 
       // Adding default overlay layers
-      if (this.defaultOverlayLayers && this.defaultOverlayLayers.length > 0) {
-        this.defaultOverlayLayers.forEach(layer => {
+      if (
+        this.computedDefaultOverlayLayers &&
+        this.computedDefaultOverlayLayers.length > 0
+      ) {
+        this.computedDefaultOverlayLayers.forEach(layer => {
           if (!this.map.hasLayer(overlayMaps[layer])) {
             this.map.addLayer(overlayMaps[layer]);
           }
