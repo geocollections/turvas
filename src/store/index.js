@@ -12,7 +12,7 @@ Vue.use(Vuex);
 
 const vuexLocal = new VuexPersistence({
   // Also update version in settings module
-  key: "turba.geoloogia.info_v1.5.0",
+  key: "turba.geoloogia.info_v1.6.0",
   storage: window.localStorage,
   reducer: state => ({ settings: state.settings })
 });
