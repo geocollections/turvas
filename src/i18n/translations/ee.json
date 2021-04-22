@@ -18,7 +18,7 @@
     "title": "Eesti turbauuringute andmebaas",
     "titleShort": "Turbauuringute andmebaas",
     "kik": "Keskkonnainvesteeringute keskus",
-    "subtitle": "<div>Andmestik on kogutud <a style='color: white' href='http://www.egk.ee/' target='EGKWindow'>Eesti Geoloogiakeskuse</a> poolt 1967-2013</div><div>Digiteeritud ja täiendatud <a style='color: white' href='https://www.taltech.ee/geoloogia-instituut' target='TalTechWindow'>Tallinna Tehnikaülikoolis</a> 2016-2021</div><div>Toetas <a style='color: white' href='http://kik.ee/et' target='KikWindow'>KIK</a></div>"
+    "subtitle": "<div>Andmestik on kogutud <a style='color: white' href='http://www.egt.ee/' target='EGTWindow'>Eesti Geoloogiakeskuse</a> poolt 1967-2013</div><div>Digiteeritud ja täiendatud <a style='color: white' href='https://www.taltech.ee/geoloogia-instituut' target='TalTechWindow'>Tallinna Tehnikaülikoolis</a> 2016-2021</div><div>Toetas <a style='color: white' href='http://kik.ee/et' target='KikWindow'>KIK</a></div>"
   },
   "header": {
     "areas": "Turbaalad",
@@ -32,7 +32,8 @@
     "frontPage": "Pealeht",
     "hideMap": "Peida kaart",
     "showMap": "Näita kaarti",
-    "emaapou": "Kogu info Eesti maapõuest"
+    "emaapou": "Kogu info Eesti maapõuest",
+    "resources": "Lingid"
   },
   "about": {
     "imageAuthor": "Pildi autor",
@@ -78,13 +79,76 @@
   "map": {
     "area": "Turbaala",
     "site": "Proovipunkt",
-    "plans": "Plaanid al 1km",
+    "plans": "Plaanid alates 1km",
     "maaamet": "Maa-amet",
     "gi": "Geoloogia instituut",
     "egt": "Eesti Geoloogiateenistus",
     "peatResearch": "Turbauuringud",
     "geologicalBackground": "Geoloogiline taust",
-    "basemaps": "Aluskaardid"
+    "basemaps": "Aluskaardid",
+    "madalsoo": "Madalsoo",
+    "siirdesoo": "Siirdesoo",
+    "rabaSega": "Raba - sega",
+    "raba": "Raba",
+    "metsa": "Metsa",
+    "metsaMare": "Metsa - märe",
+    "mare": "Märe",
+    "sookaitse_alad": "Sookaitse alad",
+    "turbamaardla_0_kontuur": "Turbamaardla 0-kontuur",
+    "toostuslasund_kontuur": "Tööstuslasundi kontuur",
+    "kultuurpind": "Kultuurpind",
+    "sapropeeli_0_kontuur": "Sapropeeli 0-kontuur",
+    "sapropeeli_toostuslasund": "Sapropeeli tööstuslasund",
+    "alusturba_levikuala": "Alusturba levikuala",
+    "majandi_piir": "Majandi piir",
+    "lasundituubi_kontuur": "Lasunditüübi kontuur",
+    "rajooni_piir": "Rajooni piir",
+    "vabariigi_piir": "Vabariigi piir",
+    "proovipunkt": "Proovipunkt",
+    "sondeerimispunkt": "Sondeerimispunkt",
+    "vana_proovipunkt": "Vana proovipunkt",
+    "vana_sondeerimispunkt": "Vana sondeerimispunkt",
+    "vana_karjaar": "Vana karjääri kontuur",
+    "tootmisala": "Tootmisala kontuur",
+    "vana_raudtee": "Vana raudteetamm",
+    "legend": "Legend",
+    "peatTypes": "Turbalasundi tüübid",
+    "peatSubtypes": "Turbalasundi alltüübid",
+
+    "Peat areas": "Turbaalad",
+    "Sampling sites": "Uuringupunktid",
+    "Peat area plans": "Turbaalade plaanid",
+    "Peat deposits 2020": "Turbamaardlad 2020",
+
+    "Peat sediments (400k)": "Soosetted (400k)",
+    "Soil map": "Mullakaart",
+    "Coating thickness": "Pinnakatte paksus",
+    "Bedrock relief": "Aluspõhja reljeef",
+    "Bedrock geology 400k": "Aluspõhja geoloogia 400k",
+
+    "Counties": "Maakonnad",
+    "Hybrid map": "Hübriidkaart",
+    "Main map": "Põhikaart",
+    "Satellite map": "Fotokaart",
+    "Relief map": "Reljeefkaart",
+
+
+    "Turbaalad": "Turbaalad",
+    "Uuringupunktid": "Uuringupunktid",
+    "Turbaalade plaanid": "Turbaalade plaanid",
+    "Turbamaardlad 2020": "Turbamaardlad 2020",
+
+    "Soosetted (400k)": "Soosetted (400k)",
+    "Mullakaart": "Mullakaart",
+    "Pinnakatte paksus": "Pinnakatte paksus",
+    "Aluspõhja reljeef": "Aluspõhja reljeef",
+    "Aluspõhja geoloogia 400k": "Aluspõhja geoloogia 400k",
+
+    "Maakonnad": "Maakonnad",
+    "Hübriidkaart": "Hübriidkaart",
+    "Põhikaart": "Põhikaart",
+    "Fotokaart": "Fotokaart",
+    "Reljeefkaart": "Reljeefkaart"
   },
   "area": {
     "detailView": "Turbaala detailvaade",
@@ -222,5 +286,10 @@
     "table": "Tabel",
     "graph": "Graafik",
     "more": "Rohkem lugemist"
+  },
+  "resources": {
+    "eMaapou": "e-Maapõu",
+    "publicApi": "Geokogude API",
+    "turvasGithub": "TURBA GitHubis"
   }
 }

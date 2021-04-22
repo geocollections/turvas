@@ -15,10 +15,10 @@
     "linkToRegistry": "(link to registry)"
   },
   "frontpage": {
-    "title": "Estonian peat database",
+    "title": "Estonian Peat Database",
     "titleShort": "Peat database",
     "kik": " Environmental Investment Centre",
-    "subtitle": "<div>Data collected by the <a style='color: white' href='http://www.egk.ee/' target='EGKWindow'>Geological Survey of Estonia</a> 1967-2013</div><div>Digitised and enhanced by <a style='color: white' href='https://www.taltech.ee/en/department-geology' target='TalTechWindow'>TalTech</a> 2016-2021</div><div>Supported by <a style='color: white' href='http://kik.ee/en' target='KikWindow'>KIK</a></div>"
+    "subtitle": "<div>Data collected by the <a style='color: white' href='http://www.egt.ee/' target='EGTWindow'>Geological Survey of Estonia</a> 1967-2013</div><div>Digitised and enhanced by <a style='color: white' href='https://www.taltech.ee/en/department-geology' target='TalTechWindow'>TalTech</a> 2016-2021</div><div>Supported by <a style='color: white' href='http://kik.ee/en' target='KikWindow'>KIK</a></div>"
   },
   "header": {
     "areas": "Peat areas",
@@ -32,7 +32,8 @@
     "frontPage": "Front page",
     "hideMap": "Hide map",
     "showMap": "Show map",
-    "emaapou": "Geological data from Estonia"
+    "emaapou": "Geological data from Estonia",
+    "resources": "Links"
   },
   "about": {
     "imageAuthor": "Image author",
@@ -84,7 +85,70 @@
     "egt": "Geological Survey of Estonia",
     "peatResearch": "Peat research",
     "geologicalBackground": "Geological background",
-    "basemaps": "Basemaps"
+    "basemaps": "Basemaps",
+    "madalsoo": "Fen peat",
+    "siirdesoo": "Transitional peat",
+    "rabaSega": "Bog - mix",
+    "raba": "Bog peat",
+    "metsa": "Forest",
+    "metsaMare": "Forest - wetland",
+    "mare": "Wetland",
+    "sookaitse_alad": "Peat protection areas",
+    "turbamaardla_0_kontuur": "Peat deposit 0-outline",
+    "toostuslasund_kontuur": "Industrial property outline",
+    "kultuurpind": "Cultural area",
+    "sapropeeli_0_kontuur": "Gyttja  0-outline",
+    "sapropeeli_toostuslasund": "Gyttja industrial property",
+    "alusturba_levikuala": "Base peat coverage",
+    "majandi_piir": "farm border",
+    "lasundituubi_kontuur": "Deposit type outline",
+    "rajooni_piir": "District border",
+    "vabariigi_piir": "State border",
+    "proovipunkt": "Sampling site",
+    "sondeerimispunkt": "Probing point",
+    "vana_proovipunkt": "Old sampling site",
+    "vana_sondeerimispunkt": "Old probing point",
+    "vana_karjaar": "Old quarry outline",
+    "tootmisala": "Production outline",
+    "vana_raudtee": "Old railway dam",
+    "legend": "Legend",
+    "peatTypes": "Peat types",
+    "peatSubtypes": "Peat subtypes",
+
+    "Peat areas": "Peat areas",
+    "Sampling sites": "Sampling sites",
+    "Peat area plans": "Peat area plans",
+    "Peat deposits 2020": "Peat deposits 2020",
+
+    "Peat sediments (400k)": "Peat sediments (400k)",
+    "Soil map": "Soil map",
+    "Coating thickness": "Coating thickness",
+    "Bedrock relief": "Bedrock relief",
+    "Bedrock geology 400k": "Bedrock geology 400k",
+
+    "Counties": "Counties",
+    "Hybrid map": "Hybrid map",
+    "Main map": "Main map",
+    "Satellite map": "Satellite map",
+    "Relief map": "Relief map",
+
+
+    "Turbaalad": "Peat areas",
+    "Uuringupunktid": "Sampling sites",
+    "Turbaalade plaanid": "Peat area plans",
+    "Turbamaardlad 2020": "Peat deposits 2020",
+
+    "Soosetted (400k)": "Peat sediments (400k)",
+    "Mullakaart": "Soil map",
+    "Pinnakatte paksus": "Coating thickness",
+    "Aluspõhja reljeef": "Bedrock relief",
+    "Aluspõhja geoloogia 400k": "Bedrock geology 400k",
+
+    "Maakonnad": "Counties",
+    "Hübriidkaart": "Hybrid map",
+    "Põhikaart": "Main map",
+    "Fotokaart": "Satellite map",
+    "Reljeefkaart": "Relief map"
   },
   "area": {
     "detailView": "Peat area detail view",
@@ -202,7 +266,7 @@
     "kikTitle": "View headnote",
     "kik": "EIC project no. 14460 headnote and user manual (pdf format, 1MB)",
     "doiTitle": "https://doi.geocollections.info/10.15152/GEO.487",
-    "doi": "Estonian peat database (data in xlsx format, 7MB, registered dataset DOI:10.15152/GEO.487)",
+    "doi": "Estonian Peat Database (data in xlsx format, 7MB, registered dataset DOI:10.15152/GEO.487)",
     "plansTitle": "Download georeferenced technical plans for peatlands",
     "plans": "Georeferenced technical plans of peatlands (geotiff format, ~6GB)",
     "files": "Abandoned peat field files (links to Geological Survey reports):",
@@ -222,5 +286,10 @@
     "table": "Table",
     "graph": "Graph",
     "more": "More"
+  },
+  "resources": {
+    "eMaapou": "e-Geology",
+    "publicApi": "Geocollections API",
+    "turvasGithub": "TURBA on GitHub"
   }
 }

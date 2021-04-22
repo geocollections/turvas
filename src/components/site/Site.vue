@@ -17,7 +17,6 @@
           disable-filtering
           disable-pagination
           hide-default-footer
-          hide-default-header
           :headers="translatedSiteHeaders"
           :items="[getSite]"
         >

@@ -4,7 +4,7 @@ import getters from "./getters";
 
 const state = {
   language: "ee",
-  projectVersion: "1.4.0",
+  projectVersion: "1.5.0",
   showMap: true,
   projectInfoText1:
     '<a href="https://kik.ee" title="KIK" target="KikWindow" class="table-link">Keskkonnainvesteeringute Keskuse</a> projektid nr 12623 "Turbaalaste uurimistulemuste digitaliseerimine ja andmebaasi koostamine I etapp (Harju, Rapla, Pärnu maakond)" ja nr 14460 “Turbaalaste uurimistulemuste digitaliseerimine ja andmebaasi koostamine II etapp (jätkuprojekt)” eesmärgiks oli turba uurimisel kogutud andmestiku alusel koostada üldsusele kättesaadav andmebaas nii, et see oleks ühildatav geoloogilise kaardistamise käigus kogutavate andmete ja keskkonnaregistri maardlate nimistu infoga.',
@@ -90,7 +90,7 @@ const state = {
   backgroundImages: [
     {
       id: 0,
-      src: "https://turba.geoloogia.info/failid/pildid/punasoo_raba_1.jpg"
+      src: "https://turba.geoloogia.info/failid/pildid/turvas_background_1.jpg"
     },
     {
       id: 1,
@@ -98,7 +98,7 @@ const state = {
     },
     {
       id: 2,
-      src: "https://turba.geoloogia.info/failid/pildid/kakerdaja_raba_1.jpg"
+      src: "https://turba.geoloogia.info/failid/pildid/turvas_background_2.jpg"
     },
     {
       id: 3,

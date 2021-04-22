@@ -46,6 +46,7 @@
             to="/projekti_info"
             exact
             color="white"
+            class="hidden-md-and-down"
             >{{ $t("header.projectInfo") }}</v-btn
           >
           <v-btn
@@ -71,27 +72,68 @@
         <v-spacer />
 
         <v-toolbar-items>
-          <v-tooltip bottom>
+          <!--          <v-tooltip bottom>-->
+          <!--            <template v-slot:activator="{ on }">-->
+          <!--              <v-btn-->
+          <!--                v-on="on"-->
+          <!--                icon-->
+          <!--                href="https://geoloogia.info"-->
+          <!--                target="EMaapouWindow"-->
+          <!--              >-->
+          <!--                <img-->
+          <!--                  height="20"-->
+          <!--                  width="20"-->
+          <!--                  :src="require('@/assets/img/emaapou6white.svg')"-->
+          <!--                  alt="e-Maapõu"-->
+          <!--                />-->
+          <!--              </v-btn>-->
+          <!--            </template>-->
+
+          <!--            <span>{{ $t("header.emaapou") }}</span>-->
+          <!--          </v-tooltip>-->
+
+          <v-menu
+            v-if="$vuetify.breakpoint.smAndUp"
+            transition="slide-y-transition"
+            v-model="externalResourcesDropdown"
+            offset-y
+            z-index="2101"
+          >
             <template v-slot:activator="{ on }">
-              <v-btn
-                v-on="on"
-                icon
-                href="https://geoloogia.info"
-                target="EMaapouWindow"
-              >
-                <img
-                  height="28"
-                  width="28"
-                  :src="require('@/assets/img/emaapou6white.svg')"
-                  alt="e-Maapõu"
-                />
+              <v-btn color="white" text v-on="on">
+                {{ $t("header.resources") }}
+                <v-icon right>{{
+                  externalResourcesDropdown
+                    ? "fas fa-caret-up"
+                    : "fas fa-caret-down"
+                }}</v-icon>
               </v-btn>
             </template>
 
-            <span>{{ $t("header.emaapou") }}</span>
-          </v-tooltip>
+            <v-list color="primary" dark dense>
+              <v-list-item
+                v-for="(item, id) in externalResources"
+                :key="item.text"
+                :href="item.url"
+                target="ExternalResourcesWindow"
+              >
+                <v-list-item-icon>
+                  <img
+                    v-if="id === 0"
+                    height="24"
+                    width="24"
+                    :src="require('@/assets/img/emaapou6white.svg')"
+                    :alt="$t(item.text)"
+                  />
+                  <v-icon v-else v-text="item.icon" />
+                </v-list-item-icon>
+                <v-list-item-title>{{ $t(item.text) }}</v-list-item-title>
+              </v-list-item>
+            </v-list>
+          </v-menu>
 
-          <lang-buttons />
+          <lang-buttons v-if="false" />
+          <lang-buttons-separate />
 
           <v-text-field
             :value="getFastSearch"
@@ -196,6 +238,27 @@
           </v-list-item>
         </v-list-item-group>
 
+        <v-list-item-group v-if="$vuetify.breakpoint.xsOnly">
+          <v-list-item
+            v-for="(item, id) in externalResources"
+            :key="item.text"
+            :href="item.url"
+            target="ExternalResourcesWindow"
+          >
+            <v-list-item-icon>
+              <img
+                v-if="id === 0"
+                height="24"
+                width="24"
+                :src="require('@/assets/img/emaapou6.svg')"
+                :alt="$t(item.text)"
+              />
+              <v-icon v-else v-text="item.icon" />
+            </v-list-item-icon>
+            <v-list-item-title>{{ $t(item.text) }}</v-list-item-title>
+          </v-list-item>
+        </v-list-item-group>
+
         <v-list-item class="px-0 pt-2">
           <v-text-field
             :value="getFastSearch"
@@ -218,10 +281,11 @@
 <script>
 import { mapActions, mapGetters } from "vuex";
 import LangButtons from "@/components/partial/LangButtons";
+import LangButtonsSeparate from "@/components/partial/LangButtonsSeparate";
 
 export default {
   name: "AppHeader",
-  components: { LangButtons },
+  components: { LangButtonsSeparate, LangButtons },
   props: {
     isFrontPage: Boolean,
     isAboutPage: Boolean,
@@ -230,7 +294,29 @@ export default {
   },
 
   data: () => ({
-    drawer: false
+    drawer: false,
+    externalResourcesDropdown: false,
+    externalResources: [
+      {
+        icon: require("@/assets/img/emaapou6white.svg"),
+        text: "resources.eMaapou",
+        url: "https://geoloogia.info"
+      },
+      {
+        icon: "fab fa-github",
+        text: "resources.turvasGithub",
+        url: "https://github.com/geocollections/turvas"
+      },
+      {
+        icon: "fas fa-database",
+        text: "resources.publicApi",
+        url: "https://api.geocollections.info/"
+      }
+    ],
+    languages: [
+      { value: "ee", text: "EST" },
+      { value: "en", text: "ENG" }
+    ]
   }),
 
   computed: {

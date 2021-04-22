@@ -17,20 +17,12 @@
       <div>Lon: {{ latlngLive.lng.toFixed(6) }}</div>
     </div>
 
-    <div class="map-legend">
-      <div class="map-legend-row d-flex flex-row">
-        <span style="background-color: #70b160;"></span>
-        <span>{{ $t("map.area") }}</span>
-      </div>
-      <div class="map-legend-row d-flex flex-row">
-        <span style="background-color: #ec1e17;"></span>
-        <span>{{ $t("map.site") }}</span>
-      </div>
-      <div class="map-legend-row d-flex flex-row">
-        <span style="background-color: #fff; border: 1px solid #000;"></span>
-        <span>{{ $t("map.plans") }}</span>
-      </div>
-    </div>
+    <map-legend
+      v-if="$vuetify.breakpoint.smAndUp"
+      :is-plans-layer-active="isPlansLayerActive"
+      @handle:mouseEnter="map.scrollWheelZoom.disable()"
+      @handle:mouseLeave="map.scrollWheelZoom.enable()"
+    />
 
     <a
       href="https://kik.ee"
@@ -80,10 +72,11 @@ import "leaflet-fullscreen/dist/Leaflet.fullscreen";
 import "proj4leaflet";
 import { mapActions, mapGetters, mapState } from "vuex";
 import { debounce } from "lodash";
+import MapLegend from "@/components/partial/map/MapLegend";
 
 export default {
   name: "Map",
-
+  components: { MapLegend },
   data() {
     return {
       map: null,
@@ -100,6 +93,7 @@ export default {
       center: L.latLng(58.65, 25.0),
       tileProviders: [
         {
+          id: "Põhikaart",
           name: "Põhikaart",
           name_en: "Main map",
           leafletObject: L.tileLayer(
@@ -116,6 +110,7 @@ export default {
           )
         },
         {
+          id: "Fotokaart",
           name: "Fotokaart",
           name_en: "Satellite map",
           leafletObject: L.tileLayer(
@@ -132,6 +127,7 @@ export default {
           )
         },
         {
+          id: "Reljeefikaart",
           name: "Reljeefikaart",
           name_en: "Relief map",
           leafletObject: L.tileLayer(
@@ -149,6 +145,7 @@ export default {
       ],
       overlayMaps: [
         {
+          id: "Turbaalad",
           name: "Turbaalad",
           name_en: "Peat areas",
           leafletObject: L.tileLayer.wms(
@@ -167,6 +164,7 @@ export default {
           )
         },
         {
+          id: "Uuringupunktid",
           name: "Uuringupunktid",
           name_en: "Sampling sites",
           leafletObject: L.tileLayer.wms(
@@ -185,6 +183,7 @@ export default {
           )
         },
         {
+          id: "Turbaalade plaanid",
           name: "Turbaalade plaanid",
           name_en: "Peat area plans",
           leafletObject: L.tileLayer.wms(
@@ -203,6 +202,7 @@ export default {
           )
         },
         {
+          id: "Turbamaardlad 2020",
           name: "Turbamaardlad 2020",
           name_en: "Peat deposits 2020",
           leafletObject: L.tileLayer.wms(
@@ -222,6 +222,7 @@ export default {
           )
         },
         {
+          id: "Soosetted (400k)",
           name: "Soosetted (400k)",
           name_en: "Peat sediments (400k)",
           leafletObject: L.tileLayer.wms(
@@ -240,6 +241,7 @@ export default {
           )
         },
         {
+          id: "Mullakaart",
           name: "Mullakaart",
           name_en: "Soil map",
           leafletObject: L.tileLayer.wms("https://kaart.maaamet.ee/wms/alus?", {
@@ -255,6 +257,7 @@ export default {
           })
         },
         {
+          id: "Pinnakatte paksus",
           name: "Pinnakatte paksus",
           name_en: "Coating thickness",
           leafletObject: L.tileLayer.wms(
@@ -273,6 +276,7 @@ export default {
           )
         },
         {
+          id: "Aluspõhja reljeef",
           name: "Aluspõhja reljeef",
           name_en: "Bedrock relief",
           leafletObject: L.tileLayer.wms(
@@ -291,6 +295,7 @@ export default {
           )
         },
         {
+          id: "Aluspõhja geoloogia 400k",
           name: "Aluspõhja geoloogia 400k",
           name_en: "Bedrock geology 400k",
           leafletObject: L.tileLayer.wms(
@@ -309,6 +314,7 @@ export default {
           )
         },
         {
+          id: "Maakonnad",
           name: "Maakonnad",
           name_en: "Counties",
           leafletObject: L.tileLayer.wms(
@@ -327,6 +333,7 @@ export default {
           )
         },
         {
+          id: "Hübriidkaart",
           name: "Hübriidkaart",
           name_en: "Hybrid map",
           leafletObject: L.tileLayer(
@@ -372,7 +379,27 @@ export default {
       "areaFromGeoserver",
       "siteFromGeoserver"
     ]),
-    ...mapGetters("detail", ["getAreaSites", "getSample", "getAreaGeometry"])
+    ...mapGetters("detail", ["getAreaSites", "getSample", "getAreaGeometry"]),
+    ...mapGetters("map", ["isPlansLayerActive"]),
+    computedDefaultBaseLayer() {
+      return this.$t("map.Satellite map");
+    },
+    computedDefaultOverlayLayers() {
+      console.log(this.defaultOverlayLayers);
+      if (this.defaultOverlayLayers && this.defaultOverlayLayers.length > 0) {
+        const translated = this.defaultOverlayLayers.map(item => {
+          console.log(item);
+          return this.$t(`map.${item}`);
+        });
+        console.log(translated);
+        return translated;
+      } else
+        return [
+          this.$t("map.Turbaalad"),
+          this.$t("map.Uuringupunktid"),
+          this.$t("map.Maakonnad")
+        ];
+    }
   },
 
   watch: {
@@ -551,11 +578,16 @@ export default {
 
       let baseLayers = {};
       this.tileProviders.forEach(provider => {
-        baseLayers[provider.name] = provider.leafletObject;
+        baseLayers[
+          this.$i18n.locale === "ee" ? provider.name : provider.name_en
+        ] = provider.leafletObject;
       });
       let overlayMaps = {};
       this.overlayMaps.forEach(
-        provider => (overlayMaps[provider.name] = provider.leafletObject)
+        provider =>
+          (overlayMaps[
+            this.$i18n.locale === "ee" ? provider.name : provider.name_en
+          ] = provider.leafletObject)
       );
 
       L.control
@@ -570,14 +602,20 @@ export default {
       this.map.addControl(new window.L.Control.Fullscreen());
 
       // Adding default base layer
-      if (this.defaultBaseLayer && this.defaultBaseLayer !== "Fotokaart") {
-        this.map.removeLayer(baseLayers["Fotokaart"]);
-        this.map.addLayer(baseLayers[this.defaultBaseLayer]);
+      if (
+        this.defaultBaseLayer &&
+        this.defaultBaseLayer !== this.$t("map.Satellite map")
+      ) {
+        this.map.removeLayer(baseLayers[this.$t("map.Satellite map")]);
+        this.map.addLayer(baseLayers[this.computedDefaultBaseLayer]);
       }
 
       // Adding default overlay layers
-      if (this.defaultOverlayLayers && this.defaultOverlayLayers.length > 0) {
-        this.defaultOverlayLayers.forEach(layer => {
+      if (
+        this.computedDefaultOverlayLayers &&
+        this.computedDefaultOverlayLayers.length > 0
+      ) {
+        this.computedDefaultOverlayLayers.forEach(layer => {
           if (!this.map.hasLayer(overlayMaps[layer])) {
             this.map.addLayer(overlayMaps[layer]);
           }
@@ -812,7 +850,8 @@ export default {
   height: calc(100% - 64px);
 }
 
-.top-controls >>> .leaflet-top {
+.top-controls >>> .leaflet-top,
+.top-controls >>> .live-coordinates {
   top: 64px;
 }
 
@@ -831,38 +870,19 @@ export default {
 }
 
 .live-coordinates {
-  margin-bottom: 26px;
-  margin-right: 134px;
+  /*margin-top: 56px;*/
+  margin-top: 64px; /* mobile size needs to be 8px higher becuase of layerswitch */
+  /*margin-right: 134px;*/
+  margin-right: 10px;
   position: absolute;
   right: 0;
-  bottom: 0;
+  top: 0;
   z-index: 500;
   background-color: #fff;
   border-radius: 5px;
   padding: 1px 6px;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
   opacity: 0.7;
-}
-
-.map-legend {
-  margin-right: 10px;
-  position: absolute;
-  z-index: 500;
-  background-color: #fff;
-  border-radius: 5px;
-  padding: 4px 6px;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
-  right: 0;
-  bottom: 0;
-  margin-bottom: 26px;
-  opacity: 0.7;
-}
-
-.map-legend-row > span:first-child {
-  width: 18px;
-  height: 18px;
-  display: inline-block;
-  margin-right: 5px;
 }
 
 .cursor-crosshair {

@@ -82,7 +82,11 @@ const mutations = {
   }
 };
 
-const getters = {};
+const getters = {
+  isPlansLayerActive: state => {
+    return state.defaultOverlayLayers.includes("Turbaalade plaanid")
+  }
+};
 
 export default {
   namespaced: true,
