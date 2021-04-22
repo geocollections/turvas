@@ -110,7 +110,10 @@
     "vana_sondeerimispunkt": "Old probing point",
     "vana_karjaar": "Old quarry outline",
     "tootmisala": "Production outline",
-    "vana_raudtee": "Old railway dam"
+    "vana_raudtee": "Old railway dam",
+    "legend": "Legend",
+    "peatTypes": "Peat types",
+    "peatSubtypes": "Peat subtypes"
   },
   "area": {
     "detailView": "Peat area detail view",

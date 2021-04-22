@@ -110,7 +110,10 @@
     "vana_sondeerimispunkt": "Vana sondeerimispunkt",
     "vana_karjaar": "Vana karjääri kontuur",
     "tootmisala": "Tootmisala kontuur",
-    "vana_raudtee": "Vana raudteetamm"
+    "vana_raudtee": "Vana raudteetamm",
+    "legend": "Legend",
+    "peatTypes": "Turbalasundi tüübid",
+    "peatSubtypes": "Turbalasundi alltüübid"
   },
   "area": {
     "detailView": "Turbaala detailvaade",

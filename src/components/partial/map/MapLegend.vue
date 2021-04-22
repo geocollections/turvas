@@ -5,6 +5,10 @@
     @mouseenter="handleMouseEnter"
     @mouseleave="handleMouseLeave"
   >
+    <div v-if="isPlansLayerActive" class="map-legend-title">
+      {{ $t("map.legend") }}
+    </div>
+
     <div class="map-legend-row d-flex flex-row">
       <span style="background-color: #70b160;"></span>
       <span>{{ $t("map.area") }}</span>
@@ -17,6 +21,10 @@
       <div class="map-legend-row d-flex flex-row">
         <span style="background-color: #fff; border: 1px solid #000;"></span>
         <span>{{ $t("map.plans") }}</span>
+      </div>
+
+      <div class="map-legend-subtitle">
+        {{ $t("map.peatTypes") }}
       </div>
 
       <div class="map-legend-row d-flex flex-row">
@@ -37,6 +45,10 @@
       <div class="map-legend-row d-flex flex-row">
         <span class="text-center font-weight-bold">R</span>
         <span>{{ $t("map.raba") }}</span>
+      </div>
+
+      <div class="map-legend-subtitle">
+        {{ $t("map.peatSubtypes") }}
       </div>
 
       <div class="map-legend-row d-flex flex-row">
@@ -207,5 +219,15 @@ export default {
   height: 18px;
   display: inline-block;
   margin-right: 5px;
+}
+
+.map-legend-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.map-legend-subtitle {
+  font-size: 0.9rem;
+  font-weight: 600;
 }
 </style>
