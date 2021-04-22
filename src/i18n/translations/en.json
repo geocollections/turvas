@@ -32,7 +32,8 @@
     "frontPage": "Front page",
     "hideMap": "Hide map",
     "showMap": "Show map",
-    "emaapou": "Geological data from Estonia"
+    "emaapou": "Geological data from Estonia",
+    "resources": "Links"
   },
   "about": {
     "imageAuthor": "Image author",
@@ -222,5 +223,10 @@
     "table": "Table",
     "graph": "Graph",
     "more": "More"
+  },
+  "resources": {
+    "eMaapou": "e-Maapõu",
+    "publicApi": "Geocollections API",
+    "turvasGithub": "TURBA on GitHub"
   }
 }

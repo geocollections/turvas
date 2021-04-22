@@ -32,7 +32,8 @@
     "frontPage": "Pealeht",
     "hideMap": "Peida kaart",
     "showMap": "Näita kaarti",
-    "emaapou": "Kogu info Eesti maapõuest"
+    "emaapou": "Kogu info Eesti maapõuest",
+    "resources": "Lingid"
   },
   "about": {
     "imageAuthor": "Pildi autor",
@@ -222,5 +223,10 @@
     "table": "Tabel",
     "graph": "Graafik",
     "more": "Rohkem lugemist"
+  },
+  "resources": {
+    "eMaapou": "e-Maapõu",
+    "publicApi": "Geokogude API",
+    "turvasGithub": "TURBA GitHubis"
   }
 }
