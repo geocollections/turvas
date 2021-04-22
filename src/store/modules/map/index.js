@@ -84,7 +84,10 @@ const mutations = {
 
 const getters = {
   isPlansLayerActive: state => {
-    return state.defaultOverlayLayers.includes("Turbaalade plaanid")
+    return (
+      state.defaultOverlayLayers.includes("Turbaalade plaanid") ||
+      state.defaultOverlayLayers.includes("Peat area plans")
+    );
   }
 };
 

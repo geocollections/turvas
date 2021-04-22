@@ -385,13 +385,10 @@ export default {
       return this.$t("map.Satellite map");
     },
     computedDefaultOverlayLayers() {
-      console.log(this.defaultOverlayLayers);
       if (this.defaultOverlayLayers && this.defaultOverlayLayers.length > 0) {
         const translated = this.defaultOverlayLayers.map(item => {
-          console.log(item);
           return this.$t(`map.${item}`);
         });
-        console.log(translated);
         return translated;
       } else
         return [
