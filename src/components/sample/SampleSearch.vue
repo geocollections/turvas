@@ -10,7 +10,7 @@
 
     <div v-show="block.search[0]">
       <v-row no-gutters class="px-1">
-        <v-col cols="12" md="6" lg="4" class="pa-1">
+        <v-col cols="12" md="6" lg="4" class="pa-1" v-if="getListCountiesAsArray.length > 0">
           <AutocompleteWrapper
             :label="$t('common.maakond')"
             :items="getListCountiesAsArray"
@@ -26,7 +26,7 @@
           />
         </v-col>
 
-        <v-col cols="12" md="6" lg="4" class="pa-1">
+        <v-col cols="12" md="6" lg="4" class="pa-1" v-if="getListAreasAsArray.length > 0">
           <AutocompleteWrapper
             :label="$t('common.area')"
             :items="getListAreasAsArray"

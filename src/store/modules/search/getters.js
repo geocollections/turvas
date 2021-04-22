@@ -16,10 +16,12 @@ const getters = {
   },
 
   distinctListParameters: state => mustSeeParam => {
-    let distinctList = state.listParameters.filter(
-      param => state.activeListParameters.indexOf(param) === -1
-    );
-    return [mustSeeParam, ...distinctList];
+    if (state.listParameters && state.listParameters.length > 0) {
+      let distinctList = state.listParameters.filter(
+        param => state.activeListParameters.indexOf(param) === -1
+      );
+      return [mustSeeParam, ...distinctList];
+    } else return [mustSeeParam];
   },
 
   getDistinctSampleResults: state => {
@@ -31,11 +33,9 @@ const getters = {
   },
 
   getListAreasAsArray: state => {
-    if (state.listAreas !== null) {
+    if (state.listAreas && state.listAreas.length > 0)
       return state.listAreas.map(area => area.name);
-    } else {
-      return [];
-    }
+    else return [];
   }
 };
 
