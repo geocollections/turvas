@@ -31,7 +31,8 @@
       :style="$vuetify.breakpoint.xlOnly ? 'position: fixed;' : ''"
     >
       <div v-if="imageIndex === 0 || imageIndex === 2">
-        <!--        {{ $t("about.imageAuthor") }}: <b>Tõnis Saadre</b> ({{-->
+        {{ $t("about.imageAuthor") }}: <b>Gennadi Baranov</b>
+        <!--        ({{-->
         <!--          $t("about.egkCalendar")-->
         <!--        }}-->
         <!--        2000. a)-->
