@@ -26,27 +26,40 @@
         </v-tooltip>
 
         <v-toolbar-items class="hidden-sm-and-down">
-          <v-btn text title="Turbaalad" to="/turbaala" exact color="white">{{
-            $t("header.areas")
-          }}</v-btn>
+          <v-btn
+            text
+            title="Turbaalad"
+            to="/turbaala"
+            exact
+            color="white"
+            class="px-3"
+            >{{ $t("header.areas") }}</v-btn
+          >
           <v-btn
             text
             title="Proovipunktid"
             to="/proovipunkt"
             exact
             color="white"
+            class="px-3"
             >{{ $t("header.sites") }}</v-btn
           >
-          <v-btn text title="Proovid" to="/proov" exact color="white">{{
-            $t("header.samples")
-          }}</v-btn>
+          <v-btn
+            text
+            title="Proovid"
+            to="/proov"
+            exact
+            color="white"
+            class="px-3"
+            >{{ $t("header.samples") }}</v-btn
+          >
           <v-btn
             text
             title="Projekti info"
             to="/projekti_info"
             exact
             color="white"
-            class="hidden-md-and-down"
+            class="hidden-md-and-down px-3"
             >{{ $t("header.projectInfo") }}</v-btn
           >
           <v-btn
@@ -55,7 +68,7 @@
             to="/allalaadimine"
             exact
             color="white"
-            class="hidden-md-and-down"
+            class="hidden-md-and-down px-3"
             >{{ $t("header.download") }}</v-btn
           >
           <v-btn
@@ -64,7 +77,7 @@
             to="/kasutusjuhend"
             exact
             color="white"
-            class="hidden-md-and-down"
+            class="hidden-md-and-down px-3"
             >{{ $t("header.userManual") }}</v-btn
           >
         </v-toolbar-items>
@@ -72,26 +85,6 @@
         <v-spacer />
 
         <v-toolbar-items>
-          <!--          <v-tooltip bottom>-->
-          <!--            <template v-slot:activator="{ on }">-->
-          <!--              <v-btn-->
-          <!--                v-on="on"-->
-          <!--                icon-->
-          <!--                href="https://geoloogia.info"-->
-          <!--                target="EMaapouWindow"-->
-          <!--              >-->
-          <!--                <img-->
-          <!--                  height="20"-->
-          <!--                  width="20"-->
-          <!--                  :src="require('@/assets/img/emaapou6white.svg')"-->
-          <!--                  alt="e-Maapõu"-->
-          <!--                />-->
-          <!--              </v-btn>-->
-          <!--            </template>-->
-
-          <!--            <span>{{ $t("header.emaapou") }}</span>-->
-          <!--          </v-tooltip>-->
-
           <v-menu
             v-if="$vuetify.breakpoint.smAndUp"
             transition="slide-y-transition"
@@ -100,7 +93,7 @@
             z-index="2101"
           >
             <template v-slot:activator="{ on }">
-              <v-btn color="white" text v-on="on">
+              <v-btn color="white" text v-on="on" class="px-3">
                 {{ $t("header.resources") }}
                 <v-icon right>{{
                   externalResourcesDropdown
@@ -142,8 +135,8 @@
             solo-inverted
             dark
             :label="$t('header.searchArea')"
-            class="align-center hidden-sm-and-down"
-            :class="!isAboutPage && !isFrontPage ? 'mx-4' : 'ml-4'"
+            class="align-center hidden-sm-and-down px-2"
+            style="min-width: 130px"
             autocomplete="off"
             append-icon="fas fa-search"
             @click:append="goToAreaSearch"
@@ -174,6 +167,27 @@
           <span>{{
             getMapState ? $t("header.hideMap") : $t("header.showMap")
           }}</span>
+        </v-tooltip>
+
+        <v-tooltip bottom>
+          <template v-slot:activator="{ on }">
+            <v-btn
+              v-on="on"
+              icon
+              fab
+              href="https://geoloogia.info"
+              target="EMaapouWindow"
+            >
+              <img
+                height="24"
+                width="24"
+                :src="require('@/assets/img/emaapou6white.svg')"
+                :alt="$t('resources.eMaapou')"
+              />
+            </v-btn>
+          </template>
+
+          <span>{{ $t("header.emaapou") }}</span>
         </v-tooltip>
       </v-app-bar>
     </v-hover>

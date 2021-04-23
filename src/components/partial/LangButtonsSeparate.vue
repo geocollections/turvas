@@ -1,7 +1,7 @@
 <template>
   <div class="d-flex flex-row flex-nowrap">
     <v-btn
-      class="align-self-center white--text px-1"
+      class="align-self-center white--text px-3"
       style="height: 100%; font-size: 0.875rem"
       :class="{ 'active-class': language === item.value }"
       text
