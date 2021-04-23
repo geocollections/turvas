@@ -1,7 +1,7 @@
 <template>
   <div class="d-flex flex-row flex-nowrap">
     <v-btn
-      class="align-self-center white--text px-0"
+      class="align-self-center white--text px-3"
       style="height: 100%; font-size: 0.875rem"
       :class="{ 'active-class': language === item.value }"
       text
@@ -12,10 +12,7 @@
       @click="changeLang(item.value)"
     >
       {{ item.text }}
-      <!--            <span-->
-      <!--              v-on="on"-->
-      <!--              :class="[flagCommonStyles, flagStyles(item.value)]"-->
-      <!--            ></span>-->
+      <span :class="[flagCommonStyles, flagStyles(item.value)]"></span>
     </v-btn>
   </div>
 </template>
@@ -41,7 +38,8 @@ export default {
         flag: true,
         "flag-squared": true,
         "flag-circle": true,
-        "lang-button": true
+        "lang-button": true,
+        "ml-1": true
       };
     }
   },
@@ -78,8 +76,8 @@ export default {
 
 <style scoped>
 .lang-button {
-  height: 24px;
-  width: 24px !important;
+  height: 14px;
+  width: 14px !important;
 }
 .flag {
   position: relative;

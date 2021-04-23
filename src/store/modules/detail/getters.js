@@ -92,11 +92,9 @@ const getters = {
   },
 
   getListCountiesAsArray: state => {
-    if (state.listCounties !== null) {
+    if (state.listCounties && state.listCounties.length > 0)
       return state.listCounties.map(county => county.maakond);
-    } else {
-      return [];
-    }
+    else return [];
   }
 };
 
