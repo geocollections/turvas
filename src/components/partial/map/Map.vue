@@ -339,8 +339,9 @@ export default {
           leafletObject: L.tileLayer(
             "https://tiles.maaamet.ee/tm/tms/1.0.0/hybriid/{z}/{x}/{y}.png&ASUTUS=TALTECH&KESKKOND=LIVE&IS=SARV",
             {
-              // attribution:
-              //   "<a href='http://www.maaamet.ee/' target='MapReferenceWindow'>&copy; Maa-amet</a>",
+              attribution: `<a href='http://www.maaamet.ee/' target='MapReferenceWindow'>&copy; ${this.$t(
+                "map.maaamet"
+              )}</a>`,
               tms: true,
               detectRetina: true,
               updateWhenIdle: true
