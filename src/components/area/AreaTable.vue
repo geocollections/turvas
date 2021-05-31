@@ -151,7 +151,8 @@ export default {
     }, 10),
 
     getMaardlaUrl(maardla) {
-      return `https://xgis.maaamet.ee/xGIS/bronx/maardlad/showdata.aspx?registrikaart=${maardla}`;
+      // return `https://xgis.maaamet.ee/xGIS/bronx/maardlad/showdata.aspx?registrikaart=${maardla}`;
+      return `https://xgis.maaamet.ee/xgis2/mod/0.0.1/maardlad/maardla/${maardla}`;
     }
   }
 };

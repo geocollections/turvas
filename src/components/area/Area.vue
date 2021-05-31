@@ -234,11 +234,14 @@ export default {
 
   methods: {
     getMaardlaUrl(maardla) {
-      return `https://xgis.maaamet.ee/xGIS/bronx/maardlad/showdata.aspx?registrikaart=${maardla}`;
+      // return `https://xgis.maaamet.ee/xGIS/bronx/maardlad/showdata.aspx?registrikaart=${maardla}`;
+      return `https://xgis.maaamet.ee/xgis2/mod/0.0.1/maardlad/maardla/${maardla}`;
     },
 
     getEelisUrl(eelis) {
-      return `http://register.keskkonnainfo.ee/envreg/main?reg_kood=${eelis.trim()}&amp;mount=view`;
+      // return `http://register.keskkonnainfo.ee/envreg/main?reg_kood=${eelis.trim()}&amp;mount=view`; // old and redirects to one below
+      // return `https://keskkonnaportaal.ee/register?kkr_kood=${eelis.trim()}`; Doesn't give all results for all registerCodes
+      return `https://keskkonnaportaal.ee/register/search?registerCode=${eelis.trim()}&status=kinnitatud`;
     },
 
     getEgfUrl(egf) {
