@@ -65,12 +65,15 @@ export default {
   },
   async created() {
     this.isLoading = true;
-    const response = await SearchService.getDetailView("page", this.pageId);
+    const response = await SearchService.getDetailView(
+      "web_pages",
+      this.pageId
+    );
     if (response && response?.public) this.page = response;
 
     for (const item of this.items) {
       const itemResponse = await SearchService.getDetailView(
-        "page",
+        "web_pages",
         item.tableId
       );
       if (response && response?.public) item.page = itemResponse;
