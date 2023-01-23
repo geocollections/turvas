@@ -56,7 +56,7 @@ export default {
   },
   async created() {
     this.isLoading = true;
-    const response = await SearchService.getDetailView("page", this.pageId);
+    const response = await SearchService.getDetailView("web_pages", this.pageId);
     if (response && response?.public) this.page = response;
     this.isLoading = false;
   }
