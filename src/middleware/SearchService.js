@@ -1,9 +1,9 @@
 import axios from "axios";
 import cloneDeep from "lodash/cloneDeep";
 
-const API_URL = "https://api.geocollections.info/";
-const SOLR_URL = "https://api.geocollections.info/solr/";
-const RAW_SOLR_URL = "https://api.geocollections.info/raw_solr/";
+const API_URL = "https://api.geoloogia.info/";
+const SOLR_URL = "https://api.geoloogia.info/solr/";
+const RAW_SOLR_URL = "https://api.geoloogia.info/solr/";
 
 const GEOSERVER_URL_WMS =
   "https://gis.geocollections.info/geoserver/turvas/wms?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetFeatureInfo&INFO_FORMAT=application/json&FEATURE_COUNT=1&X=50&Y=50&SRS=EPSG:3301&STYLES=&WIDTH=101&HEIGHT=101&exceptions=text/javascript";
@@ -15,10 +15,10 @@ class SearchService {
     try {
       let queryParams = encodeQueryData(params);
       if (queryParams.length > 0) queryParams = "&" + queryParams;
-      let url = `${API_URL}${table}/${id}?format=json${queryParams}`;
+      let url = `${API_URL}${table}/${id}/?format=json${queryParams}`;
 
       const res = await axios.get(url);
-      if (res.status === 200) return res.data.results[0];
+      if (res.status === 200) return res.data;
       else return buildErrorMessage(table, id);
     } catch (err) {
       return buildErrorMessage(table, id);
@@ -64,7 +64,8 @@ class SearchService {
       if (queryParams.length > 0) queryParams = "&fq=" + queryParams;
       if (sort.length > 0) queryParams += "&sort=" + sort;
       if (filter.length > 0) filter = `&q=*${encodeURIComponent(filter)}*`;
-      let url = `${SOLR_URL}${table}/?start=${start}&rows=${paginateBy}${filter}${queryParams}&defType=edismax`;
+      else filter = "&q=*:*";
+      let url = `${SOLR_URL}${table}?start=${start}&rows=${paginateBy}${filter}${queryParams}&defType=edismax`;
 
       const res = await axios.get(url);
       if (res.status === 200) return res.data;
@@ -76,7 +77,7 @@ class SearchService {
 
   static doSolrFacetSearch = async (table, facetFields) => {
     try {
-      let url = `${RAW_SOLR_URL}${table}/?facet=true&facet.sort=index&facet.limit=-1&format=json`;
+      let url = `${RAW_SOLR_URL}${table}?facet=true&facet.sort=index&facet.limit=-1&format=json`;
 
       let fields = buildFacetFields(facetFields);
       if (table === "peat_analysis")

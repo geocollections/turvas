@@ -22,22 +22,36 @@
         >
           <template v-slot:item.site="{ item }">
             <router-link
-              :to="`/proovipunkt/${item.site}`"
+              v-if="item.site"
+              :to="`/proovipunkt/${item.site.id}`"
               title="Proovipunkti detailvaade"
               class="table-link"
             >
-              {{ item.site__name }}
+              {{ item.site.name }}
             </router-link>
           </template>
 
           <template v-slot:item.site__area="{ item }">
             <router-link
-              :to="`/turbaala/${item.site__area}`"
+              v-if="item.site && item.site.area"
+              :to="`/turbaala/${item.site.area.id}`"
               title="Turbaala detailvaade"
               class="table-link"
             >
-              {{ item.site__area__name }}
+              {{ item.site.area.name }}
             </router-link>
+          </template>
+
+          <template v-slot:item.site__area__maakond__maakond="{ item }">
+            {{ getCounty(item.site.area.maakond) }}
+          </template>
+
+          <template v-slot:item.stratigraphy__stratigraphy="{ item }">
+            {{ item.stratigraphy.stratigraphy }}
+          </template>
+
+          <template v-slot:item.classification_rock__name="{ item }">
+            {{ item.classification_rock.name }}
           </template>
         </v-data-table>
       </div>
@@ -204,7 +218,8 @@ export default {
       "getSampleAnalyses",
       "getSampleAnalysesHeaders",
       "getSampleTaxa",
-      "getSampleTaxaHeaders"
+      "getSampleTaxaHeaders",
+      "getListCounties"
     ]),
 
     ...mapState("settings", ["block"]),
@@ -294,6 +309,10 @@ export default {
         url = `https://elurikkus.ee/bie-hub/species/${id}`;
       }
       window.open(url, "ElurikkusWindow", "height=700,width=767");
+    },
+
+    getCounty(countyId) {
+      return this?.getListCounties?.find(item => item.id === countyId)?.maakond;
     }
   }
 };

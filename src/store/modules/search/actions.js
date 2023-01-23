@@ -12,8 +12,8 @@ const actions = {
       state.areaSearchParams
     );
     if (typeof response === "object") {
-      commit("SET_AREA_RESULTS", response.results);
-      commit("SET_AREA_RESULTS_COUNT", response.count);
+      commit("SET_AREA_RESULTS", response.response.docs);
+      commit("SET_AREA_RESULTS_COUNT", response.response.numFound);
     } else if (typeof response === "string") {
       dispatch("error/updateErrorState", true, { root: true });
       dispatch("error/updateErrorMessage", response, { root: true });
@@ -28,8 +28,8 @@ const actions = {
       state.siteSearchParams
     );
     if (typeof response === "object") {
-      commit("SET_SITE_RESULTS", response.results);
-      commit("SET_SITE_RESULTS_COUNT", response.count);
+      commit("SET_SITE_RESULTS", response.response.docs);
+      commit("SET_SITE_RESULTS_COUNT", response.response.numFound);
     } else if (typeof response === "string") {
       dispatch("error/updateErrorState", true, { root: true });
       dispatch("error/updateErrorMessage", response, { root: true });
@@ -44,8 +44,8 @@ const actions = {
       state.sampleSearchParams
     );
     if (typeof response === "object") {
-      commit("SET_SAMPLE_RESULTS", response.results);
-      commit("SET_SAMPLE_RESULTS_COUNT", response.count);
+      commit("SET_SAMPLE_RESULTS", response.response.docs);
+      commit("SET_SAMPLE_RESULTS_COUNT", response.response.numFound);
     } else if (typeof response === "string") {
       dispatch("error/updateErrorState", true, { root: true });
       dispatch("error/updateErrorMessage", response, { root: true });
