@@ -39,11 +39,12 @@
 
           <template v-slot:item.area="{ item }">
             <router-link
-              :to="`/turbaala/${item.area}`"
+              v-if="item.area"
+              :to="`/turbaala/${item.area.id}`"
               title="Turbaala detailvaade"
               class="table-link"
             >
-              {{ item.area__name }}
+              {{ item.area.name }}
             </router-link>
           </template>
         </v-data-table>
@@ -116,12 +117,12 @@
               flat
               style="margin: 2px 0;"
               class="px-1"
-              :class="getColor(item.classification_rock__name)"
+              :class="getColor(item.classification_rock.name)"
             >
               {{
                 $translate({
-                  et: item.classification_rock__name,
-                  en: item.classification_rock__name_en
+                  et: item.classification_rock.name,
+                  en: item.classification_rock.name_en
                 })
               }}
             </v-card>
@@ -288,10 +289,10 @@ export default {
     },
 
     planArray() {
-      if (this.getSite.area__text1) {
-        if (this.getSite.area__text1.includes(",")) {
-          return this.getSite.area__text1.split(",");
-        } else return [this.getSite.area__text1];
+      if (this.getSite?.area?.text1) {
+        if (this.getSite.area.text1.includes(",")) {
+          return this.getSite.area.text1.split(",");
+        } else return [this.getSite.area.text1];
       } else return [];
     },
 

@@ -31,7 +31,7 @@
       v-if="$route.name === 'FrontPage'"
     >
       <img
-        src="https://www.kik.ee/sites/default/files/kik_est_logo__2.png"
+        src="https://files.geocollections.info/img/kik_est_logo.png"
         class="kik-logo"
         alt="kik logo"
         :class="$vuetify.breakpoint.smAndDown ? 'kik-logo-sm' : ''"
@@ -458,10 +458,10 @@ export default {
       if (this.$route.name === "SampleDetail") {
         let siteFromSample = [
           {
-            id: newVal.site,
-            name: newVal.site__name,
-            longitude: newVal.site__longitude,
-            latitude: newVal.site__latitude
+            id: newVal?.site?.id,
+            name: newVal?.site?.name,
+            longitude: newVal?.site?.longitude,
+            latitude: newVal?.site?.latitude
           }
         ];
         this.updateActiveSites(siteFromSample);

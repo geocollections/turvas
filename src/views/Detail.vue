@@ -50,16 +50,20 @@ export default {
             this.fetchData({
               table: this.$route.meta.object,
               id: newVal,
-              params: { area_type: 2 }
+              params: { area_type: 2, nest: 1 }
             });
           } else if (this.$route.meta.object === "site") {
             this.fetchData({
               table: this.$route.meta.object,
               id: newVal,
-              params: { project_id: 20 }
+              params: { project_id: 20, nest: 1 }
             });
           } else {
-            this.fetchData({ table: this.$route.meta.object, id: newVal });
+            this.fetchData({
+              table: this.$route.meta.object,
+              id: newVal,
+              params: { nest: 2 }
+            });
           }
         }
       },

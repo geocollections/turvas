@@ -20,8 +20,10 @@ const actions = {
       } else if (payload.table === "site") {
         dispatch("fetchSiteSamples", payload.id);
         dispatch("fetchSiteDescription", payload.id);
-        dispatch("fetchAreaSites", response.area);
-        dispatch("fetchAreaBounds", response.area);
+        if (response.area) {
+          dispatch("fetchAreaSites", response.area.id);
+          dispatch("fetchAreaBounds", response.area.id);
+        }
         dispatch("fetchSampleAnalyticalData", payload.id);
       } else {
         dispatch("fetchSampleTaxa", payload.id);
@@ -36,7 +38,7 @@ const actions = {
   async fetchAreaSites({ commit, dispatch }, id) {
     let response = await SearchService.doSolrSearch("site", { area_id: id });
     if (typeof response === "object") {
-      commit("SET_AREA_SITES", response.results);
+      commit("SET_AREA_SITES", response.response.docs);
     } else if (typeof response === "string") {
       dispatch("error/updateErrorState", true, { root: true });
       dispatch("error/updateErrorMessage", response, { root: true });
@@ -63,7 +65,8 @@ const actions = {
 
   async fetchAreaReferences({ commit, dispatch }, id) {
     let response = await SearchService.doRegularSearch("reference", {
-      localityreference__area: id
+      localityreference__area: id,
+      nest: 1
     });
     if (typeof response === "object") {
       commit("SET_AREA_REFERENCES", response.results);
@@ -75,7 +78,8 @@ const actions = {
 
   async fetchSiteDescription({ commit, dispatch }, id) {
     let response = await SearchService.doRegularSearch("locality_description", {
-      site: id
+      site: id,
+      nest: 1
     });
     if (typeof response === "object") {
       commit("SET_SITE_DESCRIPTION", response.results);
@@ -89,7 +93,8 @@ const actions = {
     let response = await SearchService.doRegularSearch("sample", {
       site: id,
       sortBy: ["depth"],
-      sortDesc: [false]
+      sortDesc: [false],
+      nest: 1
     });
     if (typeof response === "object") {
       commit("SET_SITE_SAMPLES", response.results);
@@ -107,7 +112,7 @@ const actions = {
     });
 
     if (typeof response === "object") {
-      commit("SET_SAMPLE_TAXA", response.results);
+      commit("SET_SAMPLE_TAXA", response.response.docs);
     } else if (typeof response === "string") {
       dispatch("error/updateErrorState", true, { root: true });
       dispatch("error/updateErrorMessage", response, { root: true });
@@ -120,7 +125,7 @@ const actions = {
     });
 
     if (typeof response === "object") {
-      commit("SET_SAMPLE_ANALYSES", response.results);
+      commit("SET_SAMPLE_ANALYSES", response.response.docs);
     } else if (typeof response === "string") {
       dispatch("error/updateErrorState", true, { root: true });
       dispatch("error/updateErrorMessage", response, { root: true });
@@ -135,7 +140,7 @@ const actions = {
     });
 
     if (typeof response === "object") {
-      commit("SET_SAMPLE_ANALYTICAL_DATA", response.results);
+      commit("SET_SAMPLE_ANALYTICAL_DATA", response.response.docs);
     } else if (typeof response === "string") {
       dispatch("error/updateErrorState", true, { root: true });
       dispatch("error/updateErrorMessage", response, { root: true });
