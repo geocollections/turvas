@@ -31,7 +31,7 @@
       v-if="$route.name === 'FrontPage'"
     >
       <img
-        src="https://www.kik.ee/sites/default/files/kik_est_logo__2.png"
+        :src="require('@/assets/img/logos/kik_logo.svg')"
         class="kik-logo"
         alt="kik logo"
         :class="$vuetify.breakpoint.smAndDown ? 'kik-logo-sm' : ''"
