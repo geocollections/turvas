@@ -33,15 +33,17 @@
           {{ entity.publisher_place }}.
         </span>
 
-        <span v-if="entity.journal__journal_name">
-          <i>{{ entity.journal__journal_name }}</i>
+        <span v-if="entity.journal && entity.journal.journal_name">
+          <i>{{ entity.journal.journal_name }}</i>
         </span>
 
         <span v-if="entity.volume"> {{ entity.volume }}, </span>
 
         <span v-if="entity.number"> {{ entity.number }}, </span>
 
-        <span v-if="entity.pages && entity.journal__journal_name">
+        <span
+          v-if="entity.pages && entity.journal && entity.journal.journal_name"
+        >
           {{ entity.pages }}.
         </span>
 
@@ -59,20 +61,16 @@
 
         <span>
           <a
-            v-if="entity.attachment__filename"
-            :href="getFileUrl(entity.attachment__filename)"
-            :title="getFileUrl(entity.attachment__filename)"
+            v-if="entity.filename"
+            :href="getFileUrl(entity.filename)"
+            :title="getFileUrl(entity.filename)"
             target="FileWindow"
             class="green--text"
           >
             <b>PDF</b>
           </a>
           <a
-            v-if="
-              entity.attachment__filename === null &&
-                entity.url &&
-                getUrl(entity.url)
-            "
+            v-if="entity.filename === null && entity.url && getUrl(entity.url)"
             :href="getUrl(entity.url)"
             :title="getUrl(entity.url)"
             target="UrlWindow"

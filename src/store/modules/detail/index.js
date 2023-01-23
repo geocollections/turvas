@@ -9,7 +9,7 @@ const state = {
   areaReferences: null,
   areaHeaders: [
     { text: "ID", value: "id" },
-    { text: "Maakond", value: "maakond__maakond" },
+    { text: "Maakond", value: "maakond" },
     { text: "Ala (ha)", value: "area_ha" },
     { text: "Maardla (ha)", value: "deposit_area_ha" },
     { text: "Iseloomustus", value: "description" },

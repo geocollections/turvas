@@ -6,8 +6,8 @@
         <CardTitleWrapper
           :text="
             $translate({
-              et: `${getArea.name} ${getArea.area_type__name}`,
-              en: `${getArea.name_en}`
+              et: getArea.name,
+              en: getArea.name_en
             })
           "
           :index="0"
@@ -42,12 +42,12 @@
             </span>
           </template>
 
-          <template v-slot:item.maakond__maakond="{ item }">
+          <template v-slot:item.maakond="{ item }">
             <div>
               {{
                 $translate({
-                  et: item.maakond__maakond,
-                  en: item.maakond__maakond_en
+                  et: item.maakond.maakond,
+                  en: item.maakond.maakond_en
                 })
               }}
             </div>
@@ -213,10 +213,7 @@ export default {
   },
 
   metaInfo() {
-    const areaEt =
-      this?.getArea?.name && this?.getArea?.area_type__name
-        ? `${this?.getArea?.name} ${this?.getArea?.area_type__name}`
-        : this.$route.params.id;
+    const areaEt = this?.getArea?.name ?? this.$route.params.id;
     const area = this.$translate({
       et: areaEt,
       en: `${this?.getArea?.name_en ?? this.$route.params.id}`
