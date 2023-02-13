@@ -150,7 +150,11 @@
     </v-card>
 
     <!-- Related references -->
-    <v-card flat v-if="getAreaReferences" id="references">
+    <v-card
+      flat
+      v-if="getAreaReferences && getAreaReferences.length"
+      id="references"
+    >
       <h2>
         <CardTitleWrapper
           :text="$t('area.references')"
