@@ -187,7 +187,7 @@ export default {
           name: "Turbaalade plaanid",
           name_en: "Peat area plans",
           leafletObject: L.tileLayer.wms(
-            "https://gis.geocollections.info/geoserver/wms",
+            "https://gis.geoloogia.info/geoserver/wms",
             {
               attribution: `<a href='https://ttu.ee/geoloogia-instituut' target='MapReferenceWindow'>&copy; ${this.$t(
                 "map.gi"
