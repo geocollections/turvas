@@ -324,7 +324,7 @@ export default {
       {
         icon: "fas fa-database",
         text: "resources.publicApi",
-        url: "https://api.geocollections.info/"
+        url: "https://rwapi.geoloogia.info/api/schema/v1/public/swagger-ui/"
       }
     ],
     languages: [
