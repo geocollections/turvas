@@ -2,6 +2,7 @@ import axios from "axios";
 import cloneDeep from "lodash/cloneDeep";
 
 const API_URL = "https://rwapi.geoloogia.info/api/v0.5/public/";
+const API_URL_V1 = "https://rwapi.geoloogia.info/api/v1/public/";
 const SOLR_URL = "https://api.geoloogia.info/solr/";
 const RAW_SOLR_URL = "https://api.geoloogia.info/solr/";
 
@@ -40,6 +41,18 @@ class SearchService {
       else return buildErrorMessage(table);
     } catch (err) {
       return buildErrorMessage(table);
+    }
+  };
+
+  static getAreaReferences = async areaId => {
+    try {
+      let url = `${API_URL_V1}areas/${areaId}/area-references/?limit=100&offset=0&expand=reference&ordering=-reference__year`;
+
+      const res = await axios.get(url);
+      if (res.status === 200) return res.data;
+      else return buildErrorMessage("areas", areaId);
+    } catch (err) {
+      return buildErrorMessage("areas", areaId);
     }
   };
 
