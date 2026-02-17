@@ -94,7 +94,8 @@ const actions = {
       site: id,
       sortBy: ["depth"],
       sortDesc: [false],
-      nest: 1
+      nest: 1,
+      limit: 100,
     });
     if (typeof response === "object") {
       commit("SET_SITE_SAMPLES", response.results);

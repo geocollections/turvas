@@ -146,15 +146,17 @@ module.exports = [
 
 async function getIdsForSitemap(table) {
   if (table && table === "area") {
-    const API_URL = "https://api.geocollections.info/";
+    const API_URL = "https://rwapi.geoloogia.info/api/v0/public/";
 
     let url = API_URL + table + "?";
 
     if (table === "area") {
       url += "area_type=2&";
     } else if (table === "site") {
+      // NOTE: this condition is never true, as table is always `area`
       url += "project=20&";
     } else if (table === "sample") {
+      // NOTE: this condition is never true, as table is always `area`
       url += "site__project=20&";
     }
 

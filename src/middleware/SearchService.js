@@ -1,7 +1,7 @@
 import axios from "axios";
 import cloneDeep from "lodash/cloneDeep";
 
-const API_URL = "https://api.geoloogia.info/";
+const API_URL = "https://rwapi.geoloogia.info/api/v0.5/public/";
 const SOLR_URL = "https://api.geoloogia.info/solr/";
 const RAW_SOLR_URL = "https://api.geoloogia.info/solr/";
 
