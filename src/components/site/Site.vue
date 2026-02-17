@@ -52,7 +52,11 @@
     </v-card>
 
     <!-- Description -->
-    <v-card flat v-if="getSiteDescription" id="description">
+    <v-card
+      flat
+      v-if="getSiteDescription && getSiteDescription.length"
+      id="description"
+    >
       <h2>
         <CardTitleWrapper
           :text="$t('site.descriptionTitle')"
