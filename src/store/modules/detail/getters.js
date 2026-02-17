@@ -12,7 +12,11 @@ const getters = {
   },
 
   getAreaReferences: state => {
-    return state.areaReferences;
+    if (!state.areaReferences?.length) return [];
+
+    return state.areaReferences.map(item => {
+      return { ...item, ...(item.reference ?? []) };
+    });
   },
 
   filteredAreaHeaders: (state, getters) => {
