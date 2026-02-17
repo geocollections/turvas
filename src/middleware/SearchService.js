@@ -33,7 +33,7 @@ class SearchService {
       delete params.sortDesc;
       let queryParams = encodeQueryData(params);
       if (queryParams.length > 0) queryParams = "&" + queryParams;
-      if (orderBy.length > 0) queryParams += "&order_by=" + orderBy;
+      if (orderBy.length > 0) queryParams += "&ordering=" + orderBy;
       let url = `${API_URL}${table}/?format=json${queryParams}`;
 
       const res = await axios.get(url);
