@@ -64,10 +64,7 @@ const actions = {
   },
 
   async fetchAreaReferences({ commit, dispatch }, id) {
-    let response = await SearchService.doRegularSearch("reference", {
-      localityreference__area: id,
-      nest: 1
-    });
+    let response = await SearchService.getAreaReferences(id);
     if (typeof response === "object") {
       commit("SET_AREA_REFERENCES", response.results);
     } else if (typeof response === "string") {
