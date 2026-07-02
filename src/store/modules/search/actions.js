@@ -1,7 +1,6 @@
 import SearchService from "../../../middleware/SearchService";
 import cloneDeep from "lodash/cloneDeep";
 import router from "../../../router";
-import i18n from "@/i18n";
 
 const actions = {
   async doAreaSearch({ state, commit, dispatch }, params = {}) {
@@ -313,11 +312,17 @@ const actions = {
   },
 
   async fetchListAreas({ commit, dispatch }) {
-    let response = await SearchService.doRegularSearch("area", {
-      fields: "id,name",
-      sortBy: ["name"],
-      sortDesc: [false]
-    });
+    let response = await SearchService.doRegularSearch(
+      "areas",
+      {
+        fields: "id,name",
+        type: 2,
+        limit: 600,
+        sortBy: ["name"],
+        sortDesc: [false]
+      },
+      true
+    );
     if (typeof response === "object") {
       commit("SET_LIST_AREAS", response.results);
     } else if (typeof response === "string") {

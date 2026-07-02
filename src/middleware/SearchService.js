@@ -26,7 +26,7 @@ class SearchService {
     }
   };
 
-  static doRegularSearch = async (table, params = {}) => {
+  static doRegularSearch = async (table, params = {}, useV1 = false) => {
     try {
       let orderBy = buildOrderBy(params.sortBy, params.sortDesc);
       delete params.sortBy;
@@ -34,7 +34,9 @@ class SearchService {
       let queryParams = encodeQueryData(params);
       if (queryParams.length > 0) queryParams = "&" + queryParams;
       if (orderBy.length > 0) queryParams += "&ordering=" + orderBy;
-      let url = `${API_URL}${table}/?format=json${queryParams}`;
+      let url = `${
+        useV1 ? API_URL_V1 : API_URL
+      }${table}/?format=json${queryParams}`;
 
       const res = await axios.get(url);
       if (res.status === 200) return res.data;
