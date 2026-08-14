@@ -8,7 +8,7 @@
             :to="{
               query: {
                 ...$route.query,
-                maakond: item.maakond,
+                maakond: `&quot;${item.maakond}&quot;`,
                 page: 1,
                 paginateBy: 500
               }

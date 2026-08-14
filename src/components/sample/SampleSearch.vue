@@ -10,10 +10,10 @@
 
     <div v-show="block.search[0]">
       <v-row no-gutters class="px-1">
-        <v-col cols="12" md="6" lg="4" class="pa-1" v-if="getListCountiesAsArray.length > 0">
+        <v-col cols="12" md="6" lg="4" class="pa-1" v-if="getCounties().length > 0">
           <AutocompleteWrapper
             :label="$t('common.maakond')"
-            :items="getListCountiesAsArray"
+            :items="getCounties()"
             return-object
             :value="sampleSearchParams.maakond"
             @input="handleUpdateMaakond"
@@ -259,6 +259,26 @@ export default {
       "updateActiveListParameter",
       "fetchListAreas"
     ]),
+
+    getCounties() {
+      return [
+        "Pärnumaa",
+        "Viljandimaa",
+        "Valgamaa",
+        "Harjumaa",
+        "Raplamaa",
+        "Lääne-Virumaa",
+        "Võrumaa",
+        "Põlvamaa",
+        "Ida-Virumaa",
+        "Jõgevamaa",
+        "Järvamaa",
+        "Tartumaa",
+        "Läänemaa",
+        "Saaremaa",
+        "Hiiumaa"
+      ];
+    },
 
     updateParam(value, field) {
       if (value && value.length > 0) {

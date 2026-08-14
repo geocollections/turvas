@@ -150,9 +150,9 @@ function encodeQueryData(data, isSolr = false) {
         (item === "maakond" || item === "area") &&
         Array.isArray(data[item])
       ) {
-        encodedObject = `${encodeURIComponent(item)}:(${encodeURIComponent(
-          data[item].join(" ")
-        )})`;
+        encodedObject = `${encodeURIComponent(item)}:(${data[item]
+          .map(entry => `"${encodeURIComponent(entry)}"`)
+          .join(" ")})`;
       } else {
         if ((item === "site" || item === "rock") && isSolr) {
           encodedObject = `${encodeURIComponent(item)}:*${encodeURIComponent(
